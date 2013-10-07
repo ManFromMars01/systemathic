@@ -1,0 +1,30 @@
+
+.clCMEvent{position:absolute; z-index:300; width:100%; height:100%; clip:rect(0,100%,100%,0); left:0; top:0; visibility:hidden}
+.clCMAbs{position:absolute; width:10; height:10; left:0; top:0; visibility:hidden}
+
+/*Style for the background-bar*/
+.clBar{layer-background-color:#336699; background-color:#336699; position:absolute; width:10; height:10; visibility:hidden}
+
+/*Styles for level 0*/
+.clLevel0,.clLevel0over{position:absolute; padding:2px; font-family:tahoma,arial,helvetica; font-size:12px; font-weight:bold}
+.clLevel0{background-color:#336699; layer-background-color:#336699; color:white;}
+.clLevel0over{background-color:#336699; layer-background-color:#336699; color:Yellow; cursor:pointer; cursor:hand; }
+.clLevel0border{position:absolute; visibility:hidden; background-color:#006699; layer-background-color:#006699}
+
+/*Styles for level 1*/
+.clLevel1, .clLevel1over{position:absolute; padding:2px; font-family:tahoma, arial,helvetica; font-size:11px; font-weight:bold}
+.clLevel1{background-color:#CDDBEB; layer-background-color:#336699; color:#336699;}
+.clLevel1over{background-color:#336699; layer-background-color:#336699; color:Yellow; cursor:pointer; cursor:hand; }
+.clLevel1border{position:absolute; visibility:hidden; background-color:#006699; layer-background-color:#006699}
+
+/*Styles for level 2*/
+.clLevel2, .clLevel2over{position:absolute; padding:2px; font-family:tahoma,arial,helvetica; font-size:10px; font-weight:bold}
+.clLevel2{background-color:#CDDBEB; layer-background-color:#336699; color:#336699;}
+.clLevel2over{background-color:#0099cc; layer-background-color:#0099cc; color:Yellow; cursor:pointer; cursor:hand; }
+.clLevel2border{position:absolute; visibility:hidden; background-color:#006699; layer-background-color:#006699}
+
+/*Styles for level 3*/
+.clLevel3, .clLevel3over{position:absolute; padding:2px; font-family:tahoma,arial,helvetica; font-size:10px; font-weight:bold}
+.clLevel3{background-color:#CDDBEB; layer-background-color:#336699; color:#336699;}
+.clLevel3over{background-color:#0099cc; layer-background-color:#0099cc; color:Yellow; cursor:pointer; cursor:hand; }
+.clLevel3border{position:absolute; visibility:hidden; background-color:#006699; layer-background-color:#006699}

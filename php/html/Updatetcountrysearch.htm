@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--@HTML_AFTER_OPEN@-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="ROBOTS" Content="NONE">
+<meta name="GENERATOR" Content="Clarion/WEB Templates by SoftVelocity, Inc. www.softvelocity.com">
+<meta http-equiv="PRAGMA" content="NO-CACHE">
+<meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+<!-- -------------------------------------------------------------------------
+** IMPORTANT NOTICE! **
+Please do not rename any forms or form fields
+Please do not re-order, move or rename any comment tags that delimit code sections
+-------------------------------------------------------------------------  -->
+<link rel="stylesheet" href="styles/MyStyles.css" type="text/css">
+<script language="JavaScript" type="text/javascript">
+<!--
+var adjWidth  = 480;
+var adjHeight = 120;
+    if (navigator.appName == 'Netscape') {
+        adjWidth = adjWidth + 16;
+    }
+    else {
+        adjWidth = adjWidth + 46;
+    }
+var posL = (screen.width - adjWidth) / 2;
+var posT = (screen.height - adjHeight) / 2;
+function ShowHelp(myURL) {
+    myURL = "help/" + myURL;
+    var HelpStyle  = 'height='+adjHeight+',width='+adjWidth+',top='+posT+',left='+posL+',alwaysLowered=0,alwaysRaised=0,channelmode=0,dependent=0,directories=0,fullscreen=0,hotkeys=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=1,toolbar=0,z-lock=0';
+    var remote = open(myURL, "Help", HelpStyle);                  
+    if (remote.opener == null) remote.opener = window;
+}
+//-->
+</script>
+<!--@HEAD_AFTER_OPEN@-->
+<title>Search for Record</title>
+<!--@HEAD_BEFORE_CLOSE@-->
+</head>
+    <body onhelp="JAVASCRIPT:ShowHelp('UpdatetcountrySearchHelp.htm');return false;">
+<!--@BODY_AFTER_OPEN@-->
+<!--@BG_BEFORE_OPEN@-->
+@FormDeclaration@
+  <div CLASS="BG">       
+<!--@BG_AFTER_OPEN@-->  
+    <table CLASS="Data" cellspacing="0" width="100%">
+        <tr>   
+            <td align="left" CLASS="Header" WIDTH="40%">Search</td>
+            <td CLASS="Header" align="right" valign="top" >&nbsp;
+          <a href="JAVASCRIPT:ShowHelp('UpdatetcountrySearchHelp.htm');"><img alt="Help" src="/images/help.gif" border=0 height=20 width=20></A><A href="JAVASCRIPT:history.back();"><img alt="Back" src="/images/back.gif" border=0 height=20 width=20></a>
+            </td>         
+        </tr>
+                    <tr>
+                      <td class="Label">ID: </td>
+                      <td class="Input"><input id="txttcountryID" name="txttcountryID" title="" SIZE=30 value="">&nbsp;</td>
+                    </tr>        
+                    <tr>
+                      <td class="Label">Description: </td>
+                      <td class="Input"><input id="txttcountryDescription" name="txttcountryDescription" title="" SIZE=30 value="">&nbsp;</td>
+                    </tr>        
+                    <tr>
+                      <td class="Label">Phone: </td>
+                      <td class="Input"><input id="txttcountryPhone" name="txttcountryPhone" title="" SIZE=30 value="">&nbsp;</td>
+                    </tr>        
+                    <tr>
+                      <td class="Label">Email: </td>
+                      <td class="Input"><input id="txttcountryEmail" name="txttcountryEmail" title="" SIZE=30 value="">&nbsp;</td>
+                    </tr>        
+                    <tr>
+                      <td class="Label">Contact: </td>
+                      <td class="Input"><input id="txttcountryContact" name="txttcountryContact" title="" SIZE=30 value="">&nbsp;</td>
+                    </tr>        
+                    <tr>
+                      <td class="Label">Master: </td>
+                      <td class="Input"><input id="txttcountryMaster" name="txttcountryMaster" title="" SIZE=30 value="">&nbsp;</td>
+                    </tr>        
+        <tr>              
+          <td colspan="2" class="Footer"><a href="Browsetbranchlist.php?RESETLIST=TRUE">Return to list without searching</a></td>
+        </tr>    
+        <tr>              
+          <td colspan="2" class="Footer">        
+          <input type="submit" value="Submit" title="Submit this form" id="submit1" name="submit1"><input type="reset" value="Reset" id="reset1" name="reset1" title="Reset changes"></td>                
+        </tr>    
+        </table>
+<!--@BG_BEFORE_CLOSE@-->        
+</div>
+</form>
+<!--@BG_AFTER_CLOSE@-->
+<!--@BODY_BEFORE_CLOSE@-->
+</body>
+<!--@HTML_BEFORE_CLOSE@-->
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--@HTML_AFTER_OPEN@-->
+<!--@HTML_AFTER_OPEN@-->
+<head>
+<!--@HEAD_AFTER_OPEN@-->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="ROBOTS" Content="NONE">
+<meta name="GENERATOR" Content="Clarion/WEB Templates by SoftVelocity, Inc. www.softvelocity.com">
+<meta http-equiv="PRAGMA" content="NO-CACHE">
+<meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+<!-- -------------------------------------------------------------------------
+** IMPORTANT NOTICE! **
+Please do not rename any forms or form fields
+Please do not re-order, move or rename any comment tags that delimit code sections
+-------------------------------------------------------------------------  -->
+<link rel="stylesheet" href="styles/MyStyles.css" type="text/css">
+<script src="phpvalidate.js" LANGUAGE="JavaScript" type="text/javascript">
+</script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var adjWidth  = 480;
+var adjHeight = 120;
+    if (navigator.appName == 'Netscape') {
+        adjWidth = adjWidth + 16;
+    }
+    else {
+        adjWidth = adjWidth + 46;
+    }
+var posL = (screen.width - adjWidth) / 2;
+var posT = (screen.height - adjHeight) / 2;
+function ShowHelp(myURL) {
+    myURL = "help/" + myURL;
+    var HelpStyle  = 'height='+adjHeight+',width='+adjWidth+',top='+posT+',left='+posL+',alwaysLowered=0,alwaysRaised=0,channelmode=0,dependent=0,directories=0,fullscreen=0,hotkeys=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=1,toolbar=0,z-lock=0';
+    var remote = open(myURL, "Help", HelpStyle);                  
+    if (remote.opener == null) remote.opener = window;
+}
+function y2k(number)    { return (number < 1000) ? number + 1900 : number; }
+
+var today = new Date();
+var day   = today.getDate();
+var month = today.getMonth();
+var year  = y2k(today.getYear());
+var datestyle = 3;
+// date display style
+// 1 - dd mm yyyy
+// 2 - mm dd yyyy
+// 3 - yyyy mm dd
+var datesep = '-';        // date seperator character
+var pointer;        // temporary caller object pointer
+
+function padout(number) { return (number < 10) ? '0' + number : number; }
+
+function calRefresh() {
+        if (datestyle == 1) {
+            pointer.value = '' + padout(day) + datesep + padout(month - 0 + 1) + datesep + year;
+        }
+        if (datestyle == 2) {
+            pointer.value = '' + padout(month - 0 + 1)  + datesep + padout(day) + datesep + year;
+        }
+        if (datestyle == 3) {
+        
+            pointer.value = '' + year + datesep + padout(month - 0 + 1) + datesep + padout(day) ;
+        }  
+    calwindow.close();
+}
+
+function dateLookup(caller) {
+var posL = (screen.width - 360) / 2;
+var posT = (screen.height - 280) / 2;
+var CalStyle  = 'height=280,width=360,top='+posT+',left='+posL+',alwaysLowered=0,alwaysRaised=0,channelmode=0,dependent=0,directories=0,fullscreen=0,hotkeys=0,location=0,menubar=0,resizable=1,scrollbars=0,status=0,titlebar=1,toolbar=0,z-lock=0';
+    pointer = caller;    
+    if (pointer.value != "") {  
+        var strTemp = pointer.value;
+        var dateValues = strTemp.split(datesep);
+        switch(datestyle){
+        case 1:
+            if (!isNaN(dateValues[2])) { year = dateValues[2] };
+            if (!isNaN(dateValues[1])) { month = Math.round(dateValues[1]) -1 };
+            break
+        case 2:
+            if (!isNaN(dateValues[2])) { year  = dateValues[2] };
+            if (!isNaN(dateValues[0])) { month = Math.round(dateValues[0]) -1 };
+            break
+        case 3:
+            if (!isNaN(dateValues[0])) { year  = dateValues[0] };
+            if (!isNaN(dateValues[1])) { month = Math.round(dateValues[1]) -1 };
+            break
+        }
+    }
+    calwindow=open('cal.htm','cal',CalStyle);
+    calwindow.location.href = 'cal.htm';
+    if (calwindow.opener == null) calwindow.opener = self;
+}
+
+function initAttributes() { 
+    document.forms[0].txttcustomerCountryID.Label = "Country ID:";
+    document.forms[0].txttcustomerCountryID.DataType = "STRING";
+    document.forms[0].txttcustomerCountryID.SavedValue = document.forms[0].txttcustomerCountryID.value;
+    document.forms[0].txttcustomerCountryID.Message = "";
+    
+    
+    document.forms[0].txttcustomerBranchID.Label = "Branch ID:";
+    document.forms[0].txttcustomerBranchID.DataType = "STRING";
+    document.forms[0].txttcustomerBranchID.SavedValue = document.forms[0].txttcustomerBranchID.value;
+    document.forms[0].txttcustomerBranchID.Message = "";
+    
+    
+    document.forms[0].txttcustomerCustNo.Label = "Cust No:";
+    document.forms[0].txttcustomerCustNo.DataType = "NUMERIC";
+    document.forms[0].txttcustomerCustNo.SavedValue = document.forms[0].txttcustomerCustNo.value;
+    document.forms[0].txttcustomerCustNo.Places = 0;
+    document.forms[0].txttcustomerCustNo.Message = "";
+    
+    
+    document.forms[0].txttcustomerStudentID.Label = "Student ID:";
+    document.forms[0].txttcustomerStudentID.DataType = "STRING";
+    document.forms[0].txttcustomerStudentID.SavedValue = document.forms[0].txttcustomerStudentID.value;
+    document.forms[0].txttcustomerStudentID.Message = "";
+    
+    
+    document.forms[0].txttcustomerSurName.Label = "Sur Name:";
+    document.forms[0].txttcustomerSurName.DataType = "STRING";
+    document.forms[0].txttcustomerSurName.SavedValue = document.forms[0].txttcustomerSurName.value;
+    document.forms[0].txttcustomerSurName.Message = "";
+    
+    
+    document.forms[0].txttcustomerFirstName.Label = "First Name:";
+    document.forms[0].txttcustomerFirstName.DataType = "STRING";
+    document.forms[0].txttcustomerFirstName.SavedValue = document.forms[0].txttcustomerFirstName.value;
+    document.forms[0].txttcustomerFirstName.Message = "";
+    
+    
+    document.forms[0].txttcustomerMiddleName.Label = "Middle Name:";
+    document.forms[0].txttcustomerMiddleName.DataType = "STRING";
+    document.forms[0].txttcustomerMiddleName.SavedValue = document.forms[0].txttcustomerMiddleName.value;
+    document.forms[0].txttcustomerMiddleName.Message = "";
+    
+    
+    document.forms[0].txttcustomerLSurname.Label = "LS urname:";
+    document.forms[0].txttcustomerLSurname.DataType = "STRING";
+    document.forms[0].txttcustomerLSurname.SavedValue = document.forms[0].txttcustomerLSurname.value;
+    document.forms[0].txttcustomerLSurname.Message = "";
+    
+    
+    document.forms[0].txttcustomerLFirstName.Label = "LF irst Name:";
+    document.forms[0].txttcustomerLFirstName.DataType = "STRING";
+    document.forms[0].txttcustomerLFirstName.SavedValue = document.forms[0].txttcustomerLFirstName.value;
+    document.forms[0].txttcustomerLFirstName.Message = "";
+    
+    
+    document.forms[0].txttcustomerLMiddleName.Label = "LM iddle Name:";
+    document.forms[0].txttcustomerLMiddleName.DataType = "STRING";
+    document.forms[0].txttcustomerLMiddleName.SavedValue = document.forms[0].txttcustomerLMiddleName.value;
+    document.forms[0].txttcustomerLMiddleName.Message = "";
+    
+    
+    document.forms[0].txttcustomerGender.Label = "Gender:";
+    document.forms[0].txttcustomerGender.DataType = "STRING";
+    document.forms[0].txttcustomerGender.SavedValue = document.forms[0].txttcustomerGender.value;
+    document.forms[0].txttcustomerGender.Message = "";
+    
+    
+    document.forms[0].txttcustomerBirthday.Label = "Birthday:";
+    document.forms[0].txttcustomerBirthday.DataType = "DATE";
+    document.forms[0].txttcustomerBirthday.SavedValue = document.forms[0].txttcustomerBirthday.value;
+    document.forms[0].txttcustomerBirthday.Message = "";
+    
+    
+    document.forms[0].txttcustomerCity.Label = "City:";
+    document.forms[0].txttcustomerCity.DataType = "STRING";
+    document.forms[0].txttcustomerCity.SavedValue = document.forms[0].txttcustomerCity.value;
+    document.forms[0].txttcustomerCity.Message = "";
+    
+    
+    document.forms[0].txttcustomerZip.Label = "Zip:";
+    document.forms[0].txttcustomerZip.DataType = "STRING";
+    document.forms[0].txttcustomerZip.SavedValue = document.forms[0].txttcustomerZip.value;
+    document.forms[0].txttcustomerZip.Message = "";
+    
+    
+    document.forms[0].txttcustomerPhone.Label = "Phone:";
+    document.forms[0].txttcustomerPhone.DataType = "STRING";
+    document.forms[0].txttcustomerPhone.SavedValue = document.forms[0].txttcustomerPhone.value;
+    document.forms[0].txttcustomerPhone.Message = "";
+    
+    
+    document.forms[0].txttcustomerMobile.Label = "Mobile:";
+    document.forms[0].txttcustomerMobile.DataType = "STRING";
+    document.forms[0].txttcustomerMobile.SavedValue = document.forms[0].txttcustomerMobile.value;
+    document.forms[0].txttcustomerMobile.Message = "";
+    
+    
+    document.forms[0].txttcustomerEmail.Label = "Email:";
+    document.forms[0].txttcustomerEmail.DataType = "STRING";
+    document.forms[0].txttcustomerEmail.SavedValue = document.forms[0].txttcustomerEmail.value;
+    document.forms[0].txttcustomerEmail.Message = "";
+    
+    
+    document.forms[0].txttcustomerLevelID.Label = "Level ID:";
+    document.forms[0].txttcustomerLevelID.DataType = "NUMERIC";
+    document.forms[0].txttcustomerLevelID.SavedValue = document.forms[0].txttcustomerLevelID.value;
+    document.forms[0].txttcustomerLevelID.Places = 0;
+    document.forms[0].txttcustomerLevelID.Message = "";
+    
+    
+    document.forms[0].txttcustomerTierID.Label = "Tier ID:";
+    document.forms[0].txttcustomerTierID.DataType = "NUMERIC";
+    document.forms[0].txttcustomerTierID.SavedValue = document.forms[0].txttcustomerTierID.value;
+    document.forms[0].txttcustomerTierID.Places = 0;
+    document.forms[0].txttcustomerTierID.Message = "";
+    
+    
+    document.forms[0].txttcustomerCustType.Label = "Cust Type:";
+    document.forms[0].txttcustomerCustType.DataType = "STRING";
+    document.forms[0].txttcustomerCustType.SavedValue = document.forms[0].txttcustomerCustType.value;
+    document.forms[0].txttcustomerCustType.Message = "";
+    
+    
+    document.forms[0].txttcustomerRegType.Label = "Reg Type:";
+    document.forms[0].txttcustomerRegType.DataType = "STRING";
+    document.forms[0].txttcustomerRegType.SavedValue = document.forms[0].txttcustomerRegType.value;
+    document.forms[0].txttcustomerRegType.Message = "";
+    
+    
+    document.forms[0].txttcustomerSchool.Label = "School:";
+    document.forms[0].txttcustomerSchool.DataType = "STRING";
+    document.forms[0].txttcustomerSchool.SavedValue = document.forms[0].txttcustomerSchool.value;
+    document.forms[0].txttcustomerSchool.Message = "";
+    
+    
+    document.forms[0].txttcustomerMother.Label = "Mother:";
+    document.forms[0].txttcustomerMother.DataType = "STRING";
+    document.forms[0].txttcustomerMother.SavedValue = document.forms[0].txttcustomerMother.value;
+    document.forms[0].txttcustomerMother.Message = "";
+    
+    
+    document.forms[0].txttcustomerMOccupation.Label = "MO ccupation:";
+    document.forms[0].txttcustomerMOccupation.DataType = "STRING";
+    document.forms[0].txttcustomerMOccupation.SavedValue = document.forms[0].txttcustomerMOccupation.value;
+    document.forms[0].txttcustomerMOccupation.Message = "";
+    
+    
+    document.forms[0].txttcustomerMMobile.Label = "MM obile:";
+    document.forms[0].txttcustomerMMobile.DataType = "STRING";
+    document.forms[0].txttcustomerMMobile.SavedValue = document.forms[0].txttcustomerMMobile.value;
+    document.forms[0].txttcustomerMMobile.Message = "";
+    
+    
+    document.forms[0].txttcustomerMEmail.Label = "ME mail:";
+    document.forms[0].txttcustomerMEmail.DataType = "STRING";
+    document.forms[0].txttcustomerMEmail.SavedValue = document.forms[0].txttcustomerMEmail.value;
+    document.forms[0].txttcustomerMEmail.Message = "";
+    
+    
+    document.forms[0].txttcustomerFather.Label = "Father:";
+    document.forms[0].txttcustomerFather.DataType = "STRING";
+    document.forms[0].txttcustomerFather.SavedValue = document.forms[0].txttcustomerFather.value;
+    document.forms[0].txttcustomerFather.Message = "";
+    
+    
+    document.forms[0].txttcustomerFOccupation.Label = "FO ccupation:";
+    document.forms[0].txttcustomerFOccupation.DataType = "STRING";
+    document.forms[0].txttcustomerFOccupation.SavedValue = document.forms[0].txttcustomerFOccupation.value;
+    document.forms[0].txttcustomerFOccupation.Message = "";
+    
+    
+    document.forms[0].txttcustomerFMobile.Label = "FM obile:";
+    document.forms[0].txttcustomerFMobile.DataType = "STRING";
+    document.forms[0].txttcustomerFMobile.SavedValue = document.forms[0].txttcustomerFMobile.value;
+    document.forms[0].txttcustomerFMobile.Message = "";
+    
+    
+    document.forms[0].txttcustomerFEmail.Label = "FE mail:";
+    document.forms[0].txttcustomerFEmail.DataType = "STRING";
+    document.forms[0].txttcustomerFEmail.SavedValue = document.forms[0].txttcustomerFEmail.value;
+    document.forms[0].txttcustomerFEmail.Message = "";
+    
+    
+    document.forms[0].txttcustomerStatus.Label = "Status:";
+    document.forms[0].txttcustomerStatus.DataType = "STRING";
+    document.forms[0].txttcustomerStatus.SavedValue = document.forms[0].txttcustomerStatus.value;
+    document.forms[0].txttcustomerStatus.Message = "";
+    
+    
+    document.forms[0].txttcustomerReferralID.Label = "Referral ID:";
+    document.forms[0].txttcustomerReferralID.DataType = "NUMERIC";
+    document.forms[0].txttcustomerReferralID.SavedValue = document.forms[0].txttcustomerReferralID.value;
+    document.forms[0].txttcustomerReferralID.Places = 0;
+    document.forms[0].txttcustomerReferralID.Message = "";
+    
+    
+    document.forms[0].txttcustomerStoppedDate.Label = "Stopped Date:";
+    document.forms[0].txttcustomerStoppedDate.DataType = "DATE";
+    document.forms[0].txttcustomerStoppedDate.SavedValue = document.forms[0].txttcustomerStoppedDate.value;
+    document.forms[0].txttcustomerStoppedDate.Message = "";
+    
+    
+}
+
+//-->
+</script>
+<!--@HEAD_AFTER_OPEN@-->
+<title>Edit Record</title>
+<!--@HEAD_BEFORE_CLOSE@-->
+</head>
+    <body onload="JAVASCRIPT:initAttributes();return false;"  onhelp="JAVASCRIPT:ShowHelp('UpdatetcustomerEditHelp.htm');return false;">
+<!--@BODY_AFTER_OPEN@-->
+<!--@BG_BEFORE_OPEN@-->
+<form method="post" action="@UpdatetcustomerFormAction@"  id="form1" name="form1">
+<input type="hidden" id="ID1" name="ID1" value="@ID1@">
+<input type="hidden" id="ID2" name="ID2" value="@ID2@">
+<input type="hidden" id="ID3" name="ID3" value="@ID3@">
+    <div class="BG">
+    <!--@BG_AFTER_OPEN@-->
+      <table class="Data" cellspacing="0" width="100%">
+        <tr>   
+          <td ALIGN="left"  VALIGN="top" WIDTH="40%" class="Header">Edit Record</td>
+          <td ALIGN="right" VALIGN="top" class="Header">&nbsp;
+          <a href="JAVASCRIPT:ShowHelp('UpdatetcustomerEditHelp.htm');"><img alt="Help" src="/images/help.gif" border=0 height=20 width=20></A><A href="JAVASCRIPT:history.back();"><IMG alt="Back" src="/images/back.gif" border=0 height=20 width=20></a>
+          </td>          
+        </tr>
+                    <tr>
+                        <td class="Label">Country ID: 
+                      *
+                      </td>
+                      <td class="Input"><input id="txttcustomerCountryID" name="txttcustomerCountryID" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCountryID); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerCountryID); fieldExit(this);" title="" SIZE=30 value="@tcustomerCountryID@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Branch ID: 
+                      *
+                      </td>
+                      <td class="Input"><input id="txttcustomerBranchID" name="txttcustomerBranchID" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerBranchID); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerBranchID); fieldExit(this);" title="" SIZE=30 value="@tcustomerBranchID@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Cust No: 
+                      *
+                      </td>
+                      <td class="Input"><input id="txttcustomerCustNo" name="txttcustomerCustNo" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCustNo); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerCustNo); fieldExit(this);" title="" SIZE=30 value="@tcustomerCustNo@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Student ID: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerStudentID" name="txttcustomerStudentID" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerStudentID); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerStudentID); fieldExit(this);" title="" SIZE=30 value="@tcustomerStudentID@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Sur Name: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerSurName" name="txttcustomerSurName" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerSurName); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerSurName); fieldExit(this);" title="" SIZE=30 value="@tcustomerSurName@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">First Name: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerFirstName" name="txttcustomerFirstName" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerFirstName); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerFirstName); fieldExit(this);" title="" SIZE=30 value="@tcustomerFirstName@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Middle Name: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerMiddleName" name="txttcustomerMiddleName" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerMiddleName); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerMiddleName); fieldExit(this);" title="" SIZE=30 value="@tcustomerMiddleName@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">LS urname: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerLSurname" name="txttcustomerLSurname" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerLSurname); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerLSurname); fieldExit(this);" title="" SIZE=30 value="@tcustomerLSurname@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">LF irst Name: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerLFirstName" name="txttcustomerLFirstName" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerLFirstName); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerLFirstName); fieldExit(this);" title="" SIZE=30 value="@tcustomerLFirstName@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">LM iddle Name: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerLMiddleName" name="txttcustomerLMiddleName" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerLMiddleName); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerLMiddleName); fieldExit(this);" title="" SIZE=30 value="@tcustomerLMiddleName@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="Label">Gender:
+                      </td>                                        
+                      <td class="Input">
+                      <input type="RADIO" id="txttcustomerGender" name="txttcustomerGender"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerGender)" title="" value="Male" @SELECTEDtcustomerGenderMale@>Male
+                      <input type="RADIO" id="txttcustomerGender" name="txttcustomerGender"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerGender)" title="" value="Female" @SELECTEDtcustomerGenderFemale@>Female
+                      </td>          
+                    </tr>        
+                    <tr>
+                        <td class="Label">Birthday: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerBirthday" name="txttcustomerBirthday" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerBirthday); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerBirthday); fieldExit(this);" title="" SIZE=30 value="@tcustomerBirthday@"><a href="JAVASCRIPT:dateLookup(document.forms[0].txttcustomerBirthday);"><img src="/images/ellipsis.gif" border="0" height="20" width="20" alt="Lookup"></a>&nbsp;
+                    </tr>
+                    <tr>
+                        <td class="Label">City: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerCity" name="txttcustomerCity" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCity); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerCity); fieldExit(this);" title="" SIZE=30 value="@tcustomerCity@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Zip: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerZip" name="txttcustomerZip" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerZip); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerZip); fieldExit(this);" title="" SIZE=30 value="@tcustomerZip@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Phone: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerPhone" name="txttcustomerPhone" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerPhone); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerPhone); fieldExit(this);" title="" SIZE=30 value="@tcustomerPhone@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Mobile: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerMobile" name="txttcustomerMobile" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerMobile); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerMobile); fieldExit(this);" title="" SIZE=30 value="@tcustomerMobile@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Email: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerEmail" name="txttcustomerEmail" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerEmail); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerEmail); fieldExit(this);" title="" SIZE=30 value="@tcustomerEmail@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Level ID: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerLevelID" name="txttcustomerLevelID" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerLevelID); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerLevelID); fieldExit(this);" title="" SIZE=30 value="@tcustomerLevelID@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Tier ID: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerTierID" name="txttcustomerTierID" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerTierID); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerTierID); fieldExit(this);" title="" SIZE=30 value="@tcustomerTierID@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="Label">Cust Type:
+                      </td>                                        
+                      <td class="Input">
+                      <input type="RADIO" id="txttcustomerCustType" name="txttcustomerCustType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCustType)" title="" value="Assessment" @SELECTEDtcustomerCustTypeAssessment@>Assessment
+                      <input type="RADIO" id="txttcustomerCustType" name="txttcustomerCustType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCustType)" title="" value="Trial Class" @SELECTEDtcustomerCustTypeTrial_Class@>Trial Class
+                      <input type="RADIO" id="txttcustomerCustType" name="txttcustomerCustType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCustType)" title="" value="For Admission" @SELECTEDtcustomerCustTypeFor_Admission@>For Admission
+                      <input type="RADIO" id="txttcustomerCustType" name="txttcustomerCustType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCustType)" title="" value="ReEnrollee" @SELECTEDtcustomerCustTypeReEnrollee@>ReEnrollee
+                      <input type="RADIO" id="txttcustomerCustType" name="txttcustomerCustType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCustType)" title="" value="Continuing" @SELECTEDtcustomerCustTypeContinuing@>Continuing
+                      </td>          
+                    </tr>        
+                    <tr>
+                      <td class="Label">Reg Type:
+                      </td>                                        
+                      <td class="Input">
+                      <input type="RADIO" id="txttcustomerRegType" name="txttcustomerRegType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerRegType)" title="" value="Waiting" @SELECTEDtcustomerRegTypeWaiting@>Waiting
+                      <input type="RADIO" id="txttcustomerRegType" name="txttcustomerRegType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerRegType)" title="" value="For Schedule" @SELECTEDtcustomerRegTypeFor_Schedule@>For Schedule
+                      <input type="RADIO" id="txttcustomerRegType" name="txttcustomerRegType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerRegType)" title="" value="For Payment" @SELECTEDtcustomerRegTypeFor_Payment@>For Payment
+                      <input type="RADIO" id="txttcustomerRegType" name="txttcustomerRegType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerRegType)" title="" value="For Kit Issuance" @SELECTEDtcustomerRegTypeFor_Kit_Issuance@>For Kit Issuance
+                      <input type="RADIO" id="txttcustomerRegType" name="txttcustomerRegType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerRegType)" title="" value="Admitted" @SELECTEDtcustomerRegTypeAdmitted@>Admitted
+                      <input type="RADIO" id="txttcustomerRegType" name="txttcustomerRegType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerRegType)" title="" value="Stopped" @SELECTEDtcustomerRegTypeStopped@>Stopped
+                      <input type="RADIO" id="txttcustomerRegType" name="txttcustomerRegType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerRegType)" title="" value="Graduate" @SELECTEDtcustomerRegTypeGraduate@>Graduate
+                      </td>          
+                    </tr>        
+                    <tr>
+                        <td class="Label">School: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerSchool" name="txttcustomerSchool" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerSchool); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerSchool); fieldExit(this);" title="" SIZE=30 value="@tcustomerSchool@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Mother: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerMother" name="txttcustomerMother" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerMother); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerMother); fieldExit(this);" title="" SIZE=30 value="@tcustomerMother@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">MO ccupation: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerMOccupation" name="txttcustomerMOccupation" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerMOccupation); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerMOccupation); fieldExit(this);" title="" SIZE=30 value="@tcustomerMOccupation@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">MM obile: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerMMobile" name="txttcustomerMMobile" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerMMobile); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerMMobile); fieldExit(this);" title="" SIZE=30 value="@tcustomerMMobile@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">ME mail: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerMEmail" name="txttcustomerMEmail" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerMEmail); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerMEmail); fieldExit(this);" title="" SIZE=30 value="@tcustomerMEmail@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Father: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerFather" name="txttcustomerFather" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerFather); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerFather); fieldExit(this);" title="" SIZE=30 value="@tcustomerFather@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">FO ccupation: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerFOccupation" name="txttcustomerFOccupation" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerFOccupation); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerFOccupation); fieldExit(this);" title="" SIZE=30 value="@tcustomerFOccupation@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">FM obile: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerFMobile" name="txttcustomerFMobile" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerFMobile); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerFMobile); fieldExit(this);" title="" SIZE=30 value="@tcustomerFMobile@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">FE mail: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerFEmail" name="txttcustomerFEmail" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerFEmail); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerFEmail); fieldExit(this);" title="" SIZE=30 value="@tcustomerFEmail@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Status: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerStatus" name="txttcustomerStatus" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerStatus); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerStatus); fieldExit(this);" title="" SIZE=30 value="@tcustomerStatus@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Referral ID: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerReferralID" name="txttcustomerReferralID" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerReferralID); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerReferralID); fieldExit(this);" title="" SIZE=30 value="@tcustomerReferralID@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Stopped Date: 
+                      </td>
+                      <td class="Input"><input id="txttcustomerStoppedDate" name="txttcustomerStoppedDate" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerStoppedDate); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttcustomerStoppedDate); fieldExit(this);" title="" SIZE=30 value="@tcustomerStoppedDate@"><a href="JAVASCRIPT:dateLookup(document.forms[0].txttcustomerStoppedDate);"><img src="/images/ellipsis.gif" border="0" height="20" width="20" alt="Lookup"></a>&nbsp;
+                    </tr>
+    <tr>
+      <td colspan="2" align="center" class='Footer'>
+      <input type='submit' value='Submit' title='Submit this form' ><input type='reset' value='Reset' title='Reset changes'>
+      </td>                
+    </tr>
+    </table>
+    <!--@BG_BEFORE_CLOSE@-->    
+    </div>
+</form>
+    @DeleteButton@
+<!--@BG_AFTER_CLOSE@-->
+<!--@BODY_BEFORE_CLOSE@-->
+</body>
+<!--@HTML_BEFORE_CLOSE@-->
+</html>

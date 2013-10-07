@@ -1,0 +1,88 @@
+@Header@
+<div id="content" class="span10">
+            <!-- content starts -->
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Home</a> <span class="divider">/</span>
+                    </li>
+                    <li>
+                        <a href="#">Forms</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="row-fluid sortable">
+                <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-edit"></i> Edit  Record </h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <form class="form-horizontal" action="@UpdatetStudentFormAction@"  id="form3" name="form3" method="post" >
+                          <fieldset>
+                            <input type="hidden" id="ID1" name="ID1" value="@ID1@">
+                            <input type="hidden" id="ID2" name="ID2" value="@ID2@">
+                            <input type="hidden" id="ID3" name="ID3" value="@ID3@">
+                            
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Country ID:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txttcountryID" id="focusedInput" type="text" value="@tcountryID@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Description:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txttcountryDescription" id="focusedInput" type="text" value="@tcountryDescription@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Phone:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txttcountryPhone" id="focusedInput" type="text" value="@tcountryPhone@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Email:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txttcountryEmail" id="focusedInput" type="text" value="@tcountryEmail@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Contact:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txttcountryContact" id="focusedInput" type="text" value="@tcountryContact@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Master: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txttcountryMaster" id="focusedInput" type="text" value="@tcountryMaster@">
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                              <!--<button type="submit" value="Submit" class="btn btn-primary">Save changes</button>-->
+                              <button type="button"  class="btn btn-primary"  id="saveme">Save changes</button>
+                              <button type="reset" class="btn">Cancel</button>
+                            </div>
+                          </fieldset>
+                        </form> 
+                        @DeleteButton@  
+
+                    </div>
+                </div><!--/span-->
+
+            </div><!--/row-->
+                    <!-- content ends -->
+            </div><!--/#content.span10-->
+@Footer@

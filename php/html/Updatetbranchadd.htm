@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--@HTML_AFTER_OPEN@-->
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta name="ROBOTS" Content="NONE">
+        <meta name="GENERATOR" Content="Clarion/WEB Templates by SoftVelocity, Inc. www.softvelocity.com">
+        <meta http-equiv="PRAGMA" content="NO-CACHE">
+        <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+        <!-- -------------------------------------------------------------------------
+        ** IMPORTANT NOTICE! **
+        Please do not rename any forms or form fields
+        Please do not re-order, move or rename any comment tags that delimit code sections
+        -------------------------------------------------------------------------  -->
+<link rel="stylesheet" href="styles/MyStyles.css" type="text/css">
+<script src="phpvalidate.js" LANGUAGE="JavaScript" type="text/javascript">
+</script>
+<script language="JavaScript" type="text/javascript">
+<!--
+        var adjWidth  = 480;
+        var adjHeight = 120;
+            if (navigator.appName == 'Netscape') {
+                adjWidth = adjWidth + 16;
+            }
+            else {
+                adjWidth = adjWidth + 46;
+            }
+        var posL = (screen.width - adjWidth) / 2;
+        var posT = (screen.height - adjHeight) / 2;
+        function ShowHelp(myURL) {
+            myURL = "help/" + myURL;
+            var HelpStyle  = 'height='+adjHeight+',width='+adjWidth+',top='+posT+',left='+posL+',alwaysLowered=0,alwaysRaised=0,channelmode=0,dependent=0,directories=0,fullscreen=0,hotkeys=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=1,toolbar=0,z-lock=0';
+            var remote = open(myURL, "Help", HelpStyle);                  
+            if (remote.opener == null) remote.opener = window;
+        }
+        var thispointer;
+        var selectWhere = "";
+        var data;
+        var proc;
+        var col;
+        var posL = (screen.width - 480) / 2;
+        var posT = (screen.height - 400) / 2;
+        var dataStyle  = 'height='+400+',width='+480+',top='+posT+',left='+posL+',alwaysLowered=0,alwaysRaised=0,channelmode=0,dependent=0,directories=0,fullscreen=0,hotkeys=0,location=0,menubar=0,resizable=1,scrollbars=0,status=0,titlebar=1,toolbar=0,z-lock=0';
+        
+        function CleanWhere() {
+          selectWhere = "";
+        }
+        
+        function BuildWhere(pValue, pCol) {
+          if (pValue.value) {
+            if (selectWhere != "") {
+              selectWhere = selectWhere + ' AND ' + pCol + ' = ' + pValue.value;
+            }
+            else {
+              selectWhere = selectWhere + pCol + ' = ' + pValue.value;
+            }
+          }
+        }
+        
+        
+        // dataLookup(document.forms[0].txtWEBFieldName, procedure, datacol)
+        function dataLookup(caller,proc,col) {
+            thispointer = caller;
+            proc = proc + '';
+            if (selectWhere != "") {
+              proc = proc + "?WHR=" + selectWhere;
+            }
+            col = col + '';
+            datawin=open(proc,'select',dataStyle);
+            datawin.location.href = proc;
+            if (datawin.opener == null) datawin.opener = self;
+        }
+        
+        function dataRefresh(data) {
+            thispointer.value = data;
+            datawin.close();
+        }
+function initAttributes() { 
+        document.forms[0].txttbranchCountryID.Label = "Country ID:";
+        document.forms[0].txttbranchCountryID.DataType = "STRING";
+        document.forms[0].txttbranchCountryID.SavedValue = document.forms[0].txttbranchCountryID.value;
+        document.forms[0].txttbranchCountryID.Message = "";
+        
+        
+        document.forms[0].txttbranchBranchID.Label = "Branch ID:";
+        document.forms[0].txttbranchBranchID.DataType = "STRING";
+        document.forms[0].txttbranchBranchID.SavedValue = document.forms[0].txttbranchBranchID.value;
+        document.forms[0].txttbranchBranchID.Message = "";
+        
+        
+        document.forms[0].txttbranchDescription.Label = "Description:";
+        document.forms[0].txttbranchDescription.DataType = "STRING";
+        document.forms[0].txttbranchDescription.SavedValue = document.forms[0].txttbranchDescription.value;
+        document.forms[0].txttbranchDescription.Message = "";
+        
+        
+        document.forms[0].txttbranchPhone.Label = "Phone:";
+        document.forms[0].txttbranchPhone.DataType = "STRING";
+        document.forms[0].txttbranchPhone.SavedValue = document.forms[0].txttbranchPhone.value;
+        document.forms[0].txttbranchPhone.Message = "";
+        
+        
+        document.forms[0].txttbranchEmail.Label = "Email:";
+        document.forms[0].txttbranchEmail.DataType = "STRING";
+        document.forms[0].txttbranchEmail.SavedValue = document.forms[0].txttbranchEmail.value;
+        document.forms[0].txttbranchEmail.Message = "";
+        
+        
+        document.forms[0].txttbranchContact.Label = "Contact:";
+        document.forms[0].txttbranchContact.DataType = "STRING";
+        document.forms[0].txttbranchContact.SavedValue = document.forms[0].txttbranchContact.value;
+        document.forms[0].txttbranchContact.Message = "";
+        
+        
+        document.forms[0].txttbranchHQOperation.Label = "HQO peration:";
+        document.forms[0].txttbranchHQOperation.DataType = "STRING";
+        document.forms[0].txttbranchHQOperation.SavedValue = document.forms[0].txttbranchHQOperation.value;
+        document.forms[0].txttbranchHQOperation.Message = "";
+        
+        
+        document.forms[0].txttbranchHQCenterOperation.Label = "HQC enter Operation:";
+        document.forms[0].txttbranchHQCenterOperation.DataType = "STRING";
+        document.forms[0].txttbranchHQCenterOperation.SavedValue = document.forms[0].txttbranchHQCenterOperation.value;
+        document.forms[0].txttbranchHQCenterOperation.Message = "";
+        
+        
+}
+//--> 
+</SCRIPT>
+<!--@HEAD_AFTER_OPEN@-->
+<title>Insert Record</title>
+<!--@HEAD_BEFORE_CLOSE@-->
+</head>
+<body onload="JAVASCRIPT:initAttributes();return false;" onhelp="JAVASCRIPT:ShowHelp('UpdatetbranchInsertHelp.htm');return false;">
+<!--@BODY_AFTER_OPEN@-->
+<!--@BG_BEFORE_OPEN@-->
+<form method="post" action="@UpdatetbranchFormAction@" id="form1" name="form1">
+<input type="hidden" id="MODE" name="MODE" value="1">
+    <div class="BG">
+<!--@BG_AFTER_OPEN@-->
+      <table class="Data" cellspacing="0" width="100%">
+        <tr>   
+          <td align="left"  valign="top" width="40%" class="Header">Insert Record</td>
+          <td align="right" valign="top" class="Header">&nbsp;
+          <a href="JAVASCRIPT:ShowHelp('UpdatetbranchInsertHelp.htm');"><img alt="Help" src="/images/help.gif" border=0 height=20 width=20></a><a href="JAVASCRIPT:history.back();"><img alt="Back" src="/images/back.gif" border=0 height=20 width=20></a>
+          </td>
+        </tr>
+                    <tr>
+                        <td class="Label">Country ID: 
+                      *
+                      </td>
+            
+                      <td class="Input"><input id="txttbranchCountryID" name="txttbranchCountryID" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttbranchCountryID); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttbranchCountryID); fieldExit(this);" title="" SIZE=30 value="@tbranchCountryID@"><a href="JAVASCRIPT:CleanWhere();;dataLookup(document.forms[0].txttbranchCountryID,'Browsetcountrylist.php','');"><img src="/images/ellipsis.gif" border="0" height="20" width="20" alt="Lookup"></a>&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Branch ID: 
+                      *
+                      </td>
+                      <td class="Input"><input id="txttbranchBranchID" name="txttbranchBranchID" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttbranchBranchID); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttbranchBranchID); fieldExit(this);" title="" SIZE=30 value="@tbranchBranchID@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Description: 
+                      *
+                      </td>
+                      <td class="Input"><input id="txttbranchDescription" name="txttbranchDescription" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttbranchDescription); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttbranchDescription); fieldExit(this);" title="" SIZE=30 value="@tbranchDescription@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Phone: 
+                      </td>
+                      <td class="Input"><input id="txttbranchPhone" name="txttbranchPhone" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttbranchPhone); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttbranchPhone); fieldExit(this);" title="" SIZE=30 value="@tbranchPhone@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Email: 
+                      </td>
+                      <td class="Input"><input id="txttbranchEmail" name="txttbranchEmail" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttbranchEmail); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttbranchEmail); fieldExit(this);" title="" SIZE=30 value="@tbranchEmail@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">Contact: 
+                      </td>
+                      <td class="Input"><input id="txttbranchContact" name="txttbranchContact" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttbranchContact); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttbranchContact); fieldExit(this);" title="" SIZE=30 value="@tbranchContact@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">HQO peration: 
+                      </td>
+                      <td class="Input"><input id="txttbranchHQOperation" name="txttbranchHQOperation" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttbranchHQOperation); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttbranchHQOperation); fieldExit(this);" title="" SIZE=30 value="@tbranchHQOperation@">&nbsp;
+                      </td>
+                    </tr>
+                    <tr>
+                        <td class="Label">HQC enter Operation: 
+                      </td>
+                      <td class="Input"><input id="txttbranchHQCenterOperation" name="txttbranchHQCenterOperation" onfocus="JAVASCRIPT:setMessage(document.forms[0].txttbranchHQCenterOperation); fieldEnter(this);" onblur="JAVASCRIPT:validate(document.forms[0].txttbranchHQCenterOperation); fieldExit(this);" title="" SIZE=30 value="@tbranchHQCenterOperation@">&nbsp;
+                      </td>
+                    </tr>
+    <tr>
+      <td colspan="2" align="center" class='Footer'>
+      <input type='submit' value='Submit' title='Submit this form' ><input type='reset' value='Reset' title='Reset changes'>
+      </td>                
+    </tr>
+    </table>
+<!--@BG_BEFORE_CLOSE@-->    
+    </div>
+</form>
+<!--@BG_AFTER_CLOSE@-->
+<!--@BODY_BEFORE_CLOSE@-->
+</body>
+<!--@HTML_BEFORE_CLOSE@-->
+</html>

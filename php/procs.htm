@@ -1,0 +1,212 @@
+<html>
+<head>
+<title>Test - Clarion/php for systemathic</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="ROBOTS" Content="NONE">
+<meta name="GENERATOR" Content="Clarion/WEB Templates by SoftVelocity, Inc. www.softvelocity.com">
+<meta http-equiv="PRAGMA" content="NO-CACHE">
+<meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+<!-- -------------------------------------------------------------------------
+** IMPORTANT NOTICE! **
+Please do not rename any forms or form fields
+Please do not re-order, move or rename any comment tags that delimit code sections
+-------------------------------------------------------------------------  -->
+<link rel="stylesheet" href="styles/dropMenu.css" type="text/css">
+<script src="dropMenu.js"></script>
+</head>
+<body>
+<div id="menuHead"class="menuHeadStyle">
+    <a  id="menuHead1" class="menuHeadLink" href="#" onMouseOut="t = 1; delayHide()" onMouseOver="popMenu(1)">&nbsp;&nbsp;List&nbsp;&nbsp;</a>
+    <a  id="menuHead2" class="menuHeadLink" href="#" onMouseOut="t = 1; delayHide()" onMouseOver="popMenu(2)">&nbsp;&nbsp;Search&nbsp;&nbsp;</a>
+    <a  id="menuHead3" class="menuHeadLink" href="#" onMouseOut="t = 1; delayHide()" onMouseOver="popMenu(3)">&nbsp;&nbsp;View&nbsp;&nbsp;</a>
+    <a  id="menuHead4" class="menuHeadLink" href="#" onMouseOut="t = 1; delayHide()" onMouseOver="popMenu(4)">&nbsp;&nbsp;Add&nbsp;&nbsp;</a>
+    <a  id="menuHead5" class="menuHeadLink" href="#" onMouseOut="t = 1; delayHide()" onMouseOver="popMenu(5)">&nbsp;&nbsp;Edit&nbsp;&nbsp;</a>
+    <a  id="menuHead6" class="menuHeadLink" href="#" onMouseOut="t = 1; delayHide()" onMouseOver="popMenu(6)">&nbsp;&nbsp;Delete&nbsp;&nbsp;</a>                
+    <a  id="menuHead7" class="menuHeadLink" href="#" onMouseOut="t = 1; delayHide()" onMouseOver="popMenu(7)">&nbsp;&nbsp;Utilities&nbsp;&nbsp;</a>
+    <a  id="menuHead8" class="menuHeadLink" href="news://discuss.softvelocity.com">&nbsp;&nbsp;Help&nbsp;&nbsp;</a>&nbsp;|&nbsp;    
+    <font size=-2 color=navy><em>Powered by</em> Clarion/PHP</font>
+</div>
+<div id="menu1" class="menuStyle">
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseRoomlist.php">&nbsp;&nbsp;BrowseRoom&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseExamFilelist.php">&nbsp;&nbsp;BrowseExamFile&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseRoyaltylist.php">&nbsp;&nbsp;BrowseRoyalty&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseStudentlist.php">&nbsp;&nbsp;BrowseStudent&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseSchedListlist.php">&nbsp;&nbsp;BrowseSchedList&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Browsetcountrylist.php">&nbsp;&nbsp;Browsetcountry&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseCategorylist.php">&nbsp;&nbsp;BrowseCategory&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseAssessmentlist.php">&nbsp;&nbsp;BrowseAssessment&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseUnitMeaslist.php">&nbsp;&nbsp;BrowseUnitMeas&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseTaxlist.php">&nbsp;&nbsp;BrowseTax&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseDiscountlist.php">&nbsp;&nbsp;BrowseDiscount&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseManufacturerlist.php">&nbsp;&nbsp;BrowseManufacturer&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseTeacherlist.php">&nbsp;&nbsp;BrowseTeacher&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseLocationlist.php">&nbsp;&nbsp;BrowseLocation&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseDeptlist.php">&nbsp;&nbsp;BrowseDept&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Browsetbranchlist.php">&nbsp;&nbsp;Browsetbranch&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseItemslist.php">&nbsp;&nbsp;BrowseItems&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseLevellist.php">&nbsp;&nbsp;BrowseLevel&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseTierlist.php">&nbsp;&nbsp;BrowseTier&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseSubCateglist.php">&nbsp;&nbsp;BrowseSubCateg&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseAttendanceStatuslist.php">&nbsp;&nbsp;BrowseAttendanceStatus&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseSeminarlist.php">&nbsp;&nbsp;BrowseSeminar&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseCurrencylist.php">&nbsp;&nbsp;BrowseCurrency&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseOnlinelist.php">&nbsp;&nbsp;BrowseOnline&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseReferrallist.php">&nbsp;&nbsp;BrowseReferral&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="BrowseVendorlist.php">&nbsp;&nbsp;BrowseVendor&nbsp;&nbsp</a><br>
+</div>
+<div id="menu2" class="menuStyle">
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcountrysearch.php">&nbsp;&nbsp;Updatetcountry Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetastatussearch.php">&nbsp;&nbsp;Updatetastatus Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetassessmentsearch.php">&nbsp;&nbsp;Updatetassessment Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeexamfilesearch.php">&nbsp;&nbsp;Updateeexamfile Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcurrencysearch.php">&nbsp;&nbsp;Updatetcurrency Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroomsearch.php">&nbsp;&nbsp;Updatetroom Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroyaltysearch.php">&nbsp;&nbsp;Updatetroyalty Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetmanufacturersearch.php">&nbsp;&nbsp;Updatetmanufacturer Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettaxtabsearch.php">&nbsp;&nbsp;Updatettaxtab Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetvendorsearch.php">&nbsp;&nbsp;Updatetvendor Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdepartmentsearch.php">&nbsp;&nbsp;Updatetdepartment Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetclassschedsearch.php">&nbsp;&nbsp;Updatetclasssched Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="UpdatetStudentsearch.php">&nbsp;&nbsp;UpdatetStudent Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetteachersearch.php">&nbsp;&nbsp;Updatetteacher Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettiersearch.php">&nbsp;&nbsp;Updatettier Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetitemssearch.php">&nbsp;&nbsp;Updatetitems Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetbranchsearch.php">&nbsp;&nbsp;Updatetbranch Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetlocationsearch.php">&nbsp;&nbsp;Updatetlocation Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetseminarsearch.php">&nbsp;&nbsp;Updatetseminar Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetunitmeassearch.php">&nbsp;&nbsp;Updatetunitmeas Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeonlinesearch.php">&nbsp;&nbsp;Updateeonline Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdiscountsearch.php">&nbsp;&nbsp;Updatetdiscount Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetlevelsearch.php">&nbsp;&nbsp;Updatetlevel Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcategorysearch.php">&nbsp;&nbsp;Updatetcategory Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetreferralsearch.php">&nbsp;&nbsp;Updatetreferral Search&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetsubcategsearch.php">&nbsp;&nbsp;Updatetsubcateg Search&nbsp;&nbsp</a><br>
+</div>
+<div id="menu3" class="menuStyle">
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcountryview.php">&nbsp;&nbsp;Updatetcountry View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetastatusview.php">&nbsp;&nbsp;Updatetastatus View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetassessmentview.php">&nbsp;&nbsp;Updatetassessment View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeexamfileview.php">&nbsp;&nbsp;Updateeexamfile View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcurrencyview.php">&nbsp;&nbsp;Updatetcurrency View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroomview.php">&nbsp;&nbsp;Updatetroom View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroyaltyview.php">&nbsp;&nbsp;Updatetroyalty View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetmanufacturerview.php">&nbsp;&nbsp;Updatetmanufacturer View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettaxtabview.php">&nbsp;&nbsp;Updatettaxtab View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetvendorview.php">&nbsp;&nbsp;Updatetvendor View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdepartmentview.php">&nbsp;&nbsp;Updatetdepartment View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetclassschedview.php">&nbsp;&nbsp;Updatetclasssched View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="UpdatetStudentview.php">&nbsp;&nbsp;UpdatetStudent View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetteacherview.php">&nbsp;&nbsp;Updatetteacher View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettierview.php">&nbsp;&nbsp;Updatettier View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetitemsview.php">&nbsp;&nbsp;Updatetitems View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetbranchview.php">&nbsp;&nbsp;Updatetbranch View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetlocationview.php">&nbsp;&nbsp;Updatetlocation View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetseminarview.php">&nbsp;&nbsp;Updatetseminar View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetunitmeasview.php">&nbsp;&nbsp;Updatetunitmeas View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeonlineview.php">&nbsp;&nbsp;Updateeonline View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdiscountview.php">&nbsp;&nbsp;Updatetdiscount View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetlevelview.php">&nbsp;&nbsp;Updatetlevel View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcategoryview.php">&nbsp;&nbsp;Updatetcategory View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetreferralview.php">&nbsp;&nbsp;Updatetreferral View&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetsubcategview.php">&nbsp;&nbsp;Updatetsubcateg View&nbsp;&nbsp</a><br>
+</div>
+<div id="menu4" class="menuStyle">
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcountryadd.php">&nbsp;&nbsp;Updatetcountry Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetastatusadd.php">&nbsp;&nbsp;Updatetastatus Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetassessmentadd.php">&nbsp;&nbsp;Updatetassessment Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeexamfileadd.php">&nbsp;&nbsp;Updateeexamfile Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcurrencyadd.php">&nbsp;&nbsp;Updatetcurrency Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroomadd.php">&nbsp;&nbsp;Updatetroom Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroyaltyadd.php">&nbsp;&nbsp;Updatetroyalty Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetmanufactureradd.php">&nbsp;&nbsp;Updatetmanufacturer Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettaxtabadd.php">&nbsp;&nbsp;Updatettaxtab Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetvendoradd.php">&nbsp;&nbsp;Updatetvendor Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdepartmentadd.php">&nbsp;&nbsp;Updatetdepartment Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetclassschedadd.php">&nbsp;&nbsp;Updatetclasssched Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="UpdatetStudentadd.php">&nbsp;&nbsp;UpdatetStudent Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetteacheradd.php">&nbsp;&nbsp;Updatetteacher Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettieradd.php">&nbsp;&nbsp;Updatettier Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetitemsadd.php">&nbsp;&nbsp;Updatetitems Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetbranchadd.php">&nbsp;&nbsp;Updatetbranch Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetlocationadd.php">&nbsp;&nbsp;Updatetlocation Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetseminaradd.php">&nbsp;&nbsp;Updatetseminar Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetunitmeasadd.php">&nbsp;&nbsp;Updatetunitmeas Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeonlineadd.php">&nbsp;&nbsp;Updateeonline Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdiscountadd.php">&nbsp;&nbsp;Updatetdiscount Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetleveladd.php">&nbsp;&nbsp;Updatetlevel Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcategoryadd.php">&nbsp;&nbsp;Updatetcategory Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetreferraladd.php">&nbsp;&nbsp;Updatetreferral Add&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetsubcategadd.php">&nbsp;&nbsp;Updatetsubcateg Add&nbsp;&nbsp</a><br>
+</div>
+<div id="menu5" class="menuStyle">
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcountryedit.php">&nbsp;&nbsp;Updatetcountry Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetastatusedit.php">&nbsp;&nbsp;Updatetastatus Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetassessmentedit.php">&nbsp;&nbsp;Updatetassessment Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeexamfileedit.php">&nbsp;&nbsp;Updateeexamfile Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcurrencyedit.php">&nbsp;&nbsp;Updatetcurrency Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroomedit.php">&nbsp;&nbsp;Updatetroom Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroyaltyedit.php">&nbsp;&nbsp;Updatetroyalty Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetmanufactureredit.php">&nbsp;&nbsp;Updatetmanufacturer Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettaxtabedit.php">&nbsp;&nbsp;Updatettaxtab Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetvendoredit.php">&nbsp;&nbsp;Updatetvendor Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdepartmentedit.php">&nbsp;&nbsp;Updatetdepartment Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetclassschededit.php">&nbsp;&nbsp;Updatetclasssched Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="UpdatetStudentedit.php">&nbsp;&nbsp;UpdatetStudent Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetteacheredit.php">&nbsp;&nbsp;Updatetteacher Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettieredit.php">&nbsp;&nbsp;Updatettier Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetitemsedit.php">&nbsp;&nbsp;Updatetitems Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetbranchedit.php">&nbsp;&nbsp;Updatetbranch Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetlocationedit.php">&nbsp;&nbsp;Updatetlocation Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetseminaredit.php">&nbsp;&nbsp;Updatetseminar Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetunitmeasedit.php">&nbsp;&nbsp;Updatetunitmeas Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeonlineedit.php">&nbsp;&nbsp;Updateeonline Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdiscountedit.php">&nbsp;&nbsp;Updatetdiscount Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetleveledit.php">&nbsp;&nbsp;Updatetlevel Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcategoryedit.php">&nbsp;&nbsp;Updatetcategory Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetreferraledit.php">&nbsp;&nbsp;Updatetreferral Edit&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetsubcategedit.php">&nbsp;&nbsp;Updatetsubcateg Edit&nbsp;&nbsp</a><br>
+</div>
+<div id="menu6" class="menuStyle">
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcountrydel.php">&nbsp;&nbsp;Updatetcountry Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetastatusdel.php">&nbsp;&nbsp;Updatetastatus Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetassessmentdel.php">&nbsp;&nbsp;Updatetassessment Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeexamfiledel.php">&nbsp;&nbsp;Updateeexamfile Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcurrencydel.php">&nbsp;&nbsp;Updatetcurrency Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroomdel.php">&nbsp;&nbsp;Updatetroom Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetroyaltydel.php">&nbsp;&nbsp;Updatetroyalty Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetmanufacturerdel.php">&nbsp;&nbsp;Updatetmanufacturer Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettaxtabdel.php">&nbsp;&nbsp;Updatettaxtab Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetvendordel.php">&nbsp;&nbsp;Updatetvendor Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdepartmentdel.php">&nbsp;&nbsp;Updatetdepartment Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetclassscheddel.php">&nbsp;&nbsp;Updatetclasssched Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="UpdatetStudentdel.php">&nbsp;&nbsp;UpdatetStudent Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetteacherdel.php">&nbsp;&nbsp;Updatetteacher Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatettierdel.php">&nbsp;&nbsp;Updatettier Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetitemsdel.php">&nbsp;&nbsp;Updatetitems Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetbranchdel.php">&nbsp;&nbsp;Updatetbranch Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetlocationdel.php">&nbsp;&nbsp;Updatetlocation Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetseminardel.php">&nbsp;&nbsp;Updatetseminar Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetunitmeasdel.php">&nbsp;&nbsp;Updatetunitmeas Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updateeonlinedel.php">&nbsp;&nbsp;Updateeonline Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetdiscountdel.php">&nbsp;&nbsp;Updatetdiscount Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetleveldel.php">&nbsp;&nbsp;Updatetlevel Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetcategorydel.php">&nbsp;&nbsp;Updatetcategory Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetreferraldel.php">&nbsp;&nbsp;Updatetreferral Delete&nbsp;&nbsp</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 3;"  onClick="t = 0; delayHide();"  href="Updatetsubcategdel.php">&nbsp;&nbsp;Updatetsubcateg Delete&nbsp;&nbsp</a><br>
+</div>
+<div id="menu7" class="menuStyle">
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 2;"  onClick="t = 0; delayHide();"  href="systemathictest.php">&nbsp;&nbsp;Test database&nbsp;&nbsp;</a><br>
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 2;"  onClick="t = 0; delayHide();"  href="systemathictest.php?debug=TRUE">&nbsp;&nbsp;Test database with debug&nbsp;&nbsp;</a><br> 
+    <a class="menuLink" onMouseOut="t = 1; delayHide()" onMouseOver="t = 2;"  onClick="t = 0; delayHide();"  href="systemathictest.php?info=php">&nbsp;&nbsp;Test php&nbsp;&nbsp;</a><br>    
+</div>
+<div id="content">
+<br><br>
+This page is your Clarion/PHP starting point to begin testing your generated procedures.  
+View, Edit and Delete procedures require a parameter to identify a specific data row, these 
+procedure modes are best accessed from the corresponding list procedure.
+<br><br>
+For your convenience it is best to bookmark this start page so that you may return here more 
+quickly.  Optionally you can set this as your home page temporarily during development.
+</div>
+</body>
+</html>
