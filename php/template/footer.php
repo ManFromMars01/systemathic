@@ -99,7 +99,7 @@
 	<script src="template/js/jquery.validate.js"></script>
 	<script>
 		//Update Student
-		$('#saveme').click(function(){
+		$('#savemeus').click(function(){
 			$.ajax({
 	            url: 'UpdatetStudenteditx.php',
 	            type: 'post',
@@ -115,7 +115,7 @@
         	});
 		});
 
-		$('#saveme').click(function(){
+		$('#savemes').click(function(){
 			$.ajax({
 	            url: 'UpdatetStudentaddx.php',
 	            type: 'post',
@@ -168,7 +168,7 @@
         	});
 		});
 		// Adding Country
-		$('#saveme').click(function(){
+		$('#savemec').click(function(){
 			$.ajax({
 	            url: 'Updatetcountryeditx.php',
 	            type: 'post',
