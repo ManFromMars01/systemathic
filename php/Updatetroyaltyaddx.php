@@ -76,7 +76,7 @@ $dbValues = "";
                 endif;
                 $flgMissing = 1;
                     $myStatus .= " <STRONG>Source:</STRONG> : Must be in list <BR>";
-                    $myStatus .= " <HR>\n";
+                    $myStatus .= "Tuition Fee;Examination;Competition; <HR>\n";
             endif;
     $rst["Source"] = getFormSQLQuoted($objConn1,"troyalty","Source","txttroyaltySource");
     $rst["Recipient"] = getFormSQLQuoted($objConn1,"troyalty","Recipient","txttroyaltyRecipient");
@@ -100,13 +100,13 @@ if($flgMissing == false):
   else:
     $myStatus = "Your insert succeeded <br><br>";
   endif;
-  if(getSession("BrowseAttendanceStatus#WHR")<>""):
-      $myStatus .= "<a href='BrowseAttendanceStatuslist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
+  if(getSession("BrowseAssessment#WHR")<>""):
+      $myStatus .= "<a href='BrowseAssessmentlist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
   else:
       if($_SESSION["ChildReturnTo"] <> ""):
         $myStatus .= "<a href='" . htmlEncode($_SESSION["ChildReturnTo"]) . "'>Return to list</a>.";
       else:
-        $myStatus .= "<a href='BrowseAttendanceStatuslist.php'>Return to list</a>.";
+        $myStatus .= "<a href='BrowseAssessmentlist.php'>Return to list</a>.";
       endif;
   endif;
 endif;

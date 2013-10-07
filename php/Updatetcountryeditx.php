@@ -172,8 +172,6 @@ else {
   $_SESSION["Updatetcountry_EditFailed"] = 0;
 }
 
-//MergeEditTemplate($HTML_Template);
-$mystatus = array('statusme' => $myStatus);
-echo json_encode($mystatus);
+MergeEditTemplate($HTML_Template);
 $objConn1->Close();
 ?>

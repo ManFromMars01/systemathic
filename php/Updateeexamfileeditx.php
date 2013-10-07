@@ -94,7 +94,7 @@ endif;
 $ID1 = trim(getRequest("ID1"), "'");
 $ID2 = trim(getRequest("ID2"), "'");
 $ID3 = trim(getRequest("ID3"), "'");
-$sql = "SELECT eexamfile.CountryID, eexamfile.BranchID, eexamfile.Date, eexamfile.TimeFrom, eexamfile.TimeTo, eexamfile.OpenDate, eexamfile.CloseDate, eexamfile.SubmitDate, eexamfile.MenFee, eexamfile.AbaFee, eexamfile.AurFee, eexamfile.Total, eexamfile.Remarks  FROM  eexamfile WHERE  eexamfile.CountryID = '" . $ID1 . "'" . " AND eexamfile.BranchID = '" . $ID2 . "'" . " AND eexamfile.Date = '" . $ID3. "'";
+$sql = "SELECT eexamfile.CountryID, eexamfile.BranchID, eexamfile.Date, eexamfile.TimeFrom, eexamfile.TimeTo, eexamfile.Venue, eexamfile.OpenDate, eexamfile.CloseDate, eexamfile.SubmitDate, eexamfile.MenFee, eexamfile.AbaFee, eexamfile.AurFee, eexamfile.Total, eexamfile.Remarks  FROM  eexamfile WHERE  eexamfile.CountryID = '" . $ID1 . "'" . " AND eexamfile.BranchID = '" . $ID2 . "'" . " AND eexamfile.Date = '" . $ID3. "'";
 $oRSeexamfile = $objConn1->SelectLimit($sql,1);
 $myStatus = "";
 $flgMissing = false;
@@ -124,8 +124,19 @@ $arrayoRSeexamfile["BranchID"] = getFormSQLQuoted($objConn1, "eexamfile", "Branc
                         $myStatus .= " <strong>Date:</strong> : Required field <hr>\n";
         endif;
 $arrayoRSeexamfile["Date"] = getFormSQLQuoted($objConn1, "eexamfile", "Date", "txteexamfileDate");
+        if (getRequest("txteexamfileTimeFrom") == ""):
+            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
+            $flgMissing = TRUE;
+                        $myStatus .= " <strong>Time From:</strong> : Required field <hr>\n";
+        endif;
 $arrayoRSeexamfile["TimeFrom"] = getFormSQLQuoted($objConn1, "eexamfile", "TimeFrom", "txteexamfileTimeFrom");
+        if (getRequest("txteexamfileTimeTo") == ""):
+            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
+            $flgMissing = TRUE;
+                        $myStatus .= " <strong>Time To:</strong> : Required field <hr>\n";
+        endif;
 $arrayoRSeexamfile["TimeTo"] = getFormSQLQuoted($objConn1, "eexamfile", "TimeTo", "txteexamfileTimeTo");
+$arrayoRSeexamfile["Venue"] = getFormSQLQuoted($objConn1, "eexamfile", "Venue", "txteexamfileVenue");
 $arrayoRSeexamfile["OpenDate"] = getFormSQLQuoted($objConn1, "eexamfile", "OpenDate", "txteexamfileOpenDate");
 $arrayoRSeexamfile["CloseDate"] = getFormSQLQuoted($objConn1, "eexamfile", "CloseDate", "txteexamfileCloseDate");
 $arrayoRSeexamfile["SubmitDate"] = getFormSQLQuoted($objConn1, "eexamfile", "SubmitDate", "txteexamfileSubmitDate");
@@ -184,6 +195,7 @@ if($flgMissing == true) {
   $_SESSION["SavedEditeexamfileDate"] = $_POST["txteexamfileDate"];
   $_SESSION["SavedEditeexamfileTimeFrom"] = $_POST["txteexamfileTimeFrom"];
   $_SESSION["SavedEditeexamfileTimeTo"] = $_POST["txteexamfileTimeTo"];
+  $_SESSION["SavedEditeexamfileVenue"] = $_POST["txteexamfileVenue"];
   $_SESSION["SavedEditeexamfileOpenDate"] = $_POST["txteexamfileOpenDate"];
   $_SESSION["SavedEditeexamfileCloseDate"] = $_POST["txteexamfileCloseDate"];
   $_SESSION["SavedEditeexamfileSubmitDate"] = $_POST["txteexamfileSubmitDate"];

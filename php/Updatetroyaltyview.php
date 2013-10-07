@@ -129,7 +129,7 @@ function displayBadRecord() {
     $ClarionData .= "<td align='right' class='Header'>&nbsp;<a href='JAVASCRIPT:history.back();'><img alt='Back' src='/images/back.gif' border=0></a></td>\n";
     $ClarionData .= "</tr>\n";
     $ClarionData .= "<tr><td class='Input' colspan='2'>The requested record could not be found<br>\n";
-    $ClarionData .= "<a href=BrowseAttendanceStatus" . "list.php>Return to list</a>\n";
+    $ClarionData .= "<a href=BrowseAssessment" . "list.php>Return to list</a>\n";
     $ClarionData .= "</td></tr>\n";
     $ClarionData .= "</table>\n";
     $ClarionData .= "</div>\n";
@@ -249,13 +249,9 @@ else:
     endif;
 endif;
 if (is_null($oRStroyalty->Fields("Source"))):
-    $troyaltySource  = "";
+    $troyaltySource    =    "";
 else:
-    if (is_numeric($oRStroyalty->Fields("Source"))):
-        $troyaltySource  = getValue($oRStroyalty->Fields("Source"));
-    else:
-        $troyaltySource  = htmlentities(getValue($oRStroyalty->Fields("Source")));
-    endif;
+    $troyaltySource  = htmlentities($oRStroyalty->Fields("Source"));
 endif;
 if (is_null($oRStroyalty->Fields("Recipient"))):
     $troyaltyRecipient  = "";

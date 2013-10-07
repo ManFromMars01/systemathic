@@ -101,7 +101,7 @@ function displayBadRecord($msg) {
     $ClarionData .= "<td align='right' class='Header'>&nbsp;<a href='JAVASCRIPT:history.back();'><img alt='Back' src='/images/back.gif' border=0></a></td>\n";
     $ClarionData .= "</tr>\n";
     $ClarionData .= "<tr><td colspan='2' class='Input'>The requested record could not be found<br>\n";
-    $ClarionData .= "<a href=BrowseAttendanceStatus" . "list.php>Return to list</a>\n";
+    $ClarionData .= "<a href=BrowseTier" . "list.php>Return to list</a>\n";
     $ClarionData .= "<br>" . $msg . "<br></td></tr>\n";
     $ClarionData .= "</table>\n";
     $ClarionData .= "</div>\n";
@@ -159,13 +159,13 @@ else:
     $ClarionData .= "</tr>\n";
     $ClarionData .= "<tr><td colspan=2 class='Input'>\n";
     $ClarionData .= "<br>" . $myStatus . "<br><br>\n";
-    if(getSession("BrowseAttendanceStatus#WHR") != ""):
-        $ClarionData .= "<a href=BrowseAttendanceStatus" . "list.php?SUBSET=TRUE>Return to list</a>\n";
+    if(getSession("BrowseTier#WHR") != ""):
+        $ClarionData .= "<a href=BrowseTier" . "list.php?SUBSET=TRUE>Return to list</a>\n";
     else:
         if($_SESSION["ChildReturnTo"] <> ""):
           $ClarionData .= "<a href=" . htmlEncode($_SESSION["ChildReturnTo"]) . ">Return to list</a>\n";
         else:
-          $ClarionData .= "<a href=BrowseAttendanceStatus" . "list.php>Return to list</a>\n";
+          $ClarionData .= "<a href=BrowseTier" . "list.php>Return to list</a>\n";
         endif;
     endif;
     $ClarionData .= "</td></tr></table></div>\n";

@@ -74,8 +74,23 @@ $dbValues = "";
                         $myStatus .= " <STRONG>Date:</STRONG> : Required field <HR>\n";
             endif;
     $rst["Date"] = getFormSQLQuoted($objConn1,"eexamfile","Date","txteexamfileDate");
+            if (getForm("txteexamfileTimeFrom") == ""):
+                if($myStatus == ""):
+                    $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
+                endif;
+                $flgMissing = 1;
+                        $myStatus .= " <STRONG>Time From:</STRONG> : Required field <HR>\n";
+            endif;
     $rst["TimeFrom"] = getFormSQLQuoted($objConn1,"eexamfile","TimeFrom","txteexamfileTimeFrom");
+            if (getForm("txteexamfileTimeTo") == ""):
+                if($myStatus == ""):
+                    $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
+                endif;
+                $flgMissing = 1;
+                        $myStatus .= " <STRONG>Time To:</STRONG> : Required field <HR>\n";
+            endif;
     $rst["TimeTo"] = getFormSQLQuoted($objConn1,"eexamfile","TimeTo","txteexamfileTimeTo");
+    $rst["Venue"] = getFormSQLQuoted($objConn1,"eexamfile","Venue","txteexamfileVenue");
     $rst["OpenDate"] = getFormSQLQuoted($objConn1,"eexamfile","OpenDate","txteexamfileOpenDate");
     $rst["CloseDate"] = getFormSQLQuoted($objConn1,"eexamfile","CloseDate","txteexamfileCloseDate");
     $rst["SubmitDate"] = getFormSQLQuoted($objConn1,"eexamfile","SubmitDate","txteexamfileSubmitDate");
@@ -156,6 +171,7 @@ if($flgMissing == true) {
   $_SESSION["SavedeexamfileDate"] = $_POST["txteexamfileDate"];
   $_SESSION["SavedeexamfileTimeFrom"] = $_POST["txteexamfileTimeFrom"];
   $_SESSION["SavedeexamfileTimeTo"] = $_POST["txteexamfileTimeTo"];
+  $_SESSION["SavedeexamfileVenue"] = $_POST["txteexamfileVenue"];
   $_SESSION["SavedeexamfileOpenDate"] = $_POST["txteexamfileOpenDate"];
   $_SESSION["SavedeexamfileCloseDate"] = $_POST["txteexamfileCloseDate"];
   $_SESSION["SavedeexamfileSubmitDate"] = $_POST["txteexamfileSubmitDate"];

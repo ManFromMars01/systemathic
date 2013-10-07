@@ -87,7 +87,24 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@troyaltyDescription@", $troyaltyDescription);
      $TemplateText = Replace($TemplateText, "@troyaltyPercent@", $troyaltyPercent);
      $TemplateText = Replace($TemplateText, "@troyaltyPctToMaster@", $troyaltyPctToMaster);
-     $TemplateText = Replace($TemplateText, "@troyaltySource@", $troyaltySource);
+    if($troyaltySource == "Tuition_Fee"):
+        $SELECTEDF48_7_1 = "SELECTED";
+    else:
+        $SELECTEDF48_7_1 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_1@", $SELECTEDF48_7_1);
+    if($troyaltySource == "Examination"):
+        $SELECTEDF48_7_2 = "SELECTED";
+    else:
+        $SELECTEDF48_7_2 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_2@", $SELECTEDF48_7_2);
+    if($troyaltySource == "Competition"):
+        $SELECTEDF48_7_3 = "SELECTED";
+    else:
+        $SELECTEDF48_7_3 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_3@", $SELECTEDF48_7_3);
      $TemplateText = Replace($TemplateText, "@troyaltyRecipient@", $troyaltyRecipient);
      $TemplateText = Replace($TemplateText, "@ID1@", trim($ID1,"'"));
      $TemplateText = Replace($TemplateText, "@ID2@", trim($ID2,"'"));
@@ -131,7 +148,7 @@ function displayBadRecord() {
     $ClarionData .= "<td align='right' class='Header'>&nbsp;<a href='JAVASCRIPT:history.back();'><img alt='Back' src='/images/back.gif' border=0></a></td>\n";
     $ClarionData .= "</tr>\n";
     $ClarionData .= "<tr><td class='Input' colspan='2'>The requested record could not be found<br>\n";
-    $ClarionData .= "<a href=BrowseAttendanceStatus" . "list.php>Return to list</a>\n";
+    $ClarionData .= "<a href=BrowseAssessment" . "list.php>Return to list</a>\n";
     $ClarionData .= "</td></tr>\n";
     $ClarionData .= "</table>\n";
     $ClarionData .= "</div>\n";

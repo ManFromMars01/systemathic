@@ -36,7 +36,7 @@ display of the nav bar can be overridden by uncommenting the next line
 include_once('utils.php');
 $HTML_Template = getRequest("HTMLT");
 if (getRequest("SEARCH") == "TRUE"):
-    $_SESSION["BrowseAttendanceStatus#WHR"] = "";
+    $_SESSION["BrowseTier#WHR"] = "";
 $myWhere = "";
 $FormDeclaration = "";
 
@@ -76,14 +76,14 @@ else:
     endif;
     $myWhere .= " ttier.Description LIKE " . chr(39) . getRequest("txtttierDescription") . "%" . chr(39);
 endif;
-$_SESSION["BrowseAttendanceStatus#WHR"] = $myWhere;
+$_SESSION["BrowseTier#WHR"] = $myWhere;
 $varPath = dirname($_SERVER['PHP_SELF']);
 if ($varPath == "\\") {
   $varPath = "";
 }
 header("Location: http://".$_SERVER['HTTP_HOST']
                       . $varPath
-                      ."/"."BrowseAttendanceStatuslist.php");
+                      ."/"."BrowseTierlist.php");
 endif;
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -165,7 +165,7 @@ function MergeSearchTemplate($Template) {
 
 $DisplayText = "";
 if (getRequest("SEARCH") == "TRUE"):
-$FormDeclaration = "<form name=\"form1\" id=\"form1\" method=\"POST\" action=\"BrowseAttendanceStatuslist.php\">";
+$FormDeclaration = "<form name=\"form1\" id=\"form1\" method=\"POST\" action=\"BrowseTierlist.php\">";
 else:
 $FormDeclaration = "<form name=\"form1\" id=\"form1\" method=\"POST\" action=\""; 
 $FormDeclaration .=  "Updatettier" . "search.php". "\">" . "\n<input type=\"HIDDEN\" id=\"SEARCH\" name=\"SEARCH\" value=\"TRUE\">";

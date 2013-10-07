@@ -459,19 +459,18 @@ function MergeSearchTemplate($Template) {
     global $tcustomerLMiddleName;
     $TemplateText = Replace($TemplateText, "@tcustomerLMiddleName@", $tcustomerLMiddleName);
     global $tcustomerGender;
-    $TemplateText = Replace($TemplateText, "@tcustomerGender@", $tcustomerGender);
-        if($tcustomerGender == "Male"):
-            $SELECTEDtcustomerGenderMale = "CHECKED";
-        else:
-            $SELECTEDtcustomerGenderMale = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerGenderMale@", $SELECTEDtcustomerGenderMale);
-        if($tcustomerGender == "Female"):
-            $SELECTEDtcustomerGenderFemale = "CHECKED";
-        else:
-            $SELECTEDtcustomerGenderFemale = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerGenderFemale@", $SELECTEDtcustomerGenderFemale);
+    if($tcustomerGender == "Male"):
+        $SELECTEDF28_11_1 = "SELECTED";
+    else:
+        $SELECTEDF28_11_1 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_11_1@", $SELECTEDF28_11_1);
+    if($tcustomerGender == "Female"):
+        $SELECTEDF28_11_2 = "SELECTED";
+    else:
+        $SELECTEDF28_11_2 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_11_2@", $SELECTEDF28_11_2);
     global $tcustomerBirthday;
     $TemplateText = Replace($TemplateText, "@tcustomerBirthday@", $tcustomerBirthday);
     global $tcustomerCity;
@@ -489,81 +488,79 @@ function MergeSearchTemplate($Template) {
     global $tcustomerTierID;
     $TemplateText = Replace($TemplateText, "@tcustomerTierID@", $tcustomerTierID);
     global $tcustomerCustType;
-    $TemplateText = Replace($TemplateText, "@tcustomerCustType@", $tcustomerCustType);
-        if($tcustomerCustType == "Assessment"):
-            $SELECTEDtcustomerCustTypeAssessment = "CHECKED";
-        else:
-            $SELECTEDtcustomerCustTypeAssessment = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerCustTypeAssessment@", $SELECTEDtcustomerCustTypeAssessment);
-        if($tcustomerCustType == "Trial Class"):
-            $SELECTEDtcustomerCustTypeTrial_Class = "CHECKED";
-        else:
-            $SELECTEDtcustomerCustTypeTrial_Class = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerCustTypeTrial_Class@", $SELECTEDtcustomerCustTypeTrial_Class);
-        if($tcustomerCustType == "For Admission"):
-            $SELECTEDtcustomerCustTypeFor_Admission = "CHECKED";
-        else:
-            $SELECTEDtcustomerCustTypeFor_Admission = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerCustTypeFor_Admission@", $SELECTEDtcustomerCustTypeFor_Admission);
-        if($tcustomerCustType == "ReEnrollee"):
-            $SELECTEDtcustomerCustTypeReEnrollee = "CHECKED";
-        else:
-            $SELECTEDtcustomerCustTypeReEnrollee = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerCustTypeReEnrollee@", $SELECTEDtcustomerCustTypeReEnrollee);
-        if($tcustomerCustType == "Continuing"):
-            $SELECTEDtcustomerCustTypeContinuing = "CHECKED";
-        else:
-            $SELECTEDtcustomerCustTypeContinuing = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerCustTypeContinuing@", $SELECTEDtcustomerCustTypeContinuing);
+    if($tcustomerCustType == "Assessment"):
+        $SELECTEDF28_20_1 = "SELECTED";
+    else:
+        $SELECTEDF28_20_1 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_1@", $SELECTEDF28_20_1);
+    if($tcustomerCustType == "Trial_Class"):
+        $SELECTEDF28_20_2 = "SELECTED";
+    else:
+        $SELECTEDF28_20_2 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_2@", $SELECTEDF28_20_2);
+    if($tcustomerCustType == "For_Admission"):
+        $SELECTEDF28_20_3 = "SELECTED";
+    else:
+        $SELECTEDF28_20_3 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_3@", $SELECTEDF28_20_3);
+    if($tcustomerCustType == "ReEnrollee"):
+        $SELECTEDF28_20_4 = "SELECTED";
+    else:
+        $SELECTEDF28_20_4 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_4@", $SELECTEDF28_20_4);
+    if($tcustomerCustType == "Continuing"):
+        $SELECTEDF28_20_5 = "SELECTED";
+    else:
+        $SELECTEDF28_20_5 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_5@", $SELECTEDF28_20_5);
     global $tcustomerRegType;
-    $TemplateText = Replace($TemplateText, "@tcustomerRegType@", $tcustomerRegType);
-        if($tcustomerRegType == "Waiting"):
-            $SELECTEDtcustomerRegTypeWaiting = "CHECKED";
-        else:
-            $SELECTEDtcustomerRegTypeWaiting = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerRegTypeWaiting@", $SELECTEDtcustomerRegTypeWaiting);
-        if($tcustomerRegType == "For Schedule"):
-            $SELECTEDtcustomerRegTypeFor_Schedule = "CHECKED";
-        else:
-            $SELECTEDtcustomerRegTypeFor_Schedule = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerRegTypeFor_Schedule@", $SELECTEDtcustomerRegTypeFor_Schedule);
-        if($tcustomerRegType == "For Payment"):
-            $SELECTEDtcustomerRegTypeFor_Payment = "CHECKED";
-        else:
-            $SELECTEDtcustomerRegTypeFor_Payment = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerRegTypeFor_Payment@", $SELECTEDtcustomerRegTypeFor_Payment);
-        if($tcustomerRegType == "For Kit Issuance"):
-            $SELECTEDtcustomerRegTypeFor_Kit_Issuance = "CHECKED";
-        else:
-            $SELECTEDtcustomerRegTypeFor_Kit_Issuance = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerRegTypeFor_Kit_Issuance@", $SELECTEDtcustomerRegTypeFor_Kit_Issuance);
-        if($tcustomerRegType == "Admitted"):
-            $SELECTEDtcustomerRegTypeAdmitted = "CHECKED";
-        else:
-            $SELECTEDtcustomerRegTypeAdmitted = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerRegTypeAdmitted@", $SELECTEDtcustomerRegTypeAdmitted);
-        if($tcustomerRegType == "Stopped"):
-            $SELECTEDtcustomerRegTypeStopped = "CHECKED";
-        else:
-            $SELECTEDtcustomerRegTypeStopped = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerRegTypeStopped@", $SELECTEDtcustomerRegTypeStopped);
-        if($tcustomerRegType == "Graduate"):
-            $SELECTEDtcustomerRegTypeGraduate = "CHECKED";
-        else:
-            $SELECTEDtcustomerRegTypeGraduate = "";
-        endif;
-        $TemplateText = Replace($TemplateText, "@SELECTEDtcustomerRegTypeGraduate@", $SELECTEDtcustomerRegTypeGraduate);
+    if($tcustomerRegType == "Waiting"):
+        $SELECTEDF28_21_1 = "SELECTED";
+    else:
+        $SELECTEDF28_21_1 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_1@", $SELECTEDF28_21_1);
+    if($tcustomerRegType == "For_Schedule"):
+        $SELECTEDF28_21_2 = "SELECTED";
+    else:
+        $SELECTEDF28_21_2 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_2@", $SELECTEDF28_21_2);
+    if($tcustomerRegType == "For_Payment"):
+        $SELECTEDF28_21_3 = "SELECTED";
+    else:
+        $SELECTEDF28_21_3 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_3@", $SELECTEDF28_21_3);
+    if($tcustomerRegType == "For_Kit_Issuance"):
+        $SELECTEDF28_21_4 = "SELECTED";
+    else:
+        $SELECTEDF28_21_4 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_4@", $SELECTEDF28_21_4);
+    if($tcustomerRegType == "Admitted"):
+        $SELECTEDF28_21_5 = "SELECTED";
+    else:
+        $SELECTEDF28_21_5 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_5@", $SELECTEDF28_21_5);
+    if($tcustomerRegType == "Stopped"):
+        $SELECTEDF28_21_6 = "SELECTED";
+    else:
+        $SELECTEDF28_21_6 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_6@", $SELECTEDF28_21_6);
+    if($tcustomerRegType == "Graduate"):
+        $SELECTEDF28_21_7 = "SELECTED";
+    else:
+        $SELECTEDF28_21_7 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_7@", $SELECTEDF28_21_7);
     global $tcustomerSchool;
     $TemplateText = Replace($TemplateText, "@tcustomerSchool@", $tcustomerSchool);
     global $tcustomerMother;

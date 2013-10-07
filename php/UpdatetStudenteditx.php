@@ -233,7 +233,6 @@ $ClarionData .= "   <tr><td class='Input' colspan='2'>" . $myStatus . "<br></td>
 $ClarionData .= "</table>\n";
 $ClarionData .= "</div>\n";
 
-
 if($flgMissing == true) {
   $_SESSION["UpdatetStudent_EditFailed"] = 1;
   $_SESSION["SavedEdittcustomerCountryID"] = $_POST["txttcustomerCountryID"];
@@ -269,13 +268,11 @@ if($flgMissing == true) {
   $_SESSION["SavedEdittcustomerStatus"] = $_POST["txttcustomerStatus"];
   $_SESSION["SavedEdittcustomerReferralID"] = $_POST["txttcustomerReferralID"];
   $_SESSION["SavedEdittcustomerStoppedDate"] = $_POST["txttcustomerStoppedDate"];
-  
 }
 else {
   $_SESSION["UpdatetStudent_EditFailed"] = 0;
 }
 
-$mystatus = array('statusme' => $myStatus );
-echo json_encode($mystatus);
-
+MergeEditTemplate($HTML_Template);
+$objConn1->Close();
 ?>

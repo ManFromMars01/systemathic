@@ -360,14 +360,9 @@ else:
     endif;
 endif;
 if (is_null($oRStcustomer->Fields("Gender"))):
-    $tcustomerGender  = "";
+    $tcustomerGender    =    "";
 else:
-    if ("Male" == $oRStcustomer->Fields("Gender")):
-        $tcustomerGender  = htmlentities("Male");
-    endif;
-    if ("Female" == $oRStcustomer->Fields("Gender")):
-        $tcustomerGender  = htmlentities("Female");
-    endif;
+    $tcustomerGender  = htmlentities($oRStcustomer->Fields("Gender"));
 endif;
 if (is_null($oRStcustomer->Fields("Birthday"))):
     $tcustomerBirthday  = "";
@@ -442,48 +437,14 @@ else:
     endif;
 endif;
 if (is_null($oRStcustomer->Fields("CustType"))):
-    $tcustomerCustType  = "";
+    $tcustomerCustType    =    "";
 else:
-    if ("Assessment" == $oRStcustomer->Fields("CustType")):
-        $tcustomerCustType  = htmlentities("Assessment");
-    endif;
-    if ("Trial Class" == $oRStcustomer->Fields("CustType")):
-        $tcustomerCustType  = htmlentities("Trial Class");
-    endif;
-    if ("For Admission" == $oRStcustomer->Fields("CustType")):
-        $tcustomerCustType  = htmlentities("For Admission");
-    endif;
-    if ("ReEnrollee" == $oRStcustomer->Fields("CustType")):
-        $tcustomerCustType  = htmlentities("ReEnrollee");
-    endif;
-    if ("Continuing" == $oRStcustomer->Fields("CustType")):
-        $tcustomerCustType  = htmlentities("Continuing");
-    endif;
+    $tcustomerCustType  = htmlentities($oRStcustomer->Fields("CustType"));
 endif;
 if (is_null($oRStcustomer->Fields("RegType"))):
-    $tcustomerRegType  = "";
+    $tcustomerRegType    =    "";
 else:
-    if ("Waiting" == $oRStcustomer->Fields("RegType")):
-        $tcustomerRegType  = htmlentities("Waiting");
-    endif;
-    if ("For Schedule" == $oRStcustomer->Fields("RegType")):
-        $tcustomerRegType  = htmlentities("For Schedule");
-    endif;
-    if ("For Payment" == $oRStcustomer->Fields("RegType")):
-        $tcustomerRegType  = htmlentities("For Payment");
-    endif;
-    if ("For Kit Issuance" == $oRStcustomer->Fields("RegType")):
-        $tcustomerRegType  = htmlentities("For Kit Issuance");
-    endif;
-    if ("Admitted" == $oRStcustomer->Fields("RegType")):
-        $tcustomerRegType  = htmlentities("Admitted");
-    endif;
-    if ("Stopped" == $oRStcustomer->Fields("RegType")):
-        $tcustomerRegType  = htmlentities("Stopped");
-    endif;
-    if ("Graduate" == $oRStcustomer->Fields("RegType")):
-        $tcustomerRegType  = htmlentities("Graduate");
-    endif;
+    $tcustomerRegType  = htmlentities($oRStcustomer->Fields("RegType"));
 endif;
 if (is_null($oRStcustomer->Fields("School"))):
     $tcustomerSchool  = "";

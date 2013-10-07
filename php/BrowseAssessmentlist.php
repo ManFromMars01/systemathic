@@ -562,7 +562,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tassessmentAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetassessmentview.php?ID1=";
+            $myLink = "<a href=\"Updatetassessmentedit.php?ID1=";
                     $tassessmentAutomaticDetailLink = $myLink;
                       $tassessmentAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStassessment->fields["CountryID"]))) . "'" ;
                     $tassessmentAutomaticDetailLink .=  "&ID2=" . "'";

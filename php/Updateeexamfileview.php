@@ -44,6 +44,7 @@ $eexamfileBranchID = "";
 $eexamfileDate = "";
 $eexamfileTimeFrom = "";
 $eexamfileTimeTo = "";
+$eexamfileVenue = "";
 $eexamfileOpenDate = "";
 $eexamfileCloseDate = "";
 $eexamfileSubmitDate = "";
@@ -71,6 +72,7 @@ function  MergeUpdateeexamfileTemplate($Template){
     global $eexamfileDate;
     global $eexamfileTimeFrom;
     global $eexamfileTimeTo;
+    global $eexamfileVenue;
     global $eexamfileOpenDate;
     global $eexamfileCloseDate;
     global $eexamfileSubmitDate;
@@ -105,6 +107,7 @@ function  MergeUpdateeexamfileTemplate($Template){
     $TemplateText = Replace($TemplateText,"@eexamfileDate@",$eexamfileDate);    
     $TemplateText = Replace($TemplateText,"@eexamfileTimeFrom@",$eexamfileTimeFrom);    
     $TemplateText = Replace($TemplateText,"@eexamfileTimeTo@",$eexamfileTimeTo);    
+    $TemplateText = Replace($TemplateText,"@eexamfileVenue@",$eexamfileVenue);    
     $TemplateText = Replace($TemplateText,"@eexamfileOpenDate@",$eexamfileOpenDate);    
     $TemplateText = Replace($TemplateText,"@eexamfileCloseDate@",$eexamfileCloseDate);    
     $TemplateText = Replace($TemplateText,"@eexamfileSubmitDate@",$eexamfileSubmitDate);    
@@ -178,7 +181,7 @@ $NoRecords = FALSE;
 $myQuoteID1 = getQuote($objConn1,"eexamfile","CountryID");
 $myQuoteID2 = getQuote($objConn1,"eexamfile","BranchID");
 $myQuoteID3 = getQuote($objConn1,"eexamfile","Date");
-$strSQLBase  = "SELECT eexamfile.CountryID, eexamfile.BranchID, eexamfile.Date, eexamfile.TimeFrom, eexamfile.TimeTo, eexamfile.OpenDate, eexamfile.CloseDate, eexamfile.SubmitDate, eexamfile.MenFee, eexamfile.AbaFee, eexamfile.AurFee, eexamfile.Total, eexamfile.Remarks  FROM  eexamfile  ";
+$strSQLBase  = "SELECT eexamfile.CountryID, eexamfile.BranchID, eexamfile.Date, eexamfile.TimeFrom, eexamfile.TimeTo, eexamfile.Venue, eexamfile.OpenDate, eexamfile.CloseDate, eexamfile.SubmitDate, eexamfile.MenFee, eexamfile.AbaFee, eexamfile.AurFee, eexamfile.Total, eexamfile.Remarks  FROM  eexamfile  ";
 $strSQL = $strSQLBase . " WHERE ";
 
 $strSQL .= "eexamfile.CountryID=" . $myQuoteID1 . $ID1 . $myQuoteID1;
@@ -255,6 +258,15 @@ else:
         $eexamfileTimeTo  = htmlentities(getValue($oRSeexamfile->Fields("TimeTo")));
     endif;
                 $eexamfileTimeTo = formatDateTime('g:i P',$eexamfileTimeTo);
+endif;
+if (is_null($oRSeexamfile->Fields("Venue"))):
+    $eexamfileVenue  = "";
+else:
+    if (is_numeric($oRSeexamfile->Fields("Venue"))):
+        $eexamfileVenue  = getValue($oRSeexamfile->Fields("Venue"));
+    else:
+        $eexamfileVenue  = htmlentities(getValue($oRSeexamfile->Fields("Venue")));
+    endif;
 endif;
 if (is_null($oRSeexamfile->Fields("OpenDate"))):
     $eexamfileOpenDate  = "";

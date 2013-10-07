@@ -81,7 +81,24 @@ function MergeAddTemplate($Template) {
     global $troyaltyPctToMaster;
     $TemplateText = Replace($TemplateText,"@troyaltyPctToMaster@",$troyaltyPctToMaster);            
     global $troyaltySource;
-    $TemplateText = Replace($TemplateText,"@troyaltySource@",$troyaltySource);            
+    if($troyaltySource == "Tuition_Fee"):
+        $SELECTEDF48_7_1 = "SELECTED";
+    else:
+        $SELECTEDF48_7_1 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_1@", $SELECTEDF48_7_1);
+    if($troyaltySource == "Examination"):
+        $SELECTEDF48_7_2 = "SELECTED";
+    else:
+        $SELECTEDF48_7_2 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_2@", $SELECTEDF48_7_2);
+    if($troyaltySource == "Competition"):
+        $SELECTEDF48_7_3 = "SELECTED";
+    else:
+        $SELECTEDF48_7_3 = "";
+    endif;
+    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_3@", $SELECTEDF48_7_3);
     global $troyaltyRecipient;
     $TemplateText = Replace($TemplateText,"@troyaltyRecipient@",$troyaltyRecipient);            
     $TemplateText = Replace($TemplateText, "@Header@", $Header);
@@ -103,7 +120,6 @@ $troyaltyID  = getRequest("txttroyaltyID");
 $troyaltyDescription  = getRequest("txttroyaltyDescription");
 $troyaltyPercent  = getRequest("txttroyaltyPercent");
 $troyaltyPctToMaster  = getRequest("txttroyaltyPctToMaster");
-$troyaltySource  = getRequest("txttroyaltySource");
 $troyaltyRecipient  = getRequest("txttroyaltyRecipient");
 
 if ($_SESSION["Updatetroyalty_InsertFailed"] == 1) {

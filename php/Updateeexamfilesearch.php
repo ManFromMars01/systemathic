@@ -86,6 +86,15 @@ else:
     $myWhere .= " eexamfile.TimeTo = " . getRequest("txteexamfileTimeTo");
 endif;
 
+if (getRequest("txteexamfileVenue") == ""):
+else:
+    if ($myWhere == ""):
+    else:
+       $myWhere .= " AND ";
+    endif;
+    $myWhere .= " eexamfile.Venue LIKE " . chr(39) . getRequest("txteexamfileVenue") . "%" . chr(39);
+endif;
+
 if (getRequest("txteexamfileOpenDate") == ""):
 else:
     if ($myWhere == ""):
@@ -197,6 +206,7 @@ $eexamfileBranchID = "";
 $eexamfileDate = "";
 $eexamfileTimeFrom = "";
 $eexamfileTimeTo = "";
+$eexamfileVenue = "";
 $eexamfileOpenDate = "";
 $eexamfileCloseDate = "";
 $eexamfileSubmitDate = "";
@@ -248,6 +258,8 @@ function MergeSearchTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@eexamfileTimeFrom@", $eexamfileTimeFrom);
     global $eexamfileTimeTo;
     $TemplateText = Replace($TemplateText, "@eexamfileTimeTo@", $eexamfileTimeTo);
+    global $eexamfileVenue;
+    $TemplateText = Replace($TemplateText, "@eexamfileVenue@", $eexamfileVenue);
     global $eexamfileOpenDate;
     $TemplateText = Replace($TemplateText, "@eexamfileOpenDate@", $eexamfileOpenDate);
     global $eexamfileCloseDate;

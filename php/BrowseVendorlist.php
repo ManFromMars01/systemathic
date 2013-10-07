@@ -797,7 +797,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tvendorAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetvendorview.php?ID1=";
+            $myLink = "<a href=\"Updatetvendoredit.php?ID1=";
                     $tvendorAutomaticDetailLink = $myLink;
                       $tvendorAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStvendor->fields["CountryID"]))) . "'" ;
                     $tvendorAutomaticDetailLink .=  "&ID2=" . "'";

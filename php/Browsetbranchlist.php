@@ -287,9 +287,14 @@ if ( getRequest("WHR") != ""):
 elseif (getSession("Browsetbranch#WHR") != ""):
     $myWhere    = getSession("Browsetbranch#WHR");
 endif;
+if ($myWhere == ""):
+    $myWhere = "tbranch.CountryID = " . trim(getRequest( "ID1") ) . "";
+else:
+    $myWhere .= " AND tbranch.CountryID = " . trim(getRequest( "ID1") ) . "";
+endif;
 if (getGet("RESETLIST") == "TRUE"):
-    $myWhere = "";
-    $_SESSION["Browsetbranch#WHR"] = "";
+    $myWhere = "tbranch.CountryID = " . trim(getRequest( "ID1") ) . "";
+    $_SESSION["Browsetbranch#WHR"] = $myWhere;
 endif;
 if ($myWhere == ""):
     if (getRequest("LOCATE") == "TRUE"):
@@ -749,7 +754,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tbranchAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetbranchview.php?ID1=";
+            $myLink = "<a href=\"Updatetbranchedit.php?ID1=";
                     $tbranchAutomaticDetailLink = $myLink;
                       $tbranchAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStbranch->fields["CountryID"]))) . "'" ;
                     $tbranchAutomaticDetailLink .=  "&ID2=" . "'";

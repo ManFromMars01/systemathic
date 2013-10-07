@@ -126,7 +126,7 @@ $arrayoRStroyalty["PctToMaster"] = getFormSQLQuoted($objConn1, "troyalty", "PctT
             $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
             $flgMissing = TRUE;
                     $myStatus .= " <strong>Source:</strong> : Must be in list ";
-                    $myStatus .= " <hr>\n";
+                    $myStatus .= "Tuition Fee;Examination;Competition; <hr>\n";
         endif;
 $arrayoRStroyalty["Source"] = getFormSQLQuoted($objConn1, "troyalty", "Source", "txttroyaltySource");
 $arrayoRStroyalty["Recipient"] = getFormSQLQuoted($objConn1, "troyalty", "Recipient", "txttroyaltyRecipient");
@@ -154,13 +154,13 @@ if (!isset($oRSResult) || $oRSResult == false || $oRSResult == ""):
 else:
   $myStatus = "Your update succeeded <BR><BR>";
 endif;
-    if(getSession("BrowseAttendanceStatus#WHR")<>""):
-        $myStatus .= "<a href='BrowseAttendanceStatuslist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
+    if(getSession("BrowseAssessment#WHR")<>""):
+        $myStatus .= "<a href='BrowseAssessmentlist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
     else:
         if($_SESSION["ChildReturnTo"] <> ""):
           $myStatus .= "<a href='" . htmlEncode($_SESSION["ChildReturnTo"]) . "'>Return to list</a>.";
         else:
-          $myStatus .= "<a href='BrowseAttendanceStatuslist.php'>Return to list</a>.";
+          $myStatus .= "<a href='BrowseAssessmentlist.php'>Return to list</a>.";
         endif;
     endif;
 endif;

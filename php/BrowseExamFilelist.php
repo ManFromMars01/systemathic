@@ -70,6 +70,8 @@ $SearchMessage = "";
 $SearchField = "";
 $eexamfileAutomaticDetailLink = "";
 $eexamfileAutomaticDetailLinkSTYLE = "";
+$eexamfileExamRegistration = "";
+$eexamfileExamRegistrationSTYLE = "";
 $eexamfileCountryIDLABEL = "";
 $eexamfileCountryID = "";
 $eexamfileCountryIDSTYLE = "";
@@ -85,6 +87,9 @@ $eexamfileTimeFromSTYLE = "";
 $eexamfileTimeToLABEL = "";
 $eexamfileTimeTo = "";
 $eexamfileTimeToSTYLE = "";
+$eexamfileVenueLABEL = "";
+$eexamfileVenue = "";
+$eexamfileVenueSTYLE = "";
 $eexamfileOpenDateLABEL = "";
 $eexamfileOpenDate = "";
 $eexamfileOpenDateSTYLE = "";
@@ -94,9 +99,6 @@ $eexamfileCloseDateSTYLE = "";
 $eexamfileSubmitDateLABEL = "";
 $eexamfileSubmitDate = "";
 $eexamfileSubmitDateSTYLE = "";
-$eexamfileMenFeeLABEL = "";
-$eexamfileMenFee = "";
-$eexamfileMenFeeSTYLE = "";
 $oRSeexamfile = "";
 $mySQL = "";
 $myWhere = "";
@@ -240,6 +242,22 @@ if (getRequest("COL") == "TimeTo"):
     $_SESSION["BrowseExamFile#SRT"] = getSession("BrowseExamFile#mySort");
 endif;
 
+if (getRequest("COL") == "Venue"):
+    if (getRequest("SRT") == "DESC"):
+        $_SESSION["BrowseExamFile#myOrder"] = "ORDER BY eexamfile.Venue DESC";
+        $_SESSION["BrowseExamFile#mySort"] = "DESC";
+    else:
+        $_SESSION["BrowseExamFile#myOrder"] = "ORDER BY eexamfile.Venue ASC";
+        $_SESSION["BrowseExamFile#mySort"] = "ASC";
+    endif;
+    if (getRequest("COL") != getSession("BrowseExamFile#PreviousColumn")):
+        $_SESSION["BrowseExamFile#myOrder"] = "ORDER BY eexamfile.Venue ASC";
+        $_SESSION["BrowseExamFile#mySort"] = "ASC";
+    endif;
+    $_SESSION["BrowseExamFile#COL"] = "Venue";
+    $_SESSION["BrowseExamFile#SRT"] = getSession("BrowseExamFile#mySort");
+endif;
+
 if (getRequest("COL") == "OpenDate"):
     if (getRequest("SRT") == "DESC"):
         $_SESSION["BrowseExamFile#myOrder"] = "ORDER BY eexamfile.OpenDate DESC";
@@ -288,23 +306,7 @@ if (getRequest("COL") == "SubmitDate"):
     $_SESSION["BrowseExamFile#SRT"] = getSession("BrowseExamFile#mySort");
 endif;
 
-if (getRequest("COL") == "MenFee"):
-    if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseExamFile#myOrder"] = "ORDER BY eexamfile.MenFee DESC";
-        $_SESSION["BrowseExamFile#mySort"] = "DESC";
-    else:
-        $_SESSION["BrowseExamFile#myOrder"] = "ORDER BY eexamfile.MenFee ASC";
-        $_SESSION["BrowseExamFile#mySort"] = "ASC";
-    endif;
-    if (getRequest("COL") != getSession("BrowseExamFile#PreviousColumn")):
-        $_SESSION["BrowseExamFile#myOrder"] = "ORDER BY eexamfile.MenFee ASC";
-        $_SESSION["BrowseExamFile#mySort"] = "ASC";
-    endif;
-    $_SESSION["BrowseExamFile#COL"] = "MenFee";
-    $_SESSION["BrowseExamFile#SRT"] = getSession("BrowseExamFile#mySort");
-endif;
-
-$myQuery    = "SELECT eexamfile.CountryID, eexamfile.BranchID, eexamfile.Date, eexamfile.TimeFrom, eexamfile.TimeTo, eexamfile.OpenDate, eexamfile.CloseDate, eexamfile.SubmitDate, eexamfile.MenFee FROM eexamfile";
+$myQuery    = "SELECT eexamfile.CountryID, eexamfile.BranchID, eexamfile.Date, eexamfile.TimeFrom, eexamfile.TimeTo, eexamfile.Venue, eexamfile.OpenDate, eexamfile.CloseDate, eexamfile.SubmitDate FROM eexamfile";
 if ( getRequest("WHR") != ""):
     $myWhere    =  getRequest("WHR");
     $_SESSION["BrowseExamFile#WHR"] =  getRequest("WHR");
@@ -636,6 +638,31 @@ function buildColumnLabels() {
             endif;
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
+            $myLink .= "COL=Venue";
+            if ( getSession("BrowseExamFile#PreviousColumn") == "Venue"):
+                if (getSession("BrowseExamFile#SRT") == "ASC"):
+                    $myLink .= "&SRT=DESC";
+                else:
+                    $myLink .= "&SRT=ASC";
+                endif;
+            else:
+                if (getSession("BrowseExamFile#COL") == "Venue"):
+                    $myLink .= "&SRT=DESC";
+                else:
+                    $myLink .= "&SRT=ASC";
+                endif;
+            endif;
+            $myLink .= getIDs();
+            $myLink .= "\">Venue</a>";
+        $VenueLABEL = $myLink;
+        if ( getGet("COL") == "Venue" || getSession("BrowseExamFile#COL") == "Venue" ):
+            if (getSession("BrowseExamFile#SRT") == "ASC"):
+                $VenueLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+            else:            
+                $VenueLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+            endif;
+        endif;
+        $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=OpenDate";
             if ( getSession("BrowseExamFile#PreviousColumn") == "OpenDate"):
                 if (getSession("BrowseExamFile#SRT") == "ASC"):
@@ -710,40 +737,15 @@ function buildColumnLabels() {
                 $SubmitDateLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             endif;
         endif;
-        $myLink = "<a href=\"" . $myPage . "?";
-            $myLink .= "COL=MenFee";
-            if ( getSession("BrowseExamFile#PreviousColumn") == "MenFee"):
-                if (getSession("BrowseExamFile#SRT") == "ASC"):
-                    $myLink .= "&SRT=DESC";
-                else:
-                    $myLink .= "&SRT=ASC";
-                endif;
-            else:
-                if (getSession("BrowseExamFile#COL") == "MenFee"):
-                    $myLink .= "&SRT=DESC";
-                else:
-                    $myLink .= "&SRT=ASC";
-                endif;
-            endif;
-            $myLink .= getIDs();
-            $myLink .= "\">Men Fee</a>";
-        $MenFeeLABEL = $myLink;
-        if ( getGet("COL") == "MenFee" || getSession("BrowseExamFile#COL") == "MenFee" ):
-            if (getSession("BrowseExamFile#SRT") == "ASC"):
-                $MenFeeLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
-            else:            
-                $MenFeeLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
-            endif;
-        endif;
 $HeaderText = Replace($HeaderText,"@CountryIDLABEL@", $CountryIDLABEL);
 $HeaderText = Replace($HeaderText,"@BranchIDLABEL@", $BranchIDLABEL);
 $HeaderText = Replace($HeaderText,"@DateLABEL@", $DateLABEL);
 $HeaderText = Replace($HeaderText,"@TimeFromLABEL@", $TimeFromLABEL);
 $HeaderText = Replace($HeaderText,"@TimeToLABEL@", $TimeToLABEL);
+$HeaderText = Replace($HeaderText,"@VenueLABEL@", $VenueLABEL);
 $HeaderText = Replace($HeaderText,"@OpenDateLABEL@", $OpenDateLABEL);
 $HeaderText = Replace($HeaderText,"@CloseDateLABEL@", $CloseDateLABEL);
 $HeaderText = Replace($HeaderText,"@SubmitDateLABEL@", $SubmitDateLABEL);
-$HeaderText = Replace($HeaderText,"@MenFeeLABEL@", $MenFeeLABEL);
 }
 
 /*
@@ -770,9 +772,8 @@ function buildDataRows() {
     global $eexamfileDate;
     global $eexamfileDateLABEL;
     global $eexamfileDateSTYLE;
-    global $eexamfileMenFee;
-    global $eexamfileMenFeeLABEL;
-    global $eexamfileMenFeeSTYLE;
+    global $eexamfileExamRegistration;
+    global $eexamfileExamRegistrationSTYLE;
     global $eexamfileOpenDate;
     global $eexamfileOpenDateLABEL;
     global $eexamfileOpenDateSTYLE;
@@ -785,6 +786,9 @@ function buildDataRows() {
     global $eexamfileTimeTo;
     global $eexamfileTimeToLABEL;
     global $eexamfileTimeToSTYLE;
+    global $eexamfileVenue;
+    global $eexamfileVenueLABEL;
+    global $eexamfileVenueSTYLE;
     global $Header;
     global $Footer;
     global $MainContent;
@@ -812,6 +816,18 @@ $Seq = 0;
             $tmpIMG_eexamfileAutomaticDetailLink = "";
             $tmpIMG_eexamfileAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
                 $eexamfileAutomaticDetailLink .= "\">" . $tmpIMG_eexamfileAutomaticDetailLink . "</a>";
+    $eexamfileExamRegistrationSTYLE = "TableRow" . $Style;
+    $myLink = "";
+            $myLink = "<a href=\"BrowseExamRegistrationlist.php?ID1=";
+                    $eexamfileExamRegistration = $myLink;
+                      $eexamfileExamRegistration .= "'" . htmlEncode(trim(getValue($oRSeexamfile->fields["CountryID"]))) . "'" ;
+                    $eexamfileExamRegistration .=  "&ID2=" . "'";
+                    $eexamfileExamRegistration .= htmlEncode(trim(getValue($oRSeexamfile->fields["BranchID"]))) . "'";
+                    $eexamfileExamRegistration .=  "&ID3=";
+                    $eexamfileExamRegistration .= htmlEncode(trim(getValue($oRSeexamfile->fields["Date"])));
+            $tmpIMG_eexamfileExamRegistration = "";
+            $tmpIMG_eexamfileExamRegistration = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Register Student\">";
+                $eexamfileExamRegistration .= "\">" . $tmpIMG_eexamfileExamRegistration . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $eexamfileCountryIDSTYLE = "TableRow" . $Style;
     if (is_null($oRSeexamfile->fields["CountryID"])):
@@ -848,6 +864,13 @@ $eexamfileTimeToSTYLE = "TableRow" . $Style;
         $eexamfileTimeTo = htmlEncode(getValue($oRSeexamfile->fields["TimeTo"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
+$eexamfileVenueSTYLE = "TableRow" . $Style;
+    if (is_null($oRSeexamfile->fields["Venue"])):
+        $eexamfileVenue = "";
+    else:
+        $eexamfileVenue = htmlEncode(getValue($oRSeexamfile->fields["Venue"]));
+endif;
+    $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $eexamfileOpenDateSTYLE = "TableRow" . $Style;
     if (is_null($oRSeexamfile->fields["OpenDate"])):
         $eexamfileOpenDate = "";
@@ -868,18 +891,13 @@ $eexamfileSubmitDateSTYLE = "TableRow" . $Style;
     else:
         $eexamfileSubmitDate = htmlEncode(getValue($oRSeexamfile->fields["SubmitDate"]));
 endif;
-    $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
-$eexamfileMenFeeSTYLE = "TableRow" . $Style;
-    if (is_null($oRSeexamfile->fields["MenFee"])):
-        $eexamfileMenFee = "";
-    else:
-        $eexamfileMenFee = htmlEncode(getValue($oRSeexamfile->fields["MenFee"]));
-endif;
 $Seq++;
 $oRSeexamfile->MoveNext();
 
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileAutomaticDetailLink@", $eexamfileAutomaticDetailLink);
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileAutomaticDetailLinkSTYLE@", $eexamfileAutomaticDetailLinkSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileExamRegistration@", $eexamfileExamRegistration);
+$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileExamRegistrationSTYLE@", $eexamfileExamRegistrationSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileCountryID@", $eexamfileCountryID);       
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileCountryIDSTYLE@",$eexamfileCountryIDSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileBranchID@", $eexamfileBranchID);       
@@ -890,14 +908,14 @@ $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileTimeFrom@", $eexamfil
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileTimeFromSTYLE@",$eexamfileTimeFromSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileTimeTo@", $eexamfileTimeTo);       
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileTimeToSTYLE@",$eexamfileTimeToSTYLE);           
+$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileVenue@", $eexamfileVenue);       
+$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileVenueSTYLE@",$eexamfileVenueSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileOpenDate@", $eexamfileOpenDate);       
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileOpenDateSTYLE@",$eexamfileOpenDateSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileCloseDate@", $eexamfileCloseDate);       
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileCloseDateSTYLE@",$eexamfileCloseDateSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileSubmitDate@", $eexamfileSubmitDate);       
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileSubmitDateSTYLE@",$eexamfileSubmitDateSTYLE);           
-$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileMenFee@", $eexamfileMenFee);       
-$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileMenFeeSTYLE@",$eexamfileMenFeeSTYLE);           
         endwhile; // of oRSeexamfile DO WHILE
     endif; // rs is valid
 
@@ -911,6 +929,9 @@ do {
 $eexamfileAutomaticDetailLinkSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileAutomaticDetailLink@", "&nbsp;");       
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileAutomaticDetailLinkSTYLE@", $eexamfileAutomaticDetailLinkSTYLE);
+$eexamfileExamRegistrationSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileExamRegistration@", "&nbsp;");       
+$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileExamRegistrationSTYLE@", $eexamfileExamRegistrationSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileCountryID@", "&nbsp;");
 $eexamfileCountryIDSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileCountryIDSTYLE@", $eexamfileCountryIDSTYLE);
@@ -926,6 +947,9 @@ $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileTimeFromSTYLE@", $eex
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileTimeTo@", "&nbsp;");
 $eexamfileTimeToSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileTimeToSTYLE@", $eexamfileTimeToSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileVenue@", "&nbsp;");
+$eexamfileVenueSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileVenueSTYLE@", $eexamfileVenueSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileOpenDate@", "&nbsp;");
 $eexamfileOpenDateSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileOpenDateSTYLE@", $eexamfileOpenDateSTYLE);
@@ -935,9 +959,6 @@ $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileCloseDateSTYLE@", $ee
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileSubmitDate@", "&nbsp;");
 $eexamfileSubmitDateSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@eexamfileSubmitDateSTYLE@", $eexamfileSubmitDateSTYLE);
-$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileMenFee@", "&nbsp;");
-$eexamfileMenFeeSTYLE = "TableRow" . $Style;
-$DataRowFilledText = Replace($DataRowFilledText,"@eexamfileMenFeeSTYLE@", $eexamfileMenFeeSTYLE);
 --$Seq;
 } while ($Seq > 0);
 endif;

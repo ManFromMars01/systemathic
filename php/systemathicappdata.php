@@ -63,9 +63,9 @@ $IconLast = $IconPath . "last.gif";
 $IconLastDisabled = $IconPath . "lastd.gif";
 
 //declare the user data variables SESSION (GLOBAL) SCOPE
-$Header = file_get_contents('template/header.php', true);
-$Footer = file_get_contents('template/footer.php', true);
+$Header = "";
+$Footer = "";
 $MainContent = "";
-$Menu = file_get_contents('template/stat.php', true);
+$Menu = "";
 
 ?>

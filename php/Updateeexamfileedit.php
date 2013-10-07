@@ -56,6 +56,7 @@ function MergeTemplate($Template) {
     global $eexamfileDate;
     global $eexamfileTimeFrom;
     global $eexamfileTimeTo;
+    global $eexamfileVenue;
     global $eexamfileOpenDate;
     global $eexamfileCloseDate;
     global $eexamfileSubmitDate;
@@ -91,6 +92,7 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@eexamfileDate@", $eexamfileDate);
      $TemplateText = Replace($TemplateText, "@eexamfileTimeFrom@", $eexamfileTimeFrom);
      $TemplateText = Replace($TemplateText, "@eexamfileTimeTo@", $eexamfileTimeTo);
+     $TemplateText = Replace($TemplateText, "@eexamfileVenue@", $eexamfileVenue);
      $TemplateText = Replace($TemplateText, "@eexamfileOpenDate@", $eexamfileOpenDate);
      $TemplateText = Replace($TemplateText, "@eexamfileCloseDate@", $eexamfileCloseDate);
      $TemplateText = Replace($TemplateText, "@eexamfileSubmitDate@", $eexamfileSubmitDate);
@@ -176,7 +178,7 @@ function MergeEditTemplate($Template,$ClarionData) {
     endif;  
 }
 
-$sql = "SELECT eexamfile.CountryID, eexamfile.BranchID, eexamfile.Date, eexamfile.TimeFrom, eexamfile.TimeTo, eexamfile.OpenDate, eexamfile.CloseDate, eexamfile.SubmitDate, eexamfile.MenFee, eexamfile.AbaFee, eexamfile.AurFee, eexamfile.Total, eexamfile.Remarks  FROM  eexamfile WHERE  eexamfile.CountryID = '" . $ID1 . "'" . " AND eexamfile.BranchID = '" . $ID2 . "'" . " AND eexamfile.Date = '" . $ID3. "'";
+$sql = "SELECT eexamfile.CountryID, eexamfile.BranchID, eexamfile.Date, eexamfile.TimeFrom, eexamfile.TimeTo, eexamfile.Venue, eexamfile.OpenDate, eexamfile.CloseDate, eexamfile.SubmitDate, eexamfile.MenFee, eexamfile.AbaFee, eexamfile.AurFee, eexamfile.Total, eexamfile.Remarks  FROM  eexamfile WHERE  eexamfile.CountryID = '" . $ID1 . "'" . " AND eexamfile.BranchID = '" . $ID2 . "'" . " AND eexamfile.Date = '" . $ID3. "'";
 $oRSeexamfile = $objConn1->SelectLimit($sql,1);
 if ($oRSeexamfile->MoveFirst() == false):
     $oRSeexamfile->Close();
@@ -220,6 +222,12 @@ if (is_null($oRSeexamfile->fields["TimeTo"])):
 $eexamfileTimeTo = "";
 else:
 $eexamfileTimeTo = getValue($oRSeexamfile->fields["TimeTo"]);
+endif;
+$eexamfileVenue = "";
+if (is_null($oRSeexamfile->fields["Venue"])):
+$eexamfileVenue = "";
+else:
+$eexamfileVenue = trim(getValue($oRSeexamfile->fields["Venue"]));
 endif;
 $eexamfileOpenDate = "";
 if (is_null($oRSeexamfile->fields["OpenDate"])):
@@ -282,6 +290,7 @@ if ($_SESSION["Updateeexamfile_EditFailed"] == 1) {
   $eexamfileDate = $_SESSION["SavedEditeexamfileDate"];
   $eexamfileTimeFrom = $_SESSION["SavedEditeexamfileTimeFrom"];
   $eexamfileTimeTo = $_SESSION["SavedEditeexamfileTimeTo"];
+  $eexamfileVenue = $_SESSION["SavedEditeexamfileVenue"];
   $eexamfileOpenDate = $_SESSION["SavedEditeexamfileOpenDate"];
   $eexamfileCloseDate = $_SESSION["SavedEditeexamfileCloseDate"];
   $eexamfileSubmitDate = $_SESSION["SavedEditeexamfileSubmitDate"];

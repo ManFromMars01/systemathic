@@ -78,6 +78,8 @@ function MergeAddTemplate($Template) {
     $TemplateText = Replace($TemplateText,"@eexamfileTimeFrom@",$eexamfileTimeFrom);            
     global $eexamfileTimeTo;
     $TemplateText = Replace($TemplateText,"@eexamfileTimeTo@",$eexamfileTimeTo);            
+    global $eexamfileVenue;
+    $TemplateText = Replace($TemplateText,"@eexamfileVenue@",$eexamfileVenue);            
     global $eexamfileOpenDate;
     $TemplateText = Replace($TemplateText,"@eexamfileOpenDate@",$eexamfileOpenDate);            
     global $eexamfileCloseDate;
@@ -112,6 +114,7 @@ $eexamfileBranchID  = getRequest("txteexamfileBranchID");
 $eexamfileDate  = getRequest("txteexamfileDate");
 $eexamfileTimeFrom  = getRequest("txteexamfileTimeFrom");
 $eexamfileTimeTo  = getRequest("txteexamfileTimeTo");
+$eexamfileVenue  = getRequest("txteexamfileVenue");
 $eexamfileOpenDate  = getRequest("txteexamfileOpenDate");
 $eexamfileCloseDate  = getRequest("txteexamfileCloseDate");
 $eexamfileSubmitDate  = getRequest("txteexamfileSubmitDate");
@@ -127,6 +130,7 @@ if ($_SESSION["Updateeexamfile_InsertFailed"] == 1) {
    $eexamfileDate = $_SESSION["SavedeexamfileDate"];
    $eexamfileTimeFrom = $_SESSION["SavedeexamfileTimeFrom"];
    $eexamfileTimeTo = $_SESSION["SavedeexamfileTimeTo"];
+   $eexamfileVenue = $_SESSION["SavedeexamfileVenue"];
    $eexamfileOpenDate = $_SESSION["SavedeexamfileOpenDate"];
    $eexamfileCloseDate = $_SESSION["SavedeexamfileCloseDate"];
    $eexamfileSubmitDate = $_SESSION["SavedeexamfileSubmitDate"];

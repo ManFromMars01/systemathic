@@ -230,9 +230,14 @@ if ( getRequest("WHR") != ""):
 elseif (getSession("BrowseSubCateg#WHR") != ""):
     $myWhere    = getSession("BrowseSubCateg#WHR");
 endif;
+if ($myWhere == ""):
+    $myWhere = "tsubcateg.CountryID = " . trim(getRequest( "ID1") ). "  AND tsubcateg.BranchID = " . trim(getRequest( "ID2") ). "  AND  tsubcateg.CatID = " . trim(getRequest( "ID3") ). "";
+else:
+    $myWhere .= " AND tsubcateg.CountryID = " . trim(getRequest( "ID1") ). "  AND tsubcateg.BranchID = " . trim(getRequest( "ID2") ). "  AND  tsubcateg.CatID = " . trim(getRequest( "ID3") ). "";
+endif;
 if (getGet("RESETLIST") == "TRUE"):
-    $myWhere = "";
-    $_SESSION["BrowseSubCateg#WHR"] = "";
+    $myWhere = "tsubcateg.CountryID = " . trim(getRequest( "ID1") ). "  AND tsubcateg.BranchID = " . trim(getRequest( "ID2") ). "  AND  tsubcateg.CatID = " . trim(getRequest( "ID3") ). "";
+    $_SESSION["BrowseSubCateg#WHR"] = $myWhere;
 endif;
 if ($myWhere == ""):
     if (getRequest("LOCATE") == "TRUE"):

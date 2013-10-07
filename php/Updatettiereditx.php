@@ -154,13 +154,13 @@ if (!isset($oRSResult) || $oRSResult == false || $oRSResult == ""):
 else:
   $myStatus = "Your update succeeded <BR><BR>";
 endif;
-    if(getSession("BrowseAttendanceStatus#WHR")<>""):
-        $myStatus .= "<a href='BrowseAttendanceStatuslist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
+    if(getSession("BrowseTier#WHR")<>""):
+        $myStatus .= "<a href='BrowseTierlist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
     else:
         if($_SESSION["ChildReturnTo"] <> ""):
           $myStatus .= "<a href='" . htmlEncode($_SESSION["ChildReturnTo"]) . "'>Return to list</a>.";
         else:
-          $myStatus .= "<a href='BrowseAttendanceStatuslist.php'>Return to list</a>.";
+          $myStatus .= "<a href='BrowseTierlist.php'>Return to list</a>.";
         endif;
     endif;
 endif;

@@ -311,9 +311,14 @@ if ( getRequest("WHR") != ""):
 elseif (getSession("BrowseSchedList#WHR") != ""):
     $myWhere    = getSession("BrowseSchedList#WHR");
 endif;
+if ($myWhere == ""):
+    $myWhere = "tclasssched.CountryID = " . trim(getRequest( "ID1") ). "  AND tclasssched.BranchID = " . trim(getRequest( "ID2") ). "  AND  tclasssched.LevelID = " . trim(getRequest( "ID3") ). "";
+else:
+    $myWhere .= " AND tclasssched.CountryID = " . trim(getRequest( "ID1") ). "  AND tclasssched.BranchID = " . trim(getRequest( "ID2") ). "  AND  tclasssched.LevelID = " . trim(getRequest( "ID3") ). "";
+endif;
 if (getGet("RESETLIST") == "TRUE"):
-    $myWhere = "";
-    $_SESSION["BrowseSchedList#WHR"] = "";
+    $myWhere = "tclasssched.CountryID = " . trim(getRequest( "ID1") ). "  AND tclasssched.BranchID = " . trim(getRequest( "ID2") ). "  AND  tclasssched.LevelID = " . trim(getRequest( "ID3") ). "";
+    $_SESSION["BrowseSchedList#WHR"] = $myWhere;
 endif;
 if ($myWhere == ""):
     if (getRequest("LOCATE") == "TRUE"):
@@ -802,7 +807,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tclassschedAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a class='btn btn-info' href=\"Updatetclassschededit.php?ID1=";
+            $myLink = "<a href=\"Updatetclassschededit.php?ID1=";
                     $tclassschedAutomaticDetailLink = $myLink;
                       $tclassschedAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStclasssched->fields["CountryID"]))) . "'" ;
                     $tclassschedAutomaticDetailLink .=  "&ID2=" . "'";
@@ -812,7 +817,7 @@ $Seq = 0;
                     $tclassschedAutomaticDetailLink .=  "&ID4=";
                     $tclassschedAutomaticDetailLink .= htmlEncode(trim(getValue($oRStclasssched->fields["TimeFrom"])));
             $tmpIMG_tclassschedAutomaticDetailLink = "";
-            $tmpIMG_tclassschedAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
+            $tmpIMG_tclassschedAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
                 $tclassschedAutomaticDetailLink .= "\">" . $tmpIMG_tclassschedAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tclassschedCountryIDSTYLE = "TableRow" . $Style;
