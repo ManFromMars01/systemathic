@@ -115,6 +115,23 @@
         	});
 		});
 
+		$('#saveme').click(function(){
+			$.ajax({
+	            url: 'UpdatetStudentaddx.php',
+	            type: 'post',
+	            data: $('#form5').serialize(),
+	            dataType: 'json',
+	            success: function (j) {
+	               console.log(j);
+	               //$('#success').html('Successfully Updated');
+	               $('.modal-body').html(j.statusme);
+	               $("#myModal").modal('show');
+	               
+	            }     
+        	});
+		});
+
+
 
 		//Update ScheduleClass
 
