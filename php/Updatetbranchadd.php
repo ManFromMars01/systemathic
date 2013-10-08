@@ -38,6 +38,10 @@ $HTML_Template = getRequest("HTMLT");
  MergeTemplate 
 ============================================================================='
 */
+
+
+
+
 function MergeAddTemplate($Template) {
     global $UpdatetbranchFormAction;
 
@@ -49,6 +53,16 @@ function MergeAddTemplate($Template) {
     if(!isset($Template) || ($Template =="")):
         $Template =  "./html/Updatetbranchadd.htm";
     endif;
+    include_once('ConnInfo.php');
+
+    $objConn1 = &ADONewConnection($Driver1);
+    $objConn1->debug = $DebugMode;
+    $objConn1->PConnect($Server1,$User1,$Password1,$db1);
+    $sql2 = "SELECT  tcountry.Description FROM  tcountry WHERE  tcountry.ID = '".$_GET['ID1']."'";
+    $oRStbranch2 = $objConn1->SelectLimit($sql2,1);
+        //$address1 = $oRStbranch2->fields["Description"];
+    $Country = $oRStbranch2->fields["Description"];
+
 
     $FileObject = fopen($Template, "r");
     $TemplateText = "";
@@ -88,13 +102,16 @@ function MergeAddTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+   //$Country = "Hello";
+    $TemplateText = Replace($TemplateText, "@Country@", $Country);
+
+
     print($TemplateText);
 } // END Function
-include_once('ConnInfo.php');
 
-$objConn1 = &ADONewConnection($Driver1);
-$objConn1->debug = $DebugMode;
-$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+    //$TemplateText = Replace($TemplateText, "@Country@", $Country);
+
 
 $UpdatetbranchFormAction = "Updatetbranchaddx.php";
 $tbranchCountryID  = getRequest("txttbranchCountryID");
@@ -116,6 +133,10 @@ if ($_SESSION["Updatetbranch_InsertFailed"] == 1) {
    $tbranchHQOperation = $_SESSION["SavedtbranchHQOperation"];
    $tbranchHQCenterOperation = $_SESSION["SavedtbranchHQCenterOperation"];
 }
+
+
+
+
 
 MergeAddTemplate($HTML_Template);
 unset($oRStbranch);

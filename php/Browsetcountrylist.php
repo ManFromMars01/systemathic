@@ -669,7 +669,7 @@ $Seq = 0;
                     $tcountryAddCenters = $myLink;
                       $tcountryAddCenters .= "'" . htmlEncode(trim(getValue($oRStcountry->fields["ID"]))) . "'" ;
             $tmpIMG_tcountryAddCenters = "";
-            $tmpIMG_tcountryAddCenters = "<i class='icon-edit icon-white'></i> Add Centers";
+            $tmpIMG_tcountryAddCenters = "<i class='icon-edit icon-white'></i> Manage Centers";
                 $tcountryAddCenters .= "\">" . $tmpIMG_tcountryAddCenters . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tcountryIDSTYLE = "TableRow" . $Style;

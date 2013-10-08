@@ -105,17 +105,19 @@
 						<li><a class="ajax-link" href="accounting.php"><img class="icon" src="template/img/redicons/calculator.png"></img><span class="hidden-tablet"> CMA Accounting</span></a></li>
 						
 						
-						<li class="nav-header hidden-tablet">List Section</li>
-						<li><a class="ajax-link" href="Browsetcountrylist.php"><img class="icon" src="img/redicons/database.png"></img><span class="hidden-tablet"> Country List</span></a></li>
-						<li><a class="ajax-link" href="Browsetbranchlist.php"><img class="icon" src="img/redicons/package.png"></img></i><span class="hidden-tablet"> Centers List</span></a></li>
-						<li><a class="ajax-link" href="BrowseDeptlist.php"><img class="icon" src="img/redicons/database.png"></img><span class="hidden-tablet"> Department List</span></a></li>
-						
-
+						<li class="nav-header hidden-tablet">Admin Section</li>
+						<li><a class="ajax-link" href="Browsetcountrylist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Country List</span></a></li>
+						<li><a class="ajax-link" href="BrowseDeptlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Department List</span></a></li>
+						<li><a class="ajax-link" href="BrowseCategorylist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Category List</span></a></li>
+						<li><a class="ajax-link" href="BrowseUnitMeaslist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Unit List</span></a></li>
+						<li><a class="ajax-link" href="BrowseManufacturerlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Manufacturer</span></a></li>
+						<li><a class="ajax-link" href="BrowseLocationlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Location</span></a></li>
+						<li><a class="ajax-link" href="BrowseItemslist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Book Item List</span></a></li>
 
 						<li class="nav-header hidden-tablet">Design Section</li>
-						<li><a class="ajax-link" href="form.html"><img class="icon" src="img/redicons/database.png"></img><span class="hidden-tablet"> Forms</span></a></li>
-						<li><a class="ajax-link" href="table.html"><img class="icon" src="img/redicons/package.png"></img></i><span class="hidden-tablet"> Tables</span></a></li>
-						<li><a href="login.html"><img class="icon" src="img/redicons/lock.png"></img></i><span class="hidden-tablet"> Login Page</span></a></li>
+						<li><a class="ajax-link" href="form.html"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Forms</span></a></li>
+						<li><a class="ajax-link" href="table.html"><img class="icon" src="template/img/redicons/package.png"></img></i><span class="hidden-tablet"> Tables</span></a></li>
+						<li><a href="login.html"><img class="icon" src="template/img/redicons/lock.png"></img></i><span class="hidden-tablet"> Login Page</span></a></li>
 					</ul>
 					
 				</div><!--/.well -->

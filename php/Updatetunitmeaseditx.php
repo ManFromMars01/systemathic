@@ -179,6 +179,8 @@ else {
   $_SESSION["Updatetunitmeas_EditFailed"] = 0;
 }
 
-MergeEditTemplate($HTML_Template);
+$myStatus = array('statusme' => $myStatus);
+echo json_encode($myStatus);
+//MergeEditTemplate($HTML_Template);
 $objConn1->Close();
 ?>

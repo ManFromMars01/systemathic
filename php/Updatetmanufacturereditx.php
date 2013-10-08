@@ -183,7 +183,9 @@ if($flgMissing == true) {
 else {
   $_SESSION["Updatetmanufacturer_EditFailed"] = 0;
 }
+$myStatus = array('statusme' => $myStatus);
+echo json_encode($myStatus);
 
-MergeEditTemplate($HTML_Template);
+//MergeEditTemplate($HTML_Template);
 $objConn1->Close();
 ?>

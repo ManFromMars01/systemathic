@@ -168,8 +168,11 @@ $ClarionData .= "   <tr><td class='Input' colspan='2'>" . $myStatus . "<br></td>
 $ClarionData .= "</table>\n";
 $ClarionData .= "</div>\n";
 
+$myStatus = array('statusme' => $myStatus);
 
-MergeAddTemplate($HTML_Template);
+echo json_encode($myStatus);
+
+//MergeAddTemplate($HTML_Template);
 unset($oRStcategory) ;
 $objConn1->Close();
 unset($objConn1);
