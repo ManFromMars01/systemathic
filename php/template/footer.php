@@ -388,6 +388,41 @@
         	});
 		});
 
+		
+
+		//add Assesment
+		$('#save_add_assessment').click(function(){
+			$.ajax({
+	            url: 'Updatetassessmentaddx.php',
+	            type: 'post',
+	            data: $('#form18').serialize(),
+	            dataType: 'json',
+	            success: function (j) {
+	               console.log(j);
+	               //$('#success').html('Successfully Updated');
+	               $('.modal-body').html(j.statusme);
+	               $("#myModal").modal('show');
+	               
+	            }     
+        	});
+		});
+
+		$('#save_upd_assessment').click(function(){
+			$.ajax({
+	            url: 'Updatetassessmenteditx.php',
+	            type: 'post',
+	            data: $('#form19').serialize(),
+	            dataType: 'json',
+	            success: function (j) {
+	               console.log(j);
+	               //$('#success').html('Successfully Updated');
+	               $('.modal-body').html(j.statusme);
+	               $("#myModal").modal('show');
+	               
+	            }     
+        	});
+		});
+
 
 
 

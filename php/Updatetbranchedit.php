@@ -238,8 +238,6 @@ else {
 }
 
 
-$sql2 = "SELECT tbranch.CountryID, tbranch.BranchID, tbranch.Description, tbranch.Phone, tbranch.Email, tbranch.Contact, tbranch.HQOperation, tbranch.HQCenterOperation  FROM  tbranch WHERE  tbranch.CountryID = '" . $ID1 . "'" . " AND tbranch.BranchID = '" . $ID2 . "'";
-$oRStbranch2 = $objConn1->SelectLimit($sql2,1);
 
 
 MergeTemplate($HTML_Template);

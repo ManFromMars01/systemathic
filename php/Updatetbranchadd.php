@@ -134,10 +134,6 @@ if ($_SESSION["Updatetbranch_InsertFailed"] == 1) {
    $tbranchHQCenterOperation = $_SESSION["SavedtbranchHQCenterOperation"];
 }
 
-
-
-
-
 MergeAddTemplate($HTML_Template);
 unset($oRStbranch);
 $objConn1->Close();
