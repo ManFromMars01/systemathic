@@ -37,6 +37,7 @@ include_once('utils.php');
 include('login.php');
 include_once('ConnInfo.php');
 
+
 $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
@@ -164,8 +165,9 @@ $ClarionData .= "   <tr><td class='Input' colspan='2'>" . $myStatus . "<br></td>
 $ClarionData .= "</table>\n";
 $ClarionData .= "</div>\n";
 
-
-MergeAddTemplate($HTML_Template);
+$myStatus = array('statusme' => $myStatus);
+echo json_encode($myStatus);
+//MergeAddTemplate($HTML_Template);
 unset($oRStassessment) ;
 $objConn1->Close();
 unset($objConn1);

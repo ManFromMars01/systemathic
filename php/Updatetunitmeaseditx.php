@@ -180,7 +180,8 @@ if($flgMissing == true) {
 else {
   $_SESSION["Updatetunitmeas_EditFailed"] = 0;
 }
-
-MergeEditTemplate($HTML_Template);
+$myStatus = array('statusme' => $myStatus);
+echo json_encode($myStatus);
+//ergeEditTemplate($HTML_Template);
 $objConn1->Close();
 ?>

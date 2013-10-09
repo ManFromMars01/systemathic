@@ -18,6 +18,7 @@ $PageLevel = 0;
 $PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
+
 DebugMode is defined in appdata.WEB as FALSE by default
 debug of this page only by uncommenting the next line
 */
@@ -171,8 +172,9 @@ $ClarionData .= "   <tr><td class='Input' colspan='2'>" . $myStatus . "<br></td>
 $ClarionData .= "</table>\n";
 $ClarionData .= "</div>\n";
 
-
-MergeAddTemplate($HTML_Template);
+$myStatus = array('statusme' => $myStatus);
+echo json_encode($myStatus);
+//MergeAddTemplate($HTML_Template);
 unset($oRStbranch) ;
 $objConn1->Close();
 unset($objConn1);
