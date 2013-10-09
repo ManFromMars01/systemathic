@@ -1,4 +1,5 @@
 <?PHP
+session_set_cookie_params(500);
 session_start();
 /*
 ===================================================================
@@ -421,6 +422,7 @@ function MergeBrowsetbranchListTemplate($Template) {
     global $Footer;
     global $MainContent;
     global $Menu;
+    global $userdata1;
     if($Template == ""):
         $Template = "./html/Browsetbranchlist.htm";
     endif;      
@@ -474,6 +476,7 @@ function MergeBrowsetbranchListTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+    $TemplateText = Replace($TemplateText, "@userdata1@", $userdata1);
     $TemplateText = Replace($TemplateText, "@SearchMessage@", $SearchMessage);
     $TemplateText = Replace($TemplateText, "@SearchField@", $SearchField);
     $TemplateText = Replace($TemplateText,"@TableFooter@", $TableFooter);
@@ -743,6 +746,7 @@ function buildDataRows() {
     global $Footer;
     global $MainContent;
     global $Menu;
+    global $userdata1;
 $Seq = 0;
 
     if ($oRStbranch) :
@@ -753,6 +757,7 @@ $Seq = 0;
             $DataRowFilledText = Replace($DataRowFilledText, "@Footer@", $Footer);
             $DataRowFilledText = Replace($DataRowFilledText, "@MainContent@", $MainContent);
             $DataRowFilledText = Replace($DataRowFilledText, "@Menu@", $Menu);
+            $DataRowFilledText = Replace($DataRowFilledText, "@userdata1@", $userdata1);
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tbranchAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";

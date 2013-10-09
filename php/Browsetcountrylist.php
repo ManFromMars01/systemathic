@@ -1,4 +1,5 @@
 <?PHP
+session_set_cookie_params(500);
 session_start();
 /*
 ===================================================================
@@ -15,7 +16,7 @@ session_start();
 ===================================================================
 */
 $PageLevel = 0;
-$PageLevel = 1;
+$PageLevel = 50;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -40,6 +41,11 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
+if($_SERVER["QUERY_STRING"] <> ""):
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"];
+else:
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"];
+endif;
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
 // $RecordsPerPage = ##;
@@ -67,8 +73,8 @@ $SearchMessage = "";
 $SearchField = "";
 $tcountryAutomaticDetailLink = "";
 $tcountryAutomaticDetailLinkSTYLE = "";
-$tcountryAddCenters = "";
-$tcountryAddCentersSTYLE = "";
+$tcountryAddCenter = "";
+$tcountryAddCenterSTYLE = "";
 $tcountryIDLABEL = "";
 $tcountryID = "";
 $tcountryIDSTYLE = "";
@@ -276,6 +282,13 @@ else:
     endif;
 endif;
 
+// --add the additional "myRecords" ownership clause
+$strMyQuote = getQuote($objConn1,"tcountry", "tcountry.ID");
+if ($myWhere != ""):
+    $myWhere .= " AND ";
+endif;
+$myWhere .= "tcountry.ID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote;
+$_SESSION["Browsetcountry#WHR"] = $myWhere;
 $mySQL = $myQuery;
 // -- test for any value in the myWhere, if valid concatenate the clause
 if ($myWhere != ""):
@@ -380,6 +393,7 @@ function MergeBrowsetcountryListTemplate($Template) {
     global $Footer;
     global $MainContent;
     global $Menu;
+    global $userdata1;
     if($Template == ""):
         $Template = "./html/Browsetcountrylist.htm";
     endif;      
@@ -433,6 +447,7 @@ function MergeBrowsetcountryListTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+    $TemplateText = Replace($TemplateText, "@userdata1@", $userdata1);
     $TemplateText = Replace($TemplateText, "@SearchMessage@", $SearchMessage);
     $TemplateText = Replace($TemplateText, "@SearchField@", $SearchField);
     $TemplateText = Replace($TemplateText,"@TableFooter@", $TableFooter);
@@ -620,8 +635,8 @@ function buildDataRows() {
     global $DataRowFilledText;
     global $oRStcountry;
     global $RecordsPageSize;
-    global $tcountryAddCenters;
-    global $tcountryAddCentersSTYLE;
+    global $tcountryAddCenter;
+    global $tcountryAddCenterSTYLE;
     global $tcountryAutomaticDetailLink;
     global $tcountryAutomaticDetailLinkSTYLE;
     global $tcountryContact;
@@ -646,6 +661,7 @@ function buildDataRows() {
     global $Footer;
     global $MainContent;
     global $Menu;
+    global $userdata1;
 $Seq = 0;
 
     if ($oRStcountry) :
@@ -656,6 +672,7 @@ $Seq = 0;
             $DataRowFilledText = Replace($DataRowFilledText, "@Footer@", $Footer);
             $DataRowFilledText = Replace($DataRowFilledText, "@MainContent@", $MainContent);
             $DataRowFilledText = Replace($DataRowFilledText, "@Menu@", $Menu);
+            $DataRowFilledText = Replace($DataRowFilledText, "@userdata1@", $userdata1);
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tcountryAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
@@ -665,25 +682,20 @@ $Seq = 0;
             $tmpIMG_tcountryAutomaticDetailLink = "";
             $tmpIMG_tcountryAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
                 $tcountryAutomaticDetailLink .= "\">" . $tmpIMG_tcountryAutomaticDetailLink . "</a>";
-    $tcountryAddCentersSTYLE = "TableRow" . $Style;
+    $tcountryAddCenterSTYLE = "TableRow" . $Style;
     $myLink = "";
             $myLink = "<a href=\"Browsetbranchlist.php?ID1=";
-                    $tcountryAddCenters = $myLink;
-                      $tcountryAddCenters .= "'" . htmlEncode(trim(getValue($oRStcountry->fields["ID"]))) . "'" ;
-            $tmpIMG_tcountryAddCenters = "";
-            $tmpIMG_tcountryAddCenters = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Add Centers\">";
-                $tcountryAddCenters .= "\">" . $tmpIMG_tcountryAddCenters . "</a>";
+                    $tcountryAddCenter = $myLink;
+                      $tcountryAddCenter .= "'" . htmlEncode(trim(getValue($oRStcountry->fields["ID"]))) . "'" ;
+            $tmpIMG_tcountryAddCenter = "";
+            $tmpIMG_tcountryAddCenter = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Add Center\">";
+                $tcountryAddCenter .= "\">" . $tmpIMG_tcountryAddCenter . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tcountryIDSTYLE = "TableRow" . $Style;
     if (is_null($oRStcountry->fields["ID"])):
         $tcountryID = "";
     else:
-        $myQuoteID = "\"";
-        $tcountryID = '<a href=\'JAVASCRIPT:updateData(';
-        $tcountryID .= $myQuoteID . htmlEncode(getValue($oRStcountry->fields["ID"])) . $myQuoteID;
-        $tcountryID .= ');\'>';
-        $tcountryID .= htmlEncode(getValue($oRStcountry->fields["ID"])) . "</a>";
-
+        $tcountryID = htmlEncode(getValue($oRStcountry->fields["ID"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tcountryDescriptionSTYLE = "TableRow" . $Style;
@@ -725,8 +737,8 @@ $oRStcountry->MoveNext();
 
 $DataRowFilledText = Replace($DataRowFilledText,"@tcountryAutomaticDetailLink@", $tcountryAutomaticDetailLink);
 $DataRowFilledText = Replace($DataRowFilledText,"@tcountryAutomaticDetailLinkSTYLE@", $tcountryAutomaticDetailLinkSTYLE);
-$DataRowFilledText = Replace($DataRowFilledText,"@tcountryAddCenters@", $tcountryAddCenters);
-$DataRowFilledText = Replace($DataRowFilledText,"@tcountryAddCentersSTYLE@", $tcountryAddCentersSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@tcountryAddCenter@", $tcountryAddCenter);
+$DataRowFilledText = Replace($DataRowFilledText,"@tcountryAddCenterSTYLE@", $tcountryAddCenterSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@tcountryID@", $tcountryID);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tcountryIDSTYLE@",$tcountryIDSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@tcountryDescription@", $tcountryDescription);       
@@ -752,9 +764,9 @@ do {
 $tcountryAutomaticDetailLinkSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@tcountryAutomaticDetailLink@", "&nbsp;");       
 $DataRowFilledText = Replace($DataRowFilledText,"@tcountryAutomaticDetailLinkSTYLE@", $tcountryAutomaticDetailLinkSTYLE);
-$tcountryAddCentersSTYLE = "TableRow" . $Style;
-$DataRowFilledText = Replace($DataRowFilledText,"@tcountryAddCenters@", "&nbsp;");       
-$DataRowFilledText = Replace($DataRowFilledText,"@tcountryAddCentersSTYLE@", $tcountryAddCentersSTYLE);
+$tcountryAddCenterSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@tcountryAddCenter@", "&nbsp;");       
+$DataRowFilledText = Replace($DataRowFilledText,"@tcountryAddCenterSTYLE@", $tcountryAddCenterSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@tcountryID@", "&nbsp;");
 $tcountryIDSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@tcountryIDSTYLE@", $tcountryIDSTYLE);

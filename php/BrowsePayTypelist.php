@@ -1,4 +1,5 @@
 <?PHP
+session_set_cookie_params(500);
 session_start();
 /*
 ===================================================================
@@ -15,7 +16,7 @@ session_start();
 ===================================================================
 */
 $PageLevel = 0;
-$PageLevel = 1;
+$PageLevel = 50;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -336,6 +337,13 @@ else:
     endif;
 endif;
 
+// --add the additional "myRecords" ownership clause
+$strMyQuote = getQuote($objConn1,"tpaytype", "tpaytype.CountryID");
+if ($myWhere != ""):
+    $myWhere .= " AND ";
+endif;
+$myWhere .= "tpaytype.CountryID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote;
+$_SESSION["BrowsePayType#WHR"] = $myWhere;
 $mySQL = $myQuery;
 // -- test for any value in the myWhere, if valid concatenate the clause
 if ($myWhere != ""):
@@ -440,6 +448,7 @@ function MergeBrowsePayTypeListTemplate($Template) {
     global $Footer;
     global $MainContent;
     global $Menu;
+    global $userdata1;
     if($Template == ""):
         $Template = "./html/BrowsePayTypelist.htm";
     endif;      
@@ -493,6 +502,7 @@ function MergeBrowsePayTypeListTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+    $TemplateText = Replace($TemplateText, "@userdata1@", $userdata1);
     $TemplateText = Replace($TemplateText, "@SearchMessage@", $SearchMessage);
     $TemplateText = Replace($TemplateText, "@SearchField@", $SearchField);
     $TemplateText = Replace($TemplateText,"@TableFooter@", $TableFooter);
@@ -791,6 +801,7 @@ function buildDataRows() {
     global $Footer;
     global $MainContent;
     global $Menu;
+    global $userdata1;
 $Seq = 0;
 
     if ($oRStpaytype) :
@@ -801,6 +812,7 @@ $Seq = 0;
             $DataRowFilledText = Replace($DataRowFilledText, "@Footer@", $Footer);
             $DataRowFilledText = Replace($DataRowFilledText, "@MainContent@", $MainContent);
             $DataRowFilledText = Replace($DataRowFilledText, "@Menu@", $Menu);
+            $DataRowFilledText = Replace($DataRowFilledText, "@userdata1@", $userdata1);
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tpaytypeAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";

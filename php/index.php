@@ -1,6 +1,4 @@
 <?php 
-session_start();
-
 $PageLevel = 0;
 $PageLevel = 1;
 include_once('systemathicappdata.php');
