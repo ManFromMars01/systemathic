@@ -15,6 +15,7 @@ session_start();
 ===================================================================
 */
 $PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -38,6 +39,7 @@ $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
 // $RecordsPerPage = ##;
@@ -797,7 +799,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tcustomerAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a class='btn btn-info' href=\"UpdatetStudentedit.php?ID1=";
+            $myLink = "<a href=\"UpdatetStudentedit.php?ID1=";
                     $tcustomerAutomaticDetailLink = $myLink;
                       $tcustomerAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStcustomer->fields["CountryID"]))) . "'" ;
                     $tcustomerAutomaticDetailLink .=  "&ID2=" . "'";
@@ -805,7 +807,7 @@ $Seq = 0;
                     $tcustomerAutomaticDetailLink .=  "&ID3=";
                     $tcustomerAutomaticDetailLink .= htmlEncode(trim(getValue($oRStcustomer->fields["CustNo"])));
             $tmpIMG_tcustomerAutomaticDetailLink = "";
-            $tmpIMG_tcustomerAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
+            $tmpIMG_tcustomerAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
                 $tcustomerAutomaticDetailLink .= "\">" . $tmpIMG_tcustomerAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tcustomerCountryIDSTYLE = "TableRow" . $Style;

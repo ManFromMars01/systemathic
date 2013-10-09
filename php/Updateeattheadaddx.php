@@ -14,6 +14,8 @@
 ===================================================================
 */
 session_start();
+$PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 include_once('ConnInfo.php');
 
 $objConn1 = &ADONewConnection($Driver1);
@@ -246,11 +249,6 @@ $dbValues = "";
                     $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
                 endif;
                 $flgMissing = 1;
-                        $myStatus .= " <STRONG>Session Pr Day 1:</STRONG> : Numeric field ;<BR>\n";
-                            $myStatus .= "Min - 1 <BR>";
-                            $myStatus .= "Max - 3 <BR>";
-                        $myStatus .= "\n";
-                    $myStatus .= "<HR>\n";
             endif;
     $rst["SessionPrDay1"] = getFormSQLQuoted($objConn1,"eatthead","SessionPrDay1","txteattheadSessionPrDay1");
             if (getForm("txteattheadSessionPrDay2") == ""):
@@ -258,11 +256,6 @@ $dbValues = "";
                     $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
                 endif;
                 $flgMissing = 1;
-                        $myStatus .= " <STRONG>Session Pr Day 2:</STRONG> : Numeric field ;<BR>\n";
-                            $myStatus .= "Min - 1 <BR>";
-                            $myStatus .= "Max - 3 <BR>";
-                        $myStatus .= "\n";
-                    $myStatus .= "<HR>\n";
             endif;
     $rst["SessionPrDay2"] = getFormSQLQuoted($objConn1,"eatthead","SessionPrDay2","txteattheadSessionPrDay2");
             if (getForm("txteattheadSessionPrDay3") == ""):
@@ -270,11 +263,6 @@ $dbValues = "";
                     $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
                 endif;
                 $flgMissing = 1;
-                        $myStatus .= " <STRONG>Session Pr Day 3:</STRONG> : Numeric field ;<BR>\n";
-                            $myStatus .= "Min - 0 <BR>";
-                            $myStatus .= "Max - 3 <BR>";
-                        $myStatus .= "\n";
-                    $myStatus .= "<HR>\n";
             endif;
     $rst["SessionPrDay3"] = getFormSQLQuoted($objConn1,"eatthead","SessionPrDay3","txteattheadSessionPrDay3");
             if (getForm("txteattheadSessionPrDay4") == ""):
@@ -282,11 +270,6 @@ $dbValues = "";
                     $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
                 endif;
                 $flgMissing = 1;
-                        $myStatus .= " <STRONG>Session Pr Day 4:</STRONG> : Numeric field ;<BR>\n";
-                            $myStatus .= "Min - 1 <BR>";
-                            $myStatus .= "Max - 3 <BR>";
-                        $myStatus .= "\n";
-                    $myStatus .= "<HR>\n";
             endif;
     $rst["SessionPrDay4"] = getFormSQLQuoted($objConn1,"eatthead","SessionPrDay4","txteattheadSessionPrDay4");
             if (getForm("txteattheadSessionPrDay5") == ""):
@@ -294,11 +277,6 @@ $dbValues = "";
                     $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
                 endif;
                 $flgMissing = 1;
-                        $myStatus .= " <STRONG>Session Pr Day 5:</STRONG> : Numeric field ;<BR>\n";
-                            $myStatus .= "Min - 1 <BR>";
-                            $myStatus .= "Max - 3 <BR>";
-                        $myStatus .= "\n";
-                    $myStatus .= "<HR>\n";
             endif;
     $rst["SessionPrDay5"] = getFormSQLQuoted($objConn1,"eatthead","SessionPrDay5","txteattheadSessionPrDay5");
             if (getForm("txteattheadSessionPrDay6") == ""):
@@ -306,11 +284,6 @@ $dbValues = "";
                     $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
                 endif;
                 $flgMissing = 1;
-                        $myStatus .= " <STRONG>Session Pr Day 6:</STRONG> : Numeric field ;<BR>\n";
-                            $myStatus .= "Min - 1 <BR>";
-                            $myStatus .= "Max - 3 <BR>";
-                        $myStatus .= "\n";
-                    $myStatus .= "<HR>\n";
             endif;
     $rst["SessionPrDay6"] = getFormSQLQuoted($objConn1,"eatthead","SessionPrDay6","txteattheadSessionPrDay6");
             if (getForm("txteattheadSessionPrDay7") == ""):
@@ -318,11 +291,6 @@ $dbValues = "";
                     $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
                 endif;
                 $flgMissing = 1;
-                        $myStatus .= " <STRONG>Session Pr Day 7:</STRONG> : Numeric field ;<BR>\n";
-                            $myStatus .= "Min - 1 <BR>";
-                            $myStatus .= "Max - 3 <BR>";
-                        $myStatus .= "\n";
-                    $myStatus .= "<HR>\n";
             endif;
     $rst["SessionPrDay7"] = getFormSQLQuoted($objConn1,"eatthead","SessionPrDay7","txteattheadSessionPrDay7");
 

@@ -14,6 +14,8 @@
 ===================================================================
 */
 session_start();
+$PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 include_once('ConnInfo.php');
 
 $objConn1 = &ADONewConnection($Driver1);
@@ -74,6 +77,7 @@ $dbValues = "";
                         $myStatus .= " <STRONG>ID:</STRONG> : Required field <HR>\n";
             endif;
     $rst["ID"] = getFormSQLQuoted($objConn1,"tteacher","ID","txttteacherID");
+    $rst["Password"] = getFormSQLQuoted($objConn1,"tteacher","Password","txttteacherPassword");
     $rst["Name"] = getFormSQLQuoted($objConn1,"tteacher","Name","txttteacherName");
     $rst["LocalName"] = getFormSQLQuoted($objConn1,"tteacher","LocalName","txttteacherLocalName");
     $rst["DateStart"] = getFormSQLQuoted($objConn1,"tteacher","DateStart","txttteacherDateStart");
@@ -102,13 +106,13 @@ if($flgMissing == false):
   else:
     $myStatus = "Your insert succeeded <br><br>";
   endif;
-  if(getSession("BrowseCategory#WHR")<>""):
-      $myStatus .= "<a href='BrowseCategorylist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
+  if(getSession("BrowseAssessment#WHR")<>""):
+      $myStatus .= "<a href='BrowseAssessmentlist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
   else:
       if($_SESSION["ChildReturnTo"] <> ""):
         $myStatus .= "<a href='" . htmlEncode($_SESSION["ChildReturnTo"]) . "'>Return to list</a>.";
       else:
-        $myStatus .= "<a href='BrowseCategorylist.php'>Return to list</a>.";
+        $myStatus .= "<a href='BrowseAssessmentlist.php'>Return to list</a>.";
       endif;
   endif;
 endif;
@@ -152,6 +156,7 @@ if($flgMissing == true) {
   $_SESSION["SavedtteacherCountryID"] = $_POST["txttteacherCountryID"];
   $_SESSION["SavedtteacherBranchID"] = $_POST["txttteacherBranchID"];
   $_SESSION["SavedtteacherID"] = $_POST["txttteacherID"];
+  $_SESSION["SavedtteacherPassword"] = $_POST["txttteacherPassword"];
   $_SESSION["SavedtteacherName"] = $_POST["txttteacherName"];
   $_SESSION["SavedtteacherLocalName"] = $_POST["txttteacherLocalName"];
   $_SESSION["SavedtteacherDateStart"] = $_POST["txttteacherDateStart"];

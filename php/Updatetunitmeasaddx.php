@@ -14,6 +14,8 @@
 ===================================================================
 */
 session_start();
+$PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 include_once('ConnInfo.php');
 
 $objConn1 = &ADONewConnection($Driver1);
@@ -161,9 +164,8 @@ $ClarionData .= "   <tr><td class='Input' colspan='2'>" . $myStatus . "<br></td>
 $ClarionData .= "</table>\n";
 $ClarionData .= "</div>\n";
 
-$myStatus = array('statusme' => $myStatus);
-echo json_encode($myStatus);
-//MergeAddTemplate($HTML_Template);
+
+MergeAddTemplate($HTML_Template);
 unset($oRStunitmeas) ;
 $objConn1->Close();
 unset($objConn1);

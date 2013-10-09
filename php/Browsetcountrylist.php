@@ -15,6 +15,7 @@ session_start();
 ===================================================================
 */
 $PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -38,6 +39,7 @@ $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
 // $RecordsPerPage = ##;
@@ -657,19 +659,19 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tcountryAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a class='btn btn-info' href=\"Updatetcountryedit.php?ID1=";
+            $myLink = "<a href=\"Updatetcountryedit.php?ID1=";
                     $tcountryAutomaticDetailLink = $myLink;
                       $tcountryAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStcountry->fields["ID"]))) . "'" ;
             $tmpIMG_tcountryAutomaticDetailLink = "";
-            $tmpIMG_tcountryAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
+            $tmpIMG_tcountryAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
                 $tcountryAutomaticDetailLink .= "\">" . $tmpIMG_tcountryAutomaticDetailLink . "</a>";
     $tcountryAddCentersSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a class='btn btn-info' href=\"Browsetbranchlist.php?ID1=";
+            $myLink = "<a href=\"Browsetbranchlist.php?ID1=";
                     $tcountryAddCenters = $myLink;
                       $tcountryAddCenters .= "'" . htmlEncode(trim(getValue($oRStcountry->fields["ID"]))) . "'" ;
             $tmpIMG_tcountryAddCenters = "";
-            $tmpIMG_tcountryAddCenters = "<i class='icon-edit icon-white'></i> Manage Centers";
+            $tmpIMG_tcountryAddCenters = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Add Centers\">";
                 $tcountryAddCenters .= "\">" . $tmpIMG_tcountryAddCenters . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tcountryIDSTYLE = "TableRow" . $Style;

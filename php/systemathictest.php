@@ -74,6 +74,21 @@ print "<h2>Testing Browse Procedure SQL Statements</h2>";
 print "<table border=1 width=80%><tr><td>";
 print "<table border=0 width=100%>";
 print "<tr>\n";
+print "<td bgcolor=#C0C0C0>Procedure</td><td bgcolor=#E1E1E1>BrowseSchoolCalendar</td><tr>\n";
+$sqlStr = str_replace(",",", ","SELECT tcalendar.CountryID, tcalendar.BranchID, tcalendar.Date, tcalendar.Description, tcalendar.Type FROM tcalendar");
+print "<td>Statement</td><td width=80%><code>" . $sqlStr . "</code></td><tr>\n";
+$sqlStr = "";
+$objRS = $objConn->SelectLimit("SELECT tcalendar.CountryID, tcalendar.BranchID, tcalendar.Date, tcalendar.Description, tcalendar.Type FROM tcalendar",1);
+if ($objRS):
+    print "<tr><td>Result</td><td bgcolor=#80FF80><code>Success!</code></td><tr>\n";
+    print "<tr><td colspan=2>&nbsp;</td><tr>\n";    
+    unset($objRS);
+else:
+    print "<td>Result</td><td bgcolor=#FF8080><code>Failed!</code></td><tr>\n"; 
+    print "<td colspan=2><strong>" . $objConn->ErrorMsg() . "</strong></td><tr>\n";
+    print "<tr><td colspan=2>&nbsp;</td><tr>\n";        
+endif;
+print "<tr>\n";
 print "<td bgcolor=#C0C0C0>Procedure</td><td bgcolor=#E1E1E1>BrowseRoom</td><tr>\n";
 $sqlStr = str_replace(",",", ","SELECT troom.CountryID, troom.BranchID, troom.ID, troom.Description, troom.TotalSeat FROM troom");
 print "<td>Statement</td><td width=80%><code>" . $sqlStr . "</code></td><tr>\n";
@@ -154,6 +169,21 @@ $sqlStr = str_replace(",",", ","SELECT tcustomer.CountryID, tcustomer.BranchID, 
 print "<td>Statement</td><td width=80%><code>" . $sqlStr . "</code></td><tr>\n";
 $sqlStr = "";
 $objRS = $objConn->SelectLimit("SELECT tcustomer.CountryID, tcustomer.BranchID, tcustomer.CustNo, tcustomer.StudentID, tcustomer.SurName, tcustomer.FirstName, tcustomer.MiddleName, tcustomer.LSurname, tcustomer.LFirstName FROM tcustomer",1);
+if ($objRS):
+    print "<tr><td>Result</td><td bgcolor=#80FF80><code>Success!</code></td><tr>\n";
+    print "<tr><td colspan=2>&nbsp;</td><tr>\n";    
+    unset($objRS);
+else:
+    print "<td>Result</td><td bgcolor=#FF8080><code>Failed!</code></td><tr>\n"; 
+    print "<td colspan=2><strong>" . $objConn->ErrorMsg() . "</strong></td><tr>\n";
+    print "<tr><td colspan=2>&nbsp;</td><tr>\n";        
+endif;
+print "<tr>\n";
+print "<td bgcolor=#C0C0C0>Procedure</td><td bgcolor=#E1E1E1>BrowsePayType</td><tr>\n";
+$sqlStr = str_replace(",",", ","SELECT tpaytype.CountryID, tpaytype.BranchID, tpaytype.PayType, tpaytype.Description, tpaytype.Amount, tpaytype.CommAmt, tpaytype.SalesTax, tpaytype.Account, tpaytype.MTDQty FROM tpaytype");
+print "<td>Statement</td><td width=80%><code>" . $sqlStr . "</code></td><tr>\n";
+$sqlStr = "";
+$objRS = $objConn->SelectLimit("SELECT tpaytype.CountryID, tpaytype.BranchID, tpaytype.PayType, tpaytype.Description, tpaytype.Amount, tpaytype.CommAmt, tpaytype.SalesTax, tpaytype.Account, tpaytype.MTDQty FROM tpaytype",1);
 if ($objRS):
     print "<tr><td>Result</td><td bgcolor=#80FF80><code>Success!</code></td><tr>\n";
     print "<tr><td colspan=2>&nbsp;</td><tr>\n";    
@@ -315,10 +345,10 @@ else:
 endif;
 print "<tr>\n";
 print "<td bgcolor=#C0C0C0>Procedure</td><td bgcolor=#E1E1E1>BrowseTeacher</td><tr>\n";
-$sqlStr = str_replace(",",", ","SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Name, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo, tteacher.Email FROM tteacher");
+$sqlStr = str_replace(",",", ","SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Password, tteacher.Name, tteacher.LocalName, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo FROM tteacher");
 print "<td>Statement</td><td width=80%><code>" . $sqlStr . "</code></td><tr>\n";
 $sqlStr = "";
-$objRS = $objConn->SelectLimit("SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Name, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo, tteacher.Email FROM tteacher",1);
+$objRS = $objConn->SelectLimit("SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Password, tteacher.Name, tteacher.LocalName, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo FROM tteacher",1);
 if ($objRS):
     print "<tr><td>Result</td><td bgcolor=#80FF80><code>Success!</code></td><tr>\n";
     print "<tr><td colspan=2>&nbsp;</td><tr>\n";    
@@ -394,6 +424,21 @@ $sqlStr = str_replace(",",", ","SELECT titems.CountryID, titems.BranchID, titems
 print "<td>Statement</td><td width=80%><code>" . $sqlStr . "</code></td><tr>\n";
 $sqlStr = "";
 $objRS = $objConn->SelectLimit("SELECT titems.CountryID, titems.BranchID, titems.ItemNo, titems.Description, titems.IsBook, titems.IsMultiCat, titems.IsAbacus, titems.IsMental, titems.IsSupp FROM titems",1);
+if ($objRS):
+    print "<tr><td>Result</td><td bgcolor=#80FF80><code>Success!</code></td><tr>\n";
+    print "<tr><td colspan=2>&nbsp;</td><tr>\n";    
+    unset($objRS);
+else:
+    print "<td>Result</td><td bgcolor=#FF8080><code>Failed!</code></td><tr>\n"; 
+    print "<td colspan=2><strong>" . $objConn->ErrorMsg() . "</strong></td><tr>\n";
+    print "<tr><td colspan=2>&nbsp;</td><tr>\n";        
+endif;
+print "<tr>\n";
+print "<td bgcolor=#C0C0C0>Procedure</td><td bgcolor=#E1E1E1>BrowseChart</td><tr>\n";
+$sqlStr = str_replace(",",", ","SELECT tchart.CountryID, tchart.BranchID, tchart.AccountNo, tchart.DeptNo, tchart.Description, tchart.Type, tchart.SubType, tchart.Status, tchart.FutBudget1 FROM tchart");
+print "<td>Statement</td><td width=80%><code>" . $sqlStr . "</code></td><tr>\n";
+$sqlStr = "";
+$objRS = $objConn->SelectLimit("SELECT tchart.CountryID, tchart.BranchID, tchart.AccountNo, tchart.DeptNo, tchart.Description, tchart.Type, tchart.SubType, tchart.Status, tchart.FutBudget1 FROM tchart",1);
 if ($objRS):
     print "<tr><td>Result</td><td bgcolor=#80FF80><code>Success!</code></td><tr>\n";
     print "<tr><td colspan=2>&nbsp;</td><tr>\n";    

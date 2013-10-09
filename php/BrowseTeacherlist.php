@@ -15,6 +15,7 @@ session_start();
 ===================================================================
 */
 $PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -38,6 +39,12 @@ $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
+include('login.php');
+if($_SERVER["QUERY_STRING"] <> ""):
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"];
+else:
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"];
+endif;
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
 // $RecordsPerPage = ##;
@@ -74,9 +81,15 @@ $tteacherBranchIDSTYLE = "";
 $tteacherIDLABEL = "";
 $tteacherID = "";
 $tteacherIDSTYLE = "";
+$tteacherPasswordLABEL = "";
+$tteacherPassword = "";
+$tteacherPasswordSTYLE = "";
 $tteacherNameLABEL = "";
 $tteacherName = "";
 $tteacherNameSTYLE = "";
+$tteacherLocalNameLABEL = "";
+$tteacherLocalName = "";
+$tteacherLocalNameSTYLE = "";
 $tteacherDateStartLABEL = "";
 $tteacherDateStart = "";
 $tteacherDateStartSTYLE = "";
@@ -86,9 +99,6 @@ $tteacherPhoneNoSTYLE = "";
 $tteacherMobileNoLABEL = "";
 $tteacherMobileNo = "";
 $tteacherMobileNoSTYLE = "";
-$tteacherEmailLABEL = "";
-$tteacherEmail = "";
-$tteacherEmailSTYLE = "";
 $oRStteacher = "";
 $mySQL = "";
 $myWhere = "";
@@ -200,6 +210,22 @@ if (getRequest("COL") == "ID"):
     $_SESSION["BrowseTeacher#SRT"] = getSession("BrowseTeacher#mySort");
 endif;
 
+if (getRequest("COL") == "Password"):
+    if (getRequest("SRT") == "DESC"):
+        $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.Password DESC";
+        $_SESSION["BrowseTeacher#mySort"] = "DESC";
+    else:
+        $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.Password ASC";
+        $_SESSION["BrowseTeacher#mySort"] = "ASC";
+    endif;
+    if (getRequest("COL") != getSession("BrowseTeacher#PreviousColumn")):
+        $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.Password ASC";
+        $_SESSION["BrowseTeacher#mySort"] = "ASC";
+    endif;
+    $_SESSION["BrowseTeacher#COL"] = "Password";
+    $_SESSION["BrowseTeacher#SRT"] = getSession("BrowseTeacher#mySort");
+endif;
+
 if (getRequest("COL") == "Name"):
     if (getRequest("SRT") == "DESC"):
         $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.Name DESC";
@@ -213,6 +239,22 @@ if (getRequest("COL") == "Name"):
         $_SESSION["BrowseTeacher#mySort"] = "ASC";
     endif;
     $_SESSION["BrowseTeacher#COL"] = "Name";
+    $_SESSION["BrowseTeacher#SRT"] = getSession("BrowseTeacher#mySort");
+endif;
+
+if (getRequest("COL") == "LocalName"):
+    if (getRequest("SRT") == "DESC"):
+        $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.LocalName DESC";
+        $_SESSION["BrowseTeacher#mySort"] = "DESC";
+    else:
+        $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.LocalName ASC";
+        $_SESSION["BrowseTeacher#mySort"] = "ASC";
+    endif;
+    if (getRequest("COL") != getSession("BrowseTeacher#PreviousColumn")):
+        $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.LocalName ASC";
+        $_SESSION["BrowseTeacher#mySort"] = "ASC";
+    endif;
+    $_SESSION["BrowseTeacher#COL"] = "LocalName";
     $_SESSION["BrowseTeacher#SRT"] = getSession("BrowseTeacher#mySort");
 endif;
 
@@ -264,23 +306,7 @@ if (getRequest("COL") == "MobileNo"):
     $_SESSION["BrowseTeacher#SRT"] = getSession("BrowseTeacher#mySort");
 endif;
 
-if (getRequest("COL") == "Email"):
-    if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.Email DESC";
-        $_SESSION["BrowseTeacher#mySort"] = "DESC";
-    else:
-        $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.Email ASC";
-        $_SESSION["BrowseTeacher#mySort"] = "ASC";
-    endif;
-    if (getRequest("COL") != getSession("BrowseTeacher#PreviousColumn")):
-        $_SESSION["BrowseTeacher#myOrder"] = "ORDER BY tteacher.Email ASC";
-        $_SESSION["BrowseTeacher#mySort"] = "ASC";
-    endif;
-    $_SESSION["BrowseTeacher#COL"] = "Email";
-    $_SESSION["BrowseTeacher#SRT"] = getSession("BrowseTeacher#mySort");
-endif;
-
-$myQuery    = "SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Name, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo, tteacher.Email FROM tteacher";
+$myQuery    = "SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Password, tteacher.Name, tteacher.LocalName, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo FROM tteacher";
 if ( getRequest("WHR") != ""):
     $myWhere    =  getRequest("WHR");
     $_SESSION["BrowseTeacher#WHR"] =  getRequest("WHR");
@@ -562,6 +588,31 @@ function buildColumnLabels() {
             endif;
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
+            $myLink .= "COL=Password";
+            if ( getSession("BrowseTeacher#PreviousColumn") == "Password"):
+                if (getSession("BrowseTeacher#SRT") == "ASC"):
+                    $myLink .= "&SRT=DESC";
+                else:
+                    $myLink .= "&SRT=ASC";
+                endif;
+            else:
+                if (getSession("BrowseTeacher#COL") == "Password"):
+                    $myLink .= "&SRT=DESC";
+                else:
+                    $myLink .= "&SRT=ASC";
+                endif;
+            endif;
+            $myLink .= getIDs();
+            $myLink .= "\">Password</a>";
+        $PasswordLABEL = $myLink;
+        if ( getGet("COL") == "Password" || getSession("BrowseTeacher#COL") == "Password" ):
+            if (getSession("BrowseTeacher#SRT") == "ASC"):
+                $PasswordLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+            else:            
+                $PasswordLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+            endif;
+        endif;
+        $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=Name";
             if ( getSession("BrowseTeacher#PreviousColumn") == "Name"):
                 if (getSession("BrowseTeacher#SRT") == "ASC"):
@@ -584,6 +635,31 @@ function buildColumnLabels() {
                 $NameLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $NameLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+            endif;
+        endif;
+        $myLink = "<a href=\"" . $myPage . "?";
+            $myLink .= "COL=LocalName";
+            if ( getSession("BrowseTeacher#PreviousColumn") == "LocalName"):
+                if (getSession("BrowseTeacher#SRT") == "ASC"):
+                    $myLink .= "&SRT=DESC";
+                else:
+                    $myLink .= "&SRT=ASC";
+                endif;
+            else:
+                if (getSession("BrowseTeacher#COL") == "LocalName"):
+                    $myLink .= "&SRT=DESC";
+                else:
+                    $myLink .= "&SRT=ASC";
+                endif;
+            endif;
+            $myLink .= getIDs();
+            $myLink .= "\">Local Name</a>";
+        $LocalNameLABEL = $myLink;
+        if ( getGet("COL") == "LocalName" || getSession("BrowseTeacher#COL") == "LocalName" ):
+            if (getSession("BrowseTeacher#SRT") == "ASC"):
+                $LocalNameLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+            else:            
+                $LocalNameLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             endif;
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
@@ -661,39 +737,15 @@ function buildColumnLabels() {
                 $MobileNoLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             endif;
         endif;
-        $myLink = "<a href=\"" . $myPage . "?";
-            $myLink .= "COL=Email";
-            if ( getSession("BrowseTeacher#PreviousColumn") == "Email"):
-                if (getSession("BrowseTeacher#SRT") == "ASC"):
-                    $myLink .= "&SRT=DESC";
-                else:
-                    $myLink .= "&SRT=ASC";
-                endif;
-            else:
-                if (getSession("BrowseTeacher#COL") == "Email"):
-                    $myLink .= "&SRT=DESC";
-                else:
-                    $myLink .= "&SRT=ASC";
-                endif;
-            endif;
-            $myLink .= getIDs();
-            $myLink .= "\">Email</a>";
-        $EmailLABEL = $myLink;
-        if ( getGet("COL") == "Email" || getSession("BrowseTeacher#COL") == "Email" ):
-            if (getSession("BrowseTeacher#SRT") == "ASC"):
-                $EmailLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
-            else:            
-                $EmailLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
-            endif;
-        endif;
 $HeaderText = Replace($HeaderText,"@CountryIDLABEL@", $CountryIDLABEL);
 $HeaderText = Replace($HeaderText,"@BranchIDLABEL@", $BranchIDLABEL);
 $HeaderText = Replace($HeaderText,"@IDLABEL@", $IDLABEL);
+$HeaderText = Replace($HeaderText,"@PasswordLABEL@", $PasswordLABEL);
 $HeaderText = Replace($HeaderText,"@NameLABEL@", $NameLABEL);
+$HeaderText = Replace($HeaderText,"@LocalNameLABEL@", $LocalNameLABEL);
 $HeaderText = Replace($HeaderText,"@DateStartLABEL@", $DateStartLABEL);
 $HeaderText = Replace($HeaderText,"@PhoneNoLABEL@", $PhoneNoLABEL);
 $HeaderText = Replace($HeaderText,"@MobileNoLABEL@", $MobileNoLABEL);
-$HeaderText = Replace($HeaderText,"@EmailLABEL@", $EmailLABEL);
 }
 
 /*
@@ -717,18 +769,21 @@ function buildDataRows() {
     global $tteacherDateStart;
     global $tteacherDateStartLABEL;
     global $tteacherDateStartSTYLE;
-    global $tteacherEmail;
-    global $tteacherEmailLABEL;
-    global $tteacherEmailSTYLE;
     global $tteacherID;
     global $tteacherIDLABEL;
     global $tteacherIDSTYLE;
+    global $tteacherLocalName;
+    global $tteacherLocalNameLABEL;
+    global $tteacherLocalNameSTYLE;
     global $tteacherMobileNo;
     global $tteacherMobileNoLABEL;
     global $tteacherMobileNoSTYLE;
     global $tteacherName;
     global $tteacherNameLABEL;
     global $tteacherNameSTYLE;
+    global $tteacherPassword;
+    global $tteacherPasswordLABEL;
+    global $tteacherPasswordSTYLE;
     global $tteacherPhoneNo;
     global $tteacherPhoneNoLABEL;
     global $tteacherPhoneNoSTYLE;
@@ -749,15 +804,15 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tteacherAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetteacheredit.php?ID1=";
+            $myLink = "<a href=\"Updatetteacherview.php?ID1=";
                     $tteacherAutomaticDetailLink = $myLink;
                       $tteacherAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStteacher->fields["CountryID"]))) . "'" ;
                     $tteacherAutomaticDetailLink .=  "&ID2=" . "'";
                     $tteacherAutomaticDetailLink .= htmlEncode(trim(getValue($oRStteacher->fields["BranchID"]))) . "'";
-                    $tteacherAutomaticDetailLink .=  "&ID3=";
-                    $tteacherAutomaticDetailLink .= htmlEncode(trim(getValue($oRStteacher->fields["ID"])));
+                    $tteacherAutomaticDetailLink .=  "&ID3=" . "'";
+                    $tteacherAutomaticDetailLink .= htmlEncode(trim(getValue($oRStteacher->fields["ID"]))) . "'";
             $tmpIMG_tteacherAutomaticDetailLink = "";
-            $tmpIMG_tteacherAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
+            $tmpIMG_tteacherAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"\">";
                 $tteacherAutomaticDetailLink .= "\">" . $tmpIMG_tteacherAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tteacherCountryIDSTYLE = "TableRow" . $Style;
@@ -778,12 +833,14 @@ $tteacherIDSTYLE = "TableRow" . $Style;
     if (is_null($oRStteacher->fields["ID"])):
         $tteacherID = "";
     else:
-        $myQuoteID = "";
-        $tteacherID = '<a href=\'JAVASCRIPT:updateData(';
-        $tteacherID .= $myQuoteID . htmlEncode(getValue($oRStteacher->fields["ID"])) . $myQuoteID;
-        $tteacherID .= ');\'>';
-        $tteacherID .= htmlEncode(getValue($oRStteacher->fields["ID"])) . "</a>";
-
+        $tteacherID = htmlEncode(getValue($oRStteacher->fields["ID"]));
+endif;
+    $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
+$tteacherPasswordSTYLE = "TableRow" . $Style;
+    if (is_null($oRStteacher->fields["Password"])):
+        $tteacherPassword = "";
+    else:
+        $tteacherPassword = htmlEncode(getValue($oRStteacher->fields["Password"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tteacherNameSTYLE = "TableRow" . $Style;
@@ -791,6 +848,13 @@ $tteacherNameSTYLE = "TableRow" . $Style;
         $tteacherName = "";
     else:
         $tteacherName = htmlEncode(getValue($oRStteacher->fields["Name"]));
+endif;
+    $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
+$tteacherLocalNameSTYLE = "TableRow" . $Style;
+    if (is_null($oRStteacher->fields["LocalName"])):
+        $tteacherLocalName = "";
+    else:
+        $tteacherLocalName = htmlEncode(getValue($oRStteacher->fields["LocalName"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tteacherDateStartSTYLE = "TableRow" . $Style;
@@ -813,13 +877,6 @@ $tteacherMobileNoSTYLE = "TableRow" . $Style;
     else:
         $tteacherMobileNo = htmlEncode(getValue($oRStteacher->fields["MobileNo"]));
 endif;
-    $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
-$tteacherEmailSTYLE = "TableRow" . $Style;
-    if (is_null($oRStteacher->fields["Email"])):
-        $tteacherEmail = "";
-    else:
-        $tteacherEmail = htmlEncode(getValue($oRStteacher->fields["Email"]));
-endif;
 $Seq++;
 $oRStteacher->MoveNext();
 
@@ -831,16 +888,18 @@ $DataRowFilledText = Replace($DataRowFilledText,"@tteacherBranchID@", $tteacherB
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherBranchIDSTYLE@",$tteacherBranchIDSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherID@", $tteacherID);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherIDSTYLE@",$tteacherIDSTYLE);           
+$DataRowFilledText = Replace($DataRowFilledText,"@tteacherPassword@", $tteacherPassword);       
+$DataRowFilledText = Replace($DataRowFilledText,"@tteacherPasswordSTYLE@",$tteacherPasswordSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherName@", $tteacherName);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherNameSTYLE@",$tteacherNameSTYLE);           
+$DataRowFilledText = Replace($DataRowFilledText,"@tteacherLocalName@", $tteacherLocalName);       
+$DataRowFilledText = Replace($DataRowFilledText,"@tteacherLocalNameSTYLE@",$tteacherLocalNameSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherDateStart@", $tteacherDateStart);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherDateStartSTYLE@",$tteacherDateStartSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherPhoneNo@", $tteacherPhoneNo);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherPhoneNoSTYLE@",$tteacherPhoneNoSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherMobileNo@", $tteacherMobileNo);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherMobileNoSTYLE@",$tteacherMobileNoSTYLE);           
-$DataRowFilledText = Replace($DataRowFilledText,"@tteacherEmail@", $tteacherEmail);       
-$DataRowFilledText = Replace($DataRowFilledText,"@tteacherEmailSTYLE@",$tteacherEmailSTYLE);           
         endwhile; // of oRStteacher DO WHILE
     endif; // rs is valid
 
@@ -863,9 +922,15 @@ $DataRowFilledText = Replace($DataRowFilledText,"@tteacherBranchIDSTYLE@", $ttea
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherID@", "&nbsp;");
 $tteacherIDSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherIDSTYLE@", $tteacherIDSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@tteacherPassword@", "&nbsp;");
+$tteacherPasswordSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@tteacherPasswordSTYLE@", $tteacherPasswordSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherName@", "&nbsp;");
 $tteacherNameSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherNameSTYLE@", $tteacherNameSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@tteacherLocalName@", "&nbsp;");
+$tteacherLocalNameSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@tteacherLocalNameSTYLE@", $tteacherLocalNameSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherDateStart@", "&nbsp;");
 $tteacherDateStartSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherDateStartSTYLE@", $tteacherDateStartSTYLE);
@@ -875,9 +940,6 @@ $DataRowFilledText = Replace($DataRowFilledText,"@tteacherPhoneNoSTYLE@", $tteac
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherMobileNo@", "&nbsp;");
 $tteacherMobileNoSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@tteacherMobileNoSTYLE@", $tteacherMobileNoSTYLE);
-$DataRowFilledText = Replace($DataRowFilledText,"@tteacherEmail@", "&nbsp;");
-$tteacherEmailSTYLE = "TableRow" . $Style;
-$DataRowFilledText = Replace($DataRowFilledText,"@tteacherEmailSTYLE@", $tteacherEmailSTYLE);
 --$Seq;
 } while ($Seq > 0);
 endif;

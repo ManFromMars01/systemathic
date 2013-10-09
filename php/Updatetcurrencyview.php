@@ -14,6 +14,8 @@ session_start();
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 
 $HTML_Template = getRequest("HTMLT");
 
@@ -242,6 +245,7 @@ else:
         $tcurrencySymbol  = htmlentities(getValue($oRStcurrency->Fields("Symbol")));
     endif;
 endif;
+$EditLevel = 1;
 
 $myLevel = getSession("UserLevel") == "" ? 0 : getSession("UserLevel");          
 

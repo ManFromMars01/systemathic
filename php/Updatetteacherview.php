@@ -14,6 +14,8 @@ session_start();
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 
 $HTML_Template = getRequest("HTMLT");
 
@@ -42,6 +45,7 @@ $UpdatetteacherFormAction = "Updatetteacher" . "edit.php";
 $tteacherCountryID = "";
 $tteacherBranchID = "";
 $tteacherID = "";
+$tteacherPassword = "";
 $tteacherName = "";
 $tteacherLocalName = "";
 $tteacherDateStart = "";
@@ -67,6 +71,7 @@ function  MergeUpdatetteacherTemplate($Template){
     global $tteacherCountryID;
     global $tteacherBranchID;
     global $tteacherID;
+    global $tteacherPassword;
     global $tteacherName;
     global $tteacherLocalName;
     global $tteacherDateStart;
@@ -99,6 +104,7 @@ function  MergeUpdatetteacherTemplate($Template){
     $TemplateText = Replace($TemplateText,"@tteacherCountryID@",$tteacherCountryID);    
     $TemplateText = Replace($TemplateText,"@tteacherBranchID@",$tteacherBranchID);    
     $TemplateText = Replace($TemplateText,"@tteacherID@",$tteacherID);    
+    $TemplateText = Replace($TemplateText,"@tteacherPassword@",$tteacherPassword);    
     $TemplateText = Replace($TemplateText,"@tteacherName@",$tteacherName);    
     $TemplateText = Replace($TemplateText,"@tteacherLocalName@",$tteacherLocalName);    
     $TemplateText = Replace($TemplateText,"@tteacherDateStart@",$tteacherDateStart);    
@@ -138,7 +144,7 @@ function displayBadRecord() {
     $ClarionData .= "<td align='right' class='Header'>&nbsp;<a href='JAVASCRIPT:history.back();'><img alt='Back' src='/images/back.gif' border=0></a></td>\n";
     $ClarionData .= "</tr>\n";
     $ClarionData .= "<tr><td class='Input' colspan='2'>The requested record could not be found<br>\n";
-    $ClarionData .= "<a href=BrowseCategory" . "list.php>Return to list</a>\n";
+    $ClarionData .= "<a href=BrowseAssessment" . "list.php>Return to list</a>\n";
     $ClarionData .= "</td></tr>\n";
     $ClarionData .= "</table>\n";
     $ClarionData .= "</div>\n";
@@ -172,7 +178,7 @@ $NoRecords = FALSE;
 $myQuoteID1 = getQuote($objConn1,"tteacher","CountryID");
 $myQuoteID2 = getQuote($objConn1,"tteacher","BranchID");
 $myQuoteID3 = getQuote($objConn1,"tteacher","ID");
-$strSQLBase  = "SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Name, tteacher.LocalName, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo, tteacher.Email, tteacher.Status, tteacher.RoleID  FROM  tteacher  ";
+$strSQLBase  = "SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Password, tteacher.Name, tteacher.LocalName, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo, tteacher.Email, tteacher.Status, tteacher.RoleID  FROM  tteacher  ";
 $strSQL = $strSQLBase . " WHERE ";
 
 $strSQL .= "tteacher.CountryID=" . $myQuoteID1 . $ID1 . $myQuoteID1;
@@ -228,6 +234,15 @@ else:
         $tteacherID  = getValue($oRStteacher->Fields("ID"));
     else:
         $tteacherID  = htmlentities(getValue($oRStteacher->Fields("ID")));
+    endif;
+endif;
+if (is_null($oRStteacher->Fields("Password"))):
+    $tteacherPassword  = "";
+else:
+    if (is_numeric($oRStteacher->Fields("Password"))):
+        $tteacherPassword  = getValue($oRStteacher->Fields("Password"));
+    else:
+        $tteacherPassword  = htmlentities(getValue($oRStteacher->Fields("Password")));
     endif;
 endif;
 if (is_null($oRStteacher->Fields("Name"))):
@@ -302,6 +317,7 @@ else:
         $tteacherRoleID  = htmlentities(getValue($oRStteacher->Fields("RoleID")));
     endif;
 endif;
+$EditLevel = 1;
 
 $myLevel = getSession("UserLevel") == "" ? 0 : getSession("UserLevel");          
 

@@ -16,6 +16,7 @@ $PageLevel = 0;
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -34,9 +35,10 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 if (getRequest("SEARCH") == "TRUE"):
-    $_SESSION["BrowseCategory#WHR"] = "";
+    $_SESSION["BrowseAssessment#WHR"] = "";
 $myWhere = "";
 $FormDeclaration = "";
 
@@ -65,7 +67,16 @@ else:
     else:
        $myWhere .= " AND ";
     endif;
-    $myWhere .= " tteacher.ID = " . getRequest("txttteacherID");
+    $myWhere .= " tteacher.ID LIKE " . chr(39) . getRequest("txttteacherID") . "%" . chr(39);
+endif;
+
+if (getRequest("txttteacherPassword") == ""):
+else:
+    if ($myWhere == ""):
+    else:
+       $myWhere .= " AND ";
+    endif;
+    $myWhere .= " tteacher.Password LIKE " . chr(39) . getRequest("txttteacherPassword") . "%" . chr(39);
 endif;
 
 if (getRequest("txttteacherName") == ""):
@@ -139,14 +150,14 @@ else:
     endif;
     $myWhere .= " tteacher.RoleID = " . getRequest("txttteacherRoleID");
 endif;
-$_SESSION["BrowseCategory#WHR"] = $myWhere;
+$_SESSION["BrowseAssessment#WHR"] = $myWhere;
 $varPath = dirname($_SERVER['PHP_SELF']);
 if ($varPath == "\\") {
   $varPath = "";
 }
 header("Location: http://".$_SERVER['HTTP_HOST']
                       . $varPath
-                      ."/"."BrowseCategorylist.php");
+                      ."/"."BrowseAssessmentlist.php");
 endif;
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -177,6 +188,7 @@ $TemplateText = "";
 $tteacherCountryID = "";
 $tteacherBranchID = "";
 $tteacherID = "";
+$tteacherPassword = "";
 $tteacherName = "";
 $tteacherLocalName = "";
 $tteacherDateStart = "";
@@ -224,6 +236,8 @@ function MergeSearchTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@tteacherBranchID@", $tteacherBranchID);
     global $tteacherID;
     $TemplateText = Replace($TemplateText, "@tteacherID@", $tteacherID);
+    global $tteacherPassword;
+    $TemplateText = Replace($TemplateText, "@tteacherPassword@", $tteacherPassword);
     global $tteacherName;
     $TemplateText = Replace($TemplateText, "@tteacherName@", $tteacherName);
     global $tteacherLocalName;
@@ -249,7 +263,7 @@ function MergeSearchTemplate($Template) {
 
 $DisplayText = "";
 if (getRequest("SEARCH") == "TRUE"):
-$FormDeclaration = "<form name=\"form1\" id=\"form1\" method=\"POST\" action=\"BrowseCategorylist.php\">";
+$FormDeclaration = "<form name=\"form1\" id=\"form1\" method=\"POST\" action=\"BrowseAssessmentlist.php\">";
 else:
 $FormDeclaration = "<form name=\"form1\" id=\"form1\" method=\"POST\" action=\""; 
 $FormDeclaration .=  "Updatetteacher" . "search.php". "\">" . "\n<input type=\"HIDDEN\" id=\"SEARCH\" name=\"SEARCH\" value=\"TRUE\">";

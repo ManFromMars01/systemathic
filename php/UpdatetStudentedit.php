@@ -14,6 +14,7 @@ session_start();
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +33,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 $DeleteButton = "";
 $UpdatetStudentFormAction = "";
@@ -117,17 +119,17 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@tcustomerLFirstName@", $tcustomerLFirstName);
      $TemplateText = Replace($TemplateText, "@tcustomerLMiddleName@", $tcustomerLMiddleName);
     if($tcustomerGender == "Male"):
-        $SELECTEDF28_11_1 = "SELECTED";
+        $SELECTEDF24_11_1 = "SELECTED";
     else:
-        $SELECTEDF28_11_1 = "";
+        $SELECTEDF24_11_1 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_11_1@", $SELECTEDF28_11_1);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_11_1@", $SELECTEDF24_11_1);
     if($tcustomerGender == "Female"):
-        $SELECTEDF28_11_2 = "SELECTED";
+        $SELECTEDF24_11_2 = "SELECTED";
     else:
-        $SELECTEDF28_11_2 = "";
+        $SELECTEDF24_11_2 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_11_2@", $SELECTEDF28_11_2);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_11_2@", $SELECTEDF24_11_2);
      $TemplateText = Replace($TemplateText, "@tcustomerBirthday@", $tcustomerBirthday);
      $TemplateText = Replace($TemplateText, "@tcustomerCity@", $tcustomerCity);
      $TemplateText = Replace($TemplateText, "@tcustomerZip@", $tcustomerZip);
@@ -137,77 +139,77 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@tcustomerLevelID@", $tcustomerLevelID);
      $TemplateText = Replace($TemplateText, "@tcustomerTierID@", $tcustomerTierID);
     if($tcustomerCustType == "Assessment"):
-        $SELECTEDF28_20_1 = "SELECTED";
+        $SELECTEDF24_20_1 = "SELECTED";
     else:
-        $SELECTEDF28_20_1 = "";
+        $SELECTEDF24_20_1 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_1@", $SELECTEDF28_20_1);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_20_1@", $SELECTEDF24_20_1);
     if($tcustomerCustType == "Trial_Class"):
-        $SELECTEDF28_20_2 = "SELECTED";
+        $SELECTEDF24_20_2 = "SELECTED";
     else:
-        $SELECTEDF28_20_2 = "";
+        $SELECTEDF24_20_2 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_2@", $SELECTEDF28_20_2);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_20_2@", $SELECTEDF24_20_2);
     if($tcustomerCustType == "For_Admission"):
-        $SELECTEDF28_20_3 = "SELECTED";
+        $SELECTEDF24_20_3 = "SELECTED";
     else:
-        $SELECTEDF28_20_3 = "";
+        $SELECTEDF24_20_3 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_3@", $SELECTEDF28_20_3);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_20_3@", $SELECTEDF24_20_3);
     if($tcustomerCustType == "ReEnrollee"):
-        $SELECTEDF28_20_4 = "SELECTED";
+        $SELECTEDF24_20_4 = "SELECTED";
     else:
-        $SELECTEDF28_20_4 = "";
+        $SELECTEDF24_20_4 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_4@", $SELECTEDF28_20_4);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_20_4@", $SELECTEDF24_20_4);
     if($tcustomerCustType == "Continuing"):
-        $SELECTEDF28_20_5 = "SELECTED";
+        $SELECTEDF24_20_5 = "SELECTED";
     else:
-        $SELECTEDF28_20_5 = "";
+        $SELECTEDF24_20_5 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_20_5@", $SELECTEDF28_20_5);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_20_5@", $SELECTEDF24_20_5);
     if($tcustomerRegType == "Waiting"):
-        $SELECTEDF28_21_1 = "SELECTED";
+        $SELECTEDF24_21_1 = "SELECTED";
     else:
-        $SELECTEDF28_21_1 = "";
+        $SELECTEDF24_21_1 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_1@", $SELECTEDF28_21_1);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_21_1@", $SELECTEDF24_21_1);
     if($tcustomerRegType == "For_Schedule"):
-        $SELECTEDF28_21_2 = "SELECTED";
+        $SELECTEDF24_21_2 = "SELECTED";
     else:
-        $SELECTEDF28_21_2 = "";
+        $SELECTEDF24_21_2 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_2@", $SELECTEDF28_21_2);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_21_2@", $SELECTEDF24_21_2);
     if($tcustomerRegType == "For_Payment"):
-        $SELECTEDF28_21_3 = "SELECTED";
+        $SELECTEDF24_21_3 = "SELECTED";
     else:
-        $SELECTEDF28_21_3 = "";
+        $SELECTEDF24_21_3 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_3@", $SELECTEDF28_21_3);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_21_3@", $SELECTEDF24_21_3);
     if($tcustomerRegType == "For_Kit_Issuance"):
-        $SELECTEDF28_21_4 = "SELECTED";
+        $SELECTEDF24_21_4 = "SELECTED";
     else:
-        $SELECTEDF28_21_4 = "";
+        $SELECTEDF24_21_4 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_4@", $SELECTEDF28_21_4);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_21_4@", $SELECTEDF24_21_4);
     if($tcustomerRegType == "Admitted"):
-        $SELECTEDF28_21_5 = "SELECTED";
+        $SELECTEDF24_21_5 = "SELECTED";
     else:
-        $SELECTEDF28_21_5 = "";
+        $SELECTEDF24_21_5 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_5@", $SELECTEDF28_21_5);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_21_5@", $SELECTEDF24_21_5);
     if($tcustomerRegType == "Stopped"):
-        $SELECTEDF28_21_6 = "SELECTED";
+        $SELECTEDF24_21_6 = "SELECTED";
     else:
-        $SELECTEDF28_21_6 = "";
+        $SELECTEDF24_21_6 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_6@", $SELECTEDF28_21_6);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_21_6@", $SELECTEDF24_21_6);
     if($tcustomerRegType == "Graduate"):
-        $SELECTEDF28_21_7 = "SELECTED";
+        $SELECTEDF24_21_7 = "SELECTED";
     else:
-        $SELECTEDF28_21_7 = "";
+        $SELECTEDF24_21_7 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF28_21_7@", $SELECTEDF28_21_7);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF24_21_7@", $SELECTEDF24_21_7);
      $TemplateText = Replace($TemplateText, "@tcustomerSchool@", $tcustomerSchool);
      $TemplateText = Replace($TemplateText, "@tcustomerMother@", $tcustomerMother);
      $TemplateText = Replace($TemplateText, "@tcustomerMOccupation@", $tcustomerMOccupation);
@@ -510,12 +512,17 @@ $tcustomerStoppedDate = "";
 else:
 $tcustomerStoppedDate = getValue($oRStcustomer->fields["StoppedDate"]);
 endif;
+$DeleteLevel = 1;
+if (isset($DeleteLevel) && getSession("UserLevel") >= $DeleteLevel):
 $DeleteButton = "<form method='post' action='UpdatetStudentdel.php' id='form1' name='form1'>";
 $DeleteButton .= "<input type='hidden' id='ID1' name='ID1' value=@ID1@>\n";
 $DeleteButton .= "<input type='hidden' id='ID2' name='ID2' value=@ID2@>\n";
 $DeleteButton .= "<input type='hidden' id='ID3' name='ID3' value=@ID3@>\n";
 $DeleteButton .= "<input type='submit' value='Delete' title='Delete this record' id='submit1' name='submit1'>\n";
 $DeleteButton .= "</form>\n";
+else:
+$DeleteButton = "";
+endif;
 
 if ($_SESSION["UpdatetStudent_EditFailed"] == 1) {
   $tcustomerCountryID = $_SESSION["SavedEdittcustomerCountryID"];

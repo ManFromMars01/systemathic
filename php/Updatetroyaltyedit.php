@@ -14,6 +14,7 @@ session_start();
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +33,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 $DeleteButton = "";
 $UpdatetroyaltyFormAction = "";
@@ -88,23 +90,23 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@troyaltyPercent@", $troyaltyPercent);
      $TemplateText = Replace($TemplateText, "@troyaltyPctToMaster@", $troyaltyPctToMaster);
     if($troyaltySource == "Tuition_Fee"):
-        $SELECTEDF48_7_1 = "SELECTED";
+        $SELECTEDF43_7_1 = "SELECTED";
     else:
-        $SELECTEDF48_7_1 = "";
+        $SELECTEDF43_7_1 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_1@", $SELECTEDF48_7_1);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF43_7_1@", $SELECTEDF43_7_1);
     if($troyaltySource == "Examination"):
-        $SELECTEDF48_7_2 = "SELECTED";
+        $SELECTEDF43_7_2 = "SELECTED";
     else:
-        $SELECTEDF48_7_2 = "";
+        $SELECTEDF43_7_2 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_2@", $SELECTEDF48_7_2);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF43_7_2@", $SELECTEDF43_7_2);
     if($troyaltySource == "Competition"):
-        $SELECTEDF48_7_3 = "SELECTED";
+        $SELECTEDF43_7_3 = "SELECTED";
     else:
-        $SELECTEDF48_7_3 = "";
+        $SELECTEDF43_7_3 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_3@", $SELECTEDF48_7_3);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF43_7_3@", $SELECTEDF43_7_3);
      $TemplateText = Replace($TemplateText, "@troyaltyRecipient@", $troyaltyRecipient);
      $TemplateText = Replace($TemplateText, "@ID1@", trim($ID1,"'"));
      $TemplateText = Replace($TemplateText, "@ID2@", trim($ID2,"'"));
@@ -246,12 +248,17 @@ $troyaltyRecipient = "";
 else:
 $troyaltyRecipient = trim(getValue($oRStroyalty->fields["Recipient"]));
 endif;
+$DeleteLevel = 1;
+if (isset($DeleteLevel) && getSession("UserLevel") >= $DeleteLevel):
 $DeleteButton = "<form method='post' action='Updatetroyaltydel.php' id='form1' name='form1'>";
 $DeleteButton .= "<input type='hidden' id='ID1' name='ID1' value=@ID1@>\n";
 $DeleteButton .= "<input type='hidden' id='ID2' name='ID2' value=@ID2@>\n";
 $DeleteButton .= "<input type='hidden' id='ID3' name='ID3' value=@ID3@>\n";
 $DeleteButton .= "<input type='submit' value='Delete' title='Delete this record' id='submit1' name='submit1'>\n";
 $DeleteButton .= "</form>\n";
+else:
+$DeleteButton = "";
+endif;
 
 if ($_SESSION["Updatetroyalty_EditFailed"] == 1) {
   $troyaltyCountryID = $_SESSION["SavedEdittroyaltyCountryID"];

@@ -69,9 +69,9 @@ if (getSession("AuthStatus") != "Authorized"):
         exit;
     elseif (getForm("frmLogin") == "true" || $strUserID != ""):
             if ($strPwd != ""):
-                $sqlString = "select * from  where  ='" . $strUserID  . "'";
+                $sqlString = "select * from tteacher where tteacher.Name ='" . $strUserID  . "'";
             else:
-                $sqlString = "select * from  where  ='" . getForm("frmUserID") . "'";
+                $sqlString = "select * from tteacher where tteacher.Name ='" . getForm("frmUserID") . "'";
             endif;
 
             include_once('ConnInfo.php');
@@ -97,13 +97,14 @@ if (getSession("AuthStatus") != "Authorized"):
                 MergeLoginTemplate("./html/blank.htm");
                 exit;
             else:
-                if ( (rtrim(strtolower(getForm("frmUserPass"))) == rtrim(strtolower($objRS->fields[""])))  || ( rtrim(strtolower($objRS->fields[""])) == rtrim($strPwd))):
+                if ( (rtrim(strtolower(getForm("frmUserPass"))) == rtrim(strtolower($objRS->fields["Password"])))  || ( rtrim(strtolower($objRS->fields["Password"])) == rtrim($strPwd))):
                     if ($strPwd == ""):
-                        $strPWd = $objRS->fields[""];
+                        $strPWd = $objRS->fields["Password"];
                     endif;
                     $_SESSION["pwd"] = $strPWd;
                     $_SESSION["AuthStatus"] = "Authorized";
-                    $_SESSION["UserLevel"] = $objRS->fields[""];
+                    $_SESSION["UserID"] = $objRS->fields["ID"];
+                    $_SESSION["UserLevel"] = $objRS->fields["RoleID"];
 
                     if (getForm("frmUserSave") == "on"):
                       if (getSession("UserID") != ""):
@@ -159,7 +160,7 @@ $ClarionData .= "  </table>\n";
 $ClarionData .= "</div>\n";
 MergeLoginTemplate("./html/blank.htm");
 exit;
-            endif;
+endif;
 unset($objRS);
 
 ?>

@@ -14,6 +14,7 @@
 ===================================================================
 */
 session_start();
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -33,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 // $ShowDBNav = [FALSE, TRUE];
 // #include_once(dbcnfile);
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 include_once('ConnInfo.php');
 
@@ -274,64 +276,36 @@ endif;
         if (getRequest("txteattheadSessionPrDay1") == ""):
             $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
             $flgMissing = TRUE;
-                       $myStatus .= " <strong>Session Pr Day 1:</strong> : Numeric field ; \n";
-                            $myStatus .= "Min - 1 ";
-                            $myStatus .= "Max - 3 ";
-                        $myStatus .= "\n";
         endif;
 $arrayoRSeatthead["SessionPrDay1"] = getFormSQLQuoted($objConn1, "eatthead", "SessionPrDay1", "txteattheadSessionPrDay1");
         if (getRequest("txteattheadSessionPrDay2") == ""):
             $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
             $flgMissing = TRUE;
-                       $myStatus .= " <strong>Session Pr Day 2:</strong> : Numeric field ; \n";
-                            $myStatus .= "Min - 1 ";
-                            $myStatus .= "Max - 3 ";
-                        $myStatus .= "\n";
         endif;
 $arrayoRSeatthead["SessionPrDay2"] = getFormSQLQuoted($objConn1, "eatthead", "SessionPrDay2", "txteattheadSessionPrDay2");
         if (getRequest("txteattheadSessionPrDay3") == ""):
             $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
             $flgMissing = TRUE;
-                       $myStatus .= " <strong>Session Pr Day 3:</strong> : Numeric field ; \n";
-                            $myStatus .= "Min - 0 ";
-                            $myStatus .= "Max - 3 ";
-                        $myStatus .= "\n";
         endif;
 $arrayoRSeatthead["SessionPrDay3"] = getFormSQLQuoted($objConn1, "eatthead", "SessionPrDay3", "txteattheadSessionPrDay3");
         if (getRequest("txteattheadSessionPrDay4") == ""):
             $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
             $flgMissing = TRUE;
-                       $myStatus .= " <strong>Session Pr Day 4:</strong> : Numeric field ; \n";
-                            $myStatus .= "Min - 1 ";
-                            $myStatus .= "Max - 3 ";
-                        $myStatus .= "\n";
         endif;
 $arrayoRSeatthead["SessionPrDay4"] = getFormSQLQuoted($objConn1, "eatthead", "SessionPrDay4", "txteattheadSessionPrDay4");
         if (getRequest("txteattheadSessionPrDay5") == ""):
             $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
             $flgMissing = TRUE;
-                       $myStatus .= " <strong>Session Pr Day 5:</strong> : Numeric field ; \n";
-                            $myStatus .= "Min - 1 ";
-                            $myStatus .= "Max - 3 ";
-                        $myStatus .= "\n";
         endif;
 $arrayoRSeatthead["SessionPrDay5"] = getFormSQLQuoted($objConn1, "eatthead", "SessionPrDay5", "txteattheadSessionPrDay5");
         if (getRequest("txteattheadSessionPrDay6") == ""):
             $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
             $flgMissing = TRUE;
-                       $myStatus .= " <strong>Session Pr Day 6:</strong> : Numeric field ; \n";
-                            $myStatus .= "Min - 1 ";
-                            $myStatus .= "Max - 3 ";
-                        $myStatus .= "\n";
         endif;
 $arrayoRSeatthead["SessionPrDay6"] = getFormSQLQuoted($objConn1, "eatthead", "SessionPrDay6", "txteattheadSessionPrDay6");
         if (getRequest("txteattheadSessionPrDay7") == ""):
             $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
             $flgMissing = TRUE;
-                       $myStatus .= " <strong>Session Pr Day 7:</strong> : Numeric field ; \n";
-                            $myStatus .= "Min - 1 ";
-                            $myStatus .= "Max - 3 ";
-                        $myStatus .= "\n";
         endif;
 $arrayoRSeatthead["SessionPrDay7"] = getFormSQLQuoted($objConn1, "eatthead", "SessionPrDay7", "txteattheadSessionPrDay7");
 $tsql = $objConn1->GetUpdateSQL($oRSeatthead, $arrayoRSeatthead, true, get_magic_quotes_gpc());

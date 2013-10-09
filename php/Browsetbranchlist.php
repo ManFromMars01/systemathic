@@ -15,6 +15,7 @@ session_start();
 ===================================================================
 */
 $PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -38,6 +39,7 @@ $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
 // $RecordsPerPage = ##;
@@ -754,13 +756,13 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tbranchAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a class='btn btn-info' href=\"Updatetbranchedit.php?ID1=";
+            $myLink = "<a href=\"Updatetbranchedit.php?ID1=";
                     $tbranchAutomaticDetailLink = $myLink;
                       $tbranchAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStbranch->fields["CountryID"]))) . "'" ;
                     $tbranchAutomaticDetailLink .=  "&ID2=" . "'";
                     $tbranchAutomaticDetailLink .= htmlEncode(trim(getValue($oRStbranch->fields["BranchID"]))) . "'";
             $tmpIMG_tbranchAutomaticDetailLink = "";
-            $tmpIMG_tbranchAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
+            $tmpIMG_tbranchAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
                 $tbranchAutomaticDetailLink .= "\">" . $tmpIMG_tbranchAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tbranchCountryIDSTYLE = "TableRow" . $Style;

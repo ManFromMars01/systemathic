@@ -14,6 +14,8 @@
 ===================================================================
 */
 session_start();
+$PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 /*
 ============================================================================='
@@ -74,6 +77,8 @@ function MergeAddTemplate($Template) {
     $TemplateText = Replace($TemplateText,"@tteacherBranchID@",$tteacherBranchID);            
     global $tteacherID;
     $TemplateText = Replace($TemplateText,"@tteacherID@",$tteacherID);            
+    global $tteacherPassword;
+    $TemplateText = Replace($TemplateText,"@tteacherPassword@",$tteacherPassword);            
     global $tteacherName;
     $TemplateText = Replace($TemplateText,"@tteacherName@",$tteacherName);            
     global $tteacherLocalName;
@@ -106,6 +111,7 @@ $UpdatetteacherFormAction = "Updatetteacheraddx.php";
 $tteacherCountryID  = getRequest("txttteacherCountryID");
 $tteacherBranchID  = getRequest("txttteacherBranchID");
 $tteacherID  = getRequest("txttteacherID");
+$tteacherPassword  = getRequest("txttteacherPassword");
 $tteacherName  = getRequest("txttteacherName");
 $tteacherLocalName  = getRequest("txttteacherLocalName");
 $tteacherDateStart  = getRequest("txttteacherDateStart");
@@ -119,6 +125,7 @@ if ($_SESSION["Updatetteacher_InsertFailed"] == 1) {
    $tteacherCountryID = $_SESSION["SavedtteacherCountryID"];
    $tteacherBranchID = $_SESSION["SavedtteacherBranchID"];
    $tteacherID = $_SESSION["SavedtteacherID"];
+   $tteacherPassword = $_SESSION["SavedtteacherPassword"];
    $tteacherName = $_SESSION["SavedtteacherName"];
    $tteacherLocalName = $_SESSION["SavedtteacherLocalName"];
    $tteacherDateStart = $_SESSION["SavedtteacherDateStart"];

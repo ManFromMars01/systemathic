@@ -15,6 +15,7 @@ session_start();
 ===================================================================
 */
 $PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -38,6 +39,7 @@ $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
 // $RecordsPerPage = ##;
@@ -557,7 +559,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tlocationAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a class='btn btn-info' href=\"Updatetlocationedit.php?ID1=";
+            $myLink = "<a href=\"Updatetlocationedit.php?ID1=";
                     $tlocationAutomaticDetailLink = $myLink;
                       $tlocationAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStlocation->fields["CountryID"]))) . "'" ;
                     $tlocationAutomaticDetailLink .=  "&ID2=" . "'";
@@ -565,7 +567,7 @@ $Seq = 0;
                     $tlocationAutomaticDetailLink .=  "&ID3=";
                     $tlocationAutomaticDetailLink .= htmlEncode(trim(getValue($oRStlocation->fields["ID"])));
             $tmpIMG_tlocationAutomaticDetailLink = "";
-            $tmpIMG_tlocationAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
+            $tmpIMG_tlocationAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
                 $tlocationAutomaticDetailLink .= "\">" . $tmpIMG_tlocationAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tlocationCountryIDSTYLE = "TableRow" . $Style;

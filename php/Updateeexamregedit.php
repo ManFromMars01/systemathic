@@ -14,6 +14,7 @@ session_start();
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +33,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 $DeleteButton = "";
 $UpdateeexamregFormAction = "";
@@ -357,12 +359,17 @@ $eexamregRemarks = "";
 else:
 $eexamregRemarks = trim(getValue($oRSeexamreg->fields["Remarks"]));
 endif;
+$DeleteLevel = 1;
+if (isset($DeleteLevel) && getSession("UserLevel") >= $DeleteLevel):
 $DeleteButton = "<form method='post' action='Updateeexamregdel.php' id='form1' name='form1'>";
 $DeleteButton .= "<input type='hidden' id='ID1' name='ID1' value=@ID1@>\n";
 $DeleteButton .= "<input type='hidden' id='ID2' name='ID2' value=@ID2@>\n";
 $DeleteButton .= "<input type='hidden' id='ID3' name='ID3' value=@ID3@>\n";
 $DeleteButton .= "<input type='submit' value='Delete' title='Delete this record' id='submit1' name='submit1'>\n";
 $DeleteButton .= "</form>\n";
+else:
+$DeleteButton = "";
+endif;
 
 if ($_SESSION["Updateeexamreg_EditFailed"] == 1) {
   $eexamregCountryID = $_SESSION["SavedEditeexamregCountryID"];

@@ -14,6 +14,7 @@
 ===================================================================
 */
 session_start();
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -33,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 // $ShowDBNav = [FALSE, TRUE];
 // #include_once(dbcnfile);
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 include_once('ConnInfo.php');
 
@@ -94,7 +96,7 @@ endif;
 $ID1 = trim(getRequest("ID1"), "'");
 $ID2 = trim(getRequest("ID2"), "'");
 $ID3 = trim(getRequest("ID3"), "'");
-$sql = "SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Name, tteacher.LocalName, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo, tteacher.Email, tteacher.Status, tteacher.RoleID  FROM  tteacher WHERE  tteacher.CountryID = '" . $ID1 . "'" . " AND tteacher.BranchID = '" . $ID2 . "'" . " AND tteacher.ID = " . $ID3;
+$sql = "SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Password, tteacher.Name, tteacher.LocalName, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo, tteacher.Email, tteacher.Status, tteacher.RoleID  FROM  tteacher WHERE  tteacher.CountryID = '" . $ID1 . "'" . " AND tteacher.BranchID = '" . $ID2 . "'" . " AND tteacher.ID = '" . $ID3 . "'";
 $oRStteacher = $objConn1->SelectLimit($sql,1);
 $myStatus = "";
 $flgMissing = false;
@@ -124,6 +126,7 @@ $arrayoRStteacher["BranchID"] = getFormSQLQuoted($objConn1, "tteacher", "BranchI
                         $myStatus .= " <strong>ID:</strong> : Required field <hr>\n";
         endif;
 $arrayoRStteacher["ID"] = getFormSQLQuoted($objConn1, "tteacher", "ID", "txttteacherID");
+$arrayoRStteacher["Password"] = getFormSQLQuoted($objConn1, "tteacher", "Password", "txttteacherPassword");
 $arrayoRStteacher["Name"] = getFormSQLQuoted($objConn1, "tteacher", "Name", "txttteacherName");
 $arrayoRStteacher["LocalName"] = getFormSQLQuoted($objConn1, "tteacher", "LocalName", "txttteacherLocalName");
 $arrayoRStteacher["DateStart"] = getFormSQLQuoted($objConn1, "tteacher", "DateStart", "txttteacherDateStart");
@@ -156,13 +159,13 @@ if (!isset($oRSResult) || $oRSResult == false || $oRSResult == ""):
 else:
   $myStatus = "Your update succeeded <BR><BR>";
 endif;
-    if(getSession("BrowseCategory#WHR")<>""):
-        $myStatus .= "<a href='BrowseCategorylist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
+    if(getSession("BrowseAssessment#WHR")<>""):
+        $myStatus .= "<a href='BrowseAssessmentlist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
     else:
         if($_SESSION["ChildReturnTo"] <> ""):
           $myStatus .= "<a href='" . htmlEncode($_SESSION["ChildReturnTo"]) . "'>Return to list</a>.";
         else:
-          $myStatus .= "<a href='BrowseCategorylist.php'>Return to list</a>.";
+          $myStatus .= "<a href='BrowseAssessmentlist.php'>Return to list</a>.";
         endif;
     endif;
 endif;
@@ -180,6 +183,7 @@ if($flgMissing == true) {
   $_SESSION["SavedEdittteacherCountryID"] = $_POST["txttteacherCountryID"];
   $_SESSION["SavedEdittteacherBranchID"] = $_POST["txttteacherBranchID"];
   $_SESSION["SavedEdittteacherID"] = $_POST["txttteacherID"];
+  $_SESSION["SavedEdittteacherPassword"] = $_POST["txttteacherPassword"];
   $_SESSION["SavedEdittteacherName"] = $_POST["txttteacherName"];
   $_SESSION["SavedEdittteacherLocalName"] = $_POST["txttteacherLocalName"];
   $_SESSION["SavedEdittteacherDateStart"] = $_POST["txttteacherDateStart"];

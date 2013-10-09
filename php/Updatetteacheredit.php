@@ -14,6 +14,7 @@ session_start();
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +33,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 $DeleteButton = "";
 $UpdatetteacherFormAction = "";
@@ -54,6 +56,7 @@ function MergeTemplate($Template) {
     global $tteacherCountryID;
     global $tteacherBranchID;
     global $tteacherID;
+    global $tteacherPassword;
     global $tteacherName;
     global $tteacherLocalName;
     global $tteacherDateStart;
@@ -87,6 +90,7 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@tteacherCountryID@", $tteacherCountryID);
      $TemplateText = Replace($TemplateText, "@tteacherBranchID@", $tteacherBranchID);
      $TemplateText = Replace($TemplateText, "@tteacherID@", $tteacherID);
+     $TemplateText = Replace($TemplateText, "@tteacherPassword@", $tteacherPassword);
      $TemplateText = Replace($TemplateText, "@tteacherName@", $tteacherName);
      $TemplateText = Replace($TemplateText, "@tteacherLocalName@", $tteacherLocalName);
      $TemplateText = Replace($TemplateText, "@tteacherDateStart@", $tteacherDateStart);
@@ -137,7 +141,7 @@ function displayBadRecord() {
     $ClarionData .= "<td align='right' class='Header'>&nbsp;<a href='JAVASCRIPT:history.back();'><img alt='Back' src='/images/back.gif' border=0></a></td>\n";
     $ClarionData .= "</tr>\n";
     $ClarionData .= "<tr><td class='Input' colspan='2'>The requested record could not be found<br>\n";
-    $ClarionData .= "<a href=BrowseCategory" . "list.php>Return to list</a>\n";
+    $ClarionData .= "<a href=BrowseAssessment" . "list.php>Return to list</a>\n";
     $ClarionData .= "</td></tr>\n";
     $ClarionData .= "</table>\n";
     $ClarionData .= "</div>\n";
@@ -172,7 +176,7 @@ function MergeEditTemplate($Template,$ClarionData) {
     endif;  
 }
 
-$sql = "SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Name, tteacher.LocalName, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo, tteacher.Email, tteacher.Status, tteacher.RoleID  FROM  tteacher WHERE  tteacher.CountryID = '" . $ID1 . "'" . " AND tteacher.BranchID = '" . $ID2 . "'" . " AND tteacher.ID = " . $ID3;
+$sql = "SELECT tteacher.CountryID, tteacher.BranchID, tteacher.ID, tteacher.Password, tteacher.Name, tteacher.LocalName, tteacher.DateStart, tteacher.PhoneNo, tteacher.MobileNo, tteacher.Email, tteacher.Status, tteacher.RoleID  FROM  tteacher WHERE  tteacher.CountryID = '" . $ID1 . "'" . " AND tteacher.BranchID = '" . $ID2 . "'" . " AND tteacher.ID = '" . $ID3 . "'";
 $oRStteacher = $objConn1->SelectLimit($sql,1);
 if ($oRStteacher->MoveFirst() == false):
     $oRStteacher->Close();
@@ -203,7 +207,13 @@ $tteacherID = "";
 if (is_null($oRStteacher->fields["ID"])):
 $tteacherID = "";
 else:
-$tteacherID = getValue($oRStteacher->fields["ID"]);
+$tteacherID = trim(getValue($oRStteacher->fields["ID"]));
+endif;
+$tteacherPassword = "";
+if (is_null($oRStteacher->fields["Password"])):
+$tteacherPassword = "";
+else:
+$tteacherPassword = trim(getValue($oRStteacher->fields["Password"]));
 endif;
 $tteacherName = "";
 if (is_null($oRStteacher->fields["Name"])):
@@ -253,17 +263,23 @@ $tteacherRoleID = "";
 else:
 $tteacherRoleID = getValue($oRStteacher->fields["RoleID"]);
 endif;
+$DeleteLevel = 1;
+if (isset($DeleteLevel) && getSession("UserLevel") >= $DeleteLevel):
 $DeleteButton = "<form method='post' action='Updatetteacherdel.php' id='form1' name='form1'>";
 $DeleteButton .= "<input type='hidden' id='ID1' name='ID1' value=@ID1@>\n";
 $DeleteButton .= "<input type='hidden' id='ID2' name='ID2' value=@ID2@>\n";
 $DeleteButton .= "<input type='hidden' id='ID3' name='ID3' value=@ID3@>\n";
 $DeleteButton .= "<input type='submit' value='Delete' title='Delete this record' id='submit1' name='submit1'>\n";
 $DeleteButton .= "</form>\n";
+else:
+$DeleteButton = "";
+endif;
 
 if ($_SESSION["Updatetteacher_EditFailed"] == 1) {
   $tteacherCountryID = $_SESSION["SavedEdittteacherCountryID"];
   $tteacherBranchID = $_SESSION["SavedEdittteacherBranchID"];
   $tteacherID = $_SESSION["SavedEdittteacherID"];
+  $tteacherPassword = $_SESSION["SavedEdittteacherPassword"];
   $tteacherName = $_SESSION["SavedEdittteacherName"];
   $tteacherLocalName = $_SESSION["SavedEdittteacherLocalName"];
   $tteacherDateStart = $_SESSION["SavedEdittteacherDateStart"];

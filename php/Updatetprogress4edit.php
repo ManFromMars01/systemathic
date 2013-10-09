@@ -14,6 +14,7 @@ session_start();
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +33,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 $DeleteButton = "";
 $Updatetprogress4FormAction = "";
@@ -269,6 +271,8 @@ $tprogress4Description = "";
 else:
 $tprogress4Description = trim(getValue($oRStprogress4->fields["Description"]));
 endif;
+$DeleteLevel = 1;
+if (isset($DeleteLevel) && getSession("UserLevel") >= $DeleteLevel):
 $DeleteButton = "<form method='post' action='Updatetprogress4del.php' id='form1' name='form1'>";
 $DeleteButton .= "<input type='hidden' id='ID1' name='ID1' value=@ID1@>\n";
 $DeleteButton .= "<input type='hidden' id='ID2' name='ID2' value=@ID2@>\n";
@@ -278,6 +282,9 @@ $DeleteButton .= "<input type='hidden' id='ID5' name='ID5' value=@ID5@>\n";
 $DeleteButton .= "<input type='hidden' id='ID6' name='ID6' value=@ID6@>\n";
 $DeleteButton .= "<input type='submit' value='Delete' title='Delete this record' id='submit1' name='submit1'>\n";
 $DeleteButton .= "</form>\n";
+else:
+$DeleteButton = "";
+endif;
 
 if ($_SESSION["Updatetprogress4_EditFailed"] == 1) {
   $tprogress4CountryID = $_SESSION["SavedEdittprogress4CountryID"];

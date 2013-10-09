@@ -16,6 +16,7 @@ $PageLevel = 0;
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -34,6 +35,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 if (getRequest("SEARCH") == "TRUE"):
     $_SESSION["BrowseTProgress2#WHR"] = "";

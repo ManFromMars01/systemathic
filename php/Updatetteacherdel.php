@@ -15,6 +15,8 @@ session_start();
  application along with the HTML template
 ===================================================================
 */
+$PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -33,6 +35,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $ClarionData = "";
 $myStatus = "";
 $myError = "";
@@ -101,7 +104,7 @@ function displayBadRecord($msg) {
     $ClarionData .= "<td align='right' class='Header'>&nbsp;<a href='JAVASCRIPT:history.back();'><img alt='Back' src='/images/back.gif' border=0></a></td>\n";
     $ClarionData .= "</tr>\n";
     $ClarionData .= "<tr><td colspan='2' class='Input'>The requested record could not be found<br>\n";
-    $ClarionData .= "<a href=BrowseCategory" . "list.php>Return to list</a>\n";
+    $ClarionData .= "<a href=BrowseAssessment" . "list.php>Return to list</a>\n";
     $ClarionData .= "<br>" . $msg . "<br></td></tr>\n";
     $ClarionData .= "</table>\n";
     $ClarionData .= "</div>\n";
@@ -121,7 +124,7 @@ if ($myFormAction == "3") {
     $ID1 = htmlDecode(getRequest("ID1"));
     $ID2 = htmlDecode(getRequest("ID2"));
     $ID3 = htmlDecode(getRequest("ID3"));
-    $mySQL = "DELETE FROM tteacher WHERE  tteacher.CountryID = '" . $ID1 . "'" . " AND tteacher.BranchID = '" . $ID2 . "'" . " AND tteacher.ID = " . $ID3;
+    $mySQL = "DELETE FROM tteacher WHERE  tteacher.CountryID = '" . $ID1 . "'" . " AND tteacher.BranchID = '" . $ID2 . "'" . " AND tteacher.ID = '" . $ID3 . "'";
     $objConn1->Execute($mySQL);
 } // if myFormAction = 3
 
@@ -159,13 +162,13 @@ else:
     $ClarionData .= "</tr>\n";
     $ClarionData .= "<tr><td colspan=2 class='Input'>\n";
     $ClarionData .= "<br>" . $myStatus . "<br><br>\n";
-    if(getSession("BrowseCategory#WHR") != ""):
-        $ClarionData .= "<a href=BrowseCategory" . "list.php?SUBSET=TRUE>Return to list</a>\n";
+    if(getSession("BrowseAssessment#WHR") != ""):
+        $ClarionData .= "<a href=BrowseAssessment" . "list.php?SUBSET=TRUE>Return to list</a>\n";
     else:
         if($_SESSION["ChildReturnTo"] <> ""):
           $ClarionData .= "<a href=" . htmlEncode($_SESSION["ChildReturnTo"]) . ">Return to list</a>\n";
         else:
-          $ClarionData .= "<a href=BrowseCategory" . "list.php>Return to list</a>\n";
+          $ClarionData .= "<a href=BrowseAssessment" . "list.php>Return to list</a>\n";
         endif;
     endif;
     $ClarionData .= "</td></tr></table></div>\n";

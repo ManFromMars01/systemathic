@@ -14,6 +14,8 @@
 ===================================================================
 */
 session_start();
+$PageLevel = 0;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -32,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 /*
 ============================================================================='
@@ -82,23 +85,23 @@ function MergeAddTemplate($Template) {
     $TemplateText = Replace($TemplateText,"@troyaltyPctToMaster@",$troyaltyPctToMaster);            
     global $troyaltySource;
     if($troyaltySource == "Tuition_Fee"):
-        $SELECTEDF48_7_1 = "SELECTED";
+        $SELECTEDF43_7_1 = "SELECTED";
     else:
-        $SELECTEDF48_7_1 = "";
+        $SELECTEDF43_7_1 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_1@", $SELECTEDF48_7_1);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF43_7_1@", $SELECTEDF43_7_1);
     if($troyaltySource == "Examination"):
-        $SELECTEDF48_7_2 = "SELECTED";
+        $SELECTEDF43_7_2 = "SELECTED";
     else:
-        $SELECTEDF48_7_2 = "";
+        $SELECTEDF43_7_2 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_2@", $SELECTEDF48_7_2);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF43_7_2@", $SELECTEDF43_7_2);
     if($troyaltySource == "Competition"):
-        $SELECTEDF48_7_3 = "SELECTED";
+        $SELECTEDF43_7_3 = "SELECTED";
     else:
-        $SELECTEDF48_7_3 = "";
+        $SELECTEDF43_7_3 = "";
     endif;
-    $TemplateText = Replace($TemplateText, "@SELECTEDF48_7_3@", $SELECTEDF48_7_3);
+    $TemplateText = Replace($TemplateText, "@SELECTEDF43_7_3@", $SELECTEDF43_7_3);
     global $troyaltyRecipient;
     $TemplateText = Replace($TemplateText,"@troyaltyRecipient@",$troyaltyRecipient);            
     $TemplateText = Replace($TemplateText, "@Header@", $Header);

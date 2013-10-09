@@ -37,7 +37,7 @@ $IconBorder=0;
 $IconWidth=20;
 $IconHeight=20;
 
-$IconPath = "php/template/images/" ;
+$IconPath = "/images/" ;
 
 $IconBack = $IconPath . "back.gif";
 $IconHelp = $IconPath . "help.gif";
@@ -63,9 +63,9 @@ $IconLast = $IconPath . "last.gif";
 $IconLastDisabled = $IconPath . "lastd.gif";
 
 //declare the user data variables SESSION (GLOBAL) SCOPE
-$Header = file_get_contents('template/header.php', true);
-$Footer = file_get_contents('template/footer.php', true);
-$MainContent = str_replace("'", "", $_GET['ID1']);
-$Menu = file_get_contents('template/stat.php', true);
+$Header = "";
+$Footer = "";
+$MainContent = "";
+$Menu = "";
 
 ?>

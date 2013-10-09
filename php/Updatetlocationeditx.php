@@ -14,6 +14,7 @@
 ===================================================================
 */
 session_start();
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -33,6 +34,7 @@ display of the nav bar can be overridden by uncommenting the next line
 // $ShowDBNav = [FALSE, TRUE];
 // #include_once(dbcnfile);
 include_once('utils.php');
+include('login.php');
 $HTML_Template = getRequest("HTMLT");
 include_once('ConnInfo.php');
 
@@ -184,8 +186,6 @@ else {
   $_SESSION["Updatetlocation_EditFailed"] = 0;
 }
 
-$myStatus = array('statusme' =>$myStatus);
-echo json_encode($myStatus);
-//MergeEditTemplate($HTML_Template);
+MergeEditTemplate($HTML_Template);
 $objConn1->Close();
 ?>
