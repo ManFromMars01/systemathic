@@ -16,7 +16,7 @@
 			
 
 
-			<?php include('template/stat.php'); ?>
+			<?php include('template/stat.php') ?>
 			
 			<div class="row-fluid">
 				<div class="box span12">
@@ -31,74 +31,74 @@
 					<div class="box-content">
 									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
 
-									<table width="auto" height="auto" bgcolor="#fcfdf4" >
+<table width="auto" height="auto" id="table1">
 
-									<tr>
-										<td width="16%"><a href="BrowseStudentlist.php"><img src="template/img/admission-slice/assessment.png"></a></td>
-									    <td width="9%" rowspan="7"> <img src="template/img/admission-slice/arrow1.png"  height="auto" width="auto"></td>
-									    <td width="16%"><img src="template/img/admission-slice/admission.png"></td>
-									    <td width="3%" rowspan="7"> <img src="template/img/admission-slice/arrow2.png"></td>
-									    <td valign="bottom"><img src="template/img/admission-slice/arrow4.png" width="auto" height="auto"></td>
-									    <td width="20%"><img src="template/img/admission-slice/studentfile.png"></td>
-									    <td width="18%"> </td>
-									</tr>
+<tr>
+	<td width="16%"><a href="BrowseStudentlist.php"><img class="table101" src="template/img/admission-slice/assessment.png"></td>
+    <td width="9%" rowspan="7"> <img  src="template/img/admission-slice/arrow1.png"  height="auto" width="auto"></td>
+    <td width="16%"><img  class="table101" src="template/img/admission-slice/admission.png"></td>
+    <td width="3%" rowspan="7"> <img src="template/img/admission-slice/arrow2.png"></td>
+    <td valign="bottom"><img src="template/img/admission-slice/arrow4.png" width="auto" height="auto"></td>
+    <td width="20%"><img  class="table101" src="template/img/admission-slice/studentfile.png"></td>
+    <td width="18%"> </td>
+</tr>
 
-									<tr>
-										<td><img src="template/img/admission-slice/downarrow1.png" width="auto" height="auto"></td>
-									    <td><img src="template/img/admission-slice/downarrow1.png" width="auto" height="auto"></td>
-									    <td colspan="3" align="center"><img src="template/img/admission-slice/threearrow1.png"></td>
-									 
-									</tr>
+<tr>
+	<td><img src="template/img/admission-slice/downarrow1.png" width="auto" height="auto"></td>
+    <td><img src="template/img/admission-slice/downarrow1.png" width="auto" height="auto"></td>
+    <td colspan="3" align="center"><img src="template/img/admission-slice/threearrow1.png"></td>
+ 
+</tr>
 
-									<tr>
-										<td height="85"><img src="template/img/admission-slice/trialclass.png"></td>
-									    <td><img src="template/img/admission-slice/createsched.png"></td>
-									    <td width="18%"><img src="template/img/admission-slice/books.png"></td>
-									    <td> <img src="template/img/admission-slice/attendance.png"></td>
-									    <td> <img src="template/img/admission-slice/progress.png"></td>
-									    
-									</tr>
-
-
-									<tr>
-										<td>&nbsp;</td>
-									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-									    <td width="18%"><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-									    
-									</tr>
-
-									<tr>
-										<td><img src="template/img/admission-slice/reenrollee.png"></td>
-									    <td><img src="template/img/admission-slice/invoicing.png"></td>
-									    <td><img src="template/img/admission-slice/examination.png"></td>
-									    <td> <img src="template/img/admission-slice/onlinepractice.png"></td>
-									    <td> <img src="template/img/admission-slice/generatereports.png"></td>
-									    
-									</tr>
-
-									<tr>
-										<td>&nbsp;</td>
-									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-									    <td>&nbsp;</td>
-									    <td>&nbsp;</td>
-									    <td>&nbsp;</td>
-									    
-									</tr>
+<tr>
+	<td height="85"><img  class="table101" src="template/img/admission-slice/trialclass.png"></td>
+    <td><img  class="table101" src="template/img/admission-slice/createsched.png"></td>
+    <td width="18%"><img  class="table101" src="template/img/admission-slice/books.png"></td>
+    <td> <img  class="table101" src="template/img/admission-slice/attendance.png"></td>
+    <td> <img  class="table101" src="template/img/admission-slice/progress.png"></td>
+    
+</tr>
 
 
-									<tr>
-										<td height="75"><img src="template/img/admission-slice/continuing.png"></td>
-									    <td><img src="template/img/admission-slice/kitissuance.png"></td>
-									    <td>&nbsp;</td>
-									    <td>&nbsp;</td>
-									    <td>&nbsp;</td>
-									    
-									</tr>
+<tr>
+	<td>&nbsp;</td>
+    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+    <td width="18%"><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+    
+</tr>
+
+<tr>
+	<td><img  class="table101" src="template/img/admission-slice/reenrollee.png"></td>
+    <td><img  class="table101" src="template/img/admission-slice/invoicing.png"></td>
+    <td><img  class="table101" src="template/img/admission-slice/examination.png"></td>
+    <td> <img class="table101" src="template/img/admission-slice/onlinepractice.png"></td>
+    <td> <img class="table101" src="template/img/admission-slice/generatereports.png"></td>
+    
+</tr>
+
+<tr>
+	<td>&nbsp;</td>
+    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    
+</tr>
 
 
-									</table>
+<tr>
+	<td height="75"><img  class="table101" src="template/img/admission-slice/continuing.png"></td>
+    <td><img  class="table101" src="template/img/admission-slice/kitissuance.png"></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    
+</tr>
+
+
+</table>
 
 
 
@@ -130,7 +130,10 @@
 						 
 						<div id="myTabContent" class="tab-content">	
 							<div class="tab-pane active" id="info">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <a href="BrowseStudentlist.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Assess </a>
+								<img src="template/img/thumbs/assessment.jpg">
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> 
+
+								<a href="BrowseStudentlist.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Assess </a>
 							</div>
 							
 						</div>
@@ -150,6 +153,7 @@
 						<div class="box-content">
 							<div id="myTabContent" class="tab-content">	
 								<div class="tab-pane active" id="info">
+									<img src="template/img/thumbs/trialclass.jpg">
 									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Try Now</button>
 								</div>
 
@@ -169,6 +173,7 @@
 					<div class="box-content">
 						<div id="myTabContent" class="tab-content">	
 							<div class="tab-pane active" id="info">
+								<img src="template/img/thumbs/reenrollee.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Enroll</button>
 							</div>
 							
@@ -191,6 +196,7 @@
 						<div class="box-content">
 							<div id="myTabContent" class="tab-content">	
 								<div class="tab-pane active" id="info">
+									<img src="template/img/thumbs/continuing.jpg">
 									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Search </button>
 								</div>
 
@@ -217,18 +223,22 @@
 						 
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="admission">
+								<img src="template/img/thumbs/admission.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Insert </button>
 							</div>
 							<div class="tab-pane" id="create">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <a href="Updatetclassschedadd.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Create </a>
+								<img src="template/img/thumbs/schedule.jpg">
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Create </button>
 								
 							</div>
 							<div class="tab-pane" id="invoicing">
+								<img src="template/img/thumbs/payment.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Inquire </button>
 								
 							</div>
 
 							<div class="tab-pane" id="kit">
+								<img src="template/img/thumbs/kitissuance.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Check </button>
 								
 							</div>
@@ -257,24 +267,30 @@
 						 
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="books">
+								<img src="template/img/thumbs/books.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Search </button>
 							</div>
 							<div class="tab-pane" id="attendance">
+								<img src="template/img/thumbs/attendance.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>View </button>
 							</div>
 							<div class="tab-pane" id="progress">
+								<img src="template/img/thumbs/progress.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Check </button>
 							</div>
 
 							<div class="tab-pane" id="examinations">
+								<img src="template/img/thumbs/examination.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Inquire </button>
 							</div>
 
 							<div class="tab-pane" id="onlinepractice">
+								<img src="template/img/thumbs/onlinepractice.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Log in </button>
 							</div>
 
 							<div class="tab-pane" id="reports">
+								<img src="template/img/thumbs/generate.jpg">
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Generate </button>
 							</div>
 						</div>	
@@ -282,6 +298,11 @@
 					</div>
 				</div>
 			</div>
-	<!-- content ends -->
-</div><!--/#content.span10-->
+				  
+
+		  
+       
+					<!-- content ends -->
+			</div><!--/#content.span10-->
+		
 <?php include('template/footer.php') ?>
