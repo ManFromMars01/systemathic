@@ -172,7 +172,10 @@ $ClarionData .= "</table>\n";
 $ClarionData .= "</div>\n";
 
 
-MergeAddTemplate($HTML_Template);
+$myStatus = array('statusme' => $myStatus );
+echo json_encode($myStatus);
+
+//MergeAddTemplate($HTML_Template);
 unset($oRStlevel) ;
 $objConn1->Close();
 unset($objConn1);

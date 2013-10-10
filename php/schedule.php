@@ -60,7 +60,7 @@ include('login.php');
 
 									<tr>
 										<td></td>
-									    <td><img src="template/img/scheduling/classsched.png"></td>
+									    <td><a href="BrowseLevellist.php"><img src="template/img/scheduling/classsched.png"></a></td>
 									    <td></td>
 									    <td><img src="template/img/scheduling/adjustments.png"></td>
 									    <td></td>

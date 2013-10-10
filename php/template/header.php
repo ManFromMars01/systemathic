@@ -449,6 +449,43 @@ $myName = getSession("UserName");
 	            }     
         	});
 		});
+
+
+		//Add level
+		$('#save_add_level').click(function(){
+			$.ajax({
+	            url: 'Updatetleveladdx.php',
+	            type: 'post',
+	            data: $('#form21').serialize(),
+	            dataType: 'json',
+	            success: function (j) {
+	               console.log(j);
+	               //$('#success').html('Successfully Updated');
+	               $('.modal-body').html(j.statusme);
+	               $("#myModal").modal('show');
+	               
+	            }     
+        	});
+		});
+
+		$('#save_upd_level').click(function(){
+			$.ajax({
+	            url: 'Updatetleveleditx.php',
+	            type: 'post',
+	            data: $('#form22').serialize(),
+	            dataType: 'json',
+	            success: function (j) {
+	               console.log(j);
+	               //$('#success').html('Successfully Updated');
+	               $('.modal-body').html(j.statusme);
+	               $("#myModal").modal('show');
+	               
+	            }     
+        	});
+		});
+
+
+
 		
 		$('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 

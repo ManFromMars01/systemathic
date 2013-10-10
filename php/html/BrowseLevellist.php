@@ -25,7 +25,8 @@ debug of this page only by uncommenting the next line
 // $DebugMode = [FALSE, TRUE];
 
 /*
-
+ShowQuery is defined in appdata.WEB from the Application level
+query of this page can be overridden by uncommenting the next line
 */
 // $ShowQuery = [FALSE, TRUE];
 /*
@@ -42,14 +43,7 @@ include_once('utils.php');
 include('login.php');
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
-//Count me
-$myWhere2 .= "tlevel.CountryID ='".$_SESSION["UserValue1"]."'";
-$myRecordCount2 = "SELECT COUNT(*) AS MyCount  FROM tlevel WHERE " .$myWhere2 ;
-$oRStcustomers = $objConn1->Execute($myRecordCount2);
-$TotalRecords1 = $oRStcustomers->fields["MyCount"];
-//endcountme
-$RecordsPerPage = $TotalRecords1;
-
+// $RecordsPerPage = ##;
 $HeaderText = "";
 $TemplateText = "";
 $DataRowEmptyText = "";
@@ -581,7 +575,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tlevelAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a class='btn btn-info' href=\"Updatetleveledit.php?ID1=";
+            $myLink = "<a href=\"Updatetleveledit.php?ID1=";
                     $tlevelAutomaticDetailLink = $myLink;
                       $tlevelAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStlevel->fields["CountryID"]))) . "'" ;
                     $tlevelAutomaticDetailLink .=  "&ID2=" . "'";
@@ -589,11 +583,11 @@ $Seq = 0;
                     $tlevelAutomaticDetailLink .=  "&ID3=";
                     $tlevelAutomaticDetailLink .= htmlEncode(trim(getValue($oRStlevel->fields["ID"])));
             $tmpIMG_tlevelAutomaticDetailLink = "";
-            $tmpIMG_tlevelAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit ";
+            $tmpIMG_tlevelAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
                 $tlevelAutomaticDetailLink .= "\">" . $tmpIMG_tlevelAutomaticDetailLink . "</a>";
     $tlevelDefineSchedulesSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a class='btn btn-info' href=\"BrowseSchedListlist.php?ID1=";
+            $myLink = "<a href=\"BrowseSchedListlist.php?ID1=";
                     $tlevelDefineSchedules = $myLink;
                       $tlevelDefineSchedules .= "'" . htmlEncode(trim(getValue($oRStlevel->fields["CountryID"]))) . "'" ;
                     $tlevelDefineSchedules .=  "&ID2=" . "'";
@@ -601,7 +595,7 @@ $Seq = 0;
                     $tlevelDefineSchedules .=  "&ID3=";
                     $tlevelDefineSchedules .= htmlEncode(trim(getValue($oRStlevel->fields["ID"])));
             $tmpIMG_tlevelDefineSchedules = "";
-            $tmpIMG_tlevelDefineSchedules = "<i class='icon-edit icon-white'></i> Define Schedules";
+            $tmpIMG_tlevelDefineSchedules = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Define Schedules\">";
                 $tlevelDefineSchedules .= "\">" . $tmpIMG_tlevelDefineSchedules . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tlevelCountryIDSTYLE = "TableRow" . $Style;
