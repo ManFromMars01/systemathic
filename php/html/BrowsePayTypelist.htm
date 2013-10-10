@@ -34,62 +34,60 @@ function ShowHelp(myURL) {
 //-->
 </script>
 <!--@HEAD_AFTER_OPEN@-->
-<title>Browse the eexamfile file</title>
+<title>Browse the tpaytype file</title>
 <!--@HEAD_BEFORE_CLOSE@-->
 </head>
-    <body onhelp="JAVASCRIPT:ShowHelp('BrowseExamFileListHelp.htm');return false;">
+    <body onhelp="JAVASCRIPT:ShowHelp('BrowsePayTypeListHelp.htm');return false;">
 <!--@BODY_AFTER_OPEN@-->
 <!--@BG_BEFORE_OPEN@-->
 <div id="bg" class="bg"> 
 <!--@BG_AFTER_OPEN@-->
     <table class="Data" cellspacing="1">
 <tr>
-    <td ALIGN="left" COLSPAN="10" width="80%" class="Header">Browse the Examination List</td>
+    <td ALIGN="left" COLSPAN="9" width="80%" class="Header">Browse the Payment Type List</td>
     <td ALIGN="right" VALIGN="top" class="Header">&nbsp;
-          <a href="JAVASCRIPT:ShowHelp('BrowseExamFileListHelp.htm');"><img alt="Help" src="/images/help.gif" border=0 height=20 width=20></a><a href="JAVASCRIPT:history.back();"><img alt="Back" src="/images/back.gif" border=0 height=20 width=20></a>
+          <a href="JAVASCRIPT:ShowHelp('BrowsePayTypeListHelp.htm');"><img alt="Help" src="/images/help.gif" border=0 height=20 width=20></a><a href="JAVASCRIPT:history.back();"><img alt="Back" src="/images/back.gif" border=0 height=20 width=20></a>
     </td>    
 </tr>
 <!--BEGIN SEARCHFIELD-->
 <tr>
-    <td colspan="11" class="Header" align="Right">@SearchMessage@</td>
+    <td colspan="10" class="Header" align="Right">@SearchMessage@</td>
 </tr>
 <!--END SEARCHFIELD-->
 <!--BEGIN COLUMNLABEL-->
 <tr>
     <td class="ColumnLabel" align="Left" width="">@CountryIDLABEL@</td>
     <td class="ColumnLabel" align="Left" width="">@BranchIDLABEL@</td>
-    <td class="ColumnLabel" align="Right" width="">@DateLABEL@</td>
-    <td class="ColumnLabel" align="Right" width="">@TimeFromLABEL@</td>
-    <td class="ColumnLabel" align="Right" width="">@TimeToLABEL@</td>
-    <td class="ColumnLabel" align="Left" width="">@VenueLABEL@</td>
-    <td class="ColumnLabel" align="Right" width="">@OpenDateLABEL@</td>
-    <td class="ColumnLabel" align="Right" width="">@CloseDateLABEL@</td>
-    <td class="ColumnLabel" align="Right" width="">@SubmitDateLABEL@</td>
+    <td class="ColumnLabel" align="Left" width="">@PayTypeLABEL@</td>
+    <td class="ColumnLabel" align="Left" width="">@DescriptionLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@AmountLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@CommAmtLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@SalesTaxLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@AccountLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@MTDQtyLABEL@</td>
     <td class="ColumnLabel" align="Center" >Edit Record</td>
-    <td class="ColumnLabel" align="Left" >Register Student</td>
 </tr>
 <!--END COLUMNLABEL-->
 <!--BEGIN ROWDATA-->
 <tr>
-    <td class="@eexamfileCountryIDSTYLE@" align="Left" width="">@eexamfileCountryID@&nbsp;</td>
-    <td class="@eexamfileBranchIDSTYLE@" align="Left" width="">@eexamfileBranchID@&nbsp;</td>
-    <td class="@eexamfileDateSTYLE@" align="Right" width="">@eexamfileDate@&nbsp;</td>
-    <td class="@eexamfileTimeFromSTYLE@" align="Right" width="">@eexamfileTimeFrom@&nbsp;</td>
-    <td class="@eexamfileTimeToSTYLE@" align="Right" width="">@eexamfileTimeTo@&nbsp;</td>
-    <td class="@eexamfileVenueSTYLE@" align="Left" width="">@eexamfileVenue@&nbsp;</td>
-    <td class="@eexamfileOpenDateSTYLE@" align="Right" width="">@eexamfileOpenDate@&nbsp;</td>
-    <td class="@eexamfileCloseDateSTYLE@" align="Right" width="">@eexamfileCloseDate@&nbsp;</td>
-    <td class="@eexamfileSubmitDateSTYLE@" align="Right" width="">@eexamfileSubmitDate@&nbsp;</td>
-    <td class="@eexamfileAutomaticDetailLinkSTYLE@" align="Center">@eexamfileAutomaticDetailLink@</td>
-    <td class="@eexamfileExamRegistrationSTYLE@" align="Left">@eexamfileExamRegistration@</td>
+    <td class="@tpaytypeCountryIDSTYLE@" align="Left" width="">@tpaytypeCountryID@&nbsp;</td>
+    <td class="@tpaytypeBranchIDSTYLE@" align="Left" width="">@tpaytypeBranchID@&nbsp;</td>
+    <td class="@tpaytypePayTypeSTYLE@" align="Left" width="">@tpaytypePayType@&nbsp;</td>
+    <td class="@tpaytypeDescriptionSTYLE@" align="Left" width="">@tpaytypeDescription@&nbsp;</td>
+    <td class="@tpaytypeAmountSTYLE@" align="Right" width="">@tpaytypeAmount@&nbsp;</td>
+    <td class="@tpaytypeCommAmtSTYLE@" align="Right" width="">@tpaytypeCommAmt@&nbsp;</td>
+    <td class="@tpaytypeSalesTaxSTYLE@" align="Right" width="">@tpaytypeSalesTax@&nbsp;</td>
+    <td class="@tpaytypeAccountSTYLE@" align="Right" width="">@tpaytypeAccount@&nbsp;</td>
+    <td class="@tpaytypeMTDQtySTYLE@" align="Right" width="">@tpaytypeMTDQty@&nbsp;</td>
+    <td class="@tpaytypeAutomaticDetailLinkSTYLE@" align="Center">@tpaytypeAutomaticDetailLink@</td>
 </tr>
 <!--END ROWDATA-->
 <!--BEGIN FOOTER-->
 <tr>
-    <td colspan="11" class="Footer">@SearchMessage@</td>
+    <td colspan="10" class="Footer">@SearchMessage@</td>
 </tr>
 <tr>
-    <td colspan="11" class="Footer">@TableFooter@</td>
+    <td colspan="10" class="Footer">@TableFooter@</td>
 </tr>
 <!--END FOOTER-->
 </table>

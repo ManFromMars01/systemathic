@@ -25,7 +25,8 @@ debug of this page only by uncommenting the next line
 // $DebugMode = [FALSE, TRUE];
 
 /*
-
+ShowQuery is defined in appdata.WEB from the Application level
+query of this page can be overridden by uncommenting the next line
 */
 // $ShowQuery = [FALSE, TRUE];
 /*
@@ -40,14 +41,17 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
+if($_SERVER["QUERY_STRING"] <> ""):
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"];
+else:
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"];
+endif;
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
-//Count me
-$myWhere2 .= "tlevel.CountryID ='".$_SESSION["UserValue1"]."'";
-$myRecordCount2 = "SELECT COUNT(*) AS MyCount  FROM tlevel WHERE " .$myWhere2 ;
+// $RecordsPerPage = ##;
+$myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tlevel  WHERE tlevel.CountryID ='".$_SESSION['UserValue1']."' ORDER BY tlevel.CountryID ASC";
 $oRStcustomers = $objConn1->Execute($myRecordCount2);
 $TotalRecords1 = $oRStcustomers->fields["MyCount"];
-//endcountme
 $RecordsPerPage = $TotalRecords1;
 
 $HeaderText = "";
@@ -76,6 +80,8 @@ $tlevelAutomaticDetailLink = "";
 $tlevelAutomaticDetailLinkSTYLE = "";
 $tlevelDefineSchedules = "";
 $tlevelDefineSchedulesSTYLE = "";
+$tlevelDefineKitPack = "";
+$tlevelDefineKitPackSTYLE = "";
 $tlevelCountryIDLABEL = "";
 $tlevelCountryID = "";
 $tlevelCountryIDSTYLE = "";
@@ -554,6 +560,8 @@ function buildDataRows() {
     global $tlevelCountryID;
     global $tlevelCountryIDLABEL;
     global $tlevelCountryIDSTYLE;
+    global $tlevelDefineKitPack;
+    global $tlevelDefineKitPackSTYLE;
     global $tlevelDefineSchedules;
     global $tlevelDefineSchedulesSTYLE;
     global $tlevelDescription;
@@ -589,7 +597,7 @@ $Seq = 0;
                     $tlevelAutomaticDetailLink .=  "&ID3=";
                     $tlevelAutomaticDetailLink .= htmlEncode(trim(getValue($oRStlevel->fields["ID"])));
             $tmpIMG_tlevelAutomaticDetailLink = "";
-            $tmpIMG_tlevelAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit ";
+            $tmpIMG_tlevelAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
                 $tlevelAutomaticDetailLink .= "\">" . $tmpIMG_tlevelAutomaticDetailLink . "</a>";
     $tlevelDefineSchedulesSTYLE = "TableRow" . $Style;
     $myLink = "";
@@ -601,8 +609,20 @@ $Seq = 0;
                     $tlevelDefineSchedules .=  "&ID3=";
                     $tlevelDefineSchedules .= htmlEncode(trim(getValue($oRStlevel->fields["ID"])));
             $tmpIMG_tlevelDefineSchedules = "";
-            $tmpIMG_tlevelDefineSchedules = "<i class='icon-edit icon-white'></i> Define Schedules";
+            $tmpIMG_tlevelDefineSchedules = "<i class='icon-edit icon-white'></i> Define Schedule";
                 $tlevelDefineSchedules .= "\">" . $tmpIMG_tlevelDefineSchedules . "</a>";
+    $tlevelDefineKitPackSTYLE = "TableRow" . $Style;
+    $myLink = "";
+            $myLink = "<a class='btn btn-info' href=\"BrowseKitPacklist.php?ID1=";
+                    $tlevelDefineKitPack = $myLink;
+                      $tlevelDefineKitPack .= "'" . htmlEncode(trim(getValue($oRStlevel->fields["CountryID"]))) . "'" ;
+                    $tlevelDefineKitPack .=  "&ID2=" . "'";
+                    $tlevelDefineKitPack .= htmlEncode(trim(getValue($oRStlevel->fields["BranchID"]))) . "'";
+                    $tlevelDefineKitPack .=  "&ID3=";
+                    $tlevelDefineKitPack .= htmlEncode(trim(getValue($oRStlevel->fields["ID"])));
+            $tmpIMG_tlevelDefineKitPack = "";
+            $tmpIMG_tlevelDefineKitPack = "<i class='icon-edit icon-white'></i> Define Kit Pack";
+                $tlevelDefineKitPack .= "\">" . $tmpIMG_tlevelDefineKitPack . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tlevelCountryIDSTYLE = "TableRow" . $Style;
     if (is_null($oRStlevel->fields["CountryID"])):
@@ -622,12 +642,7 @@ $tlevelIDSTYLE = "TableRow" . $Style;
     if (is_null($oRStlevel->fields["ID"])):
         $tlevelID = "";
     else:
-        $myQuoteID = "";
-        $tlevelID = '<a href=\'JAVASCRIPT:updateData(';
-        $tlevelID .= $myQuoteID . htmlEncode(getValue($oRStlevel->fields["ID"])) . $myQuoteID;
-        $tlevelID .= ');\'>';
-        $tlevelID .= htmlEncode(getValue($oRStlevel->fields["ID"])) . "</a>";
-
+        $tlevelID = htmlEncode(getValue($oRStlevel->fields["ID"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tlevelDescriptionSTYLE = "TableRow" . $Style;
@@ -643,6 +658,8 @@ $DataRowFilledText = Replace($DataRowFilledText,"@tlevelAutomaticDetailLink@", $
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelAutomaticDetailLinkSTYLE@", $tlevelAutomaticDetailLinkSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelDefineSchedules@", $tlevelDefineSchedules);
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelDefineSchedulesSTYLE@", $tlevelDefineSchedulesSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@tlevelDefineKitPack@", $tlevelDefineKitPack);
+$DataRowFilledText = Replace($DataRowFilledText,"@tlevelDefineKitPackSTYLE@", $tlevelDefineKitPackSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelCountryID@", $tlevelCountryID);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelCountryIDSTYLE@",$tlevelCountryIDSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelBranchID@", $tlevelBranchID);       
@@ -667,6 +684,9 @@ $DataRowFilledText = Replace($DataRowFilledText,"@tlevelAutomaticDetailLinkSTYLE
 $tlevelDefineSchedulesSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelDefineSchedules@", "&nbsp;");       
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelDefineSchedulesSTYLE@", $tlevelDefineSchedulesSTYLE);
+$tlevelDefineKitPackSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@tlevelDefineKitPack@", "&nbsp;");       
+$DataRowFilledText = Replace($DataRowFilledText,"@tlevelDefineKitPackSTYLE@", $tlevelDefineKitPackSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelCountryID@", "&nbsp;");
 $tlevelCountryIDSTYLE = "TableRow" . $Style;
 $DataRowFilledText = Replace($DataRowFilledText,"@tlevelCountryIDSTYLE@", $tlevelCountryIDSTYLE);

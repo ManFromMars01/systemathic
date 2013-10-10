@@ -1,7 +1,6 @@
 <?PHP
 session_set_cookie_params(500);
 session_start();
-unset($_SESSION['BrowseSubCateg#WHR']);
 /*
 ===================================================================
 ------------------ Notice to Web Page Designers! ------------------
@@ -17,7 +16,7 @@ unset($_SESSION['BrowseSubCateg#WHR']);
 ===================================================================
 */
 $PageLevel = 0;
-$PageLevel = 50;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -42,16 +41,27 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
+if($_SERVER["QUERY_STRING"] <> ""):
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"];
+else:
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"];
+endif;
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
-// $RecordsPerPage = ##;
+
+$myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM trole  WHERE trole.CountryID ='".$_SESSION['UserValue1']."' ORDER BY trole.CountryID ASC";
+$oRStcustomers = $objConn1->Execute($myRecordCount2);
+$TotalRecords1 = $oRStcustomers->fields["MyCount"];
+$RecordsPerPage = $TotalRecords1;
+
+
 $HeaderText = "";
 $TemplateText = "";
 $DataRowEmptyText = "";
 $DataRowFilledText = "";
 $FooterText = "";
 $RemainderText = "";
-$BrowseSubCategRowData = "";
+$BrowseRoleRowData = "";
 $ndxStart = "";
 $ndxEnd = "";
 $strLEN = "";
@@ -67,24 +77,26 @@ $PageIndex = "";
 $RecordsPageSize = "";
 $SearchMessage = "";
 $SearchField = "";
-$tsubcategAutomaticDetailLink = "";
-$tsubcategAutomaticDetailLinkSTYLE = "";
-$tsubcategCountryIDLABEL = "";
-$tsubcategCountryID = "";
-$tsubcategCountryIDSTYLE = "";
-$tsubcategBranchIDLABEL = "";
-$tsubcategBranchID = "";
-$tsubcategBranchIDSTYLE = "";
-$tsubcategCatIDLABEL = "";
-$tsubcategCatID = "";
-$tsubcategCatIDSTYLE = "";
-$tsubcategSubCatIDLABEL = "";
-$tsubcategSubCatID = "";
-$tsubcategSubCatIDSTYLE = "";
-$tsubcategDescriptionLABEL = "";
-$tsubcategDescription = "";
-$tsubcategDescriptionSTYLE = "";
-$oRStsubcateg = "";
+$troleAutomaticDetailLink = "";
+$troleAutomaticDetailLinkSTYLE = "";
+$troleAddRoleDetails = "";
+$troleAddRoleDetailsSTYLE = "";
+$troleCountryIDLABEL = "";
+$troleCountryID = "";
+$troleCountryIDSTYLE = "";
+$troleBranchIDLABEL = "";
+$troleBranchID = "";
+$troleBranchIDSTYLE = "";
+$troleRoleIDLABEL = "";
+$troleRoleID = "";
+$troleRoleIDSTYLE = "";
+$troleDescriptionLABEL = "";
+$troleDescription = "";
+$troleDescriptionSTYLE = "";
+$troleSecurityLevelLABEL = "";
+$troleSecurityLevel = "";
+$troleSecurityLevelSTYLE = "";
+$oRStrole = "";
 $mySQL = "";
 $myWhere = "";
 $myQuery = "";
@@ -93,24 +105,24 @@ $valSQL = "";
 // --reset the where session variables if we find a reset string
 if (getRequest("RESETLIST") != ""):
     $myWhere = "";
-    $_SESSION["BrowseSubCateg#WHR"] = "";
-    $_SESSION["BrowseSubCateg#COL"] = "";
-    $_SESSION["BrowseSubCateg#SRT"] = "";
-    $_SESSION["BrowseSubCateg#PreviousColumn"] = "";
-    $_SESSION["BrowseSubCateg#PreviousSort"] = "";
-    $_SESSION["BrowseSubCateg#mySort"] = "";
-    $_SESSION["BrowseSubCateg#myOrder"] = "";    
+    $_SESSION["BrowseRole#WHR"] = "";
+    $_SESSION["BrowseRole#COL"] = "";
+    $_SESSION["BrowseRole#SRT"] = "";
+    $_SESSION["BrowseRole#PreviousColumn"] = "";
+    $_SESSION["BrowseRole#PreviousSort"] = "";
+    $_SESSION["BrowseRole#mySort"] = "";
+    $_SESSION["BrowseRole#myOrder"] = "";    
 endif;
 if (getServer("QUERY_STRING") == ""):
     if (strpos(strtolower(getServer("HTTP_REFERER")),"search.php") === false):
         $myWhere = "";
-        $_SESSION["BrowseSubCateg#WHR"] = "";
-        $_SESSION["BrowseSubCateg#COL"] = "";
-        $_SESSION["BrowseSubCateg#SRT"] = "";
-        $_SESSION["BrowseSubCateg#PreviousColumn"] = "";
-        $_SESSION["BrowseSubCateg#PreviousSort"] = "";
-        $_SESSION["BrowseSubCateg#mySort"] = "";
-        $_SESSION["BrowseSubCateg#myOrder"] = "";    
+        $_SESSION["BrowseRole#WHR"] = "";
+        $_SESSION["BrowseRole#COL"] = "";
+        $_SESSION["BrowseRole#SRT"] = "";
+        $_SESSION["BrowseRole#PreviousColumn"] = "";
+        $_SESSION["BrowseRole#PreviousSort"] = "";
+        $_SESSION["BrowseRole#mySort"] = "";
+        $_SESSION["BrowseRole#myOrder"] = "";    
     endif;
 endif;
 
@@ -118,130 +130,125 @@ endif;
 if (getRequest("PageIndex") != ""):
     IF ((getGet("COL") . getGet("SRT") . getForm("SEARCH")) == ""):
         if (strpos($PHP_SELF, $_SERVER["HTTP_REFERER"]) != false):    
-            $_SESSION["BrowseSubCateg#COL"] = "";
-            $_SESSION["BrowseSubCateg#SRT"] = "";
-            $_SESSION["BrowseSubCateg#PreviousColumn"] = "";
-            $_SESSION["BrowseSubCateg#PreviousSort"] = "";
-            $_SESSION["BrowseSubCateg#mySort"] = "";
-            $_SESSION["BrowseSubCateg#myOrder"] = "";    
+            $_SESSION["BrowseRole#COL"] = "";
+            $_SESSION["BrowseRole#SRT"] = "";
+            $_SESSION["BrowseRole#PreviousColumn"] = "";
+            $_SESSION["BrowseRole#PreviousSort"] = "";
+            $_SESSION["BrowseRole#mySort"] = "";
+            $_SESSION["BrowseRole#myOrder"] = "";    
         endif;
     endif;
 endif;
 // --set the url for the column links
 $myPage = getServer("PHP_SELF");
 if (getRequest("COL") == ""):
-    $_SESSION["BrowseSubCateg#PreviousColumn"] = "";
+    $_SESSION["BrowseRole#PreviousColumn"] = "";
 else:
-    $_SESSION["BrowseSubCateg#PreviousColumn"] = getRequest("COL");
+    $_SESSION["BrowseRole#PreviousColumn"] = getRequest("COL");
 endif;
 
 if (getRequest("SRT") == ""):
-    $_SESSION["BrowseSubCateg#PreviousSort"] = "";
+    $_SESSION["BrowseRole#PreviousSort"] = "";
 else:
-    $_SESSION["BrowseSubCateg#PreviousSort"] = getRequest("SRT");
+    $_SESSION["BrowseRole#PreviousSort"] = getRequest("SRT");
 endif;
 
-if (getSession("BrowseSubCateg#COL") == ""):
-    if (getRequest("COL") . getSession("BrowseSubCateg#COL") == ""):
-        $_SESSION["BrowseSubCateg#COL"] = "CountryID";
+if (getSession("BrowseRole#COL") == ""):
+    if (getRequest("COL") . getSession("BrowseRole#COL") == ""):
+        $_SESSION["BrowseRole#COL"] = "CountryID";
     endif;
 endif;
 
 if (getRequest("COL") == "CountryID"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.CountryID DESC";
-        $_SESSION["BrowseSubCateg#mySort"] = "DESC";
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.CountryID DESC";
+        $_SESSION["BrowseRole#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.CountryID ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.CountryID ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseSubCateg#PreviousColumn")):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.CountryID ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("BrowseRole#PreviousColumn")):
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.CountryID ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseSubCateg#COL"] = "CountryID";
-    $_SESSION["BrowseSubCateg#SRT"] = getSession("BrowseSubCateg#mySort");
+    $_SESSION["BrowseRole#COL"] = "CountryID";
+    $_SESSION["BrowseRole#SRT"] = getSession("BrowseRole#mySort");
 endif;
 
 if (getRequest("COL") == "BranchID"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.BranchID DESC";
-        $_SESSION["BrowseSubCateg#mySort"] = "DESC";
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.BranchID DESC";
+        $_SESSION["BrowseRole#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.BranchID ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.BranchID ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseSubCateg#PreviousColumn")):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.BranchID ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("BrowseRole#PreviousColumn")):
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.BranchID ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseSubCateg#COL"] = "BranchID";
-    $_SESSION["BrowseSubCateg#SRT"] = getSession("BrowseSubCateg#mySort");
+    $_SESSION["BrowseRole#COL"] = "BranchID";
+    $_SESSION["BrowseRole#SRT"] = getSession("BrowseRole#mySort");
 endif;
 
-if (getRequest("COL") == "CatID"):
+if (getRequest("COL") == "RoleID"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.CatID DESC";
-        $_SESSION["BrowseSubCateg#mySort"] = "DESC";
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.RoleID DESC";
+        $_SESSION["BrowseRole#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.CatID ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.RoleID ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseSubCateg#PreviousColumn")):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.CatID ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("BrowseRole#PreviousColumn")):
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.RoleID ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseSubCateg#COL"] = "CatID";
-    $_SESSION["BrowseSubCateg#SRT"] = getSession("BrowseSubCateg#mySort");
-endif;
-
-if (getRequest("COL") == "SubCatID"):
-    if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.SubCatID DESC";
-        $_SESSION["BrowseSubCateg#mySort"] = "DESC";
-    else:
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.SubCatID ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
-    endif;
-    if (getRequest("COL") != getSession("BrowseSubCateg#PreviousColumn")):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.SubCatID ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
-    endif;
-    $_SESSION["BrowseSubCateg#COL"] = "SubCatID";
-    $_SESSION["BrowseSubCateg#SRT"] = getSession("BrowseSubCateg#mySort");
+    $_SESSION["BrowseRole#COL"] = "RoleID";
+    $_SESSION["BrowseRole#SRT"] = getSession("BrowseRole#mySort");
 endif;
 
 if (getRequest("COL") == "Description"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.Description DESC";
-        $_SESSION["BrowseSubCateg#mySort"] = "DESC";
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.Description DESC";
+        $_SESSION["BrowseRole#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.Description ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.Description ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseSubCateg#PreviousColumn")):
-        $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.Description ASC";
-        $_SESSION["BrowseSubCateg#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("BrowseRole#PreviousColumn")):
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.Description ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseSubCateg#COL"] = "Description";
-    $_SESSION["BrowseSubCateg#SRT"] = getSession("BrowseSubCateg#mySort");
+    $_SESSION["BrowseRole#COL"] = "Description";
+    $_SESSION["BrowseRole#SRT"] = getSession("BrowseRole#mySort");
 endif;
 
-$myQuery    = "SELECT tsubcateg.CountryID, tsubcateg.BranchID, tsubcateg.CatID, tsubcateg.SubCatID, tsubcateg.Description FROM tsubcateg";
+if (getRequest("COL") == "SecurityLevel"):
+    if (getRequest("SRT") == "DESC"):
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.SecurityLevel DESC";
+        $_SESSION["BrowseRole#mySort"] = "DESC";
+    else:
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.SecurityLevel ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
+    endif;
+    if (getRequest("COL") != getSession("BrowseRole#PreviousColumn")):
+        $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.SecurityLevel ASC";
+        $_SESSION["BrowseRole#mySort"] = "ASC";
+    endif;
+    $_SESSION["BrowseRole#COL"] = "SecurityLevel";
+    $_SESSION["BrowseRole#SRT"] = getSession("BrowseRole#mySort");
+endif;
+
+$myQuery    = "SELECT trole.CountryID, trole.BranchID, trole.RoleID, trole.Description, trole.SecurityLevel FROM trole";
 if ( getRequest("WHR") != ""):
     $myWhere    =  getRequest("WHR");
-    $_SESSION["BrowseSubCateg#WHR"] =  getRequest("WHR");
-elseif (getSession("BrowseSubCateg#WHR") != ""):
-    $myWhere    = getSession("BrowseSubCateg#WHR");
-endif;
-if ($myWhere == ""):
-    $myWhere = "tsubcateg.CountryID = " . trim(getRequest( "ID1") ). "  AND tsubcateg.BranchID = " . trim(getRequest( "ID2") ). "  AND  tsubcateg.CatID = " . trim(getRequest( "ID3") ). "";
-else:
-    $myWhere .= " AND tsubcateg.CountryID = " . trim(getRequest( "ID1") ). "  AND tsubcateg.BranchID = " . trim(getRequest( "ID2") ). "  AND  tsubcateg.CatID = " . trim(getRequest( "ID3") ). "";
+    $_SESSION["BrowseRole#WHR"] =  getRequest("WHR");
+elseif (getSession("BrowseRole#WHR") != ""):
+    $myWhere    = getSession("BrowseRole#WHR");
 endif;
 if (getGet("RESETLIST") == "TRUE"):
-    $myWhere = "tsubcateg.CountryID = " . trim(getRequest( "ID1") ). "  AND tsubcateg.BranchID = " . trim(getRequest( "ID2") ). "  AND  tsubcateg.CatID = " . trim(getRequest( "ID3") ). "";
-    $_SESSION["BrowseSubCateg#WHR"] = $myWhere;
+    $myWhere = "";
+    $_SESSION["BrowseRole#WHR"] = "";
 endif;
 if ($myWhere == ""):
     if (getRequest("LOCATE") == "TRUE"):
@@ -249,7 +256,7 @@ if ($myWhere == ""):
       default:
         $myWhere = getRequest("FIELD") . " LIKE " . CHR(39) . $objConn1->addq(getRequest("SearchValue")) . "%" . CHR(39);
       }
-      $_SESSION["BrowseSubCateg#WHR"] = $myWhere;
+      $_SESSION["BrowseRole#WHR"] = $myWhere;
     endif;
 else:
     if(getRequest("LOCATE") == "TRUE"):
@@ -258,17 +265,10 @@ else:
         default:
           $myWhere .= getRequest("FIELD") . " LIKE " . CHR(39) . $objConn1->addq(getRequest("SearchValue")) . "%" . CHR(39);
         }
-        $_SESSION["BrowseSubCateg#WHR"] = $myWhere;
+        $_SESSION["BrowseRole#WHR"] = $myWhere;
     endif;
 endif;
 
-// --add the additional "myRecords" ownership clause
-$strMyQuote = getQuote($objConn1,"tsubcateg", "tsubcateg.CountryID");
-if ($myWhere != ""):
-    $myWhere .= " AND ";
-endif;
-$myWhere .= "tsubcateg.CountryID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote;
-$_SESSION["BrowseSubCateg#WHR"] = $myWhere;
 $mySQL = $myQuery;
 // -- test for any value in the myWhere, if valid concatenate the clause
 if ($myWhere != ""):
@@ -276,47 +276,47 @@ if ($myWhere != ""):
 endif;
 
 // --test for any value in myOrder, if empty set default
-if (getSession("BrowseSubCateg#myOrder") == ""):
-    $_SESSION["BrowseSubCateg#myOrder"] = "ORDER BY tsubcateg.CountryID ASC";
-    $_SESSION["BrowseSubCateg#mySort"] = "ASC";
-    $_SESSION["BrowseSubCateg#COL"] = "CountryID";
-    $_SESSION["BrowseSubCateg#SRT"] = getSession("BrowseSubCateg#mySort");
+if (getSession("BrowseRole#myOrder") == ""):
+    $_SESSION["BrowseRole#myOrder"] = "ORDER BY trole.CountryID ASC";
+    $_SESSION["BrowseRole#mySort"] = "ASC";
+    $_SESSION["BrowseRole#COL"] = "CountryID";
+    $_SESSION["BrowseRole#SRT"] = getSession("BrowseRole#mySort");
 endif;
 
 //--test for any value in myOrder, if valid concenate into the SQL statement
-if (getSession("BrowseSubCateg#myOrder") !=""):
-    $mySQL .= " " . getSession("BrowseSubCateg#myOrder");
+if (getSession("BrowseRole#myOrder") !=""):
+    $mySQL .= " " . getSession("BrowseRole#myOrder");
 endif;
 $RecordsPageSize = $RecordsPerPage;
 getGet("PageIndex") == "" ? $PageIndex = 1 : $PageIndex = getGet("PageIndex");
 if($myWhere != ""):
-  $myRecordCount = "SELECT COUNT(tsubcateg.CountryID) AS MyCount  FROM tsubcateg WHERE " . $myWhere;
+  $myRecordCount = "SELECT COUNT(trole.CountryID) AS MyCount  FROM trole WHERE " . $myWhere;
 else:
-  $myRecordCount = "SELECT COUNT(tsubcateg.CountryID) AS MyCount  FROM tsubcateg";
+  $myRecordCount = "SELECT COUNT(trole.CountryID) AS MyCount  FROM trole";
 endif;
-$oRStsubcateg = $objConn1->Execute($myRecordCount);
-$TotalRecords = $oRStsubcateg->fields["MyCount"];
+$oRStrole = $objConn1->Execute($myRecordCount);
+$TotalRecords = $oRStrole->fields["MyCount"];
 $MaxPages     = round(($TotalRecords / $RecordsPageSize));
 if($TotalRecords > ($MaxPages*$RecordsPageSize)):
     $MaxPages++;
 endif;
-$oRStsubcateg->Close();
-$oRStsubcateg = $objConn1->PageExecute($mySQL, $RecordsPerPage, $PageIndex);
+$oRStrole->Close();
+$oRStrole = $objConn1->PageExecute($mySQL, $RecordsPerPage, $PageIndex);
 if (getGet("RESETLIST") == "TRUE"):
     $myWhere = "";
-    $_SESSION["BrowseSubCateg#WHR"] = "";
+    $_SESSION["BrowseRole#WHR"] = "";
 endif;
 
 $SearchField = "";
 $SearchMessage = "";
-if ($oRStsubcateg):
-    if($oRStsubcateg->EOF != TRUE):
-        if($oRStsubcateg->RecordCount() > 0):
-            $oRStsubcateg->Move(0);         
+if ($oRStrole):
+    if($oRStrole->EOF != TRUE):
+        if($oRStrole->RecordCount() > 0):
+            $oRStrole->Move(0);         
             if(getRequest("LOCATE") == "TRUE"):
-                $SearchMessage =  "<A href=BrowseSubCateg" . "list.php?RESETLIST=TRUE>All data</A>";
+                $SearchMessage =  "<A href=BrowseRole" . "list.php?RESETLIST=TRUE>All data</A>";
             endif;
-            MergeBrowseSubCategListTemplate($HTML_Template);
+            MergeBrowseRoleListTemplate($HTML_Template);
         else:
             NoRecordsFound();
         endif;
@@ -327,8 +327,8 @@ else:
     NoRecordsFound();
 endif;
 
-$oRStsubcateg->Close();
-unset($oRStsubcateg);
+$oRStrole->Close();
+unset($oRStrole);
 
 /*
 =============================================================================
@@ -343,8 +343,8 @@ function NoRecordsFound() {
     $TemplateText = fread($FileObject, filesize($Template));
     fclose ($FileObject);
     $tmpMsg = "";
-    $tmpMsg = "<a href='BrowseSubCateg" . "list.php?RESETLIST=TRUE'>No records were found</a>";
-    $tmpMsg .= "<br><a href=Updatetsubcateg" . "add.php>Insert record</a>";
+    $tmpMsg = "<a href='BrowseRole" . "list.php?RESETLIST=TRUE'>No records were found</a>";
+    $tmpMsg .= "<br><a href=Updatetrole" . "add.php>Insert record</a>";
     $TemplateText = Replace($TemplateText,"@ClarionData@",$tmpMsg);
     print ($TemplateText);
     exit;
@@ -352,10 +352,10 @@ function NoRecordsFound() {
 
 /*
 =============================================================================
-  MergeBrowseSubCategListTemplate($Template)
+  MergeBrowseRoleListTemplate($Template)
 =============================================================================
 */
-function MergeBrowseSubCategListTemplate($Template) {
+function MergeBrowseRoleListTemplate($Template) {
     global $ClarionData;
     global $SearchField;
     global $SearchMessage;
@@ -375,7 +375,7 @@ function MergeBrowseSubCategListTemplate($Template) {
     global $Menu;
     global $userdata1;
     if($Template == ""):
-        $Template = "./html/BrowseSubCateglist.htm";
+        $Template = "./html/BrowseRolelist.htm";
     endif;      
     $FileObject = fopen($Template, "r");
     $TemplateText = "";
@@ -449,14 +449,14 @@ function buildColumnLabels() {
     $myLink = "";
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=CountryID";
-            if ( getSession("BrowseSubCateg#PreviousColumn") == "CountryID"):
-                if (getSession("BrowseSubCateg#SRT") == "ASC"):
+            if ( getSession("BrowseRole#PreviousColumn") == "CountryID"):
+                if (getSession("BrowseRole#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseSubCateg#COL") == "CountryID"):
+                if (getSession("BrowseRole#COL") == "CountryID"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -465,8 +465,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">Country ID</a>";
         $CountryIDLABEL = $myLink;
-        if ( getGet("COL") == "CountryID" || getSession("BrowseSubCateg#COL") == "CountryID" ):
-            if (getSession("BrowseSubCateg#SRT") == "ASC"):
+        if ( getGet("COL") == "CountryID" || getSession("BrowseRole#COL") == "CountryID" ):
+            if (getSession("BrowseRole#SRT") == "ASC"):
                 $CountryIDLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $CountryIDLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -474,14 +474,14 @@ function buildColumnLabels() {
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=BranchID";
-            if ( getSession("BrowseSubCateg#PreviousColumn") == "BranchID"):
-                if (getSession("BrowseSubCateg#SRT") == "ASC"):
+            if ( getSession("BrowseRole#PreviousColumn") == "BranchID"):
+                if (getSession("BrowseRole#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseSubCateg#COL") == "BranchID"):
+                if (getSession("BrowseRole#COL") == "BranchID"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -490,73 +490,48 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">Branch ID</a>";
         $BranchIDLABEL = $myLink;
-        if ( getGet("COL") == "BranchID" || getSession("BrowseSubCateg#COL") == "BranchID" ):
-            if (getSession("BrowseSubCateg#SRT") == "ASC"):
+        if ( getGet("COL") == "BranchID" || getSession("BrowseRole#COL") == "BranchID" ):
+            if (getSession("BrowseRole#SRT") == "ASC"):
                 $BranchIDLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $BranchIDLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             endif;
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
-            $myLink .= "COL=CatID";
-            if ( getSession("BrowseSubCateg#PreviousColumn") == "CatID"):
-                if (getSession("BrowseSubCateg#SRT") == "ASC"):
+            $myLink .= "COL=RoleID";
+            if ( getSession("BrowseRole#PreviousColumn") == "RoleID"):
+                if (getSession("BrowseRole#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseSubCateg#COL") == "CatID"):
+                if (getSession("BrowseRole#COL") == "RoleID"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             endif;
             $myLink .= getIDs();
-            $myLink .= "\">Cat ID</a>";
-        $CatIDLABEL = $myLink;
-        if ( getGet("COL") == "CatID" || getSession("BrowseSubCateg#COL") == "CatID" ):
-            if (getSession("BrowseSubCateg#SRT") == "ASC"):
-                $CatIDLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+            $myLink .= "\">Role ID</a>";
+        $RoleIDLABEL = $myLink;
+        if ( getGet("COL") == "RoleID" || getSession("BrowseRole#COL") == "RoleID" ):
+            if (getSession("BrowseRole#SRT") == "ASC"):
+                $RoleIDLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
-                $CatIDLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
-            endif;
-        endif;
-        $myLink = "<a href=\"" . $myPage . "?";
-            $myLink .= "COL=SubCatID";
-            if ( getSession("BrowseSubCateg#PreviousColumn") == "SubCatID"):
-                if (getSession("BrowseSubCateg#SRT") == "ASC"):
-                    $myLink .= "&SRT=DESC";
-                else:
-                    $myLink .= "&SRT=ASC";
-                endif;
-            else:
-                if (getSession("BrowseSubCateg#COL") == "SubCatID"):
-                    $myLink .= "&SRT=DESC";
-                else:
-                    $myLink .= "&SRT=ASC";
-                endif;
-            endif;
-            $myLink .= getIDs();
-            $myLink .= "\">Sub Cat ID</a>";
-        $SubCatIDLABEL = $myLink;
-        if ( getGet("COL") == "SubCatID" || getSession("BrowseSubCateg#COL") == "SubCatID" ):
-            if (getSession("BrowseSubCateg#SRT") == "ASC"):
-                $SubCatIDLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
-            else:            
-                $SubCatIDLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+                $RoleIDLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             endif;
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=Description";
-            if ( getSession("BrowseSubCateg#PreviousColumn") == "Description"):
-                if (getSession("BrowseSubCateg#SRT") == "ASC"):
+            if ( getSession("BrowseRole#PreviousColumn") == "Description"):
+                if (getSession("BrowseRole#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseSubCateg#COL") == "Description"):
+                if (getSession("BrowseRole#COL") == "Description"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -565,18 +540,43 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">Description</a>";
         $DescriptionLABEL = $myLink;
-        if ( getGet("COL") == "Description" || getSession("BrowseSubCateg#COL") == "Description" ):
-            if (getSession("BrowseSubCateg#SRT") == "ASC"):
+        if ( getGet("COL") == "Description" || getSession("BrowseRole#COL") == "Description" ):
+            if (getSession("BrowseRole#SRT") == "ASC"):
                 $DescriptionLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $DescriptionLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             endif;
         endif;
+        $myLink = "<a href=\"" . $myPage . "?";
+            $myLink .= "COL=SecurityLevel";
+            if ( getSession("BrowseRole#PreviousColumn") == "SecurityLevel"):
+                if (getSession("BrowseRole#SRT") == "ASC"):
+                    $myLink .= "&SRT=DESC";
+                else:
+                    $myLink .= "&SRT=ASC";
+                endif;
+            else:
+                if (getSession("BrowseRole#COL") == "SecurityLevel"):
+                    $myLink .= "&SRT=DESC";
+                else:
+                    $myLink .= "&SRT=ASC";
+                endif;
+            endif;
+            $myLink .= getIDs();
+            $myLink .= "\">Security Level</a>";
+        $SecurityLevelLABEL = $myLink;
+        if ( getGet("COL") == "SecurityLevel" || getSession("BrowseRole#COL") == "SecurityLevel" ):
+            if (getSession("BrowseRole#SRT") == "ASC"):
+                $SecurityLevelLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+            else:            
+                $SecurityLevelLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
+            endif;
+        endif;
 $HeaderText = Replace($HeaderText,"@CountryIDLABEL@", $CountryIDLABEL);
 $HeaderText = Replace($HeaderText,"@BranchIDLABEL@", $BranchIDLABEL);
-$HeaderText = Replace($HeaderText,"@CatIDLABEL@", $CatIDLABEL);
-$HeaderText = Replace($HeaderText,"@SubCatIDLABEL@", $SubCatIDLABEL);
+$HeaderText = Replace($HeaderText,"@RoleIDLABEL@", $RoleIDLABEL);
 $HeaderText = Replace($HeaderText,"@DescriptionLABEL@", $DescriptionLABEL);
+$HeaderText = Replace($HeaderText,"@SecurityLevelLABEL@", $SecurityLevelLABEL);
 }
 
 /*
@@ -587,25 +587,27 @@ $HeaderText = Replace($HeaderText,"@DescriptionLABEL@", $DescriptionLABEL);
 function buildDataRows() {
     global $DataRowEmptyText;
     global $DataRowFilledText;
-    global $oRStsubcateg;
+    global $oRStrole;
     global $RecordsPageSize;
-    global $tsubcategAutomaticDetailLink;
-    global $tsubcategAutomaticDetailLinkSTYLE;
-    global $tsubcategBranchID;
-    global $tsubcategBranchIDLABEL;
-    global $tsubcategBranchIDSTYLE;
-    global $tsubcategCatID;
-    global $tsubcategCatIDLABEL;
-    global $tsubcategCatIDSTYLE;
-    global $tsubcategCountryID;
-    global $tsubcategCountryIDLABEL;
-    global $tsubcategCountryIDSTYLE;
-    global $tsubcategDescription;
-    global $tsubcategDescriptionLABEL;
-    global $tsubcategDescriptionSTYLE;
-    global $tsubcategSubCatID;
-    global $tsubcategSubCatIDLABEL;
-    global $tsubcategSubCatIDSTYLE;
+    global $troleAddRoleDetails;
+    global $troleAddRoleDetailsSTYLE;
+    global $troleAutomaticDetailLink;
+    global $troleAutomaticDetailLinkSTYLE;
+    global $troleBranchID;
+    global $troleBranchIDLABEL;
+    global $troleBranchIDSTYLE;
+    global $troleCountryID;
+    global $troleCountryIDLABEL;
+    global $troleCountryIDSTYLE;
+    global $troleDescription;
+    global $troleDescriptionLABEL;
+    global $troleDescriptionSTYLE;
+    global $troleRoleID;
+    global $troleRoleIDLABEL;
+    global $troleRoleIDSTYLE;
+    global $troleSecurityLevel;
+    global $troleSecurityLevelLABEL;
+    global $troleSecurityLevelSTYLE;
     global $Header;
     global $Footer;
     global $MainContent;
@@ -613,8 +615,8 @@ function buildDataRows() {
     global $userdata1;
 $Seq = 0;
 
-    if ($oRStsubcateg) :
-        while ((!$oRStsubcateg->EOF) && ($Seq < $RecordsPageSize)):
+    if ($oRStrole) :
+        while ((!$oRStrole->EOF) && ($Seq < $RecordsPageSize)):
             $DataRowFilledText .= $DataRowEmptyText;
 
             $DataRowFilledText = Replace($DataRowFilledText, "@Header@", $Header);
@@ -623,74 +625,83 @@ $Seq = 0;
             $DataRowFilledText = Replace($DataRowFilledText, "@Menu@", $Menu);
             $DataRowFilledText = Replace($DataRowFilledText, "@userdata1@", $userdata1);
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
-    $tsubcategAutomaticDetailLinkSTYLE = "TableRow" . $Style;
+    $troleAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetsubcategedit.php?ID1=";
-                    $tsubcategAutomaticDetailLink = $myLink;
-                      $tsubcategAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStsubcateg->fields["CountryID"]))) . "'" ;
-                    $tsubcategAutomaticDetailLink .=  "&ID2=" . "'";
-                    $tsubcategAutomaticDetailLink .= htmlEncode(trim(getValue($oRStsubcateg->fields["BranchID"]))) . "'";
-                    $tsubcategAutomaticDetailLink .=  "&ID3=" . "'";
-                    $tsubcategAutomaticDetailLink .= htmlEncode(trim(getValue($oRStsubcateg->fields["CatID"]))) . "'";
-            $tmpIMG_tsubcategAutomaticDetailLink = "";
-            $tmpIMG_tsubcategAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
-                $tsubcategAutomaticDetailLink .= "\">" . $tmpIMG_tsubcategAutomaticDetailLink . "</a>";
+            $myLink = "<a class='btn btn-info' href=\"Updatetroleedit.php?ID1=";
+                    $troleAutomaticDetailLink = $myLink;
+                      $troleAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStrole->fields["CountryID"]))) . "'" ;
+                    $troleAutomaticDetailLink .=  "&ID2=" . "'";
+                    $troleAutomaticDetailLink .= htmlEncode(trim(getValue($oRStrole->fields["BranchID"]))) . "'";
+                    $troleAutomaticDetailLink .=  "&ID3=" . "'";
+                    $troleAutomaticDetailLink .= htmlEncode(trim(getValue($oRStrole->fields["RoleID"]))) . "'";
+            $tmpIMG_troleAutomaticDetailLink = "";
+            $tmpIMG_troleAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
+                $troleAutomaticDetailLink .= "\">" . $tmpIMG_troleAutomaticDetailLink . "</a>";
+    $troleAddRoleDetailsSTYLE = "TableRow" . $Style;
+    $myLink = "";
+            $myLink = "<a class='btn btn-info' href=\"BrowseTDRolelist.php?ID1=";
+                    $troleAddRoleDetails = $myLink;
+                      $troleAddRoleDetails .= "'" . htmlEncode(trim(getValue($oRStrole->fields["CountryID"]))) . "'" ;
+                    $troleAddRoleDetails .=  "&ID2=" . "'";
+                    $troleAddRoleDetails .= htmlEncode(trim(getValue($oRStrole->fields["BranchID"]))) . "'";
+                    $troleAddRoleDetails .=  "&ID3=" . "'";
+                    $troleAddRoleDetails .= htmlEncode(trim(getValue($oRStrole->fields["RoleID"]))) . "'";
+            $tmpIMG_troleAddRoleDetails = "";
+            $tmpIMG_troleAddRoleDetails = "<i class='icon-edit icon-white'></i> Add Role Details";
+                $troleAddRoleDetails .= "\">" . $tmpIMG_troleAddRoleDetails . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
-$tsubcategCountryIDSTYLE = "TableRow" . $Style;
-    if (is_null($oRStsubcateg->fields["CountryID"])):
-        $tsubcategCountryID = "";
+$troleCountryIDSTYLE = "TableRow" . $Style;
+    if (is_null($oRStrole->fields["CountryID"])):
+        $troleCountryID = "";
     else:
-        $tsubcategCountryID = htmlEncode(getValue($oRStsubcateg->fields["CountryID"]));
+        $troleCountryID = htmlEncode(getValue($oRStrole->fields["CountryID"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
-$tsubcategBranchIDSTYLE = "TableRow" . $Style;
-    if (is_null($oRStsubcateg->fields["BranchID"])):
-        $tsubcategBranchID = "";
+$troleBranchIDSTYLE = "TableRow" . $Style;
+    if (is_null($oRStrole->fields["BranchID"])):
+        $troleBranchID = "";
     else:
-        $tsubcategBranchID = htmlEncode(getValue($oRStsubcateg->fields["BranchID"]));
+        $troleBranchID = htmlEncode(getValue($oRStrole->fields["BranchID"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
-$tsubcategCatIDSTYLE = "TableRow" . $Style;
-    if (is_null($oRStsubcateg->fields["CatID"])):
-        $tsubcategCatID = "";
+$troleRoleIDSTYLE = "TableRow" . $Style;
+    if (is_null($oRStrole->fields["RoleID"])):
+        $troleRoleID = "";
     else:
-        $tsubcategCatID = htmlEncode(getValue($oRStsubcateg->fields["CatID"]));
+        $troleRoleID = htmlEncode(getValue($oRStrole->fields["RoleID"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
-$tsubcategSubCatIDSTYLE = "TableRow" . $Style;
-    if (is_null($oRStsubcateg->fields["SubCatID"])):
-        $tsubcategSubCatID = "";
+$troleDescriptionSTYLE = "TableRow" . $Style;
+    if (is_null($oRStrole->fields["Description"])):
+        $troleDescription = "";
     else:
-        $myQuoteSubCatID = "\"";
-        $tsubcategSubCatID = '<a href=\'JAVASCRIPT:updateData(';
-        $tsubcategSubCatID .= $myQuoteSubCatID . htmlEncode(getValue($oRStsubcateg->fields["SubCatID"])) . $myQuoteSubCatID;
-        $tsubcategSubCatID .= ');\'>';
-        $tsubcategSubCatID .= htmlEncode(getValue($oRStsubcateg->fields["SubCatID"])) . "</a>";
-
+        $troleDescription = htmlEncode(getValue($oRStrole->fields["Description"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
-$tsubcategDescriptionSTYLE = "TableRow" . $Style;
-    if (is_null($oRStsubcateg->fields["Description"])):
-        $tsubcategDescription = "";
+$troleSecurityLevelSTYLE = "TableRow" . $Style;
+    if (is_null($oRStrole->fields["SecurityLevel"])):
+        $troleSecurityLevel = "";
     else:
-        $tsubcategDescription = htmlEncode(getValue($oRStsubcateg->fields["Description"]));
+        $troleSecurityLevel = htmlEncode(getValue($oRStrole->fields["SecurityLevel"]));
 endif;
 $Seq++;
-$oRStsubcateg->MoveNext();
+$oRStrole->MoveNext();
 
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategAutomaticDetailLink@", $tsubcategAutomaticDetailLink);
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategAutomaticDetailLinkSTYLE@", $tsubcategAutomaticDetailLinkSTYLE);
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategCountryID@", $tsubcategCountryID);       
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategCountryIDSTYLE@",$tsubcategCountryIDSTYLE);           
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategBranchID@", $tsubcategBranchID);       
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategBranchIDSTYLE@",$tsubcategBranchIDSTYLE);           
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategCatID@", $tsubcategCatID);       
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategCatIDSTYLE@",$tsubcategCatIDSTYLE);           
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategSubCatID@", $tsubcategSubCatID);       
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategSubCatIDSTYLE@",$tsubcategSubCatIDSTYLE);           
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategDescription@", $tsubcategDescription);       
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategDescriptionSTYLE@",$tsubcategDescriptionSTYLE);           
-        endwhile; // of oRStsubcateg DO WHILE
+$DataRowFilledText = Replace($DataRowFilledText,"@troleAutomaticDetailLink@", $troleAutomaticDetailLink);
+$DataRowFilledText = Replace($DataRowFilledText,"@troleAutomaticDetailLinkSTYLE@", $troleAutomaticDetailLinkSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@troleAddRoleDetails@", $troleAddRoleDetails);
+$DataRowFilledText = Replace($DataRowFilledText,"@troleAddRoleDetailsSTYLE@", $troleAddRoleDetailsSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@troleCountryID@", $troleCountryID);       
+$DataRowFilledText = Replace($DataRowFilledText,"@troleCountryIDSTYLE@",$troleCountryIDSTYLE);           
+$DataRowFilledText = Replace($DataRowFilledText,"@troleBranchID@", $troleBranchID);       
+$DataRowFilledText = Replace($DataRowFilledText,"@troleBranchIDSTYLE@",$troleBranchIDSTYLE);           
+$DataRowFilledText = Replace($DataRowFilledText,"@troleRoleID@", $troleRoleID);       
+$DataRowFilledText = Replace($DataRowFilledText,"@troleRoleIDSTYLE@",$troleRoleIDSTYLE);           
+$DataRowFilledText = Replace($DataRowFilledText,"@troleDescription@", $troleDescription);       
+$DataRowFilledText = Replace($DataRowFilledText,"@troleDescriptionSTYLE@",$troleDescriptionSTYLE);           
+$DataRowFilledText = Replace($DataRowFilledText,"@troleSecurityLevel@", $troleSecurityLevel);       
+$DataRowFilledText = Replace($DataRowFilledText,"@troleSecurityLevelSTYLE@",$troleSecurityLevelSTYLE);           
+        endwhile; // of oRStrole DO WHILE
     endif; // rs is valid
 
 // now to add the filler rows
@@ -700,24 +711,27 @@ $Seq = ($RecordsPageSize - $Seq);
 do { 
     $DataRowFilledText .= $DataRowEmptyText;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
-$tsubcategAutomaticDetailLinkSTYLE = "TableRow" . $Style;
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategAutomaticDetailLink@", "&nbsp;");       
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategAutomaticDetailLinkSTYLE@", $tsubcategAutomaticDetailLinkSTYLE);
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategCountryID@", "&nbsp;");
-$tsubcategCountryIDSTYLE = "TableRow" . $Style;
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategCountryIDSTYLE@", $tsubcategCountryIDSTYLE);
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategBranchID@", "&nbsp;");
-$tsubcategBranchIDSTYLE = "TableRow" . $Style;
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategBranchIDSTYLE@", $tsubcategBranchIDSTYLE);
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategCatID@", "&nbsp;");
-$tsubcategCatIDSTYLE = "TableRow" . $Style;
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategCatIDSTYLE@", $tsubcategCatIDSTYLE);
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategSubCatID@", "&nbsp;");
-$tsubcategSubCatIDSTYLE = "TableRow" . $Style;
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategSubCatIDSTYLE@", $tsubcategSubCatIDSTYLE);
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategDescription@", "&nbsp;");
-$tsubcategDescriptionSTYLE = "TableRow" . $Style;
-$DataRowFilledText = Replace($DataRowFilledText,"@tsubcategDescriptionSTYLE@", $tsubcategDescriptionSTYLE);
+$troleAutomaticDetailLinkSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@troleAutomaticDetailLink@", "&nbsp;");       
+$DataRowFilledText = Replace($DataRowFilledText,"@troleAutomaticDetailLinkSTYLE@", $troleAutomaticDetailLinkSTYLE);
+$troleAddRoleDetailsSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@troleAddRoleDetails@", "&nbsp;");       
+$DataRowFilledText = Replace($DataRowFilledText,"@troleAddRoleDetailsSTYLE@", $troleAddRoleDetailsSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@troleCountryID@", "&nbsp;");
+$troleCountryIDSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@troleCountryIDSTYLE@", $troleCountryIDSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@troleBranchID@", "&nbsp;");
+$troleBranchIDSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@troleBranchIDSTYLE@", $troleBranchIDSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@troleRoleID@", "&nbsp;");
+$troleRoleIDSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@troleRoleIDSTYLE@", $troleRoleIDSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@troleDescription@", "&nbsp;");
+$troleDescriptionSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@troleDescriptionSTYLE@", $troleDescriptionSTYLE);
+$DataRowFilledText = Replace($DataRowFilledText,"@troleSecurityLevel@", "&nbsp;");
+$troleSecurityLevelSTYLE = "TableRow" . $Style;
+$DataRowFilledText = Replace($DataRowFilledText,"@troleSecurityLevelSTYLE@", $troleSecurityLevelSTYLE);
 --$Seq;
 } while ($Seq > 0);
 endif;
@@ -762,7 +776,7 @@ global $IconNext;
 global $IconNextDisabled;
 global $IconLast;
 global $IconLastDisabled;
-global $oRStsubcateg;
+global $oRStrole;
 $iStart = ((($PageIndex - 1 ) * $RecordsPageSize ));
 $iEnd = ($PageIndex) * ($RecordsPageSize);
 
@@ -773,7 +787,7 @@ else:
 endif;
 $ref = "";
 if ($ShowDBNav == "TRUE"):
-$SearchPage = "Updatetsubcategsearch.php";
+$SearchPage = "Updatetrolesearch.php";
 $TableFooter .= ($iStart+1) . " - " . $iEnd . " of " . $TotalRecords ."<BR>";
 // okay this is the First Page
     $ref = "";
@@ -806,13 +820,13 @@ $TableFooter .= $ref;
     if ($ShowQuery == TRUE):
     // okay now the Query button
         $ref = "";
-        $ref .= "<a href=Updatetsubcateg" . "search.php><img src=\"" . $IconQuery . "\" border=\"" . $IconBorder . "\" height=\"" . $IconHeight . "\" width=\"" . $IconWidth . "\" alt=\"Search\"></a>";
+        $ref .= "<a href=Updatetrole" . "search.php><img src=\"" . $IconQuery . "\" border=\"" . $IconBorder . "\" height=\"" . $IconHeight . "\" width=\"" . $IconWidth . "\" alt=\"Search\"></a>";
 $TableFooter .= $ref;
     endif;
     if ($ShowAdd == TRUE):
     // okay now the Add button
         $ref = "";
-        $ref .= "<a href=Updatetsubcateg" . "add.php><img src=\"" . $IconAdd . "\" border=\"" . $IconBorder . "\" height=\"" . $IconHeight . "\" width=\"" . $IconWidth . "\" alt=\"Insert record\"></a>";
+        $ref .= "<a href=Updatetrole" . "add.php><img src=\"" . $IconAdd . "\" border=\"" . $IconBorder . "\" height=\"" . $IconHeight . "\" width=\"" . $IconWidth . "\" alt=\"Insert record\"></a>";
 $TableFooter .= $ref;
     endif;
 //okay now the Next Page

@@ -104,12 +104,11 @@ if (getSession("AuthStatus") != "Authorized"):
                     $_SESSION["pwd"] = $strPWd;
                     $_SESSION["AuthStatus"] = "Authorized";
                     $_SESSION["UserID"] = $objRS->fields["ID"];
-                    $_SESSION["UserName"] = $objRS->fields["LocalName"];
-                    $_SESSION["UserCompany"] = $objRS->fields["RoleID"];
+                    $_SESSION["UserCompany"] = $objRS->fields["CountryID"];
                     $_SESSION["UserValue1"] = $objRS->fields["CountryID"];
                     $_SESSION["UserValue2"] = $objRS->fields["BranchID"];
-                    $_SESSION["UserValue3"] = $objRS->fields["ID"];
-                    $_SESSION["UserLevel"] = $objRS->fields["RoleID"];
+                    $_SESSION["UserValue3"] = $objRS->fields["BranchID"];
+                    $_SESSION["UserLevel"] = $objRS->fields["SecurityLevel"];
 
                     if (getForm("frmUserSave") == "on"):
                       if (getSession("UserID") != ""):

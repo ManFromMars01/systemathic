@@ -16,7 +16,7 @@ session_start();
 ===================================================================
 */
 $PageLevel = 0;
-$PageLevel = 50;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -337,13 +337,6 @@ else:
     endif;
 endif;
 
-// --add the additional "myRecords" ownership clause
-$strMyQuote = getQuote($objConn1,"tteacher", "tteacher.CountryID");
-if ($myWhere != ""):
-    $myWhere .= " AND ";
-endif;
-$myWhere .= "tteacher.CountryID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote;
-$_SESSION["BrowseTeacher#WHR"] = $myWhere;
 $mySQL = $myQuery;
 // -- test for any value in the myWhere, if valid concatenate the clause
 if ($myWhere != ""):
@@ -816,7 +809,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tteacherAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetteacherview.php?ID1=";
+            $myLink = "<a href=\"Updatetteacheredit.php?ID1=";
                     $tteacherAutomaticDetailLink = $myLink;
                       $tteacherAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStteacher->fields["CountryID"]))) . "'" ;
                     $tteacherAutomaticDetailLink .=  "&ID2=" . "'";
@@ -824,7 +817,7 @@ $Seq = 0;
                     $tteacherAutomaticDetailLink .=  "&ID3=" . "'";
                     $tteacherAutomaticDetailLink .= htmlEncode(trim(getValue($oRStteacher->fields["ID"]))) . "'";
             $tmpIMG_tteacherAutomaticDetailLink = "";
-            $tmpIMG_tteacherAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"\">";
+            $tmpIMG_tteacherAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
                 $tteacherAutomaticDetailLink .= "\">" . $tmpIMG_tteacherAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tteacherCountryIDSTYLE = "TableRow" . $Style;

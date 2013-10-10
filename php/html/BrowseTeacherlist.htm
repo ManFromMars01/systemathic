@@ -31,15 +31,6 @@ function ShowHelp(myURL) {
     var remote = open(myURL, "Help", HelpStyle);                  
     if (remote.opener == null) remote.opener = window;
 }
-function updateData(data) {
-    if (opener != null) {
-        opener.dataRefresh(data);
-        self.close;
-        }
-    else {      
-    history.back();
-    }
-}
 //-->
 </script>
 <!--@HEAD_AFTER_OPEN@-->
@@ -53,26 +44,27 @@ function updateData(data) {
 <!--@BG_AFTER_OPEN@-->
     <table class="Data" cellspacing="1">
 <tr>
-    <td ALIGN="left" COLSPAN="8" width="80%" class="Header">Browse the Teacher List</td>
+    <td ALIGN="left" COLSPAN="9" width="80%" class="Header">Browse the Teacher List</td>
     <td ALIGN="right" VALIGN="top" class="Header">&nbsp;
           <a href="JAVASCRIPT:ShowHelp('BrowseTeacherListHelp.htm');"><img alt="Help" src="/images/help.gif" border=0 height=20 width=20></a><a href="JAVASCRIPT:history.back();"><img alt="Back" src="/images/back.gif" border=0 height=20 width=20></a>
     </td>    
 </tr>
 <!--BEGIN SEARCHFIELD-->
 <tr>
-    <td colspan="9" class="Header" align="Right">@SearchMessage@</td>
+    <td colspan="10" class="Header" align="Right">@SearchMessage@</td>
 </tr>
 <!--END SEARCHFIELD-->
 <!--BEGIN COLUMNLABEL-->
 <tr>
     <td class="ColumnLabel" align="Left" width="">@CountryIDLABEL@</td>
     <td class="ColumnLabel" align="Left" width="">@BranchIDLABEL@</td>
-    <td class="ColumnLabel" align="Right" width="">@IDLABEL@</td>
+    <td class="ColumnLabel" align="Left" width="">@IDLABEL@</td>
+    <td class="ColumnLabel" align="Left" width="">@PasswordLABEL@</td>
     <td class="ColumnLabel" align="Left" width="">@NameLABEL@</td>
+    <td class="ColumnLabel" align="Left" width="">@LocalNameLABEL@</td>
     <td class="ColumnLabel" align="Right" width="">@DateStartLABEL@</td>
     <td class="ColumnLabel" align="Left" width="">@PhoneNoLABEL@</td>
     <td class="ColumnLabel" align="Left" width="">@MobileNoLABEL@</td>
-    <td class="ColumnLabel" align="Left" width="">@EmailLABEL@</td>
     <td class="ColumnLabel" align="Center" >Edit Record</td>
 </tr>
 <!--END COLUMNLABEL-->
@@ -80,21 +72,22 @@ function updateData(data) {
 <tr>
     <td class="@tteacherCountryIDSTYLE@" align="Left" width="">@tteacherCountryID@&nbsp;</td>
     <td class="@tteacherBranchIDSTYLE@" align="Left" width="">@tteacherBranchID@&nbsp;</td>
-    <td class="@tteacherIDSTYLE@" align="Right" width="">@tteacherID@&nbsp;</td>
+    <td class="@tteacherIDSTYLE@" align="Left" width="">@tteacherID@&nbsp;</td>
+    <td class="@tteacherPasswordSTYLE@" align="Left" width="">@tteacherPassword@&nbsp;</td>
     <td class="@tteacherNameSTYLE@" align="Left" width="">@tteacherName@&nbsp;</td>
+    <td class="@tteacherLocalNameSTYLE@" align="Left" width="">@tteacherLocalName@&nbsp;</td>
     <td class="@tteacherDateStartSTYLE@" align="Right" width="">@tteacherDateStart@&nbsp;</td>
     <td class="@tteacherPhoneNoSTYLE@" align="Left" width="">@tteacherPhoneNo@&nbsp;</td>
     <td class="@tteacherMobileNoSTYLE@" align="Left" width="">@tteacherMobileNo@&nbsp;</td>
-    <td class="@tteacherEmailSTYLE@" align="Left" width="">@tteacherEmail@&nbsp;</td>
     <td class="@tteacherAutomaticDetailLinkSTYLE@" align="Center">@tteacherAutomaticDetailLink@</td>
 </tr>
 <!--END ROWDATA-->
 <!--BEGIN FOOTER-->
 <tr>
-    <td colspan="9" class="Footer">@SearchMessage@</td>
+    <td colspan="10" class="Footer">@SearchMessage@</td>
 </tr>
 <tr>
-    <td colspan="9" class="Footer">@TableFooter@</td>
+    <td colspan="10" class="Footer">@TableFooter@</td>
 </tr>
 <!--END FOOTER-->
 </table>
