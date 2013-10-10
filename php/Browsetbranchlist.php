@@ -43,7 +43,13 @@ include_once('utils.php');
 include('login.php');
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
-// $RecordsPerPage = ##;
+//Count me
+//Count me
+$myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tbranch  WHERE tbranch.CountryID ='".$_SESSION['UserValue1']."' ORDER BY tbranch.CountryID ASC";
+$oRStcustomers = $objConn1->Execute($myRecordCount2);
+$TotalRecords1 = $oRStcustomers->fields["MyCount"];
+$RecordsPerPage = $TotalRecords1;
+
 $HeaderText = "";
 $TemplateText = "";
 $DataRowEmptyText = "";
@@ -345,7 +351,10 @@ else:
 endif;
 $oRStbranch = $objConn1->Execute($myRecordCount);
 $TotalRecords = $oRStbranch->fields["MyCount"];
+
+
 $MaxPages     = round(($TotalRecords / $RecordsPageSize));
+$RecordsPerPage = $TotalRecords;
 if($TotalRecords > ($MaxPages*$RecordsPageSize)):
     $MaxPages++;
 endif;
@@ -761,13 +770,13 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tbranchAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetbranchedit.php?ID1=";
+            $myLink = "<a class='btn btn-info' href=\"Updatetbranchedit.php?ID1=";
                     $tbranchAutomaticDetailLink = $myLink;
                       $tbranchAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStbranch->fields["CountryID"]))) . "'" ;
                     $tbranchAutomaticDetailLink .=  "&ID2=" . "'";
                     $tbranchAutomaticDetailLink .= htmlEncode(trim(getValue($oRStbranch->fields["BranchID"]))) . "'";
             $tmpIMG_tbranchAutomaticDetailLink = "";
-            $tmpIMG_tbranchAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
+            $tmpIMG_tbranchAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
                 $tbranchAutomaticDetailLink .= "\">" . $tmpIMG_tbranchAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tbranchCountryIDSTYLE = "TableRow" . $Style;

@@ -1,3 +1,20 @@
+<?php 
+session_set_cookie_params(500);
+session_start();
+$PageLevel = 0;
+$PageLevel = 1;
+include_once('systemathicappdata.php');
+include_once('ConnInfo.php');
+
+$objConn1 = &ADONewConnection($Driver1);
+$objConn1->debug = $DebugMode;
+$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+include_once('utils.php');
+include('login.php');
+
+?>
+
+
 <?php include('template/header.php') ?>	
 <div id="content" class="span10">
 			<!-- content starts -->

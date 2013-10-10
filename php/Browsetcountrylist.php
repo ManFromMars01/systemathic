@@ -47,8 +47,14 @@ else:
   $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"];
 endif;
 $HTML_Template = getRequest("HTMLT");
+
 // display of the number of records can be overridden by uncommenting the next line
 // $RecordsPerPage = ##;
+$myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tcountry  WHERE tcountry.ID ='".$_SESSION['UserValue1']."' ORDER BY tcountry.ID ASC";
+$oRStcustomers = $objConn1->Execute($myRecordCount2);
+$TotalRecords1 = $oRStcustomers->fields["MyCount"];
+$RecordsPerPage = $TotalRecords1;
+
 $HeaderText = "";
 $TemplateText = "";
 $DataRowEmptyText = "";
@@ -394,6 +400,8 @@ function MergeBrowsetcountryListTemplate($Template) {
     global $MainContent;
     global $Menu;
     global $userdata1;
+
+
     if($Template == ""):
         $Template = "./html/Browsetcountrylist.htm";
     endif;      
@@ -676,19 +684,19 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tcountryAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetcountryedit.php?ID1=";
+            $myLink = "<a class='btn btn-info' href=\"Updatetcountryedit.php?ID1=";
                     $tcountryAutomaticDetailLink = $myLink;
                       $tcountryAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStcountry->fields["ID"]))) . "'" ;
             $tmpIMG_tcountryAutomaticDetailLink = "";
-            $tmpIMG_tcountryAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
+            $tmpIMG_tcountryAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
                 $tcountryAutomaticDetailLink .= "\">" . $tmpIMG_tcountryAutomaticDetailLink . "</a>";
     $tcountryAddCenterSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Browsetbranchlist.php?ID1=";
+            $myLink = "<a class='btn btn-info' href=\"Browsetbranchlist.php?ID1=";
                     $tcountryAddCenter = $myLink;
                       $tcountryAddCenter .= "'" . htmlEncode(trim(getValue($oRStcountry->fields["ID"]))) . "'" ;
             $tmpIMG_tcountryAddCenter = "";
-            $tmpIMG_tcountryAddCenter = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Add Center\">";
+            $tmpIMG_tcountryAddCenter = "<i class='icon-edit icon-white'></i> Add Center";
                 $tcountryAddCenter .= "\">" . $tmpIMG_tcountryAddCenter . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tcountryIDSTYLE = "TableRow" . $Style;

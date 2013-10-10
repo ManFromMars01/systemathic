@@ -43,14 +43,14 @@ include_once('utils.php');
 include('login.php');
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
-
 //Count me
-$myWhere2 .= "tcustomer.CountryID ='".$_SESSION["UserValue1"]."' AND tcustomer.CustType = 'Assessment' ";
-$myRecordCount2 = "SELECT COUNT(*) AS MyCount  FROM tcustomer WHERE " .$myWhere2 ;
+$myWhere2 .= "tcustomer.CountryID ='".$_SESSION["UserValue1"]."' AND tcustomer.CustType = 'ReEnrollee' ";
+$myRecordCount2 = "SELECT COUNT(tcustomer.CountryID) AS MyCount  FROM tcustomer WHERE " .$myWhere2 ;
 $oRStcustomers = $objConn1->Execute($myRecordCount2);
 $TotalRecords1 = $oRStcustomers->fields["MyCount"];
 //endcountme
 
+// display of the number of records can be overridden by uncommenting the next line
 $RecordsPerPage = $TotalRecords1;
 $HeaderText = "";
 $TemplateText = "";
@@ -343,12 +343,11 @@ endif;
 
 // --add the additional "myRecords" ownership clause
 $strMyQuote = getQuote($objConn1,"tcustomer", "tcustomer.CountryID");
+var_dump($strMyQuote);
 if ($myWhere != ""):
     $myWhere .= " AND ";
 endif;
-//$myWhere .= "tcustomer.CountryID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote;
-$myWhere .= "tcustomer.CountryID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote."AND tcustomer.CustType = 'Assessment' ";
-
+$myWhere .= "tcustomer.CountryID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote."AND tcustomer.CustType = 'ReEnrollee' ";
 
 
 $_SESSION["BrowseStudent#WHR"] = $myWhere;

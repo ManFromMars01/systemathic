@@ -47,6 +47,14 @@ else:
   $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"];
 endif;
 $HTML_Template = getRequest("HTMLT");
+
+$myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tassessment  WHERE tassessment.CountryID ='".$_SESSION['UserValue1']."' AND tassessment.BranchID = '".$_SESSION['UserValue2']."' ORDER BY tassessment.CountryID ASC";
+$oRStcustomers = $objConn1->Execute($myRecordCount2);
+$TotalRecords1 = $oRStcustomers->fields["MyCount"];
+$RecordsPerPage = $TotalRecords1;
+
+
+
 // display of the number of records can be overridden by uncommenting the next line
 // $RecordsPerPage = ##;
 $HeaderText = "";
@@ -576,7 +584,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tassessmentAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetassessmentedit.php?ID1=";
+            $myLink = "<a class='btn btn-info' href=\"Updatetassessmentedit.php?ID1=";
                     $tassessmentAutomaticDetailLink = $myLink;
                       $tassessmentAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStassessment->fields["CountryID"]))) . "'" ;
                     $tassessmentAutomaticDetailLink .=  "&ID2=" . "'";
@@ -584,7 +592,7 @@ $Seq = 0;
                     $tassessmentAutomaticDetailLink .=  "&ID3=";
                     $tassessmentAutomaticDetailLink .= htmlEncode(trim(getValue($oRStassessment->fields["ID"])));
             $tmpIMG_tassessmentAutomaticDetailLink = "";
-            $tmpIMG_tassessmentAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
+            $tmpIMG_tassessmentAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
                 $tassessmentAutomaticDetailLink .= "\">" . $tmpIMG_tassessmentAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tassessmentCountryIDSTYLE = "TableRow" . $Style;

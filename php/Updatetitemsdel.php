@@ -147,7 +147,10 @@ if (!$myFormAction == "3"):
     $ClarionData .= "<input type='submit' value='Delete' id='submit1' name='submit1' title='Delete this record'>\n";
     $ClarionData .= "</form>\n";
     $ClarionData .= "</td></tr></table></div>\n";
-    MergeDelTemplate($HTML_Template);
+    
+    $myStatus = array('statusme' => $ClarionData);
+    echo json_encode($myStatus);
+    //MergeDelTemplate($HTML_Template);
     exit;
 else:
     if ($objConn1->Affected_Rows() == 0):
@@ -172,7 +175,13 @@ else:
         endif;
     endif;
     $ClarionData .= "</td></tr></table></div>\n";
-    MergeDelTemplate($HTML_Template);
+    
+    $myStatus = array('statusme' => $myStatus);
+    echo json_encode($myStatus);
+
+    //MergeDelTemplate($HTML_Template);
+
+
 endif;
 $objConn1->Close();
 unset($objConn1);
