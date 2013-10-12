@@ -67,6 +67,6 @@ $Header = file_get_contents('template/header.php', true);
 $Footer = file_get_contents('template/footer.php', true);
 $MainContent = $_SESSION['UserValue1'];
 $Menu = file_get_contents('template/stat.php', true);
-$Xmenu = "xmenu"; 
+$Myname = $_SESSION['myname']; 
 
 ?>

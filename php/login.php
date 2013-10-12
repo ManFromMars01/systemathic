@@ -109,6 +109,7 @@ if (getSession("AuthStatus") != "Authorized"):
                     $_SESSION["UserValue2"] = $objRS->fields["BranchID"];
                     $_SESSION["UserValue3"] = $objRS->fields["BranchID"];
                     $_SESSION["UserLevel"] = $objRS->fields["SecurityLevel"];
+                    $_SESSION["myname"]   =  $objRS->fields["LocalName"];
 
                     if (getForm("frmUserSave") == "on"):
                       if (getSession("UserID") != ""):

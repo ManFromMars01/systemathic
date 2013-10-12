@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(500);
 session_start();
 /*
 ===================================================================
@@ -112,6 +113,7 @@ function  MergeUpdateeattheadTemplate($Template){
     global $Footer;   
     global $MainContent;   
     global $Menu;   
+    global $userdata1;   
     global $ID1;
     global $ID2;
     global $ID3;
@@ -269,6 +271,7 @@ function  MergeUpdateeattheadTemplate($Template){
     $TemplateText = Replace($TemplateText,"@Footer@", $Footer);    
     $TemplateText = Replace($TemplateText,"@MainContent@", $MainContent);    
     $TemplateText = Replace($TemplateText,"@Menu@", $Menu);    
+    $TemplateText = Replace($TemplateText,"@userdata1@", $userdata1);    
     print($TemplateText);
 }
 if (getRequest("ID1") == ""):

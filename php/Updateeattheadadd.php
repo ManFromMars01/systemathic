@@ -13,6 +13,7 @@
  application along with the HTML template
 ===================================================================
 */
+session_set_cookie_params(500);
 session_start();
 $PageLevel = 0;
 $PageLevel = 1;
@@ -48,6 +49,7 @@ function MergeAddTemplate($Template) {
     global $Footer;   
     global $MainContent;   
     global $Menu;   
+    global $userdata1;   
 
     if(!isset($Template) || ($Template =="")):
         $Template =  "./html/Updateeattheadadd.htm";
@@ -510,6 +512,7 @@ function MergeAddTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+    $TemplateText = Replace($TemplateText, "@userdata1@", $userdata1);
     print($TemplateText);
 } // END Function
 include_once('ConnInfo.php');

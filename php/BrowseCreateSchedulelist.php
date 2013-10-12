@@ -1,6 +1,7 @@
 <?PHP
 session_set_cookie_params(500);
 session_start();
+unset( $_SESSION["BrowseCreateSchedule#WHR"]);
 /*
 ===================================================================
 ------------------ Notice to Web Page Designers! ------------------

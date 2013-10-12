@@ -725,6 +725,7 @@ function MergeSearchTemplate($Template) {
     global $Footer;
     global $MainContent;
     global $Menu;
+    global $userdata1;
     if(!isset($Template) || ($Template =="")):
         $Template = "./html/Updateeatthead" . "search.htm";
     endif;
@@ -1184,6 +1185,7 @@ function MergeSearchTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+    $TemplateText = Replace($TemplateText, "@userdata1@", $userdata1);
     print $TemplateText;
 }
 

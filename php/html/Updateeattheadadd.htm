@@ -1,0 +1,525 @@
+@Header@
+<div id="content" class="span10">
+            <!-- content starts -->
+            <div>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Home</a> <span class="divider">/</span>
+                    </li>
+                    <li>
+                        <a href="#">Forms</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="row-fluid sortable">
+                <div class="box span12">
+                    <div class="box-header well" data-original-title>
+                        <h2><i class="icon-edit"></i> Create Schedule </h2>
+                        <div class="box-icon">
+                            <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+                        </div>
+                    </div>
+                    <div class="box-content">
+                        <form class="form-horizontal" action="@UpdatetStudentFormAction@"  id="form23" name="form23" method="post" >
+                          <fieldset>
+                           <input type="hidden" id="MODE" name="MODE" value="1">
+
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Country ID:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadCountryID"  type="text" value="">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Branch ID:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadBranchID"  type="text" value="">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Admit Date:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadAdmitDate"  type="text" value="@eattheadAdmitDate@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Custo No. </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadCustNo"  type="text" value="@eattheadCustNo@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Level ID:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadLevelID" id="focusedInput" type="text" value="@eattheadLevelID@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Tier ID:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadTierID"  type="text" value="@eattheadTierID@">
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Mod Count:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadModCount" type="text" value="@eattheadModCount@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Start Date:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadStartDate"  type="text" value="@eattheadStartDate@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">End Date:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadEndDate"  type="text" value="@eattheadEndDate@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Status:</label>
+                                <div class="controls">
+                                  <select id="txteattheadStatus" name="txteattheadStatus"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadStatus)" title="">
+                                     <option value="Temporary"  @SELECTEDF5_20_1@>Temporary</option>          
+                                     <option value="Wait List"  @SELECTEDF5_20_2@>Wait List</option>          
+                                     <option value="Final"  @SELECTEDF5_20_3@>Final</option>          
+                                  </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Class Status:</label>
+                                <div class="controls">
+                                  <select id="txteattheadClassStatus" name="txteattheadClassStatus"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadClassStatus)" title="">
+                                     <option value="Closed"  @SELECTEDF5_21_1@>Closed</option>          
+                                     <option value="Open"  @SELECTEDF5_21_2@>Open</option>          
+                                   </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 1:</label>
+                                <div class="controls">
+                                  <select id="txteattheadDay1" name="txteattheadDay1"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadDay1)" title="">
+                                     <option value="Monday"  @SELECTEDF5_22_1@>Monday</option>          
+                                     <option value="Tuesday"  @SELECTEDF5_22_2@>Tuesday</option>          
+                                     <option value="Wednesday"  @SELECTEDF5_22_3@>Wednesday</option>          
+                                     <option value="Thursday"  @SELECTEDF5_22_4@>Thursday</option>          
+                                     <option value="Friday"  @SELECTEDF5_22_5@>Friday</option>          
+                                     <option value="Saturday"  @SELECTEDF5_22_6@>Saturday</option>          
+                                     <option value="Sunday"  @SELECTEDF5_22_7@>Sunday</option>          
+                                   </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 2:</label>
+                                <div class="controls">
+                                  <select name="txteattheadDay2"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadDay1)" title="">
+                                    <option value="Monday"  @SELECTEDF5_23_1@>Monday</option>          
+                                     <option value="Tuesday"  @SELECTEDF5_23_2@>Tuesday</option>          
+                                     <option value="Wednesday"  @SELECTEDF5_23_3@>Wednesday</option>          
+                                     <option value="Thursday"  @SELECTEDF5_23_4@>Thursday</option>          
+                                     <option value="Friday"  @SELECTEDF5_23_5@>Friday</option>          
+                                     <option value="Saturday"  @SELECTEDF5_23_6@>Saturday</option>          
+                                     <option value="Sunday"  @SELECTEDF5_23_7@>Sunday</option>               
+                                   </select>
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 3:</label>
+                                <div class="controls">
+                                  <select  name="txteattheadDay3"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadDay1)" title="">
+                                    <option value="Monday"  @SELECTEDF5_24_1@>Monday</option>          
+                                     <option value="Tuesday"  @SELECTEDF5_24_2@>Tuesday</option>          
+                                     <option value="Wednesday"  @SELECTEDF5_24_3@>Wednesday</option>          
+                                     <option value="Thursday"  @SELECTEDF5_24_4@>Thursday</option>          
+                                     <option value="Friday"  @SELECTEDF5_24_5@>Friday</option>          
+                                     <option value="Saturday"  @SELECTEDF5_24_6@>Saturday</option>          
+                                     <option value="Sunday"  @SELECTEDF5_24_7@>Sunday</option>            
+                                   </select>
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 4:</label>
+                                <div class="controls">
+                                  <select name="txteattheadDay4"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadDay1)" title="">
+                                    <option value="Monday"  @SELECTEDF5_25_1@>Monday</option>          
+                                     <option value="Tuesday"  @SELECTEDF5_25_2@>Tuesday</option>          
+                                     <option value="Wednesday"  @SELECTEDF5_25_3@>Wednesday</option>          
+                                     <option value="Thursday"  @SELECTEDF5_25_4@>Thursday</option>          
+                                     <option value="Friday"  @SELECTEDF5_25_5@>Friday</option>          
+                                     <option value="Saturday"  @SELECTEDF5_25_6@>Saturday</option>          
+                                     <option value="Sunday"  @SELECTEDF5_25_7@>Sunday</option>              
+                                   </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 5:</label>
+                                <div class="controls">
+                                  <select name="txteattheadDay5"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadDay1)" title="">
+                                        <option value="Monday"  @SELECTEDF5_26_1@>Monday</option>          
+                                         <option value="Tuesday"  @SELECTEDF5_26_2@>Tuesday</option>          
+                                         <option value="Wednesday"  @SELECTEDF5_26_3@>Wednesday</option>          
+                                         <option value="Thursday"  @SELECTEDF5_26_4@>Thursday</option>          
+                                         <option value="Friday"  @SELECTEDF5_26_5@>Friday</option>          
+                                         <option value="Saturday"  @SELECTEDF5_26_6@>Saturday</option>          
+                                         <option value="Sunday"  @SELECTEDF5_26_7@>Sunday</option>            
+                                   </select>
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 6:</label>
+                                <div class="controls">
+                                  <select name="txteattheadDay6"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadDay1)" title="">
+                                    <option value="Monday"  @SELECTEDF5_27_1@>Monday</option>          
+                                     <option value="Tuesday"  @SELECTEDF5_27_2@>Tuesday</option>          
+                                     <option value="Wednesday"  @SELECTEDF5_27_3@>Wednesday</option>          
+                                     <option value="Thursday"  @SELECTEDF5_27_4@>Thursday</option>          
+                                     <option value="Friday"  @SELECTEDF5_27_5@>Friday</option>          
+                                     <option value="Saturday"  @SELECTEDF5_27_6@>Saturday</option>          
+                                     <option value="Sunday"  @SELECTEDF5_27_7@>Sunday</option>       
+                                   </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 7:</label>
+                                <div class="controls">
+                                  <select id="txteattheadDay7" name="txteattheadDay7"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadDay1)" title="">
+                                    <option value="Monday"  @SELECTEDF5_28_1@>Monday</option>          
+                                     <option value="Tuesday"  @SELECTEDF5_28_2@>Tuesday</option>          
+                                     <option value="Wednesday"  @SELECTEDF5_28_3@>Wednesday</option>          
+                                     <option value="Thursday"  @SELECTEDF5_28_4@>Thursday</option>          
+                                     <option value="Friday"  @SELECTEDF5_28_5@>Friday</option>          
+                                     <option value="Saturday"  @SELECTEDF5_28_6@>Saturday</option>          
+                                     <option value="Sunday"  @SELECTEDF5_28_7@>Sunday</option>        
+                                   </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr Fr1:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrFr1"  type="text" value="@eattheadHrFr1@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr Fr2:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrFr2"  type="text" value="@eattheadHrFr2@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr Fr3:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrFr3"  type="text" value="@eattheadHrFr3@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr Fr4:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrFr4"  type="text" value="@eattheadHrFr4@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr Fr5:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrFr5"  type="text" value="@eattheadHrFr5@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr Fr6:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrFr6"  type="text" value="@eattheadHrFr6@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr Fr7:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrFr7"  type="text" value="@eattheadHrFr7@">
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr tO 1:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrTo1"  type="text" value="@eattheadHrTo1@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr tO2:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrTo2"  type="text" value="@eattheadHrTo2@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr To3:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrTo3"  type="text" value="@eattheadHrTo3@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr To4:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrTo4"  type="text" value="@eattheadHrTo4@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr To5:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrTo5"  type="text" value="@eattheadHrTo5@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr To6:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrTo6"  type="text" value="@eattheadHrTo6@">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Hr To7:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadHrTo7"  type="text" value="@eattheadHrTo7@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Rm 1: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadRm1"  type="text" value="@eattheadRm1@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Rm 2: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadRm2"  type="text" value="@eattheadRm2@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Rm 3: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadRm3"  type="text" value="@eattheadRm3@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Rm 4: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadRm4"  type="text" value="@eattheadRm4@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Rm 5: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadRm5"  type="text" value="@eattheadRm5@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Rm 6: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadRm6"  type="text" value="@eattheadRm6@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Rm 7: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadRm7"  type="text" value="@eattheadRm7@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Teacher 1 : </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadTeaID1"  type="text" value="@eattheadTeaID1@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Teacher 2 : </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadTeaID2"  type="text" value="@eattheadTeaID2@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Teacher 3: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadTeaID3"  type="text" value="@eattheadTeaID3@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Teacher 4 : </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadTeaID4"  type="text" value="@eattheadTeaID4@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Teacher 5 : </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadTeaID5"  type="text" value="@eattheadTeaID5@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Teacher 6 : </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadTeaID6"  type="text" value="@eattheadTeaID6@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Teacher 7 : </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadTeaID7"  type="text" value="@eattheadTeaID7@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 1 : </label>
+                                <div class="controls">
+                                  <input type="CHECKBOX" id="txteattheadDayNo1" name="txteattheadDayNo1" title=""  @eattheadDayNo1@ >
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 2 : </label>
+                                <div class="controls">
+                                  <input type="CHECKBOX" id="txteattheadDayNo2" name="txteattheadDayNo2"   title=""  @eattheadDayNo2@ >
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 3 : </label>
+                                <div class="controls">
+                                  <input type="CHECKBOX" id="txteattheadDayNo3" name="txteattheadDayNo3"   title=""  @eattheadDayNo3@ >
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 4 : </label>
+                                <div class="controls">
+                                  <input type="CHECKBOX" id="txteattheadDayNo4" name="txteattheadDayNo4"   title=""  @eattheadDayNo4@ >
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 5 : </label>
+                                <div class="controls">
+                                  <input type="CHECKBOX" id="txteattheadDayNo5" name="txteattheadDayNo5"   title=""  @eattheadDayNo5@ >
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 6 : </label>
+                                <div class="controls">
+                                  <input type="CHECKBOX" id="txteattheadDayNo6" name="txteattheadDayNo6"   title=""  @eattheadDayNo6@ >
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day 7 : </label>
+                                <div class="controls">
+                                  <input type="CHECKBOX" id="txteattheadDayNo7" name="txteattheadDayNo7"   title=""  @eattheadDayNo7@ >
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Session Per Day 1 : </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadSessionPrDay1"  type="text" value="@eattheadSessionPrDay1@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Session Per Day 2 : </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadSessionPrDay2"  type="text" value="@eattheadSessionPrDay2@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Session Per Day 3 : </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadSessionPrDay3"  type="text" value="@eattheadSessionPrDay3@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Session Per Day 4: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadSessionPrDay4"  type="text" value="@eattheadSessionPrDay4@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Session Per Day 5: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadSessionPrDay5"  type="text" value="@eattheadSessionPrDay5@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Session Per Day 6: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadSessionPrDay6"  type="text" value="@eattheadSessionPrDay6@">
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Session Per Day 7: </label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txteattheadSessionPrDay7"  type="text" value="@eattheadSessionPrDay7@">
+                                </div>
+                            </div>
+
+                            
+                            <div class="form-actions">
+                              <!--<button type="submit" value="Submit" class="btn btn-primary">Save changes</button>-->
+                              <button type="button"  class="btn btn-primary"  id="createsched">Save changes</button>
+                              <button type="reset" class="btn">Cancel</button>
+                            </div>
+                          </fieldset>
+                        </form> 
+                     
+
+                    </div>
+                </div><!--/span-->
+
+            </div><!--/row-->
+                    <!-- content ends -->
+            </div><!--/#content.span10-->
+@Footer@

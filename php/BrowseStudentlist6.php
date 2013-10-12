@@ -42,9 +42,9 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
 $HTML_Template = getRequest("HTMLT");
-// display of the number of records can be overridden by uncommenting the next line
+
 //Count me
-$myWhere2 .= "tcustomer.CountryID ='".$_SESSION["UserValue1"]."' AND tcustomer.CustType = 'ReEnrollee' ";
+$myWhere2 .= "tcustomer.CountryID ='".$_SESSION["UserValue1"]."' AND tcustomer.RegType = 'Admitted' ";
 $myRecordCount2 = "SELECT COUNT(tcustomer.CountryID) AS MyCount  FROM tcustomer WHERE " .$myWhere2 ;
 $oRStcustomers = $objConn1->Execute($myRecordCount2);
 $TotalRecords1 = $oRStcustomers->fields["MyCount"];
@@ -346,7 +346,7 @@ $strMyQuote = getQuote($objConn1,"tcustomer", "tcustomer.CountryID");
 if ($myWhere != ""):
     $myWhere .= " AND ";
 endif;
-$myWhere .= "tcustomer.CountryID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote."AND tcustomer.CustType = 'ReEnrollee' ";
+$myWhere .= "tcustomer.CountryID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote."AND tcustomer.RegType = 'Admitted' ";
 
 
 $_SESSION["BrowseStudent#WHR"] = $myWhere;
@@ -509,7 +509,8 @@ function MergeBrowseStudentListTemplate($Template) {
     if(! empty($RemainderText)):
         $TemplateText .= $RemainderText;
     endif;
-    $PageName     = "Re-Enrolee";
+
+    $PageName     = "Admitted";
     $TemplateText = Replace($TemplateText,"@PageName@", $PageName);
     $TemplateText = Replace($TemplateText, "@Header@", $Header);
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);

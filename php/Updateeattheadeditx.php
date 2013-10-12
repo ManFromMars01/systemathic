@@ -13,6 +13,7 @@
  application along with the HTML template
 ===================================================================
 */
+session_set_cookie_params(500);
 session_start();
 $PageLevel = 1;
 include_once('systemathicappdata.php');

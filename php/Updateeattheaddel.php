@@ -1,5 +1,6 @@
 <?php
 ob_start();
+session_set_cookie_params(500);
 session_start();
 /*
 ===================================================================
@@ -52,6 +53,7 @@ function MergeDelTemplate($Template) {
     global $Footer;
     global $MainContent;
     global $Menu;
+    global $userdata1;
     $FileObject = fopen($Template, "r");
     $TemplateText = "";
     $TemplateText = fread($FileObject, filesize($Template));
@@ -82,6 +84,7 @@ function MergeDelTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+    $TemplateText = Replace($TemplateText, "@userdata1@", $userdata1);
     print($TemplateText);
 }
 

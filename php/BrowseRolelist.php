@@ -370,6 +370,7 @@ function MergeBrowseRoleListTemplate($Template) {
     global $ndxEnd;
     global $strLEN; 
     global $Header;
+    global $Header;
     global $Footer;
     global $MainContent;
     global $Menu;

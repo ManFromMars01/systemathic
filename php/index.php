@@ -56,7 +56,7 @@ include('login.php');
     <td width="16%"><a href="BrowseStudentlist3.php"><img  class="table101" src="template/img/admission-slice/admission.png"></a></td>
     <td width="3%" rowspan="7"> <img src="template/img/admission-slice/arrow2.png"></td>
     <td valign="bottom"><img src="template/img/admission-slice/arrow4.png" width="auto" height="auto"></td>
-    <td width="20%"><img  class="table101" src="template/img/admission-slice/studentfile.png"></td>
+    <td width="20%"><a href="BrowseStudentlist6.php"><img  class="table101" src="template/img/admission-slice/studentfile.png"></a></td>
     <td width="18%"> </td>
 </tr>
 
@@ -69,7 +69,7 @@ include('login.php');
 
 <tr>
 	<td height="85"><img  class="table101" src="template/img/admission-slice/trialclass.png"></td>
-    <td><img  class="table101" src="template/img/admission-slice/createsched.png"></td>
+    <td><a href="CreateScheduleWindowlist.php"><img  class="table101" src="template/img/admission-slice/createsched.png"></a></td>
     <td width="18%"><img  class="table101" src="template/img/admission-slice/books.png"></td>
     <td> <img  class="table101" src="template/img/admission-slice/attendance.png"></td>
     <td> <img  class="table101" src="template/img/admission-slice/progress.png"></td>
@@ -245,7 +245,7 @@ include('login.php');
 							</div>
 							<div class="tab-pane" id="create">
 								<img src="template/img/thumbs/schedule.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Create </button>
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <a href="CreateScheduleWindowlist.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Create </a>
 								
 							</div>
 							<div class="tab-pane" id="invoicing">

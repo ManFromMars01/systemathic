@@ -2,7 +2,7 @@
 <?php
 session_start();
 $myRole = getSession("UserCompany");
-$myName = getSession("UserName");
+$myName = $_SESSION["myname"];
 
 ?>
 <!DOCTYPE html>
@@ -48,7 +48,7 @@ $myName = getSession("UserName");
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="template/img/favicon.ico">
+	<link rel="shortcut icon" href="template/img/smlogo.png">
 	<!-- external javascript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -122,374 +122,19 @@ $myName = getSession("UserName");
 	<script src="template/js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="template/js/charisma.js"></script>	
-	<script src="template/js/jquery.validate.js"></script>
+	<script src="template/js/jquery.validate.min.js"></script>
 	<script>
 		//Update Student
 	$( document ).ready(function() {	
-		$('#savemeus').click(function(){
-			$.ajax({
-	            url: 'UpdatetStudenteditx.php',
-	            type: 'post',
-	            data: $('#form1').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		$('#savemes').click(function(){
-			$.ajax({
-	            url: 'UpdatetStudentaddx.php',
-	            type: 'post',
-	            data: $('#form5').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-
-
-		//Update ScheduleClass
-
-		$('#saveme').click(function(){
-			$.ajax({
-	            url: 'Updatetclassschededitx.php',
-	            type: 'post',
-	            data: $('#form2').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		// Adding Country
-		$('#saveme').click(function(){
-			$.ajax({
-	            url: 'Updatetcountryaddx.php',
-	            type: 'post',
-	            data: $('#form3').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-		// Adding Country
-		$('#savemec').click(function(){
-			$.ajax({
-	            url: 'Updatetcountryeditx.php',
-	            type: 'post',
-	            data: $('#form4').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		//Adding Department
-		$('#save_add_dept').click(function(){
-			$.ajax({
-	            url: 'Updatetdepartmentaddx.php',
-	            type: 'post',
-	            data: $('#form6').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		$('#save_upd_dept').click(function(){
-			$.ajax({
-	            url: 'Updatetdepartmenteditx.php',
-	            type: 'post',
-	            data: $('#form7').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-
-
-		//Adding Category
-		$('#save_add_cat').click(function(){
-			$.ajax({
-	            url: 'Updatetcategoryaddx.php',
-	            type: 'post',
-	            data: $('#form8').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		$('#save_upd_cat').click(function(){
-			$.ajax({
-	            url: 'Updatetcategoryeditx.php',
-	            type: 'post',
-	            data: $('#form9').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
 		
-		//Add Unit
-		$('#save_add_unit').click(function(){
-			$.ajax({
-	            url: 'Updatetunitmeasaddx.php',
-	            type: 'post',
-	            data: $('#form10').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		$('#save_upd_unit').click(function(){
-			$.ajax({
-	            url: 'Updatetunitmeaseditx.php',
-	            type: 'post',
-	            data: $('#form11').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-
-		//Add Manufacturer
-		$('#save_add_manufacturer').click(function(){
-			$.ajax({
-	            url: 'Updatetmanufactureraddx.php',
-	            type: 'post',
-	            data: $('#form12').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		$('#save_upd_manufacturer').click(function(){
-			$.ajax({
-	            url: 'Updatetmanufacturereditx.php',
-	            type: 'post',
-	            data: $('#form13').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		//add Location
-		$('#save_add_location').click(function(){
-			$.ajax({
-	            url: 'Updatetlocationaddx.php',
-	            type: 'post',
-	            data: $('#form14').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		$('#save_upd_location').click(function(){
-			$.ajax({
-	            url: 'Updatetlocationeditx.php',
-	            type: 'post',
-	            data: $('#form15').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-
-		//Add Branch
-
-		$('#save_add_branch').click(function(){
-			$.ajax({
-	            url: 'Updatetbranchaddx.php',
-	            type: 'post',
-	            data: $('#form16').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		$('#save_upd_branch').click(function(){
-			$.ajax({
-	            url: 'Updatetbrancheditx.php',
-	            type: 'post',
-	            data: $('#form17').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
 		
-
-		//add Assesment
-		$('#save_add_assessment').click(function(){
-			$.ajax({
-	            url: 'Updatetassessmentaddx.php',
-	            type: 'post',
-	            data: $('#form18').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		$('#save_upd_assessment').click(function(){
-			$.ajax({
-	            url: 'Updatetassessmenteditx.php',
-	            type: 'post',
-	            data: $('#form19').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-
-		//Add level
-		$('#save_add_level').click(function(){
-			$.ajax({
-	            url: 'Updatetleveladdx.php',
-	            type: 'post',
-	            data: $('#form21').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
-		$('#save_upd_level').click(function(){
-			$.ajax({
-	            url: 'Updatetleveleditx.php',
-	            type: 'post',
-	            data: $('#form22').serialize(),
-	            dataType: 'json',
-	            success: function (j) {
-	               console.log(j);
-	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
-	               $("#myModal").modal('show');
-	               
-	            }     
-        	});
-		});
-
 
 
 		
-		$('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
-
+		
 	});
+	
+
 	</script>
 		
 </head>
@@ -553,7 +198,7 @@ $myName = getSession("UserName");
 						<li><a class="ajax-link" href="utility.php"><img class="icon" src="template/img/redicons/tools.png"></img></i><span class="hidden-tablet"> Utility</span></a></li>
 						<li><a class="ajax-link" href="accounting.php"><img class="icon" src="template/img/redicons/calculator.png"></img><span class="hidden-tablet"> CMA Accounting</span></a></li>
 						
-						<?php if($myRole == 50): ?>
+						
 						<li class="nav-header hidden-tablet">Admin Section</li>
 						<li><a class="ajax-link" href="Browsetcountrylist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Country List</span></a></li>
 						<li><a class="ajax-link" href="BrowseDeptlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Department List</span></a></li>
@@ -563,7 +208,7 @@ $myName = getSession("UserName");
 						<li><a class="ajax-link" href="BrowseLocationlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Location</span></a></li>
 						<li><a class="ajax-link" href="BrowseItemslist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Book Item List</span></a></li>
 						<li><a class="ajax-link" href="BrowseAssessmentlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Assessment List</span></a></li>
-						<?php endif; ?>
+						
 
 						<li class="nav-header hidden-tablet">Design Section</li>
 						<li><a class="ajax-link" href="form.html"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Forms</span></a></li>

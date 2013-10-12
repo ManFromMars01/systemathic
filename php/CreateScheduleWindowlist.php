@@ -1,5 +1,4 @@
 <?PHP
-session_set_cookie_params(500);
 session_start();
 /*
 ===================================================================
@@ -16,7 +15,7 @@ session_start();
 ===================================================================
 */
 $PageLevel = 0;
-$PageLevel = 50;
+$PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
@@ -41,24 +40,26 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
+if($_SERVER["QUERY_STRING"] <> ""):
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"];
+else:
+  $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"];
+endif;
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
-//Count me
-$myWhere2 .= "tcustomer.CountryID ='".$_SESSION["UserValue1"]."' AND tcustomer.CustType = 'ReEnrollee' ";
-$myRecordCount2 = "SELECT COUNT(tcustomer.CountryID) AS MyCount  FROM tcustomer WHERE " .$myWhere2 ;
+
+$myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tcustomer  WHERE tcustomer.CountryID ='".$_SESSION['UserValue1']."' AND tcustomer.BranchID='".$_SESSION['UserValue2']."' AND tcustomer.RegType ='For Schedule'";
 $oRStcustomers = $objConn1->Execute($myRecordCount2);
 $TotalRecords1 = $oRStcustomers->fields["MyCount"];
-//endcountme
-
-// display of the number of records can be overridden by uncommenting the next line
 $RecordsPerPage = $TotalRecords1;
+
 $HeaderText = "";
 $TemplateText = "";
 $DataRowEmptyText = "";
 $DataRowFilledText = "";
 $FooterText = "";
 $RemainderText = "";
-$BrowseStudentRowData = "";
+$CreateScheduleWindowRowData = "";
 $ndxStart = "";
 $ndxEnd = "";
 $strLEN = "";
@@ -112,24 +113,24 @@ $valSQL = "";
 // --reset the where session variables if we find a reset string
 if (getRequest("RESETLIST") != ""):
     $myWhere = "";
-    $_SESSION["BrowseStudent#WHR"] = "";
-    $_SESSION["BrowseStudent#COL"] = "";
-    $_SESSION["BrowseStudent#SRT"] = "";
-    $_SESSION["BrowseStudent#PreviousColumn"] = "";
-    $_SESSION["BrowseStudent#PreviousSort"] = "";
-    $_SESSION["BrowseStudent#mySort"] = "";
-    $_SESSION["BrowseStudent#myOrder"] = "";    
+    $_SESSION["CreateScheduleWindow#WHR"] = "";
+    $_SESSION["CreateScheduleWindow#COL"] = "";
+    $_SESSION["CreateScheduleWindow#SRT"] = "";
+    $_SESSION["CreateScheduleWindow#PreviousColumn"] = "";
+    $_SESSION["CreateScheduleWindow#PreviousSort"] = "";
+    $_SESSION["CreateScheduleWindow#mySort"] = "";
+    $_SESSION["CreateScheduleWindow#myOrder"] = "";    
 endif;
 if (getServer("QUERY_STRING") == ""):
     if (strpos(strtolower(getServer("HTTP_REFERER")),"search.php") === false):
         $myWhere = "";
-        $_SESSION["BrowseStudent#WHR"] = "";
-        $_SESSION["BrowseStudent#COL"] = "";
-        $_SESSION["BrowseStudent#SRT"] = "";
-        $_SESSION["BrowseStudent#PreviousColumn"] = "";
-        $_SESSION["BrowseStudent#PreviousSort"] = "";
-        $_SESSION["BrowseStudent#mySort"] = "";
-        $_SESSION["BrowseStudent#myOrder"] = "";    
+        $_SESSION["CreateScheduleWindow#WHR"] = "";
+        $_SESSION["CreateScheduleWindow#COL"] = "";
+        $_SESSION["CreateScheduleWindow#SRT"] = "";
+        $_SESSION["CreateScheduleWindow#PreviousColumn"] = "";
+        $_SESSION["CreateScheduleWindow#PreviousSort"] = "";
+        $_SESSION["CreateScheduleWindow#mySort"] = "";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "";    
     endif;
 endif;
 
@@ -137,190 +138,194 @@ endif;
 if (getRequest("PageIndex") != ""):
     IF ((getGet("COL") . getGet("SRT") . getForm("SEARCH")) == ""):
         if (strpos($PHP_SELF, $_SERVER["HTTP_REFERER"]) != false):    
-            $_SESSION["BrowseStudent#COL"] = "";
-            $_SESSION["BrowseStudent#SRT"] = "";
-            $_SESSION["BrowseStudent#PreviousColumn"] = "";
-            $_SESSION["BrowseStudent#PreviousSort"] = "";
-            $_SESSION["BrowseStudent#mySort"] = "";
-            $_SESSION["BrowseStudent#myOrder"] = "";    
+            $_SESSION["CreateScheduleWindow#COL"] = "";
+            $_SESSION["CreateScheduleWindow#SRT"] = "";
+            $_SESSION["CreateScheduleWindow#PreviousColumn"] = "";
+            $_SESSION["CreateScheduleWindow#PreviousSort"] = "";
+            $_SESSION["CreateScheduleWindow#mySort"] = "";
+            $_SESSION["CreateScheduleWindow#myOrder"] = "";    
         endif;
     endif;
 endif;
 // --set the url for the column links
 $myPage = getServer("PHP_SELF");
 if (getRequest("COL") == ""):
-    $_SESSION["BrowseStudent#PreviousColumn"] = "";
+    $_SESSION["CreateScheduleWindow#PreviousColumn"] = "";
 else:
-    $_SESSION["BrowseStudent#PreviousColumn"] = getRequest("COL");
+    $_SESSION["CreateScheduleWindow#PreviousColumn"] = getRequest("COL");
 endif;
 
 if (getRequest("SRT") == ""):
-    $_SESSION["BrowseStudent#PreviousSort"] = "";
+    $_SESSION["CreateScheduleWindow#PreviousSort"] = "";
 else:
-    $_SESSION["BrowseStudent#PreviousSort"] = getRequest("SRT");
+    $_SESSION["CreateScheduleWindow#PreviousSort"] = getRequest("SRT");
 endif;
 
-if (getSession("BrowseStudent#COL") == ""):
-    if (getRequest("COL") . getSession("BrowseStudent#COL") == ""):
-        $_SESSION["BrowseStudent#COL"] = "CountryID";
+if (getSession("CreateScheduleWindow#COL") == ""):
+    if (getRequest("COL") . getSession("CreateScheduleWindow#COL") == ""):
+        $_SESSION["CreateScheduleWindow#COL"] = "CountryID";
     endif;
 endif;
 
 if (getRequest("COL") == "CountryID"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.CountryID DESC";
-        $_SESSION["BrowseStudent#mySort"] = "DESC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.CountryID DESC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.CountryID ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.CountryID ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseStudent#PreviousColumn")):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.CountryID ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("CreateScheduleWindow#PreviousColumn")):
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.CountryID ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseStudent#COL"] = "CountryID";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+    $_SESSION["CreateScheduleWindow#COL"] = "CountryID";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 if (getRequest("COL") == "BranchID"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.BranchID DESC";
-        $_SESSION["BrowseStudent#mySort"] = "DESC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.BranchID DESC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.BranchID ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.BranchID ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseStudent#PreviousColumn")):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.BranchID ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("CreateScheduleWindow#PreviousColumn")):
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.BranchID ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseStudent#COL"] = "BranchID";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+    $_SESSION["CreateScheduleWindow#COL"] = "BranchID";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 if (getRequest("COL") == "CustNo"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.CustNo DESC";
-        $_SESSION["BrowseStudent#mySort"] = "DESC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.CustNo DESC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.CustNo ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.CustNo ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseStudent#PreviousColumn")):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.CustNo ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("CreateScheduleWindow#PreviousColumn")):
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.CustNo ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseStudent#COL"] = "CustNo";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+    $_SESSION["CreateScheduleWindow#COL"] = "CustNo";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 if (getRequest("COL") == "StudentID"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.StudentID DESC";
-        $_SESSION["BrowseStudent#mySort"] = "DESC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.StudentID DESC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.StudentID ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.StudentID ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseStudent#PreviousColumn")):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.StudentID ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("CreateScheduleWindow#PreviousColumn")):
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.StudentID ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseStudent#COL"] = "StudentID";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+    $_SESSION["CreateScheduleWindow#COL"] = "StudentID";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 if (getRequest("COL") == "SurName"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.SurName DESC";
-        $_SESSION["BrowseStudent#mySort"] = "DESC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.SurName DESC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.SurName ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.SurName ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseStudent#PreviousColumn")):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.SurName ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("CreateScheduleWindow#PreviousColumn")):
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.SurName ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseStudent#COL"] = "SurName";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+    $_SESSION["CreateScheduleWindow#COL"] = "SurName";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 if (getRequest("COL") == "FirstName"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.FirstName DESC";
-        $_SESSION["BrowseStudent#mySort"] = "DESC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.FirstName DESC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.FirstName ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.FirstName ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseStudent#PreviousColumn")):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.FirstName ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("CreateScheduleWindow#PreviousColumn")):
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.FirstName ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseStudent#COL"] = "FirstName";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+    $_SESSION["CreateScheduleWindow#COL"] = "FirstName";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 if (getRequest("COL") == "MiddleName"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.MiddleName DESC";
-        $_SESSION["BrowseStudent#mySort"] = "DESC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.MiddleName DESC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.MiddleName ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.MiddleName ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseStudent#PreviousColumn")):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.MiddleName ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("CreateScheduleWindow#PreviousColumn")):
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.MiddleName ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseStudent#COL"] = "MiddleName";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+    $_SESSION["CreateScheduleWindow#COL"] = "MiddleName";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 if (getRequest("COL") == "LSurname"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.LSurname DESC";
-        $_SESSION["BrowseStudent#mySort"] = "DESC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.LSurname DESC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.LSurname ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.LSurname ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseStudent#PreviousColumn")):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.LSurname ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("CreateScheduleWindow#PreviousColumn")):
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.LSurname ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseStudent#COL"] = "LSurname";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+    $_SESSION["CreateScheduleWindow#COL"] = "LSurname";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 if (getRequest("COL") == "LFirstName"):
     if (getRequest("SRT") == "DESC"):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.LFirstName DESC";
-        $_SESSION["BrowseStudent#mySort"] = "DESC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.LFirstName DESC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "DESC";
     else:
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.LFirstName ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.LFirstName ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    if (getRequest("COL") != getSession("BrowseStudent#PreviousColumn")):
-        $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.LFirstName ASC";
-        $_SESSION["BrowseStudent#mySort"] = "ASC";
+    if (getRequest("COL") != getSession("CreateScheduleWindow#PreviousColumn")):
+        $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.LFirstName ASC";
+        $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
     endif;
-    $_SESSION["BrowseStudent#COL"] = "LFirstName";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+    $_SESSION["CreateScheduleWindow#COL"] = "LFirstName";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 $myQuery    = "SELECT tcustomer.CountryID, tcustomer.BranchID, tcustomer.CustNo, tcustomer.StudentID, tcustomer.SurName, tcustomer.FirstName, tcustomer.MiddleName, tcustomer.LSurname, tcustomer.LFirstName FROM tcustomer";
 if ( getRequest("WHR") != ""):
     $myWhere    =  getRequest("WHR");
-    $_SESSION["BrowseStudent#WHR"] =  getRequest("WHR");
-elseif (getSession("BrowseStudent#WHR") != ""):
-    $myWhere    = getSession("BrowseStudent#WHR");
+    $_SESSION["CreateScheduleWindow#WHR"] =  getRequest("WHR");
+elseif (getSession("CreateScheduleWindow#WHR") != ""):
+    $myWhere    = getSession("CreateScheduleWindow#WHR");
 endif;
-
+if ($myWhere == ""):
+    $myWhere = "tcustomer.regtype = 'For Schedule'";
+else:
+    $myWhere .= " AND tcustomer.regtype = 'For Schedule'";
+endif;
 if (getGet("RESETLIST") == "TRUE"):
-    $myWhere = "";
-    $_SESSION["BrowseStudent#WHR"] = "";
+    $myWhere = "tcustomer.regtype = 'For Schedule'";
+    $_SESSION["CreateScheduleWindow#WHR"] = $myWhere;
 endif;
 if ($myWhere == ""):
     if (getRequest("LOCATE") == "TRUE"):
@@ -328,7 +333,7 @@ if ($myWhere == ""):
       default:
         $myWhere = getRequest("FIELD") . " LIKE " . CHR(39) . $objConn1->addq(getRequest("SearchValue")) . "%" . CHR(39);
       }
-      $_SESSION["BrowseStudent#WHR"] = $myWhere;
+      $_SESSION["CreateScheduleWindow#WHR"] = $myWhere;
     endif;
 else:
     if(getRequest("LOCATE") == "TRUE"):
@@ -337,40 +342,27 @@ else:
         default:
           $myWhere .= getRequest("FIELD") . " LIKE " . CHR(39) . $objConn1->addq(getRequest("SearchValue")) . "%" . CHR(39);
         }
-        $_SESSION["BrowseStudent#WHR"] = $myWhere;
+        $_SESSION["CreateScheduleWindow#WHR"] = $myWhere;
     endif;
 endif;
 
-// --add the additional "myRecords" ownership clause
-$strMyQuote = getQuote($objConn1,"tcustomer", "tcustomer.CountryID");
-if ($myWhere != ""):
-    $myWhere .= " AND ";
-endif;
-$myWhere .= "tcustomer.CountryID = " . $strMyQuote . getSession("UserValue1") . $strMyQuote."AND tcustomer.CustType = 'ReEnrollee' ";
-
-
-$_SESSION["BrowseStudent#WHR"] = $myWhere;
 $mySQL = $myQuery;
-
-
-
-
 // -- test for any value in the myWhere, if valid concatenate the clause
 if ($myWhere != ""):
     $mySQL .= " WHERE " . $myWhere;
 endif;
 
 // --test for any value in myOrder, if empty set default
-if (getSession("BrowseStudent#myOrder") == ""):
-    $_SESSION["BrowseStudent#myOrder"] = "ORDER BY tcustomer.CountryID ASC";
-    $_SESSION["BrowseStudent#mySort"] = "ASC";
-    $_SESSION["BrowseStudent#COL"] = "CountryID";
-    $_SESSION["BrowseStudent#SRT"] = getSession("BrowseStudent#mySort");
+if (getSession("CreateScheduleWindow#myOrder") == ""):
+    $_SESSION["CreateScheduleWindow#myOrder"] = "ORDER BY tcustomer.CountryID ASC";
+    $_SESSION["CreateScheduleWindow#mySort"] = "ASC";
+    $_SESSION["CreateScheduleWindow#COL"] = "CountryID";
+    $_SESSION["CreateScheduleWindow#SRT"] = getSession("CreateScheduleWindow#mySort");
 endif;
 
 //--test for any value in myOrder, if valid concenate into the SQL statement
-if (getSession("BrowseStudent#myOrder") !=""):
-    $mySQL .= " " . getSession("BrowseStudent#myOrder");
+if (getSession("CreateScheduleWindow#myOrder") !=""):
+    $mySQL .= " " . getSession("CreateScheduleWindow#myOrder");
 endif;
 $RecordsPageSize = $RecordsPerPage;
 getGet("PageIndex") == "" ? $PageIndex = 1 : $PageIndex = getGet("PageIndex");
@@ -387,10 +379,9 @@ if($TotalRecords > ($MaxPages*$RecordsPageSize)):
 endif;
 $oRStcustomer->Close();
 $oRStcustomer = $objConn1->PageExecute($mySQL, $RecordsPerPage, $PageIndex);
-
 if (getGet("RESETLIST") == "TRUE"):
     $myWhere = "";
-    $_SESSION["BrowseStudent#WHR"] = "";
+    $_SESSION["CreateScheduleWindow#WHR"] = "";
 endif;
 
 $SearchField = "";
@@ -400,17 +391,17 @@ if ($oRStcustomer):
         if($oRStcustomer->RecordCount() > 0):
             $oRStcustomer->Move(0);         
             if(getRequest("LOCATE") == "TRUE"):
-                $SearchMessage =  "<A href=BrowseStudent" . "list.php?RESETLIST=TRUE>All data</A>";
+                $SearchMessage =  "<A href=CreateScheduleWindow" . "list.php?RESETLIST=TRUE>All data</A>";
             endif;
-            MergeBrowseStudentListTemplate($HTML_Template);
+            MergeCreateScheduleWindowListTemplate($HTML_Template);
         else:
-            MergeBrowseStudentListTemplate($HTML_Template);
+            NoRecordsFound();
         endif;
     else:
-        MergeBrowseStudentListTemplate($HTML_Template);
+        NoRecordsFound();
     endif;
 else:
-    MergeBrowseStudentListTemplate($HTML_Template);
+    NoRecordsFound();
 endif;
 
 $oRStcustomer->Close();
@@ -429,8 +420,8 @@ function NoRecordsFound() {
     $TemplateText = fread($FileObject, filesize($Template));
     fclose ($FileObject);
     $tmpMsg = "";
-    $tmpMsg = "<a href='BrowseStudent" . "list.php?RESETLIST=TRUE'>No records were found</a>";
-    $tmpMsg .= "<br><a href=UpdatetStudent" . "add.php>Insert record</a>";
+    $tmpMsg = "<a href='CreateScheduleWindow" . "list.php?RESETLIST=TRUE'>No records were found</a>";
+    $tmpMsg .= "<br><a href=Updatetcustomer" . "add.php>Insert record</a>";
     $TemplateText = Replace($TemplateText,"@ClarionData@",$tmpMsg);
     print ($TemplateText);
     exit;
@@ -438,10 +429,10 @@ function NoRecordsFound() {
 
 /*
 =============================================================================
-  MergeBrowseStudentListTemplate($Template)
+  MergeCreateScheduleWindowListTemplate($Template)
 =============================================================================
 */
-function MergeBrowseStudentListTemplate($Template) {
+function MergeCreateScheduleWindowListTemplate($Template) {
     global $ClarionData;
     global $SearchField;
     global $SearchMessage;
@@ -461,7 +452,7 @@ function MergeBrowseStudentListTemplate($Template) {
     global $Menu;
     global $userdata1;
     if($Template == ""):
-        $Template = "./html/BrowseStudentlist.htm";
+        $Template = "./html/CreateScheduleWindowlist.htm";
     endif;      
     $FileObject = fopen($Template, "r");
     $TemplateText = "";
@@ -509,8 +500,6 @@ function MergeBrowseStudentListTemplate($Template) {
     if(! empty($RemainderText)):
         $TemplateText .= $RemainderText;
     endif;
-    $PageName     = "Re-Enrolee";
-    $TemplateText = Replace($TemplateText,"@PageName@", $PageName);
     $TemplateText = Replace($TemplateText, "@Header@", $Header);
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
@@ -537,14 +526,14 @@ function buildColumnLabels() {
     $myLink = "";
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=CountryID";
-            if ( getSession("BrowseStudent#PreviousColumn") == "CountryID"):
-                if (getSession("BrowseStudent#SRT") == "ASC"):
+            if ( getSession("CreateScheduleWindow#PreviousColumn") == "CountryID"):
+                if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseStudent#COL") == "CountryID"):
+                if (getSession("CreateScheduleWindow#COL") == "CountryID"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -553,8 +542,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">Country ID</a>";
         $CountryIDLABEL = $myLink;
-        if ( getGet("COL") == "CountryID" || getSession("BrowseStudent#COL") == "CountryID" ):
-            if (getSession("BrowseStudent#SRT") == "ASC"):
+        if ( getGet("COL") == "CountryID" || getSession("CreateScheduleWindow#COL") == "CountryID" ):
+            if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                 $CountryIDLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $CountryIDLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -562,14 +551,14 @@ function buildColumnLabels() {
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=BranchID";
-            if ( getSession("BrowseStudent#PreviousColumn") == "BranchID"):
-                if (getSession("BrowseStudent#SRT") == "ASC"):
+            if ( getSession("CreateScheduleWindow#PreviousColumn") == "BranchID"):
+                if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseStudent#COL") == "BranchID"):
+                if (getSession("CreateScheduleWindow#COL") == "BranchID"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -578,8 +567,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">Branch ID</a>";
         $BranchIDLABEL = $myLink;
-        if ( getGet("COL") == "BranchID" || getSession("BrowseStudent#COL") == "BranchID" ):
-            if (getSession("BrowseStudent#SRT") == "ASC"):
+        if ( getGet("COL") == "BranchID" || getSession("CreateScheduleWindow#COL") == "BranchID" ):
+            if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                 $BranchIDLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $BranchIDLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -587,14 +576,14 @@ function buildColumnLabels() {
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=CustNo";
-            if ( getSession("BrowseStudent#PreviousColumn") == "CustNo"):
-                if (getSession("BrowseStudent#SRT") == "ASC"):
+            if ( getSession("CreateScheduleWindow#PreviousColumn") == "CustNo"):
+                if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseStudent#COL") == "CustNo"):
+                if (getSession("CreateScheduleWindow#COL") == "CustNo"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -603,8 +592,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">Cust No</a>";
         $CustNoLABEL = $myLink;
-        if ( getGet("COL") == "CustNo" || getSession("BrowseStudent#COL") == "CustNo" ):
-            if (getSession("BrowseStudent#SRT") == "ASC"):
+        if ( getGet("COL") == "CustNo" || getSession("CreateScheduleWindow#COL") == "CustNo" ):
+            if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                 $CustNoLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $CustNoLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -612,14 +601,14 @@ function buildColumnLabels() {
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=StudentID";
-            if ( getSession("BrowseStudent#PreviousColumn") == "StudentID"):
-                if (getSession("BrowseStudent#SRT") == "ASC"):
+            if ( getSession("CreateScheduleWindow#PreviousColumn") == "StudentID"):
+                if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseStudent#COL") == "StudentID"):
+                if (getSession("CreateScheduleWindow#COL") == "StudentID"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -628,8 +617,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">Student ID</a>";
         $StudentIDLABEL = $myLink;
-        if ( getGet("COL") == "StudentID" || getSession("BrowseStudent#COL") == "StudentID" ):
-            if (getSession("BrowseStudent#SRT") == "ASC"):
+        if ( getGet("COL") == "StudentID" || getSession("CreateScheduleWindow#COL") == "StudentID" ):
+            if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                 $StudentIDLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $StudentIDLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -637,14 +626,14 @@ function buildColumnLabels() {
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=SurName";
-            if ( getSession("BrowseStudent#PreviousColumn") == "SurName"):
-                if (getSession("BrowseStudent#SRT") == "ASC"):
+            if ( getSession("CreateScheduleWindow#PreviousColumn") == "SurName"):
+                if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseStudent#COL") == "SurName"):
+                if (getSession("CreateScheduleWindow#COL") == "SurName"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -653,8 +642,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">Sur Name</a>";
         $SurNameLABEL = $myLink;
-        if ( getGet("COL") == "SurName" || getSession("BrowseStudent#COL") == "SurName" ):
-            if (getSession("BrowseStudent#SRT") == "ASC"):
+        if ( getGet("COL") == "SurName" || getSession("CreateScheduleWindow#COL") == "SurName" ):
+            if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                 $SurNameLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $SurNameLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -662,14 +651,14 @@ function buildColumnLabels() {
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=FirstName";
-            if ( getSession("BrowseStudent#PreviousColumn") == "FirstName"):
-                if (getSession("BrowseStudent#SRT") == "ASC"):
+            if ( getSession("CreateScheduleWindow#PreviousColumn") == "FirstName"):
+                if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseStudent#COL") == "FirstName"):
+                if (getSession("CreateScheduleWindow#COL") == "FirstName"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -678,8 +667,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">First Name</a>";
         $FirstNameLABEL = $myLink;
-        if ( getGet("COL") == "FirstName" || getSession("BrowseStudent#COL") == "FirstName" ):
-            if (getSession("BrowseStudent#SRT") == "ASC"):
+        if ( getGet("COL") == "FirstName" || getSession("CreateScheduleWindow#COL") == "FirstName" ):
+            if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                 $FirstNameLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $FirstNameLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -687,14 +676,14 @@ function buildColumnLabels() {
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=MiddleName";
-            if ( getSession("BrowseStudent#PreviousColumn") == "MiddleName"):
-                if (getSession("BrowseStudent#SRT") == "ASC"):
+            if ( getSession("CreateScheduleWindow#PreviousColumn") == "MiddleName"):
+                if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseStudent#COL") == "MiddleName"):
+                if (getSession("CreateScheduleWindow#COL") == "MiddleName"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -703,8 +692,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">Middle Name</a>";
         $MiddleNameLABEL = $myLink;
-        if ( getGet("COL") == "MiddleName" || getSession("BrowseStudent#COL") == "MiddleName" ):
-            if (getSession("BrowseStudent#SRT") == "ASC"):
+        if ( getGet("COL") == "MiddleName" || getSession("CreateScheduleWindow#COL") == "MiddleName" ):
+            if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                 $MiddleNameLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $MiddleNameLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -712,14 +701,14 @@ function buildColumnLabels() {
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=LSurname";
-            if ( getSession("BrowseStudent#PreviousColumn") == "LSurname"):
-                if (getSession("BrowseStudent#SRT") == "ASC"):
+            if ( getSession("CreateScheduleWindow#PreviousColumn") == "LSurname"):
+                if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseStudent#COL") == "LSurname"):
+                if (getSession("CreateScheduleWindow#COL") == "LSurname"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -728,8 +717,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">LS urname</a>";
         $LSurnameLABEL = $myLink;
-        if ( getGet("COL") == "LSurname" || getSession("BrowseStudent#COL") == "LSurname" ):
-            if (getSession("BrowseStudent#SRT") == "ASC"):
+        if ( getGet("COL") == "LSurname" || getSession("CreateScheduleWindow#COL") == "LSurname" ):
+            if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                 $LSurnameLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $LSurnameLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -737,14 +726,14 @@ function buildColumnLabels() {
         endif;
         $myLink = "<a href=\"" . $myPage . "?";
             $myLink .= "COL=LFirstName";
-            if ( getSession("BrowseStudent#PreviousColumn") == "LFirstName"):
-                if (getSession("BrowseStudent#SRT") == "ASC"):
+            if ( getSession("CreateScheduleWindow#PreviousColumn") == "LFirstName"):
+                if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
                 endif;
             else:
-                if (getSession("BrowseStudent#COL") == "LFirstName"):
+                if (getSession("CreateScheduleWindow#COL") == "LFirstName"):
                     $myLink .= "&SRT=DESC";
                 else:
                     $myLink .= "&SRT=ASC";
@@ -753,8 +742,8 @@ function buildColumnLabels() {
             $myLink .= getIDs();
             $myLink .= "\">LF irst Name</a>";
         $LFirstNameLABEL = $myLink;
-        if ( getGet("COL") == "LFirstName" || getSession("BrowseStudent#COL") == "LFirstName" ):
-            if (getSession("BrowseStudent#SRT") == "ASC"):
+        if ( getGet("COL") == "LFirstName" || getSession("CreateScheduleWindow#COL") == "LFirstName" ):
+            if (getSession("CreateScheduleWindow#SRT") == "ASC"):
                 $LFirstNameLABEL .= "<img alt=\"ASC\" SRC=" . $IconAsc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
             else:            
                 $LFirstNameLABEL .= "<img alt=\"DESC\" SRC=" . $IconDesc . " border=" . $IconBorder . " height=" . $IconHeight . " width=" . $IconWidth . ">";
@@ -829,7 +818,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tcustomerAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a class='btn btn-info' href=\"UpdatetStudentedit.php?ID1=";
+            $myLink = "<a class='btn btn-info' href=\"BrowseCreateSchedulelist.php?ID1=";
                     $tcustomerAutomaticDetailLink = $myLink;
                       $tcustomerAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStcustomer->fields["CountryID"]))) . "'" ;
                     $tcustomerAutomaticDetailLink .=  "&ID2=" . "'";
@@ -837,7 +826,7 @@ $Seq = 0;
                     $tcustomerAutomaticDetailLink .=  "&ID3=";
                     $tcustomerAutomaticDetailLink .= htmlEncode(trim(getValue($oRStcustomer->fields["CustNo"])));
             $tmpIMG_tcustomerAutomaticDetailLink = "";
-            $tmpIMG_tcustomerAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
+            $tmpIMG_tcustomerAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Manage Schedule";
                 $tcustomerAutomaticDetailLink .= "\">" . $tmpIMG_tcustomerAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tcustomerCountryIDSTYLE = "TableRow" . $Style;
@@ -858,12 +847,7 @@ $tcustomerCustNoSTYLE = "TableRow" . $Style;
     if (is_null($oRStcustomer->fields["CustNo"])):
         $tcustomerCustNo = "";
     else:
-        $myQuoteCustNo = "";
-        $tcustomerCustNo = '<a href=\'JAVASCRIPT:updateData(';
-        $tcustomerCustNo .= $myQuoteCustNo . htmlEncode(getValue($oRStcustomer->fields["CustNo"])) . $myQuoteCustNo;
-        $tcustomerCustNo .= ');\'>';
-        $tcustomerCustNo .= htmlEncode(getValue($oRStcustomer->fields["CustNo"])) . "</a>";
-
+        $tcustomerCustNo = htmlEncode(getValue($oRStcustomer->fields["CustNo"]));
 endif;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tcustomerStudentIDSTYLE = "TableRow" . $Style;
@@ -1025,7 +1009,7 @@ else:
 endif;
 $ref = "";
 if ($ShowDBNav == "TRUE"):
-$SearchPage = "UpdatetStudentsearch.php";
+$SearchPage = "Updatetcustomersearch.php";
 $TableFooter .= ($iStart+1) . " - " . $iEnd . " of " . $TotalRecords ."<BR>";
 // okay this is the First Page
     $ref = "";
@@ -1058,13 +1042,13 @@ $TableFooter .= $ref;
     if ($ShowQuery == TRUE):
     // okay now the Query button
         $ref = "";
-        $ref .= "<a href=UpdatetStudent" . "search.php><img src=\"" . $IconQuery . "\" border=\"" . $IconBorder . "\" height=\"" . $IconHeight . "\" width=\"" . $IconWidth . "\" alt=\"Search\"></a>";
+        $ref .= "<a href=Updatetcustomer" . "search.php><img src=\"" . $IconQuery . "\" border=\"" . $IconBorder . "\" height=\"" . $IconHeight . "\" width=\"" . $IconWidth . "\" alt=\"Search\"></a>";
 $TableFooter .= $ref;
     endif;
     if ($ShowAdd == TRUE):
     // okay now the Add button
         $ref = "";
-        $ref .= "<a href=UpdatetStudent" . "add.php><img src=\"" . $IconAdd . "\" border=\"" . $IconBorder . "\" height=\"" . $IconHeight . "\" width=\"" . $IconWidth . "\" alt=\"Insert record\"></a>";
+        $ref .= "<a href=Updatetcustomer" . "add.php><img src=\"" . $IconAdd . "\" border=\"" . $IconBorder . "\" height=\"" . $IconHeight . "\" width=\"" . $IconWidth . "\" alt=\"Insert record\"></a>";
 $TableFooter .= $ref;
     endif;
 //okay now the Next Page

@@ -406,13 +406,16 @@ if ($oRStcustomer):
             endif;
             MergeBrowseStudentListTemplate($HTML_Template);
         else:
-            NoRecordsFound();
+            //NoRecordsFound();
+            MergeBrowseStudentListTemplate($HTML_Template);
         endif;
     else:
-        NoRecordsFound();
+        //NoRecordsFound();
+        MergeBrowseStudentListTemplate($HTML_Template);
     endif;
 else:
-    NoRecordsFound();
+    //NoRecordsFound();
+    MergeBrowseStudentListTemplate($HTML_Template);
 endif;
 
 $oRStcustomer->Close();
@@ -511,6 +514,9 @@ function MergeBrowseStudentListTemplate($Template) {
     if(! empty($RemainderText)):
         $TemplateText .= $RemainderText;
     endif;
+    
+    $PageName     = "For Assessment";
+    $TemplateText = Replace($TemplateText,"@PageName@", $PageName);
     $TemplateText = Replace($TemplateText, "@Header@", $Header);
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
@@ -519,6 +525,7 @@ function MergeBrowseStudentListTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@SearchMessage@", $SearchMessage);
     $TemplateText = Replace($TemplateText, "@SearchField@", $SearchField);
     $TemplateText = Replace($TemplateText,"@TableFooter@", $TableFooter);
+    
     print ($TemplateText);
 }
 

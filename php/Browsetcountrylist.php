@@ -396,6 +396,7 @@ function MergeBrowsetcountryListTemplate($Template) {
     global $ndxEnd;
     global $strLEN; 
     global $Header;
+    global $Myname; 
     global $Footer;
     global $MainContent;
     global $Menu;
@@ -452,6 +453,7 @@ function MergeBrowsetcountryListTemplate($Template) {
         $TemplateText .= $RemainderText;
     endif;
     $TemplateText = Replace($TemplateText, "@Header@", $Header);
+    $TemplateText = Replace($TemplateText, "@Myname@", $Myname);
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);

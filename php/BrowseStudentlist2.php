@@ -343,7 +343,6 @@ endif;
 
 // --add the additional "myRecords" ownership clause
 $strMyQuote = getQuote($objConn1,"tcustomer", "tcustomer.CountryID");
-var_dump($strMyQuote);
 if ($myWhere != ""):
     $myWhere .= " AND ";
 endif;
@@ -405,13 +404,13 @@ if ($oRStcustomer):
             endif;
             MergeBrowseStudentListTemplate($HTML_Template);
         else:
-            NoRecordsFound();
+            MergeBrowseStudentListTemplate($HTML_Template);
         endif;
     else:
-        NoRecordsFound();
+        MergeBrowseStudentListTemplate($HTML_Template);
     endif;
 else:
-    NoRecordsFound();
+    MergeBrowseStudentListTemplate($HTML_Template);
 endif;
 
 $oRStcustomer->Close();
@@ -510,6 +509,8 @@ function MergeBrowseStudentListTemplate($Template) {
     if(! empty($RemainderText)):
         $TemplateText .= $RemainderText;
     endif;
+    $PageName     = "Trial Class";
+    $TemplateText = Replace($TemplateText,"@PageName@", $PageName);
     $TemplateText = Replace($TemplateText, "@Header@", $Header);
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);

@@ -13,6 +13,7 @@
  application along with the HTML template
 ===================================================================
 */
+session_set_cookie_params(500);
 session_start();
 $PageLevel = 1;
 include_once('systemathicappdata.php');
@@ -120,11 +121,6 @@ $arrayoRStcustomer["CountryID"] = getFormSQLQuoted($objConn1, "tcustomer", "Coun
                     $myStatus .= "<hr>\n";
         endif;
 $arrayoRStcustomer["BranchID"] = getFormSQLQuoted($objConn1, "tcustomer", "BranchID", "txttcustomerBranchID");
-        if (getRequest("txttcustomerCustNo") == ""):
-            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
-            $flgMissing = TRUE;
-                        $myStatus .= " <strong>Cust No:</strong> : Required field <hr>\n";
-        endif;
 $arrayoRStcustomer["CustNo"] = getFormSQLQuoted($objConn1, "tcustomer", "CustNo", "txttcustomerCustNo");
 $arrayoRStcustomer["StudentID"] = getFormSQLQuoted($objConn1, "tcustomer", "StudentID", "txttcustomerStudentID");
 $arrayoRStcustomer["SurName"] = getFormSQLQuoted($objConn1, "tcustomer", "SurName", "txttcustomerSurName");
@@ -275,8 +271,7 @@ else {
   $_SESSION["UpdatetStudent_EditFailed"] = 0;
 }
 
-$myStatus = array('statusme' => $myStatus);
-echo json_encode($myStatus);
+echo json_encode(array('statusme' => $myStatus));
 //MergeEditTemplate($HTML_Template);
 $objConn1->Close();
 ?>

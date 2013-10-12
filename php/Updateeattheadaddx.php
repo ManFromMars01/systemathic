@@ -13,6 +13,7 @@
  application along with the HTML template
 ===================================================================
 */
+session_set_cookie_params(500);
 session_start();
 $PageLevel = 0;
 $PageLevel = 1;
@@ -436,7 +437,9 @@ $ClarionData .= "</table>\n";
 $ClarionData .= "</div>\n";
 
 
-MergeAddTemplate($HTML_Template);
+echo json_encode(array('statusme' =>$myStatus));
+
+// MergeAddTemplate($HTML_Template);
 unset($oRSeatthead) ;
 $objConn1->Close();
 unset($objConn1);

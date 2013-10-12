@@ -69,13 +69,7 @@ $dbValues = "";
                     $myStatus .= "<HR>\n";
             endif;
     $rst["BranchID"] = getFormSQLQuoted($objConn1,"tcustomer","BranchID","txttcustomerBranchID");
-            if (getForm("txttcustomerCustNo") == ""):
-                if($myStatus == ""):
-                    $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
-                endif;
-                $flgMissing = 1;
-                        $myStatus .= " <STRONG>Cust No:</STRONG> : Required field <HR>\n";
-            endif;
+            
     $rst["CustNo"] = getFormSQLQuoted($objConn1,"tcustomer","CustNo","txttcustomerCustNo");
     $rst["StudentID"] = getFormSQLQuoted($objConn1,"tcustomer","StudentID","txttcustomerStudentID");
     $rst["SurName"] = getFormSQLQuoted($objConn1,"tcustomer","SurName","txttcustomerSurName");

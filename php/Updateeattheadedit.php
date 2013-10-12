@@ -1,4 +1,5 @@
 <?PHP
+session_set_cookie_params(500);
 session_start();
 /*
 ===================================================================
@@ -49,6 +50,7 @@ function MergeTemplate($Template) {
     global $Footer;   
     global $MainContent;   
     global $Menu;   
+    global $userdata1;   
     global $ID1;
     global $ID2;
     global $ID3;
@@ -519,6 +521,7 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
      $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
      $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+     $TemplateText = Replace($TemplateText, "@userdata1@", $userdata1);
     print($TemplateText);
 } // END Function
 include_once('ConnInfo.php');
