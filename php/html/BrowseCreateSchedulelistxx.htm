@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--@HTML_AFTER_OPEN@-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="ROBOTS" Content="NONE">
+<meta name="GENERATOR" Content="Clarion/WEB Templates by SoftVelocity, Inc. www.softvelocity.com">
+<meta http-equiv="PRAGMA" content="NO-CACHE">
+<meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+<!-- -------------------------------------------------------------------------
+** IMPORTANT NOTICE! **
+Please do not rename any forms or form fields
+Please do not re-order, move or rename any comment tags that delimit code sections
+-------------------------------------------------------------------------  -->
+<link rel="stylesheet" href="styles/MyStyles.css" type="text/css">
+<script LANGUAGE="JavaScript" type="text/javascript">
+<!--
+var adjWidth  = 480;
+var adjHeight = 120;
+    if (navigator.appName == 'Netscape') {
+        adjWidth = adjWidth + 16;
+    }
+    else {
+        adjWidth = adjWidth + 46;
+    }
+var posL = (screen.width - adjWidth) / 2;
+var posT = (screen.height - adjHeight) / 2;
+function ShowHelp(myURL) {
+    myURL = "help/" + myURL;
+    var HelpStyle  = 'height='+adjHeight+',width='+adjWidth+',top='+posT+',left='+posL+',alwaysLowered=0,alwaysRaised=0,channelmode=0,dependent=0,directories=0,fullscreen=0,hotkeys=0,location=0,menubar=0,resizable=1,scrollbars=1,status=0,titlebar=1,toolbar=0,z-lock=0';
+    var remote = open(myURL, "Help", HelpStyle);                  
+    if (remote.opener == null) remote.opener = window;
+}
+//-->
+</script>
+<!--@HEAD_AFTER_OPEN@-->
+<title>Browse the eatthead file</title>
+<!--@HEAD_BEFORE_CLOSE@-->
+</head>
+    <body onhelp="JAVASCRIPT:ShowHelp('BrowseCreateScheduleListHelp.htm');return false;">
+<!--@BODY_AFTER_OPEN@-->
+<!--@BG_BEFORE_OPEN@-->
+<div id="bg" class="bg"> 
+<!--@BG_AFTER_OPEN@-->
+    <table class="Data" cellspacing="1">
+<tr>
+    <td ALIGN="left" COLSPAN="9" width="80%" class="Header">Browse the Create Schedule List</td>
+    <td ALIGN="right" VALIGN="top" class="Header">&nbsp;
+          <a href="JAVASCRIPT:ShowHelp('BrowseCreateScheduleListHelp.htm');"><img alt="Help" src="/images/help.gif" border=0 height=20 width=20></a><a href="JAVASCRIPT:history.back();"><img alt="Back" src="/images/back.gif" border=0 height=20 width=20></a>
+    </td>    
+</tr>
+<!--BEGIN SEARCHFIELD-->
+<tr>
+    <td colspan="10" class="Header" align="Right">@SearchMessage@</td>
+</tr>
+<!--END SEARCHFIELD-->
+<!--BEGIN COLUMNLABEL-->
+<tr>
+    <td class="ColumnLabel" align="Left" width="">@CountryIDLABEL@</td>
+    <td class="ColumnLabel" align="Left" width="">@BranchIDLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@AdmitDateLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@CustNoLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@LevelIDLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@TierIDLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@ModCountLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@StartDateLABEL@</td>
+    <td class="ColumnLabel" align="Right" width="">@EndDateLABEL@</td>
+    <td class="ColumnLabel" align="Center" >Edit Record</td>
+</tr>
+<!--END COLUMNLABEL-->
+<!--BEGIN ROWDATA-->
+<tr>
+    <td class="@eattheadCountryIDSTYLE@" align="Left" width="">@eattheadCountryID@&nbsp;</td>
+    <td class="@eattheadBranchIDSTYLE@" align="Left" width="">@eattheadBranchID@&nbsp;</td>
+    <td class="@eattheadAdmitDateSTYLE@" align="Right" width="">@eattheadAdmitDate@&nbsp;</td>
+    <td class="@eattheadCustNoSTYLE@" align="Right" width="">@eattheadCustNo@&nbsp;</td>
+    <td class="@eattheadLevelIDSTYLE@" align="Right" width="">@eattheadLevelID@&nbsp;</td>
+    <td class="@eattheadTierIDSTYLE@" align="Right" width="">@eattheadTierID@&nbsp;</td>
+    <td class="@eattheadModCountSTYLE@" align="Right" width="">@eattheadModCount@&nbsp;</td>
+    <td class="@eattheadStartDateSTYLE@" align="Right" width="">@eattheadStartDate@&nbsp;</td>
+    <td class="@eattheadEndDateSTYLE@" align="Right" width="">@eattheadEndDate@&nbsp;</td>
+    <td class="@eattheadAutomaticDetailLinkSTYLE@" align="Center">@eattheadAutomaticDetailLink@</td>
+</tr>
+<!--END ROWDATA-->
+<!--BEGIN FOOTER-->
+<tr>
+    <td colspan="10" class="Footer">@SearchMessage@</td>
+</tr>
+<tr>
+    <td colspan="10" class="Footer">@TableFooter@</td>
+</tr>
+<!--END FOOTER-->
+</table>
+<!--@BG_BEFORE_CLOSE@-->
+</div>
+<!--@BG_AFTER_CLOSE@-->
+<!--@BODY_BEFORE_CLOSE@-->
+</body>
+<!--@HTML_BEFORE_CLOSE@-->
+</html>

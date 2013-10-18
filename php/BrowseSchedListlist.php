@@ -49,6 +49,15 @@ else:
 endif;
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
+
+$myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tclasssched  WHERE tclasssched.BranchID ='".$_SESSION['UserValue2']."' AND  tclasssched.LevelID = '" . trim(getRequest( "ID3") )."'";
+$oRStcustomers = $objConn1->Execute($myRecordCount2);
+$TotalRecords1 = $oRStcustomers->fields["MyCount"];
+$RecordsPerPage = $TotalRecords1;
+
+
+
+
 // $RecordsPerPage = ##;
 $HeaderText = "";
 $TemplateText = "";
@@ -399,13 +408,13 @@ if ($oRStclasssched):
             endif;
             MergeBrowseSchedListListTemplate($HTML_Template);
         else:
-            NoRecordsFound();
+            MergeBrowseSchedListListTemplate($HTML_Template);
         endif;
     else:
-        NoRecordsFound();
+        MergeBrowseSchedListListTemplate($HTML_Template);
     endif;
 else:
-    NoRecordsFound();
+    MergeBrowseSchedListListTemplate($HTML_Template);
 endif;
 
 $oRStclasssched->Close();
@@ -504,6 +513,25 @@ function MergeBrowseSchedListListTemplate($Template) {
     if(! empty($RemainderText)):
         $TemplateText .= $RemainderText;
     endif;
+
+
+    include('ConnInfo.php');
+    $objConn1 = &ADONewConnection($Driver1);
+    $objConn1->debug = $DebugMode;
+    $objConn1->PConnect($Server1,$User1,$Password1,$db1);
+    
+
+    /**Begin LEvel**/
+    $selectlevel = "SELECT *  FROM tlevel  WHERE tlevel.CountryID ='".$_SESSION['UserValue1']."' AND tlevel.BranchID='".$_SESSION['UserValue2']."' AND tlevel.ID='". trim(getRequest( "ID3") )."' ORDER BY tlevel.CountryID ASC";
+    $selectlevel = $objConn1->Execute($selectlevel);
+    foreach ($selectlevel as $levellist):     
+        $level  = $levellist['Description'];
+    endforeach;
+    /**End LEvel**/
+    
+
+
+    
     $TemplateText = Replace($TemplateText, "@Header@", $Header);
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
@@ -512,6 +540,8 @@ function MergeBrowseSchedListListTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@SearchMessage@", $SearchMessage);
     $TemplateText = Replace($TemplateText, "@SearchField@", $SearchField);
     $TemplateText = Replace($TemplateText,"@TableFooter@", $TableFooter);
+    $TemplateText = Replace($TemplateText,"@TableFooter@", $TableFooter);
+    $TemplateText = Replace($TemplateText,"@levelname@", $level);
     print ($TemplateText);
 }
 
@@ -822,7 +852,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tclassschedAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetclassschededit.php?ID1=";
+            $myLink = "<a class='btn btn-info' href=\"Updatetclassschededit.php?ID1=";
                     $tclassschedAutomaticDetailLink = $myLink;
                       $tclassschedAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStclasssched->fields["CountryID"]))) . "'" ;
                     $tclassschedAutomaticDetailLink .=  "&ID2=" . "'";
@@ -832,7 +862,7 @@ $Seq = 0;
                     $tclassschedAutomaticDetailLink .=  "&ID4=";
                     $tclassschedAutomaticDetailLink .= htmlEncode(trim(getValue($oRStclasssched->fields["TimeFrom"])));
             $tmpIMG_tclassschedAutomaticDetailLink = "";
-            $tmpIMG_tclassschedAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
+            $tmpIMG_tclassschedAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
                 $tclassschedAutomaticDetailLink .= "\">" . $tmpIMG_tclassschedAutomaticDetailLink . "</a>";
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tclassschedCountryIDSTYLE = "TableRow" . $Style;
@@ -907,10 +937,15 @@ $DataRowFilledText = Replace($DataRowFilledText,"@tclassschedCountryIDSTYLE@",$t
 $DataRowFilledText = Replace($DataRowFilledText,"@tclassschedBranchID@", $tclassschedBranchID);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tclassschedBranchIDSTYLE@",$tclassschedBranchIDSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@tclassschedDay@", $tclassschedDay);       
-$DataRowFilledText = Replace($DataRowFilledText,"@tclassschedDaySTYLE@",$tclassschedDaySTYLE);           
-$DataRowFilledText = Replace($DataRowFilledText,"@tclassschedTimeFrom@", $tclassschedTimeFrom);       
+$DataRowFilledText = Replace($DataRowFilledText,"@tclassschedDaySTYLE@",$tclassschedDaySTYLE);
+$timefrom = $tclassschedTimeFrom;
+$timeto = $tclassschedTimeTo;
+$newTimeFrom = date('h:i A', strtotime($timefrom));
+$newTimeTo = date('h:i A', strtotime($timeto));
+
+$DataRowFilledText = Replace($DataRowFilledText,"@tclassschedTimeFrom@", $newTimeFrom);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tclassschedTimeFromSTYLE@",$tclassschedTimeFromSTYLE);           
-$DataRowFilledText = Replace($DataRowFilledText,"@tclassschedTimeTo@", $tclassschedTimeTo);       
+$DataRowFilledText = Replace($DataRowFilledText,"@tclassschedTimeTo@", $newTimeTo);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tclassschedTimeToSTYLE@",$tclassschedTimeToSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@tclassschedLevelID@", $tclassschedLevelID);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tclassschedLevelIDSTYLE@",$tclassschedLevelIDSTYLE);           

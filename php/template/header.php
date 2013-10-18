@@ -41,6 +41,7 @@ $myName = $_SESSION["myname"];
 	<link href='template/css/jquery.iphone.toggle.css' rel='stylesheet'>
 	<link href='template/css/opa-icons.css' rel='stylesheet'>
 	<link href='template/css/uploadify.css' rel='stylesheet'>
+	<link href='template/css/jquery.timepicker.css' rel='stylesheet'>
 
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -120,18 +121,26 @@ $myName = $_SESSION["myname"];
 	<script src="template/js/jquery.uploadify-3.1.min.js"></script>
 	<!-- history.js for cross-browser state change on ajax -->
 	<script src="template/js/jquery.history.js"></script>
+	<script src="template/js/jquery.timepicker.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="template/js/charisma.js"></script>	
 	<script src="template/js/jquery.validate.min.js"></script>
 	<script>
 		//Update Student
 	$( document ).ready(function() {	
-		
-		
-
-
-		
-		
+		$('.teacher_id').each(function(){
+		       teacherid = $(this).val();
+		       $.ajax({
+			        url: 'template/variables4.php',
+			        type: 'post',
+			        data: {teacher_id : teacherid},
+			        dataType: 'json',
+			        success: function (j) {
+			           console.log(j);
+			           $('.teachernames').html(j.teacher); 
+			        }     
+				});	
+		});
 	});
 	
 

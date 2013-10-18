@@ -513,6 +513,54 @@ function MergeAddTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
     $TemplateText = Replace($TemplateText, "@userdata1@", $userdata1);
+    $country = $_SESSION["UserValue1"];
+    $branch = $_SESSION["UserValue2"];
+    $getid  = $_GET['ID'];
+    $TemplateText = Replace($TemplateText, "@country@", $country);
+    $TemplateText = Replace($TemplateText, "@branch@", $branch);
+    $TemplateText = Replace($TemplateText, "@getid@", $getid);
+    include('ConnInfo.php');
+
+    $objConn1 = &ADONewConnection($Driver1);
+    $objConn1->debug = $DebugMode;
+    $objConn1->PConnect($Server1,$User1,$Password1,$db1);
+    
+    $selectcustomer = "SELECT *  FROM tcustomer  WHERE tcustomer.CustNo ='".$_GET['ID']."'";
+    $selectcustomer = $objConn1->Execute($selectcustomer);
+
+    foreach ($selectcustomer as $customerd) {
+        $fname = $customerd['FirstName'];
+        $mname = $customerd['MiddleName']; 
+        $lname = $customerd['LSurname'];
+        $levelid = $customerd['LevelID'];
+        $tierid = $customerd['TierID'];
+    }
+    /**End LEvel**/
+
+    $selectlevel = "SELECT *  FROM tlevel  WHERE tlevel.ID ='".$levelid."'";
+    $selectlevel = $objConn1->Execute($selectlevel);
+    foreach ($selectlevel as $selectlevels) {
+        $levelname = $selectlevels['Description'];
+    }
+    
+
+    $selecttier = "SELECT *  FROM ttier  WHERE ttier.ID ='".$tierid."'";
+    $selecttier = $objConn1->Execute($selecttier);
+    foreach ($selecttier as $selectiers) {
+        $tiername = $selectiers['Description'];
+    }
+
+
+    $TemplateText = Replace($TemplateText, "@fname@", $fname);
+    $TemplateText = Replace($TemplateText, "@mname@", $mname);
+    $TemplateText = Replace($TemplateText, "@lname@", $lname);
+    $TemplateText = Replace($TemplateText, "@levelid@", $levelid);
+    $TemplateText = Replace($TemplateText, "@tierid@", $tierid);
+    $TemplateText = Replace($TemplateText, "@levelname@", $levelname);
+    $TemplateText = Replace($TemplateText, "@tiername@", $tiername);
+
+
+
     print($TemplateText);
 } // END Function
 include_once('ConnInfo.php');
@@ -636,6 +684,8 @@ if ($_SESSION["Updateeatthead_InsertFailed"] == 1) {
    $eattheadSessionPrDay6 = $_SESSION["SavedeattheadSessionPrDay6"];
    $eattheadSessionPrDay7 = $_SESSION["SavedeattheadSessionPrDay7"];
 }
+
+
 
 MergeAddTemplate($HTML_Template);
 unset($oRSeatthead);

@@ -609,7 +609,7 @@ $Seq = 0;
                     $tlevelDefineSchedules .=  "&ID3=";
                     $tlevelDefineSchedules .= htmlEncode(trim(getValue($oRStlevel->fields["ID"])));
             $tmpIMG_tlevelDefineSchedules = "";
-            $tmpIMG_tlevelDefineSchedules = "<i class='icon-edit icon-white'></i> Define Schedule";
+            $tmpIMG_tlevelDefineSchedules = "<i class='icon-edit icon-white'></i> Manage Schedule";
                 $tlevelDefineSchedules .= "\">" . $tmpIMG_tlevelDefineSchedules . "</a>";
     $tlevelDefineKitPackSTYLE = "TableRow" . $Style;
     $myLink = "";

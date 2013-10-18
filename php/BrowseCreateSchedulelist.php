@@ -1,7 +1,7 @@
 <?PHP
 session_set_cookie_params(500);
 session_start();
-unset( $_SESSION["BrowseCreateSchedule#WHR"]);
+unset( $_SESSION["BrowseCreateSchedule#WHR#WHR"]);
 /*
 ===================================================================
 ------------------ Notice to Web Page Designers! ------------------
@@ -420,7 +420,7 @@ function NoRecordsFound() {
     fclose ($FileObject);
     $tmpMsg = "";
     $tmpMsg = "<a href='BrowseCreateSchedule" . "list.php?RESETLIST=TRUE'>No records were found</a>";
-    $tmpMsg .= "<br><a href=Updateeatthead" . "add.php>Insert record</a>";
+    $tmpMsg .= "<br><a href=Updateeatthead" . "add.php?ID=".$_GET['ID3'].">Insert record</a>";
     $TemplateText = Replace($TemplateText,"@ClarionData@",$tmpMsg);
     print ($TemplateText);
     exit;

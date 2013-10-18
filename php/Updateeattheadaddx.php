@@ -436,8 +436,8 @@ $ClarionData .= "   <tr><td class='Input' colspan='2'>" . $myStatus . "<br></td>
 $ClarionData .= "</table>\n";
 $ClarionData .= "</div>\n";
 
-
-echo json_encode(array('statusme' =>$myStatus));
+$myStatus = array('statusme' =>$myStatus);
+echo json_encode($myStatus);
 
 // MergeAddTemplate($HTML_Template);
 unset($oRSeatthead) ;
