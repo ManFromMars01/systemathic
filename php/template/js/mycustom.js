@@ -842,6 +842,8 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 
 
 		$('#createschedme').click(function(){
+			$('.validateme3').validate();
+			if($('.validateme3').valid()){
 			$.ajax({
 	            url: 'template/schedule_variables2.php',
 	            type: 'post',
@@ -855,4 +857,15 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 	               
 	            }     
         	});
+
+			} else {
+
+				alert("Sorry...Something went Wrong.");
+
+			} 
+
+			
 		});
+
+
+		

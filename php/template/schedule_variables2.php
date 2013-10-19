@@ -26,12 +26,6 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 
       $sched_codes   =  $_POST['sched_codes'];
-
-
-     
-      
-      
-    
         $x = 0;
         for($i=0;$i<=6;$i++)
         {
@@ -82,7 +76,7 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
         
         $sql = "insert into eatthead (".$otherc."," .$fromc.",".$toc.",".$teacherc.",".$roomc.",".$schedc.") values (" .$otherv.",".$fromv.",".$tov.",".$teacherv.",".$roomv.",".$schedv.")";
 
-
+        $oRStcountry = $objConn1->Execute($sql);
         $startdate = strtotime($txteattheadStartDate);
         
         $session_number1 = $session_ar[1];
@@ -102,7 +96,7 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
         $daytext7 = $dayname[6];
  
 
-        $countdays =  count($daytext) - 1;
+       
         
         
 
@@ -113,7 +107,7 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
         //$dayno = 0; 
 
-        $loopme = $countdays *  $total_session * 7;
+        $loopme = 10 *  $total_session * 7;
         $y = 0;
         for($x=0; $x <= $loopme ; $x++)
         {
@@ -133,7 +127,12 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
                         $TotalRecords1 = $oRStcustomers->fields["MyCount"];
                         if($TotalRecords1 == 0){
                            $y = $y + 1;
-                          $testme  .= date('Y-m-d', $dates);   
+                          //$testme  .= date('Y-m-d', $dates);
+                          $values = "'".$txteattheadCustNo."',"."'".$txteattheadLevelID ."',"."'".$txteattheadTierID."','".$txteattheadCountryID."','".$txteattheadBranchID."','".$test2."','".$y."','".$roomid[1]."','".$schedid[1]."','".$from[1]."','".$to[1]."','1','".$teacherid[1]."'"; 
+                          $columns = "CustNo,LevelID,TierID,CountryID,BranchID,Date,SessionNo,RmID,SchedCode,TimeFrom,TimeTo,StatusID,TeacherID";
+                          $insertsql = "insert into eattdtl(".$columns.") values (" .$values.")";
+                          $objConn1->Execute($insertsql);   
+
                         }
 
                       }
@@ -141,44 +140,122 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
                  }
 
                  if($test == $daytext2 ){
-                      for($a=1; $a <=  $session_number2; $a++){ 
-                        $testme  .= date('M d Y', $dates);
-                        $y = $y + 1;
+                      for($b=1; $b <=  $session_number1; $b++){ 
+                        
+                        $test2  = date('Y-m-d', $dates);
+                        $myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tcalendar  WHERE tcalendar.CountryID ='".$_SESSION['UserValue1']."' AND tcalendar.Date = '".$test2."'";
+                        $oRStcustomers = $objConn1->Execute($myRecordCount2);
+                        $TotalRecords1 = $oRStcustomers->fields["MyCount"];
+                        if($TotalRecords1 == 0){
+                           $y = $y + 1;
+                          //$testme  .= date('Y-m-d', $dates);
+                          $values = "'".$txteattheadCustNo."',"."'".$txteattheadLevelID ."',"."'".$txteattheadTierID."','".$txteattheadCountryID."','".$txteattheadBranchID."','".$test2."','".$y."','".$roomid[2]."','".$schedid[2]."','".$from[2]."','".$to[2]."','1','".$teacherid[2]."'"; 
+                          $columns = "CustNo,LevelID,TierID,CountryID,BranchID,Date,SessionNo,RmID,SchedCode,TimeFrom,TimeTo,StatusID,TeacherID";
+                          $insertsql = "insert into eattdtl(".$columns.") values (" .$values.")";
+                          $objConn1->Execute($insertsql);   
+
+                        }
+
                       }
                  }
 
                  if($test == $daytext3 ){
-                      for($c=1; $c <=  $session_number3; $c++){ 
-                        $testme  .= date('M d Y', $dates);
-                        $y = $y + 1;
+                      for($b=1; $b <=  $session_number1; $b++){ 
+                        
+                        $test2  = date('Y-m-d', $dates);
+                        $myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tcalendar  WHERE tcalendar.CountryID ='".$_SESSION['UserValue1']."' AND tcalendar.Date = '".$test2."'";
+                        $oRStcustomers = $objConn1->Execute($myRecordCount2);
+                        $TotalRecords1 = $oRStcustomers->fields["MyCount"];
+                        if($TotalRecords1 == 0){
+                           $y = $y + 1;
+                          //$testme  .= date('Y-m-d', $dates);
+                          $values = "'".$txteattheadCustNo."',"."'".$txteattheadLevelID ."',"."'".$txteattheadTierID."','".$txteattheadCountryID."','".$txteattheadBranchID."','".$test2."','".$y."','".$roomid[3]."','".$schedid[3]."','".$from[3]."','".$to[3]."','1','".$teacherid[3]."'"; 
+                          $columns = "CustNo,LevelID,TierID,CountryID,BranchID,Date,SessionNo,RmID,SchedCode,TimeFrom,TimeTo,StatusID,TeacherID";
+                          $insertsql = "insert into eattdtl(".$columns.") values (" .$values.")";
+                          $objConn1->Execute($insertsql);   
+
+                        }
+
                       }
                  }
 
                  if($test == $daytext4 ){
-                      for($d=1; $d <=  $session_number4; $d++){ 
-                        $testme  .= date('M d Y', $dates);
-                        $y = $y + 1;
+                      for($b=1; $b <=  $session_number1; $b++){ 
+                        
+                        $test2  = date('Y-m-d', $dates);
+                        $myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tcalendar  WHERE tcalendar.CountryID ='".$_SESSION['UserValue1']."' AND tcalendar.Date = '".$test2."'";
+                        $oRStcustomers = $objConn1->Execute($myRecordCount2);
+                        $TotalRecords1 = $oRStcustomers->fields["MyCount"];
+                        if($TotalRecords1 == 0){
+                           $y = $y + 1;
+                          //$testme  .= date('Y-m-d', $dates);
+                          $values = "'".$txteattheadCustNo."',"."'".$txteattheadLevelID ."',"."'".$txteattheadTierID."','".$txteattheadCountryID."','".$txteattheadBranchID."','".$test2."','".$y."','".$roomid[4]."','".$schedid[4]."','".$from[4]."','".$to[4]."','1','".$teacherid[4]."'"; 
+                          $columns = "CustNo,LevelID,TierID,CountryID,BranchID,Date,SessionNo,RmID,SchedCode,TimeFrom,TimeTo,StatusID,TeacherID";
+                          $insertsql = "insert into eattdtl(".$columns.") values (" .$values.")";
+                          $objConn1->Execute($insertsql);   
+
+                        }
+
                       }
                  }
 
                  if($test == $daytext5 ){
-                      for($e=1; $e <=  $session_number5; $e++){ 
-                        $testme  .= date('M d Y', $dates);
-                        $y = $y + 1;
+                      for($b=1; $b <=  $session_number1; $b++){ 
+                        
+                        $test2  = date('Y-m-d', $dates);
+                        $myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tcalendar  WHERE tcalendar.CountryID ='".$_SESSION['UserValue1']."' AND tcalendar.Date = '".$test2."'";
+                        $oRStcustomers = $objConn1->Execute($myRecordCount2);
+                        $TotalRecords1 = $oRStcustomers->fields["MyCount"];
+                        if($TotalRecords1 == 0){
+                           $y = $y + 1;
+                          //$testme  .= date('Y-m-d', $dates);
+                          $values = "'".$txteattheadCustNo."',"."'".$txteattheadLevelID ."',"."'".$txteattheadTierID."','".$txteattheadCountryID."','".$txteattheadBranchID."','".$test2."','".$y."','".$roomid[5]."','".$schedid[5]."','".$from[5]."','".$to[5]."','1','".$teacherid[5]."'"; 
+                          $columns = "CustNo,LevelID,TierID,CountryID,BranchID,Date,SessionNo,RmID,SchedCode,TimeFrom,TimeTo,StatusID,TeacherID";
+                          $insertsql = "insert into eattdtl(".$columns.") values (" .$values.")";
+                          $objConn1->Execute($insertsql);   
+
+                        }
+
                       }
                  }
 
                  if($test == $daytext6 ){
-                      for($f=1; $f <=  $session_number6; $f++){ 
-                        $testme  .= date('M d Y', $dates);
-                        $y = $y + 1;
+                      for($b=1; $b <=  $session_number1; $b++){ 
+                        
+                        $test2  = date('Y-m-d', $dates);
+                        $myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tcalendar  WHERE tcalendar.CountryID ='".$_SESSION['UserValue1']."' AND tcalendar.Date = '".$test2."'";
+                        $oRStcustomers = $objConn1->Execute($myRecordCount2);
+                        $TotalRecords1 = $oRStcustomers->fields["MyCount"];
+                        if($TotalRecords1 == 0){
+                           $y = $y + 1;
+                          //$testme  .= date('Y-m-d', $dates);
+                          $values = "'".$txteattheadCustNo."',"."'".$txteattheadLevelID ."',"."'".$txteattheadTierID."','".$txteattheadCountryID."','".$txteattheadBranchID."','".$test2."','".$y."','".$roomid[6]."','".$schedid[6]."','".$from[6]."','".$to[6]."','1','".$teacherid[6]."'"; 
+                          $columns = "CustNo,LevelID,TierID,CountryID,BranchID,Date,SessionNo,RmID,SchedCode,TimeFrom,TimeTo,StatusID,TeacherID";
+                          $insertsql = "insert into eattdtl(".$columns.") values (" .$values.")";
+                          $objConn1->Execute($insertsql);   
+
+                        }
+
                       }
                  }
 
                  if($test == $daytext7 ){
-                      for($g=1; $g <=  $session_number7; $g++){ 
-                        $testme  .= date('M d Y', $dates);
-                        $y = $y + 1;
+                      for($b=1; $b <=  $session_number1; $b++){ 
+                        
+                        $test2  = date('Y-m-d', $dates);
+                        $myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tcalendar  WHERE tcalendar.CountryID ='".$_SESSION['UserValue1']."' AND tcalendar.Date = '".$test2."'";
+                        $oRStcustomers = $objConn1->Execute($myRecordCount2);
+                        $TotalRecords1 = $oRStcustomers->fields["MyCount"];
+                        if($TotalRecords1 == 0){
+                           $y = $y + 1;
+                          //$testme  .= date('Y-m-d', $dates);
+                          $values = "'".$txteattheadCustNo."',"."'".$txteattheadLevelID ."',"."'".$txteattheadTierID."','".$txteattheadCountryID."','".$txteattheadBranchID."','".$test2."','".$y."','".$roomid[7]."','".$schedid[7]."','".$from[7]."','".$to[7]."','1','".$teacherid[7]."'"; 
+                          $columns = "CustNo,LevelID,TierID,CountryID,BranchID,Date,SessionNo,RmID,SchedCode,TimeFrom,TimeTo,StatusID,TeacherID";
+                          $insertsql = "insert into eattdtl(".$columns.") values (" .$values.")";
+                          $objConn1->Execute($insertsql);   
+
+                        }
+
                       }
                  }
               
@@ -194,9 +271,9 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 
 
-        $my_result = array('mystatus' => $sql, 'test' =>  $testme );
+        $my_result = array('mystatus' => $sql, 'test' => $insertsql );
         echo json_encode($my_result);
-        $oRStcountry = $objConn1->Execute($sql);
+        
 
     
   }

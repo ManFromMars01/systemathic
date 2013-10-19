@@ -1,7 +1,7 @@
 <?PHP
 session_set_cookie_params(500);
 session_start();
-unset( $_SESSION["BrowseCreateSchedule#WHR#WHR"]);
+unset($_SESSION["BrowseCreateSchedule#WHR"]);
 /*
 ===================================================================
 ------------------ Notice to Web Page Designers! ------------------
@@ -50,6 +50,14 @@ endif;
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
 // $RecordsPerPage = ##;
+
+$myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM eatthead  WHERE eatthead.CountryID ='".$_SESSION['UserValue1']."' AND eatthead.CustNo = '".getRequest("ID3")."'";
+$oRStcustomers = $objConn1->Execute($myRecordCount2);
+$TotalRecords1 = $oRStcustomers->fields["MyCount"];
+$RecordsPerPage = $TotalRecords1; 
+
+
+
 $HeaderText = "";
 $TemplateText = "";
 $DataRowEmptyText = "";
@@ -392,15 +400,15 @@ if ($oRSeatthead):
             if(getRequest("LOCATE") == "TRUE"):
                 $SearchMessage =  "<A href=BrowseCreateSchedule" . "list.php?RESETLIST=TRUE>All data</A>";
             endif;
-            MergeBrowseCreateScheduleListTemplate($HTML_Template);
+            NoRecordsFound($RecordsPerPage );
         else:
-            NoRecordsFound();
+            NoRecordsFound($RecordsPerPage);
         endif;
     else:
-        NoRecordsFound();
+        NoRecordsFound($RecordsPerPage);
     endif;
 else:
-    NoRecordsFound();
+    NoRecordsFound($RecordsPerPage);
 endif;
 
 $oRSeatthead->Close();
@@ -411,20 +419,24 @@ unset($oRSeatthead);
   NoRecordsFound
 =============================================================================
 */
-function NoRecordsFound() {
-    $Template = "./html/blank.htm";
-    global $ClarionData;
-    $FileObject = fopen($Template, "r");
-    $TemplateText = "";
-    $TemplateText = fread($FileObject, filesize($Template));
-    fclose ($FileObject);
-    $tmpMsg = "";
-    $tmpMsg = "<a href='BrowseCreateSchedule" . "list.php?RESETLIST=TRUE'>No records were found</a>";
-    $tmpMsg .= "<br><a href=Updateeatthead" . "add.php?ID=".$_GET['ID3'].">Insert record</a>";
-    $TemplateText = Replace($TemplateText,"@ClarionData@",$tmpMsg);
-    print ($TemplateText);
-    exit;
+function NoRecordsFound($number) {
+    if($number =="0"){
+    echo '<script type="text/javascript">
+    <!--
+    window.location = "Updateeattheadadd.php?ID='.$_GET['ID3'].'";
+    //-->
+    </script>';
+    } else {
+    echo '<script type="text/javascript">
+    <!--
+    window.location = "student_schedule.php?custno='.$_GET['ID3'].'";
+    //-->
+    </script>';
+
+    }
 }
+
+
 
 /*
 =============================================================================
