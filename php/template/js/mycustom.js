@@ -508,7 +508,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 			sched_code =  $(this).val();
 			sched_attr =  $(this).attr( "alt" );
 
-			alert(sched_attr);
+			//alert(sched_attr);
 			$.ajax({
 				url: 'template/schedule_variables.php',
 				type: 'post',
@@ -521,6 +521,8 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 					$('.' + sched_attr +' .txteattheadRm1').val(q.roomid);
 					$('.' + sched_attr +' .txteattheadTeaID1').val(q.teacherid1);
 					$('.' + sched_attr +' .tcname').val(q.teacher1);
+					$('.' + sched_attr +' .txteattheadRmname').val(q.room_name);
+
 				} 	
 			 })
 		})
@@ -530,7 +532,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 			sched_code =  $(this).val();
 			sched_attr =  $(this).attr( "alt" );
 
-			alert(sched_attr);
+			//alert(sched_attr);
 			$.ajax({
 				url: 'template/schedule_variables.php',
 				type: 'post',
@@ -543,6 +545,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 					$('.' + sched_attr +' .txteattheadRm1').val(q.roomid);
 					$('.' + sched_attr +' .txteattheadTeaID1').val(q.teacherid1);
 					$('.' + sched_attr +' .tcname').val(q.teacher1);
+					$('.' + sched_attr +' .txteattheadRmname').val(q.room_name);
 				} 	
 			 })
 		})
@@ -551,7 +554,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 			sched_code =  $(this).val();
 			sched_attr =  $(this).attr( "alt" );
 
-			alert(sched_attr);
+			//alert(sched_attr);
 			$.ajax({
 				url: 'template/schedule_variables.php',
 				type: 'post',
@@ -564,6 +567,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 					$('.' + sched_attr +' .txteattheadRm1').val(q.roomid);
 					$('.' + sched_attr +' .txteattheadTeaID1').val(q.teacherid1);
 					$('.' + sched_attr +' .tcname').val(q.teacher1);
+					$('.' + sched_attr +' .txteattheadRmname').val(q.room_name);
 				} 	
 			 })
 		})
@@ -572,7 +576,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 			sched_code =  $(this).val();
 			sched_attr =  $(this).attr( "alt" );
 
-			alert(sched_attr);
+			//alert(sched_attr);
 			$.ajax({
 				url: 'template/schedule_variables.php',
 				type: 'post',
@@ -585,6 +589,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 					$('.' + sched_attr +' .txteattheadRm1').val(q.roomid);
 					$('.' + sched_attr +' .txteattheadTeaID1').val(q.teacherid1);
 					$('.' + sched_attr +' .tcname').val(q.teacher1);
+					$('.' + sched_attr +' .txteattheadRmname').val(q.room_name);
 				} 	
 			 })
 		})
@@ -593,7 +598,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 			sched_code =  $(this).val();
 			sched_attr =  $(this).attr( "alt" );
 
-			alert(sched_attr);
+			//alert(sched_attr);
 			$.ajax({
 				url: 'template/schedule_variables.php',
 				type: 'post',
@@ -606,6 +611,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 					$('.' + sched_attr +' .txteattheadRm1').val(q.roomid);
 					$('.' + sched_attr +' .txteattheadTeaID1').val(q.teacherid1);
 					$('.' + sched_attr +' .tcname').val(q.teacher1);
+					$('.' + sched_attr +' .txteattheadRmname').val(q.room_name);
 				} 	
 			 })
 		})
@@ -614,7 +620,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 			sched_code =  $(this).val();
 			sched_attr =  $(this).attr( "alt" );
 
-			alert(sched_attr);
+			//alert(sched_attr);
 			$.ajax({
 				url: 'template/schedule_variables.php',
 				type: 'post',
@@ -627,6 +633,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 					$('.' + sched_attr +' .txteattheadRm1').val(q.roomid);
 					$('.' + sched_attr +' .txteattheadTeaID1').val(q.teacherid1);
 					$('.' + sched_attr +' .tcname').val(q.teacher1);
+					$('.' + sched_attr +' .txteattheadRmname').val(q.room_name);
 
 				} 	
 			 })
@@ -636,7 +643,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 			sched_code =  $(this).val();
 			sched_attr =  $(this).attr( "alt" );
 
-			alert(sched_attr);
+			//alert(sched_attr);
 			$.ajax({
 				url: 'template/schedule_variables.php',
 				type: 'post',
@@ -649,6 +656,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 					$('.' + sched_attr +' .txteattheadRm1').val(q.roomid);
 					$('.' + sched_attr +' .txteattheadTeaID1').val(q.teacherid1);
 					$('.' + sched_attr +' .tcname').val(q.teacher1);
+					$('.' + sched_attr +' .txteattheadRmname').val(q.room_name);
 				} 	
 			 })
 		})
@@ -852,15 +860,15 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 	            success: function (j) {
 	               console.log(j);
 	               //$('#success').html('Successfully Updated');
-	               //$('.modal-body').html(j.statusme);
-	               //$("#myModal").modal('show');
+	               $('.modal-body').html(j.statusme);
+	               $("#myModal").modal('show');
 	               
 	            }     
         	});
 
 			} else {
 
-				alert("Sorry...Something went Wrong.");
+				//alert("Sorry...Something went Wrong.");
 
 			} 
 

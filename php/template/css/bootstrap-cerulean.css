@@ -4455,3 +4455,76 @@ i[class^="icon-"] {
 .displaynone{
   display: none;
 }
+
+
+.Foundation-Kindy,
+.fc-agenda .Foundation-Kindy .fc-event-time,
+.Foundation-Kindy a {
+    background-color: #669533 !important; /* background color */
+    border-color: #669533 !important;     /* border color */
+    color: #fff !important;            /* text color */
+}
+
+.Foundation-Kinder,
+.fc-agenda .Foundation-Kinder .fc-event-time,
+.Foundation-Kinder a {
+     background-color: #dd5600 !important; /* background color */
+     border-color: #dd5600 !important;     /* border color */
+     color: white !important;           /* text color */
+}
+
+
+.Foundation-Primary,
+.fc-agenda .Foundation-Primary .fc-event-time,
+.Foundation-Primary a {
+     background-color: #bd4247 !important; /* background color */
+     border-color: #bd4247 !important;     /* border color */
+     color: white !important;           /* text color */
+}
+
+.Grading-Advance,
+.fc-agenda .Grading-Advance .fc-event-time,
+.Grading-Advance  a
+{
+    background-color: #817b58 !important; /* background color */
+    border-color: #817b58 !important;     /* border color */
+     color: white !important;   
+
+}
+
+
+.Grading-Intermediate,
+.fc-agenda .Grading-Advance .fc-event-time,
+.Grading-Advance  a
+{
+    background-color: #333333 !important; /* background color */
+    border-color: #333333 !important;     /* border color */
+     color: white !important;   
+
+}
+
+
+.my-default-event,
+.fc-agenda ..my-default-event .fc-event-time,
+.my-default-event  a
+{
+    background-color: #333333 !important; /* background color */
+    border-color: #333333 !important;     /* border color */
+     color: white !important;   
+
+}
+
+
+
+.Dan,
+.fc-agenda .Dan .fc-event-time,
+.Dan  a
+{
+
+  background-color: #999999 !important; /* background color */
+  border-color: #999999 !important;     /* border color */
+  color: white !important;   
+
+  
+}
+

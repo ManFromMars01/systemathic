@@ -280,7 +280,7 @@ a.fc-event {
 	
 .fc-event-skin {
 	border-color: #36c;     /* default BORDER color */
-	background-color: #36c; /* default BACKGROUND color */
+	/*background-color: #36c;*/ /* default BACKGROUND color */
 	color: #fff;            /* default TEXT color */
 	}
 	
@@ -557,6 +557,8 @@ table.fc-border-separate {
 .fc-agenda-slots tr.fc-minor th.ui-widget-header {
 	*border-top-style: solid; /* doesn't work with background in IE6/7 */
 	}
+
+.fc-agenda-slots tr{ height:50px !important;}	
 	
 
 

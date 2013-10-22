@@ -57,6 +57,8 @@ function MergeTemplate($Template) {
     global $tlevelBranchID;
     global $tlevelID;
     global $tlevelDescription;
+    global $tlevelLevelCode;
+    global $tlevelColor_Code; 
     global $EditOptions;    
     global $dbNavBar;    
     $FileObject = fopen($Template, "r");
@@ -90,6 +92,10 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
      $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
      $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+     $TemplateText = Replace($TemplateText, "@tlevelLevelCode@", $tlevelLevelCode); 
+     $TemplateText = Replace($TemplateText, "@tlevelColor_Code@", $tlevelColor_Code); 
+
+
     print($TemplateText);
 } // END Function
 include_once('ConnInfo.php');
@@ -160,7 +166,7 @@ function MergeEditTemplate($Template,$ClarionData) {
     endif;  
 }
 
-$sql = "SELECT tlevel.CountryID, tlevel.BranchID, tlevel.ID, tlevel.Description  FROM  tlevel WHERE  tlevel.CountryID = '" . $ID1 . "'" . " AND tlevel.BranchID = '" . $ID2 . "'" . " AND tlevel.ID = " . $ID3;
+$sql = "SELECT * FROM  tlevel WHERE  tlevel.CountryID = '" . $ID1 . "'" . " AND tlevel.BranchID = '" . $ID2 . "'" . " AND tlevel.ID = " . $ID3;
 $oRStlevel = $objConn1->SelectLimit($sql,1);
 if ($oRStlevel->MoveFirst() == false):
     $oRStlevel->Close();
@@ -174,6 +180,10 @@ $oRStlevelID = $oRStlevel->fields["ID"];
 $ID1  =  htmlDecode(getRequest("ID1"));
 $ID2  =  htmlDecode(getRequest("ID2"));
 $ID3  =  htmlDecode(getRequest("ID3"));
+
+
+
+
 
 $tlevelCountryID = "";
 if (is_null($oRStlevel->fields["CountryID"])):
@@ -198,7 +208,12 @@ if (is_null($oRStlevel->fields["Description"])):
 $tlevelDescription = "";
 else:
 $tlevelDescription = trim(getValue($oRStlevel->fields["Description"]));
+$tlevelLevelCode = trim(getValue($oRStlevel->fields["LevelCode"])); 
+$tlevelColor_Code = trim(getValue($oRStlevel->fields["Color_Code"])); 
 endif;
+
+
+
 $DeleteLevel = 1;
 if (isset($DeleteLevel) && getSession("UserLevel") >= $DeleteLevel):
 $DeleteButton = "<form method='post' action='Updatetleveldel.php' id='form1' name='form1'>";

@@ -30,7 +30,7 @@
                             <div class="control-group">
                                 <label class="control-label" for="focusedInput">Country ID:</label>
                                 <div class="controls">
-                                  <input class="input-xlarge focused" name="txttlevelCountryID" id="focusedInput" type="text" value="@tlevelCountryID@">
+                                  <input class="input-xlarge focused" name="txttlevelCountryID"  type="text" value="@CountryID@" readonly>
                                 </div>
                             </div>
 
@@ -38,25 +38,35 @@
                             <div class="control-group">
                                 <label class="control-label" for="focusedInput">Brand Id:</label>
                                 <div class="controls">
-                                  <input class="input-xlarge focused" name="txttlevelBranchID" id="focusedInput" type="text" value="@tlevelBranchID@">
+                                  <input class="input-xlarge focused" name="txttlevelBranchID"  type="text" value="@BranchID@" readonly >
                                 </div>
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="focusedInput">Description::</label>
+                                <label class="control-label" for="focusedInput">Level:</label>
                                 <div class="controls">
-                                  <input class="input-xlarge focused" name="txttlevelDescription" id="focusedInput" type="text" value="@tlevelDescription@">
+                                  <input class="input-xlarge focused" name="txttlevelDescription" id="focusedInput" type="text" value="@tlevelDescription@" required>
+                                </div>
+                            </div>
+
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Level Code:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="txttlevelLevelCode" type="text" value="" required>
+
                                 </div>
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label"  for="focusedInput">ID:</label>
+                                <label class="control-label" for="focusedInput">Color:</label>
                                 <div class="controls">
-                                  <input class="input-xlarge focused" name="txttlevelID" id="focusedInput" type="text" value="@tlevelID@">
+                                  <input class="input-xlarge focused" id="colorpick" name="txttlevelColor_Code" type="text" value="" required>
                                 </div>
                             </div>
 
                             
+                                                            
                             <div class="form-actions">
                               <!--<button type="submit" value="Submit" class="btn btn-primary">Save changes</button>-->
                               <button type="button"  class="btn btn-primary"  id="save_add_level">Save changes</button>

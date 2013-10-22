@@ -13,6 +13,8 @@ include_once('../utils.php');
     if (isset($_POST['day_name'])){
        
         $selectclass = "SELECT *  FROM tclasssched  WHERE  tclasssched.BranchID='".$_SESSION['UserValue2']."' AND tclasssched.LevelID ='".$_POST['level_id']."' AND tclasssched.Day ='".$_POST['day_name']."' ";
+        
+        $option .=  "<option value=''>Please Select Available Time</option>";
         $selectclass = $objConn1->Execute($selectclass);
         foreach ($selectclass as $selectclasses):
              $option .= "<option value='".$selectclasses['SchedCode']."'>".$selectclasses['TimeFrom']." - ".$selectclasses['TimeTo']." </option>";
@@ -40,7 +42,16 @@ include_once('../utils.php');
             $timeto        = $selectclasses['TimeTo'];     
         endforeach;
 
-        $myresult = array('teacher1' => $teacher1, 'roomid' => $roomid, 'timefrom' => $timefrom,  'timeto' => $timeto, 'teacherid1' => $teacher_id1, 'tcname' => $teacher1 );   
+        $selectroom = "SELECT *  FROM troom  WHERE  troom.BranchID='".$_SESSION['UserValue2']."' AND  troom.ID ='".$roomid."'";
+        $selectrooms = $objConn1->Execute($selectroom);
+        
+        foreach($selectrooms as $rooms):
+            $roomname = $rooms['Description'];
+        endforeach;    
+
+
+
+        $myresult = array('teacher1' => $teacher1, 'roomid' => $roomid, 'timefrom' => $timefrom,  'timeto' => $timeto, 'teacherid1' => $teacher_id1, 'tcname' => $teacher1, 'room_name' => $roomname);   
         echo json_encode($myresult); 
 
     }

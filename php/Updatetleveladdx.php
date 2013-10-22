@@ -69,13 +69,6 @@ $dbValues = "";
                     $myStatus .= "<HR>\n";
             endif;
     $rst["BranchID"] = getFormSQLQuoted($objConn1,"tlevel","BranchID","txttlevelBranchID");
-            if (getForm("txttlevelID") == ""):
-                if($myStatus == ""):
-                    $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
-                endif;
-                $flgMissing = 1;
-                        $myStatus .= " <STRONG>ID:</STRONG> : Required field <HR>\n";
-            endif;
     $rst["ID"] = getFormSQLQuoted($objConn1,"tlevel","ID","txttlevelID");
             if (getForm("txttlevelDescription") == ""):
                 if($myStatus == ""):
@@ -85,6 +78,8 @@ $dbValues = "";
                         $myStatus .= " <STRONG>Description:</STRONG> : Required field <HR>\n";
             endif;
     $rst["Description"] = getFormSQLQuoted($objConn1,"tlevel","Description","txttlevelDescription");
+    $rst["LevelCode"] = getFormSQLQuoted($objConn1,"tlevel","LevelCode","txttlevelDescription");
+    $rst["Color_Code"] = getFormSQLQuoted($objConn1,"tlevel","Color_Code","txttlevelDescription");
 
 
 foreach ($rst as $fld => $value) {

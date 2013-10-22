@@ -16,7 +16,7 @@ $myName = $_SESSION["myname"];
 	<meta name="author" content="marga">
 
 	<!-- The styles -->
-	<link  href="template/css/bootstrap-cerulean.css" rel="stylesheet">
+	
 	<style type="text/css">
 	  body {
 		padding-bottom: 40px;
@@ -42,6 +42,8 @@ $myName = $_SESSION["myname"];
 	<link href='template/css/opa-icons.css' rel='stylesheet'>
 	<link href='template/css/uploadify.css' rel='stylesheet'>
 	<link href='template/css/jquery.timepicker.css' rel='stylesheet'>
+	<link href='template/css/colorpicker.css' rel='stylesheet'>
+	<link  href="template/css/bootstrap-cerulean.css" rel="stylesheet">
 
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -125,6 +127,9 @@ $myName = $_SESSION["myname"];
 	<!-- application script for Charisma demo -->
 	<script src="template/js/charisma.js"></script>	
 	<script src="template/js/jquery.validate.min.js"></script>
+	
+	
+	
 	<script>
 		//Update Student
 	$( document ).ready(function() {	
@@ -141,6 +146,8 @@ $myName = $_SESSION["myname"];
 			        }     
 				});	
 		});
+
+		
 
 		
 	});

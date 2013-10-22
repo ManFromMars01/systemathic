@@ -1,3 +1,4 @@
+
 <?php 
 session_set_cookie_params(500);
 session_start();
@@ -11,18 +12,19 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
-if (isset($_GET['custno'])){
-       
-$selectsched = "SELECT *  FROM eattdtl  WHERE  eattdtl.CustNo='".$_GET['custno']."'";
+
+//$nextday = strtotime('this Friday');
+// /echo date('Y-m-d',$nextday);
+
+
+$selectsched = "SELECT *  FROM tclasssched  WHERE  tclasssched.BranchID='".$_SESSION["UserValue2"]."'";
 $selectsched = $objConn1->Execute($selectsched);
-
-}
-
-
 
 
 
 ?>
+
+
 
 
 <?php include('template/header.php') ?>	
@@ -46,7 +48,7 @@ $selectsched = $objConn1->Execute($selectsched);
 			<div class="row-fluid sortable">
 				<div class="box span12">
 				  <div class="box-header well" data-original-title>
-					  <h2><i class="icon-calendar"></i>Calendar</h2>
+					  <h2><i class="icon-calendar"></i>Class Schedule</h2>
 					  <div class="box-icon">
 						  <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
 						  <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -55,13 +57,13 @@ $selectsched = $objConn1->Execute($selectsched);
 				  </div>
 				  <div class="box-content">
 					<div id="external-events" class="well">
-						<h4>Draggable Events</h4>
-						<div class="external-event badge">Default</div>
-						<div class="external-event badge badge-success">Completed</div>
-						<div class="external-event badge badge-warning">Warning</div>
-						<div class="external-event badge badge-important">Important</div>
-						<div class="external-event badge badge-info">Info</div>
-						<div class="external-event badge badge-inverse">Other</div>
+						<h4>Legend (Levels)</h4>
+						<div class="external-event badge badge-success">Foundation - Kindy (FY)</div>
+						<div class="external-event badge badge-warning">Foundation - Kinder (FK)</div>
+						<div class="external-event badge badge-important">Foundation - Primary (FP)</div>
+						<div class="external-event badge badge-info">Grading - Advance (GA)</div>
+						<div class="external-event badge badge-inverse">Grading - Intermediate (GI)</div>
+						<div class="external-event badge">Dan(DA)</div>
 						<p>
 						<label for="drop-remove"><input type="checkbox" id="drop-remove" /> remove after drop</label>
 						</p>
@@ -71,7 +73,7 @@ $selectsched = $objConn1->Execute($selectsched);
 
 						<div class="clearfix"></div>
 					</div>
-				</div>--->
+				</div>
 			</div><!--/row-->
 		
 					<!-- content ends -->
@@ -107,16 +109,46 @@ $selectsched = $objConn1->Execute($selectsched);
 			right: 'month,agendaWeek,agendaDay'
 		},
 		events: [
-					<?php foreach ($selectsched as $selectclasses): ?>
-			        {
-			            title: 'Session Number <?php echo $selectclasses['SessionNo']; ?> (<?php echo $selectclasses['TimeFrom']; ?> - <?php echo $selectclasses['TimeTo']; ?>) ',
+					<?php
+					foreach ($selectsched as $selectclasses): 
+					$day_label = $selectclasses['Day'];	
+					$date_day = date('Y-m-d',strtotime('this '.$day_label));
+					$selectlevel = "SELECT *  FROM tlevel  WHERE  tlevel.ID='".$selectclasses['LevelID']."'";
+					$selectlevel = $objConn1->Execute($selectlevel);
+					
+					//Level Description
+					foreach ($selectlevel as $selectlevels) {
+						$level_code = $selectlevels['LevelCode'];
+						$level_desc = $selectlevels['Description'];						
+					}					
+					//Level Description End 
+
+
+
+
+					for($x=0; $x <= 51; $x++){
+						$y = $x * 7 ;
+						$date_day2  =  date('Y-m-d', strtotime( $date_day.' +'.$y.' day')); 
+						//echo $x; 
+					?>
+					 {
+			            title: ' <?php echo $level_code; ?>(<?php echo $selectclasses['TimeFrom']; ?> -  <?php echo $selectclasses['TimeTo']; ?>)  ',
 			            allDay:false,
-			            start: '<?php echo $selectclasses['Date']; ?> <?php echo $selectclasses['TimeFrom']; ?>',
-			            end: '<?php echo $selectclasses['Date']; ?> <?php echo $selectclasses['TimeTo']; ?>' ,
+			            start: '<?php echo $date_day2; ?> <?php echo $selectclasses['TimeFrom']; ?>',
+			            end: '<?php echo $date_day2; ?> <?php echo $selectclasses['TimeTo']; ?>' ,
 			            description: '<?php echo $selectclasses['TimeFrom']; ?> - <?php echo $selectclasses['TimeTo']; ?>',
-			            className: 'Foundation-Kindy'
-			        },
-			        <?php endforeach; ?>
+			            className:'<?php echo str_replace(" ","",$level_desc); ?>'
+			        },	
+
+					<?php	
+					}
+	
+					endforeach; 
+					?>	
+
+
+
+					
 			    ],	    
 		editable: true,
 		droppable: true, // this allows things to be dropped onto the calendar !!!

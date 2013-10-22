@@ -120,18 +120,11 @@ $arrayoRStlevel["CountryID"] = getFormSQLQuoted($objConn1, "tlevel", "CountryID"
                     $myStatus .= "<hr>\n";
         endif;
 $arrayoRStlevel["BranchID"] = getFormSQLQuoted($objConn1, "tlevel", "BranchID", "txttlevelBranchID");
-        if (getRequest("txttlevelID") == ""):
-            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
-            $flgMissing = TRUE;
-                        $myStatus .= " <strong>ID:</strong> : Required field <hr>\n";
-        endif;
-$arrayoRStlevel["ID"] = getFormSQLQuoted($objConn1, "tlevel", "ID", "txttlevelID");
-        if (getRequest("txttlevelDescription") == ""):
-            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
-            $flgMissing = TRUE;
-                        $myStatus .= " <strong>Description:</strong> : Required field <hr>\n";
-        endif;
 $arrayoRStlevel["Description"] = getFormSQLQuoted($objConn1, "tlevel", "Description", "txttlevelDescription");
+$arrayoRStlevel["LevelCode"] = getFormSQLQuoted($objConn1, "tlevel", "LevelCode", "txttlevelLevelCode");
+$arrayoRStlevel["Color_Code"] = getFormSQLQuoted($objConn1, "tlevel", "Color_Code", "txttlevelColor_Code");
+
+
 $tsql = $objConn1->GetUpdateSQL($oRStlevel, $arrayoRStlevel, true, get_magic_quotes_gpc());
 $badsql = strpos($tsql, "UPDATE  SET");
 if($badsql === false):
