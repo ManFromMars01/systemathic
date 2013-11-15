@@ -11,6 +11,7 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
+include('template/myclass.php');
 
 ?>
 
@@ -48,74 +49,74 @@ include('login.php');
 					<div class="box-content">
 									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
 
-<table width="auto" height="auto" id="table1">
+									<table width="auto" height="auto" id="table1">
 
-<tr>
-	<td width="16%"><a href="BrowseStudentlist.php"><img class="table101" src="template/img/admission-slice/assessment.png"></a></td>
-    <td width="9%" rowspan="7"> <img  src="template/img/admission-slice/arrow1.png"  height="auto" width="auto"></td>
-    <td width="16%"><a href="BrowseStudentlist3.php"><img  class="table101" src="template/img/admission-slice/admission.png"></a></td>
-    <td width="3%" rowspan="7"> <img src="template/img/admission-slice/arrow2.png"></td>
-    <td valign="bottom"><img src="template/img/admission-slice/arrow4.png" width="auto" height="auto"></td>
-    <td width="20%"><a href="BrowseStudentlist6.php"><img  class="table101" src="template/img/admission-slice/studentfile.png"></a></td>
-    <td width="18%"> </td>
-</tr>
+									<tr>
+										<td width="16%"><a href="BrowseStudentlist3.php?CustType=Assessment&RegType=Waiting"><img class="table101" src="template/img/admission-slice/assessment.png"></a></td>
+									    <td width="9%" rowspan="7"> <img  src="template/img/admission-slice/arrow1.png"  height="auto" width="auto"></td>
+									    <td width="16%"><a href="BrowseStudentlist3.php?CustType=For Admission&RegType=Waiting"><img  class="table101" src="template/img/admission-slice/admission.png"></a></td>
+									    <td width="3%" rowspan="7"> <img src="template/img/admission-slice/arrow2.png"></td>
+									    <td valign="bottom"><img src="template/img/admission-slice/arrow4.png" width="auto" height="auto"></td>
+									    <td width="20%">><a href="BrowseStudentlistreg.php?RegType=Admitted"><img  class="table101" src="template/img/admission-slice/studentfile.png"></a></td>
+									    <td width="18%"> </td>
+									</tr>
 
-<tr>
-	<td><img src="template/img/admission-slice/downarrow1.png" width="auto" height="auto"></td>
-    <td><img src="template/img/admission-slice/downarrow1.png" width="auto" height="auto"></td>
-    <td colspan="3" align="center"><img src="template/img/admission-slice/threearrow1.png"></td>
- 
-</tr>
+									<tr>
+										<td><img src="template/img/admission-slice/downarrow1.png" width="auto" height="auto"></td>
+									    <td><img src="template/img/admission-slice/downarrow1.png" width="auto" height="auto"></td>
+									    <td colspan="3" align="center"><img src="template/img/admission-slice/threearrow1.png"></td>
+									 
+									</tr>
 
-<tr>
-	<td height="85"><img  class="table101" src="template/img/admission-slice/trialclass.png"></td>
-    <td><a href="CreateScheduleWindowlist.php"><img  class="table101" src="template/img/admission-slice/createsched.png"></a></td>
-    <td width="18%"><img  class="table101" src="template/img/admission-slice/books.png"></td>
-    <td> <img  class="table101" src="template/img/admission-slice/attendance.png"></td>
-    <td> <img  class="table101" src="template/img/admission-slice/progress.png"></td>
-    
-</tr>
-
-
-<tr>
-	<td>&nbsp;</td>
-    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-    <td width="18%"><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-    
-</tr>
-
-<tr>
-	<td><a href="BrowseStudentlist4.php"><img  class="table101" src="template/img/admission-slice/reenrollee.png"></a></td>
-    <td><img  class="table101" src="template/img/admission-slice/invoicing.png"></td>
-    <td><img  class="table101" src="template/img/admission-slice/examination.png"></td>
-    <td> <img class="table101" src="template/img/admission-slice/onlinepractice.png"></td>
-    <td> <img class="table101" src="template/img/admission-slice/generatereports.png"></td>
-    
-</tr>
-
-<tr>
-	<td>&nbsp;</td>
-    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    
-</tr>
+									<tr>
+										<td height="85"><a href="BrowseStudentlist3.php?CustType=Trial Class&RegType=Waiting"><img  class="table101" src="template/img/admission-slice/trialclass.png"></a></td>
+									    <td><a href="BrowseStudentlistreg.php?RegType=For Schedule"><img  class="table101" src="template/img/admission-slice/createsched.png"></a></td>
+									    <td width="18%"><a id="returnbooklink" href="#"><img  class="table101" src="template/img/admission-slice/books.png"></a></td>
+									    <td><a href="page/controller/attendance_class.php"><img  class="table101" src="template/img/admission-slice/attendance.png"></td>
+									    <td> <img  class="table101" src="template/img/admission-slice/progress.png"></td>
+									    
+									</tr>
 
 
-<tr>
-	<td height="75"><a href="BrowseStudentlist5.php"><img  class="table101" src="template/img/admission-slice/continuing.png"></a></td>
-    <td><img  class="table101" src="template/img/admission-slice/kitissuance.png"></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    
-</tr>
+									<tr>
+										<td>&nbsp;</td>
+									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+									    <td width="18%"><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+									    
+									</tr>
+
+									<tr>
+										<td><a href="BrowseStudentlist3.php?CustType=Re-Enrollee"><img  class="table101" src="template/img/admission-slice/reenrollee.png"></a></td>
+									    <td><a href="BrowseStudentlistreg.php?RegType=For Payment"><img  class="table101" src="template/img/admission-slice/invoicing.png"></a></td>
+									    <td><a href="page/controller/events_manager.php"><img  class="table101" src="template/img/admission-slice/examination.png"></a></td>
+									    <td><a href="page/controller/online_practices.php"><img class="table101" src="template/img/admission-slice/onlinepractice.png"></a></td>
+									    <td> <img class="table101" src="template/img/admission-slice/generatereports.png"></td>
+									    
+									</tr>
+
+									<tr>
+										<td>&nbsp;</td>
+									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+									    <td>&nbsp;</td>
+									    <td>&nbsp;</td>
+									    <td>&nbsp;</td>
+									    
+									</tr>
 
 
-</table>
+									<tr>
+										<td height="75"><a href="BrowseStudentlist3.php?CustType=Continuing"><img  class="table101" src="template/img/admission-slice/continuing.png"></a></td>
+									    <td><a href="BrowseStudentlistreg.php?RegType=For Kit Issuance"><img  class="table101" src="template/img/admission-slice/kitissuance.png"></a></td>
+									    <td>&nbsp;</td>
+									    <td>&nbsp;</td>
+									    <td>&nbsp;</td>
+									    
+									</tr>
+
+
+									</table>
 
 
 
@@ -134,7 +135,7 @@ include('login.php');
 					
 			<div class="row-fluid sortable">
 				<div class="box span4">
-					<div class="box-header well">
+					<div class="box-header well boxheadercolor">
 						<h2><i class="icon-th"></i> Assessment</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
@@ -142,13 +143,14 @@ include('login.php');
 							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
 					</div>
-					<div class="box-content">
+					<div class="box-content boxcontentcolor">
 					
 						 
 						<div id="myTabContent" class="tab-content">	
 							<div class="tab-pane active" id="info">
-								<img src="template/img/thumbs/assessment.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> 
+								
+								<p> <img src="template/img/thumbs/assessment.jpg"  class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</p> 
 
 								<a href="BrowseStudentlist.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Assess </a>
 							</div>
@@ -158,7 +160,7 @@ include('login.php');
 				</div><!--/span-->
 						
 				<div class="box span4">
-					<div class="box-header well" >
+					<div class="box-header well boxheadercolor" >
 						<h2><i class="icon-user"></i> Trial Class</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
@@ -167,11 +169,14 @@ include('login.php');
 						</div>
 					</div>
 					
-						<div class="box-content">
+						<div class="box-content boxcontentcolor
+						">
 							<div id="myTabContent" class="tab-content">	
 								<div class="tab-pane active" id="info">
-									<img src="template/img/thumbs/trialclass.jpg">
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <a href="BrowseStudentlist2.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Try Now</a>
+									
+									<p><img src="template/img/thumbs/trialclass.jpg" class="thumbsize">
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</p> 
+										<a href="BrowseStudentlist2.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Try Now</a>
 								</div>
 
 							</div>
@@ -179,7 +184,7 @@ include('login.php');
 				</div><!--/span-->
 						
 				<div class="box span4">
-					<div class="box-header well" >
+					<div class="box-header well boxheadercolor" >
 						<h2><i class="icon-list-alt"></i> Re-Enrollee</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -187,11 +192,13 @@ include('login.php');
 						</div>
 					</div>
 					
-					<div class="box-content">
+					<div class="box-content boxcontentcolor">
 						<div id="myTabContent" class="tab-content">	
 							<div class="tab-pane active" id="info">
-								<img src="template/img/thumbs/reenrollee.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <a href="BrowseStudentlist4.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Enroll</a>
+								
+								<p><img src="template/img/thumbs/reenrollee.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</p> 
+									<a href="BrowseStudentlist4.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Enroll</a>
 							</div>
 							
 						</div>
@@ -201,7 +208,7 @@ include('login.php');
 
 			<div class="row-fluid sortable">
 				<div class="box span4">
-					<div class="box-header well" >
+					<div class="box-header well boxheadercolor" >
 						<h2><i class="icon-user"></i> Continuing Student</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
@@ -210,11 +217,13 @@ include('login.php');
 						</div>
 					</div>
 					
-						<div class="box-content">
+						<div class="box-content boxcontentcolor">
 							<div id="myTabContent" class="tab-content">	
 								<div class="tab-pane active" id="info">
-									<img src="template/img/thumbs/continuing.jpg">
-									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <a href="BrowseStudentlist5.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Search Now</a>
+									
+									<p><img src="template/img/thumbs/continuing.jpg" class="thumbsize">
+										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+										<a href="BrowseStudentlist5.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Search Now</a>
 								</div>
 
 							</div>
@@ -222,15 +231,15 @@ include('login.php');
 				</div><!--/span-->
 					
 				<div class="box span4">
-					<div class="box-header well" data-original-title>
-						<h2><i class="icon-list"></i> Admission</h2>
+					<div class="box-header well boxheadercolor" data-original-title>
+						<h2 ><i class="icon-list"></i> Admission</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
 							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
 					</div>
-					<div class="box-content">
+					<div class="box-content boxcontentcolor">
 						<ul class="nav nav-tabs" id="myTab">
 							<li class="active"><a href="#admission">Admission</a></li>
 							<li><a href="#create">Create Schedule</a></li>
@@ -240,23 +249,31 @@ include('login.php');
 						 
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="admission">
-								<img src="template/img/thumbs/admission.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <a href="BrowseStudentlist3.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Insert </a>
+								
+								<p><img src="template/img/thumbs/admission.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+								<a href="BrowseStudentlist3.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Insert </a>
 							</div>
 							<div class="tab-pane" id="create">
-								<img src="template/img/thumbs/schedule.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <a href="CreateScheduleWindowlist.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Create </a>
+								
+								<p><img src="template/img/thumbs/schedule.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+								<a href="CreateScheduleWindowlist.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Create </a>
 								
 							</div>
 							<div class="tab-pane" id="invoicing">
-								<img src="template/img/thumbs/payment.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Inquire </button>
+								
+								<p><img src="template/img/thumbs/payment.jpg" class="thumbsize">
+									aaLorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+								<button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Inquire </button>
 								
 							</div>
 
 							<div class="tab-pane" id="kit">
-								<img src="template/img/thumbs/kitissuance.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Check </button>
+								
+								<p><img src="template/img/thumbs/kitissuance.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+								<a href="BrowseStudentlist7.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Check </a>
 								
 							</div>
 						</div>
@@ -264,7 +281,7 @@ include('login.php');
 				</div><!--/span-->
 					
 				<div class="box span4">
-					<div class="box-header well" data-original-title>
+					<div class="box-header well boxheadercolor" data-original-title>
 						<h2><i class="icon-list"></i> Student File</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
@@ -272,43 +289,55 @@ include('login.php');
 							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
 					</div>
-					<div class="box-content">
+					<div class="box-content boxcontentcolor">
 						<ul class="nav nav-tabs" id="myTab">
 							<li class="active"><a href="#books">Books</a></li>
 							<li><a href="#attendance">Attendance</a></li>
 							<li><a href="#progress">Progress</a></li>
 							<li><a href="#examinations">Examinations</a></li>
-							<li><a href="#onlinepractice">Online Practice</a></li>
+							<li><a href="">Online Practice</a></li>
 							<li><a href="#reports">Generate Reports</a></li>
 						</ul>
 						 
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="books">
-								<img src="template/img/thumbs/books.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Search </button>
+								
+								<p><img src="template/img/thumbs/books.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+									<button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Search </button>
 							</div>
 							<div class="tab-pane" id="attendance">
-								<img src="template/img/thumbs/attendance.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>View </button>
+								
+								<p><img src="template/img/thumbs/attendance.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+								<button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>View </button>
 							</div>
 							<div class="tab-pane" id="progress">
-								<img src="template/img/thumbs/progress.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Check </button>
+								
+								<p><img src="template/img/thumbs/progress.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+								<button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Check </button>
 							</div>
 
 							<div class="tab-pane" id="examinations">
-								<img src="template/img/thumbs/examination.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Inquire </button>
+								
+								<p><img src="template/img/thumbs/examination.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+								<button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Inquire </button>
 							</div>
 
 							<div class="tab-pane" id="onlinepractice">
-								<img src="template/img/thumbs/onlinepractice.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Log in </button>
+								
+								<p><img src="template/img/thumbs/onlinepractice.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
+								<button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Log in </button>
 							</div>
 
 							<div class="tab-pane" id="reports">
-								<img src="template/img/thumbs/generate.jpg">
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p> <button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Generate </button>
+								
+								<p><img src="template/img/thumbs/generate.jpg" class="thumbsize">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</p> 
+								<button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Generate </button>
 							</div>
 						</div>	
 
@@ -320,6 +349,6 @@ include('login.php');
 		  
        
 					<!-- content ends -->
-			</div><!--/#content.span10-->
+			</div><!--/#content.span10-->\
 		
 <?php include('template/footer.php') ?>

@@ -587,10 +587,18 @@ $Seq = 0;
                     $titemsAutomaticDetailLink .=  "&ID2=" . "'";
                     $titemsAutomaticDetailLink .= htmlEncode(trim(getValue($oRStitems->fields["BranchID"]))) . "'";
                     $titemsAutomaticDetailLink .=  "&ID3=" . "'";
-                    $titemsAutomaticDetailLink .= htmlEncode(trim(getValue($oRStitems->fields["ItemNo"]))) . "'";
+                    $titemsAutomaticDetailLink .= urlencode(trim(getValue($oRStitems->fields["ItemNo"]))) . "'";
             $tmpIMG_titemsAutomaticDetailLink = "";
             $tmpIMG_titemsAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
                 $titemsAutomaticDetailLink .= "\">" . $tmpIMG_titemsAutomaticDetailLink . "</a>";
+
+                $itemnolink = htmlEncode(trim(getValue($oRStitems->fields["ItemNo"])));
+                $scriptdel  = "return confirm('Are you sure you want to remove this?');";
+                $deleteitem = '<a  onclick="'.$scriptdel.'" class="btn btn-danger" href="template/delete.php?Page=items&BranchID='.$_SESSION['UserValue2'].'&Itemno='.$itemnolink.'"><i class="icon-trash icon-white"></i>Delete</a>';
+
+
+
+
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $titemsCountryIDSTYLE = "TableRow" . $Style;
     if (is_null($oRStitems->fields["CountryID"])):
@@ -619,6 +627,11 @@ $titemsDescriptionSTYLE = "TableRow" . $Style;
     else:
         $titemsDescription = htmlEncode(getValue($oRStitems->fields["Description"]));
 endif;
+ 
+$titemsaba = htmlEncode(getValue($oRStitems->fields["AbaDesc"]));
+$titemsmen = htmlEncode(getValue($oRStitems->fields["MenDesc"]));
+$titemssupp = htmlEncode(getValue($oRStitems->fields["SuppDesc"])); 
+
 $Seq++;
 $oRStitems->MoveNext();
 
@@ -629,8 +642,14 @@ $DataRowFilledText = Replace($DataRowFilledText,"@titemsCountryIDSTYLE@",$titems
 $DataRowFilledText = Replace($DataRowFilledText,"@titemsBranchID@", $titemsBranchID);       
 $DataRowFilledText = Replace($DataRowFilledText,"@titemsBranchIDSTYLE@",$titemsBranchIDSTYLE);           
 $DataRowFilledText = Replace($DataRowFilledText,"@titemsItemNo@", $titemsItemNo);       
-$DataRowFilledText = Replace($DataRowFilledText,"@titemsItemNoSTYLE@",$titemsItemNoSTYLE);           
-$DataRowFilledText = Replace($DataRowFilledText,"@titemsDescription@", $titemsDescription);       
+$DataRowFilledText = Replace($DataRowFilledText,"@titemsItemNoSTYLE@",$titemsItemNoSTYLE);   
+$DataRowFilledText = Replace($DataRowFilledText,"@titemsDescription@",$titemsDescription);   
+$DataRowFilledText = Replace($DataRowFilledText,"@titemsaba@", $titemsaba);
+$DataRowFilledText = Replace($DataRowFilledText,"@titemsmen@", $titemsmen);
+$DataRowFilledText = Replace($DataRowFilledText,"@titemssupp@", $titemssupp);
+$DataRowFilledText = Replace($DataRowFilledText,"@deleteitem@", $deleteitem);
+
+
 $DataRowFilledText = Replace($DataRowFilledText,"@titemsDescriptionSTYLE@",$titemsDescriptionSTYLE);           
         endwhile; // of oRStitems DO WHILE
     endif; // rs is valid

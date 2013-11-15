@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-$myRole = getSession("UserCompany");
+//$myRole = getSession("UserCompany");
 $myName = $_SESSION["myname"];
 
 ?>
@@ -15,6 +15,8 @@ $myName = $_SESSION["myname"];
 	<meta name="description" content="Kenneth Lito">
 	<meta name="author" content="marga">
 
+	
+	<link  href="template/css/bootstrap-cerulean.css" rel="stylesheet">
 	<!-- The styles -->
 	
 	<style type="text/css">
@@ -41,9 +43,14 @@ $myName = $_SESSION["myname"];
 	<link href='template/css/jquery.iphone.toggle.css' rel='stylesheet'>
 	<link href='template/css/opa-icons.css' rel='stylesheet'>
 	<link href='template/css/uploadify.css' rel='stylesheet'>
+
+
+
+
+
 	<link href='template/css/jquery.timepicker.css' rel='stylesheet'>
 	<link href='template/css/colorpicker.css' rel='stylesheet'>
-	<link  href="template/css/bootstrap-cerulean.css" rel="stylesheet">
+	
 
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -51,7 +58,7 @@ $myName = $_SESSION["myname"];
 	<![endif]-->
 
 	<!-- The fav icon -->
-	<link rel="shortcut icon" href="template/img/smlogo.png">
+	<link rel="shortcut icon" href="template/img/smlogo101.png">
 	<!-- external javascript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -147,9 +154,265 @@ $myName = $_SESSION["myname"];
 				});	
 		});
 
-		
+
+		$('.bookcat').each(function(){
+		       bookcategory = $(this).is(':checked');
+		       if(bookcategory == true){
+		       		myval = $(this).val();
+		       		$('#group-' + myval).show();
+		       }
+		      
+		});
 
 		
+
+		$('#previousa').change(function(){
+			$('.abook').hide();
+			$('.apbookcode').val('');
+			//$('.abacusrpt').val('');
+
+			var preva = $(this).val();
+			 $.ajax({
+			        url: 'template/item_variables2.php',
+			        type: 'post',
+			        data: {preva : preva},
+			        dataType: 'json',
+			        success: function (j) {
+			           //alert(j.booknum);
+			           console.log(j);
+
+			           
+			           for(x=1; x<=j.booknum; x++){		
+			           	$('.abook' + x).show();
+			           	$('.abookcode' + x ).html(j.bookcodes[x - 1]); 
+			           	$('.apbookcode' + x ).val(j.bookcodes[x - 1]);
+			           	
+			           	//alert(j.bookcodes[x - 1]);
+					       
+			           }
+			             booknumme = j.booknum + 1;
+			             //alert(booknumme);
+			             if(booknumme == "2"){
+			             	$('#abacusrpt2').val('');
+			             	$('#abacusrpt3').val('');
+			             }
+			             if(booknumme == "3"){
+			             	$('#abacusrpt3').val('');
+			             }
+
+			            
+			        }     
+			});	
+
+		});
+
+
+		$('#previousm').change(function(){
+			$('.mbook').hide();
+			$('.mpbookcode').val('');
+			var prevm = $(this).val();
+			 $.ajax({
+			        url: 'template/item_variables2.php',
+			        type: 'post',
+			        data: {prevm : prevm},
+			        dataType: 'json',
+			        success: function (j) {
+			           //alert(j.booknum);
+			           console.log(j);
+
+			           for(x=1; x<=j.booknum; x++){
+			           	$('.mbook' + x).show();
+			           	$('.mbookcode' + x ).html(j.bookcodes[x - 1]); 
+			           	$('.mpbookcode' + x ).val(j.bookcodes[x - 1]); 
+			      
+			           }
+
+			           booknumme = j.booknum + 1;
+			             //alert(booknumme);
+			             if(booknumme == "2"){
+			             	$('#mentalrpt2').val('');
+			             	$('#mentalrpt3').val('');
+			             }
+			             if(booknumme == "3"){
+			             	$('#mentalrpt3').val('');
+			             }
+
+			            
+			        }     
+			});	
+
+		});
+
+
+		$('#previouss').change(function(){
+			$('.sbook').hide();
+			$('.spbookcode').val('');
+			var prevs = $(this).val();
+			 
+			 $.ajax({
+			        url: 'template/item_variables2.php',
+			        type: 'post',
+			        data: {prevs : prevs},
+			        dataType: 'json',
+			        success: function (j) {
+			           //alert(j.booknum);
+			           console.log(j);
+
+			           for(x=1; x<=j.booknum; x++){
+			           	$('.sbook' + x).show();
+			           	$('.sbookcode' + x ).html(j.bookcodes[x - 1]); 
+			           	$('.spbookcode' + x ).val(j.bookcodes[x - 1]); 
+
+			           }
+
+			           	booknumme = j.booknum + 1;
+			             //alert(booknumme);
+			             if(booknumme == "2"){
+			             	$('#supprpt2').val('');
+			             	$('#supprpt3').val('');
+			             }
+			             if(booknumme == "3"){
+			             	$('#supprpt3').val('');
+			             }
+
+
+			            
+			        }     
+			});	
+
+		});
+
+
+		$('#nexta').change(function(){
+			var nexta = $(this).val();
+			$('.anbookcode').val('');
+			 $.ajax({
+			        url: 'template/item_variables2.php',
+			        type: 'post',
+			        data: {nexta : nexta},
+			        dataType: 'json',
+			        success: function (j) {
+			          // alert(j.booknum);
+			           console.log(j);
+
+			           for(x=1; x<=j.booknum; x++){ 
+			           	$('.anbookcode' + x ).val(j.bookcodes[x - 1]); 
+			           }
+
+			            
+			        }     
+			});	
+
+		});
+		$('#nextm').change(function(){
+			var nextm = $(this).val();
+			$('.mnbookcode').val('');
+			 $.ajax({
+			        url: 'template/item_variables2.php',
+			        type: 'post',
+			        data: {nextm : nextm},
+			        dataType: 'json',
+			        success: function (j) {
+			           //alert(j.booknum);
+			           console.log(j);
+
+			           for(x=1; x<=j.booknum; x++){ 
+			           	$('.mnbookcode' + x ).val(j.bookcodes[x - 1]); 
+			           }
+
+			            
+			        }     
+			});	
+
+		});
+		$('#nexts').change(function(){
+			var nexts = $(this).val();
+			$('.snbookcode').val('');
+			 $.ajax({
+			        url: 'template/item_variables2.php',
+			        type: 'post',
+			        data: {nexts: nexts},
+			        dataType: 'json',
+			        success: function (j) {
+			           //alert(j.booknum);
+			           console.log(j);
+
+			           for(x=1; x<=j.booknum; x++){ 
+			           	$('.snbookcode' + x ).val(j.bookcodes[x - 1]); 
+			           }
+
+			            
+			        }     
+			});	
+
+		});
+
+		$('#prea').change(function(){
+			var prea = $(this).val();
+			$('.preabookcode').val('');
+			 $.ajax({
+			        url: 'template/item_variables2.php',
+			        type: 'post',
+			        data: {prea: prea},
+			        dataType: 'json',
+			        success: function (j) {
+			           //alert(j.booknum);
+			           console.log(j);
+
+			           for(x=1; x<=j.booknum; x++){ 
+			           	$('.preabookcode' + x ).val(j.bookcodes[x - 1]); 
+			           }
+
+			            
+			        }     
+			});	
+
+		});
+
+		$('#prem').change(function(){
+			var prem = $(this).val();
+			$('.prembookcode').val('');
+			 $.ajax({
+			        url: 'template/item_variables2.php',
+			        type: 'post',
+			        data: {prem: prem},
+			        dataType: 'json',
+			        success: function (j) {
+			           //alert(j.booknum);
+			           console.log(j);
+
+			           for(x=1; x<=j.booknum; x++){ 
+			           	$('.prembookcode' + x ).val(j.bookcodes[x - 1]); 
+			           }
+
+			            
+			        }     
+			});	
+
+		});
+
+		$('#pres').change(function(){
+			var pres = $(this).val();
+			$('.presbookcode').val('');
+			 $.ajax({
+			        url: 'template/item_variables2.php',
+			        type: 'post',
+			        data: {pres: pres},
+			        dataType: 'json',
+			        success: function (j) {
+			           //alert(j.booknum);
+			           console.log(j);
+
+			           for(x=1; x<=j.booknum; x++){ 
+			           	$('.presbookcode' + x ).val(j.bookcodes[x - 1]); 
+			           }
+
+			            
+			        }     
+			});	
+
+		});
+
 	});
 	
 
@@ -204,9 +467,9 @@ $myName = $_SESSION["myname"];
 				
 			<!-- left menu starts -->
 			<div class="span2 main-menu-span">
-				<div class="well nav-collapse sidebar-nav">
+				<div class="well nav-collapse sidebar-nav navdivcolor">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li class="nav-header hidden-tablet">Main</li>
+						<li class="nav-header hidden-tablet ">Main</li>
 						<li><a class="ajax-link" href="index.php"><img class="icon" src="template/img/redicons/id_card.png"></img><span class="hidden-tablet">Admission</span></a></li>
 						<li><a class="ajax-link" href="schedule.php"><img class="icon" src="template/img/redicons/calendar.png"></img><span class="hidden-tablet"> Scheduling</span></a></li>
 						<li><a class="ajax-link" href="contact.php"><img class="icon" src="template/img/redicons/phone.png"></img><span class="hidden-tablet"> Contact</span></a></li>
@@ -218,14 +481,15 @@ $myName = $_SESSION["myname"];
 						
 						
 						<li class="nav-header hidden-tablet">Admin Section</li>
-						<li><a class="ajax-link" href="Browsetcountrylist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Country List</span></a></li>
-						<li><a class="ajax-link" href="BrowseDeptlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Department List</span></a></li>
-						<li><a class="ajax-link" href="BrowseCategorylist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Category List</span></a></li>
-						<li><a class="ajax-link" href="BrowseUnitMeaslist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Unit List</span></a></li>
-						<li><a class="ajax-link" href="BrowseManufacturerlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Manufacturer</span></a></li>
-						<li><a class="ajax-link" href="BrowseLocationlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Location</span></a></li>
-						<li><a class="ajax-link" href="BrowseItemslist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Book Item List</span></a></li>
-						<li><a class="ajax-link" href="BrowseAssessmentlist.php"><img class="icon" src="template/img/redicons/database.png"></img><span class="hidden-tablet"> Assessment List</span></a></li>
+						<li><a class="ajax-link" href="Browsetcountrylist.php"><img class="icon" src="template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Country List</span></a></li>
+						<li><a class="ajax-link" href="BrowseDeptlist.php"><img class="icon" src="template/img/redicons/department.jpg"></img><span class="hidden-tablet"> Department List</span></a></li>
+						<li><a class="ajax-link" href="BrowseLevellist.php"><img class="icon" src="template/img/redicons/department.jpg"></img><span class="hidden-tablet"> Level List</span></a></li>
+						<li><a class="ajax-link" href="BrowseCategorylist.php"><img class="icon" src="template/img/redicons/category.jpg"></img><span class="hidden-tablet"> Category List</span></a></li>
+						<li><a class="ajax-link" href="BrowseUnitMeaslist.php"><img class="icon" src="template/img/redicons/unit.jpg"></img><span class="hidden-tablet"> Unit List</span></a></li>
+						<li><a class="ajax-link" href="BrowseManufacturerlist.php"><img class="icon" src="template/img/redicons/manufacturer.jpg"></img><span class="hidden-tablet"> Manufacturer</span></a></li>
+						<li><a class="ajax-link" href="BrowseLocationlist.php"><img class="icon" src="template/img/redicons/location.jpg"></img><span class="hidden-tablet"> Location</span></a></li>
+						<li><a class="ajax-link" href="BrowseItemslist.php"><img class="icon" src="template/img/redicons/booklist.jpg"></img><span class="hidden-tablet"> Book Item List</span></a></li>
+						<li><a class="ajax-link" href="BrowseAssessmentlist.php"><img class="icon" src="template/img/redicons/assessment.jpg"></img><span class="hidden-tablet"> Assessment List</span></a></li>
 						
 
 						<li class="nav-header hidden-tablet">Design Section</li>

@@ -47,6 +47,18 @@
     endforeach;
     /**End Referral**/
 
+
+    /**Begin Referral**/
+    $selectcustomer = "SELECT *  FROM tcustomer  WHERE tcustomer.CountryID ='".$_SESSION['UserValue1']."' AND tcustomer.BranchID='".$_SESSION['UserValue2']."' AND tcustomer.CustNo = '".$_GET['ID3']."' ORDER BY treferral.CountryID ASC";
+    $selectcustomers = $objConn1->Execute($selectcustomer);
+    if($selectcustomers == 'Old'){
+       $option_100  .= "<option value='Old' selected>Old</option>";
+       $option_100  .= "<option value='New'>New</option>";
+    }else{
+        $option_100  .= "<option value='Old'>Old</option>";
+       $option_100  .= "<option value='New' selected>New</option>";
+    }
+    $TemplateText = Replace($TemplateText, "@oldnot@", $option_100); 
     $TemplateText = Replace($TemplateText, "@level@", $level); 
     $TemplateText = Replace($TemplateText, "@tier@", $tier); 
     $TemplateText = Replace($TemplateText, "@referral@", $referral); 

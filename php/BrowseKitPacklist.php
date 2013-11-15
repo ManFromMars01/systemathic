@@ -36,7 +36,8 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('ConnInfo.php');
-
+global $idme;
+$idme = $_GET['ID3'];
 $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
@@ -49,7 +50,13 @@ else:
 endif;
 $HTML_Template = getRequest("HTMLT");
 // display of the number of records can be overridden by uncommenting the next line
-// $RecordsPerPage = ##;
+
+
+$myRecordCount2 = "SELECT COUNT(*) AS MyCount FROM tkitpack  WHERE tkitpack.BranchID ='".$_SESSION['UserValue2']."' AND tkitpack.LevelID='".$_GET['ID3']."'";
+$oRStcustomers = $objConn1->Execute($myRecordCount2);
+$TotalRecords1 = $oRStcustomers->fields["MyCount"];
+$RecordsPerPage = $TotalRecords1;
+
 $HeaderText = "";
 $TemplateText = "";
 $DataRowEmptyText = "";
@@ -330,13 +337,13 @@ if ($oRStkitpack):
             endif;
             MergeBrowseKitPackListTemplate($HTML_Template);
         else:
-            NoRecordsFound();
+            MergeBrowseKitPackListTemplate($HTML_Template);
         endif;
     else:
-        NoRecordsFound();
+        MergeBrowseKitPackListTemplate($HTML_Template);
     endif;
 else:
-    NoRecordsFound();
+    MergeBrowseKitPackListTemplate($HTML_Template);
 endif;
 
 $oRStkitpack->Close();
@@ -355,7 +362,7 @@ function NoRecordsFound() {
     $TemplateText = fread($FileObject, filesize($Template));
     fclose ($FileObject);
     $tmpMsg = "";
-    $tmpMsg = "<a href='BrowseKitPack" . "list.php?RESETLIST=TRUE'>No records were found</a>";
+    $tmpMsg = "<a href='BrowseKitPack" . "list.php?Level=".$_GET['ID3'].">No records were found</a>";
     $tmpMsg .= "<br><a href=Updatetkitpack" . "add.php>Insert record</a>";
     $TemplateText = Replace($TemplateText,"@ClarionData@",$tmpMsg);
     print ($TemplateText);
@@ -386,6 +393,9 @@ function MergeBrowseKitPackListTemplate($Template) {
     global $MainContent;
     global $Menu;
     global $userdata1;
+    global $idl; 
+
+    $idl = $_GET['ID3']; 
     if($Template == ""):
         $Template = "./html/BrowseKitPacklist.htm";
     endif;      
@@ -443,6 +453,23 @@ function MergeBrowseKitPackListTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@SearchMessage@", $SearchMessage);
     $TemplateText = Replace($TemplateText, "@SearchField@", $SearchField);
     $TemplateText = Replace($TemplateText,"@TableFooter@", $TableFooter);
+    $idl = $_GET['ID3'];
+
+    $add = "<a class='btn btn-info' href='Updatetkitpackadd.php?Level=".$_GET['ID3']."'>Add Item</a>";
+
+
+    $TemplateText = Replace($TemplateText,"@add@", $add);
+
+    include('Conninfo.php');
+    $objConn1 = &ADONewConnection($Driver1);
+    $objConn1->debug = $DebugMode;
+    $objConn1->PConnect($Server1,$User1,$Password1,$db1);
+     
+    $sql = "SELECT *  FROM  tlevel WHERE  tlevel.ID = '" . $_GET['ID3'] . "'" ;
+    $mylevel = $objConn1->Execute($sql);
+    $ourlevel =$mylevel->fields["Description"];
+    $TemplateText = Replace($TemplateText, "@ourlevel@", $ourlevel);
+     
     print ($TemplateText);
 }
 
@@ -666,7 +693,7 @@ $Seq = 0;
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
     $tkitpackAutomaticDetailLinkSTYLE = "TableRow" . $Style;
     $myLink = "";
-            $myLink = "<a href=\"Updatetkitpackedit.php?ID1=";
+            $myLink = "<a class='btn btn-info' href=\"Updatetkitpackedit.php?ID1=";
                     $tkitpackAutomaticDetailLink = $myLink;
                       $tkitpackAutomaticDetailLink .= "'" . htmlEncode(trim(getValue($oRStkitpack->fields["CountryID"]))) . "'" ;
                     $tkitpackAutomaticDetailLink .=  "&ID2=" . "'";
@@ -675,9 +702,17 @@ $Seq = 0;
                     $tkitpackAutomaticDetailLink .= htmlEncode(trim(getValue($oRStkitpack->fields["LevelID"])));
                     $tkitpackAutomaticDetailLink .=  "&ID4=" . "'";
                     $tkitpackAutomaticDetailLink .= htmlEncode(trim(getValue($oRStkitpack->fields["ItemNo"]))) . "'";
+
             $tmpIMG_tkitpackAutomaticDetailLink = "";
-            $tmpIMG_tkitpackAutomaticDetailLink = "<img src=\"/images/editpencil.gif\" border=\"0\" alt=\"Edit Record\">";
+            $tmpIMG_tkitpackAutomaticDetailLink = "<i class='icon-edit icon-white'></i> Edit";
                 $tkitpackAutomaticDetailLink .= "\">" . $tmpIMG_tkitpackAutomaticDetailLink . "</a>";
+
+                $itemnolink = htmlEncode(trim(getValue($oRStkitpack->fields["ItemNo"])));
+                $scriptdel  = "return confirm('Are you sure you want to remove this?');";
+                $deletekit = '<a  onclick="'.$scriptdel.'" class="btn btn-danger" href="template/delete.php?Page=kit&Level='.$_GET['ID3'].'&Itemno='.$itemnolink.'"><i class="icon-trash icon-white"></i>Delete</a>';
+
+
+
     $Style = ($Seq%2 != 0) ? "MyDataRow" : "AlternateRow";
 $tkitpackCountryIDSTYLE = "TableRow" . $Style;
     if (is_null($oRStkitpack->fields["CountryID"])):
@@ -724,6 +759,7 @@ $Seq++;
 $oRStkitpack->MoveNext();
 
 $DataRowFilledText = Replace($DataRowFilledText,"@tkitpackAutomaticDetailLink@", $tkitpackAutomaticDetailLink);
+$DataRowFilledText = Replace($DataRowFilledText,"@deletekit@", $deletekit);
 $DataRowFilledText = Replace($DataRowFilledText,"@tkitpackAutomaticDetailLinkSTYLE@", $tkitpackAutomaticDetailLinkSTYLE);
 $DataRowFilledText = Replace($DataRowFilledText,"@tkitpackCountryID@", $tkitpackCountryID);       
 $DataRowFilledText = Replace($DataRowFilledText,"@tkitpackCountryIDSTYLE@",$tkitpackCountryIDSTYLE);           

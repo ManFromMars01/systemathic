@@ -1,8 +1,14 @@
+
+
+<?php 
+	$admitted= $model->count_where('tcustomer', array('RegType' => 'Admitted'));
+?>
+
 <div class="sortable row-fluid">
 				<a data-rel="tooltip" title="Enrolled Students" class="well span3 top-block" href="#">
 					<span class="icon32"><img src="template/img/redicons/users.png"></span>
 					<div>Enrolled Students</div>
-					<div>507</div>
+					<div><?php echo $admitted; ?></div>
 					<span class="notification">6</span>
 				</a>
 

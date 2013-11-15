@@ -264,17 +264,17 @@ if ($flgMissing == false):
 $oRStitems->Close();
 unset($oRStitems);
 if (!isset($oRSResult) || $oRSResult == false || $oRSResult == ""):
-      $myStatus = "Your update failed <br><br>";
+      $myStatus = "Your update failed <br><br>".$sql;
 else:
   $myStatus = "Your update succeeded <BR><BR>";
 endif;
-    if(getSession("BrowseAttendanceStatus#WHR")<>""):
-        $myStatus .= "<a href='BrowseAttendanceStatuslist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
+    if(getSession("BrowseItems#WHR")<>""):
+        $myStatus .= "<a href='BrowseItemslist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
     else:
         if($_SESSION["ChildReturnTo"] <> ""):
           $myStatus .= "<a href='" . htmlEncode($_SESSION["ChildReturnTo"]) . "'>Return to list</a>.";
         else:
-          $myStatus .= "<a href='BrowseAttendanceStatuslist.php'>Return to list</a>.";
+          $myStatus .= "<a href='BrowseItemslist.php'>Return to list</a>.";
         endif;
     endif;
 endif;
@@ -372,7 +372,11 @@ if($flgMissing == true) {
 else {
   $_SESSION["Updatetitems_EditFailed"] = 0;
 }
-
-MergeEditTemplate($HTML_Template);
+$myStatus = array('mystatus2' => $myStatus);
+echo json_encode($myStatus);
+//MergeEditTemplate($HTML_Template);
 $objConn1->Close();
 ?>
+
+
+

@@ -146,14 +146,7 @@ $dbValues = "";
                     $myStatus .= "<HR>\n";
             endif;
     $rst["CatID"] = getFormSQLQuoted($objConn1,"titems","CatID","txttitemsCatID");
-            if (getForm("txttitemsSubCatID") == ""):
-                if($myStatus == ""):
-                    $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
-                endif;
-                $flgMissing = 1;
-                    $myStatus .= " <STRONG>Sub Cat ID:</STRONG> : Must be in file";
-                    $myStatus .= "<HR>\n";
-            endif;
+            
     $rst["SubCatID"] = getFormSQLQuoted($objConn1,"titems","SubCatID","txttitemsSubCatID");
             if (getForm("txttitemsDeptID") == ""):
                 if($myStatus == ""):
@@ -371,7 +364,11 @@ $ClarionData .= "</table>\n";
 $ClarionData .= "</div>\n";
 
 
-MergeAddTemplate($HTML_Template);
+
+
+$myStatus  = array('mystatus' => $myStatus);
+echo json_encode($myStatus);   
+//MergeAddTemplate($HTML_Template);
 unset($oRStitems) ;
 $objConn1->Close();
 unset($objConn1);

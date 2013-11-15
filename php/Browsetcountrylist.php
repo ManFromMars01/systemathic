@@ -922,7 +922,7 @@ $TableFooter .= $ref;
 $FooterText = Replace($FooterText,"@TableFooter@", $TableFooter);
 endif;
 }
-    $objConn1->Close();
-    unset($objConn1);
+$objConn1->Close();
+unset($objConn1);
 
 ?>

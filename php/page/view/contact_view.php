@@ -1,0 +1,1 @@
+<?php input_text('test','test','test'); ?>

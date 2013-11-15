@@ -139,14 +139,6 @@ $dbValues = "";
     $rst["FMobile"] = getFormSQLQuoted($objConn1,"tcustomer","FMobile","txttcustomerFMobile");
     $rst["FEmail"] = getFormSQLQuoted($objConn1,"tcustomer","FEmail","txttcustomerFEmail");
     $rst["Status"] = getFormSQLQuoted($objConn1,"tcustomer","Status","txttcustomerStatus");
-            if (getForm("txttcustomerReferralID") == ""):
-                if($myStatus == ""):
-                    $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
-                endif;
-                $flgMissing = 1;
-                    $myStatus .= " <STRONG>Referral ID:</STRONG> : Must be in file";
-                    $myStatus .= "<HR>\n";
-            endif;
     $rst["ReferralID"] = getFormSQLQuoted($objConn1,"tcustomer","ReferralID","txttcustomerReferralID");
     $rst["StoppedDate"] = getFormSQLQuoted($objConn1,"tcustomer","StoppedDate","txttcustomerStoppedDate");
 

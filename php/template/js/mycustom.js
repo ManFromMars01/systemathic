@@ -465,7 +465,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 		            success: function (j) {
 		               console.log(j);
 		               options = j.option;
-		               alert(options);
+		               //alert(options);
 		               $(".select_sched").html(options);
 		               
 		               //$('#success').html('Successfully Updated');

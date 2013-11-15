@@ -11,7 +11,7 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
-
+include('template/myclass.php');
 ?>
 
 
@@ -60,7 +60,7 @@ include('login.php');
 
 									<tr>
 										<td></td>
-									    <td><a href="BrowseLevellist.php"><img src="template/img/scheduling/classsched.png"></a></td>
+									    <td><a href="browse_level_schedule.php"><img src="template/img/scheduling/classsched.png"></a></td>
 									    <td></td>
 									    <td><img src="template/img/scheduling/adjustments.png"></td>
 									    <td></td>
@@ -73,8 +73,8 @@ include('login.php');
 									</tr>
 
 									<tr>
-										<td><img src="template/img/scheduling/teachersched.png"></td>
-									    <td><img src="template/img/scheduling/roomsched.png"></td>
+										<td><a href="<?php echo base_url('page/controller/teacher_schedule.php') ?>"><img src="template/img/scheduling/teachersched.png"></a></td>
+									    <td><a href="#"><img src="template/img/scheduling/roomsched.png"></a></td>
 									    <td><img src="template/img/scheduling/studentsched.png"></td>
 									    <td><img src="template/img/scheduling/level.png"></td>
 									    <td><img src="template/img/scheduling/schoolcalendar.png"></td>

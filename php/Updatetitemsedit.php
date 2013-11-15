@@ -17,7 +17,7 @@ session_start();
 $PageLevel = 1;
 include_once('systemathicappdata.php');
 /*
-DebugMode is defined in appdata.WEB as FALSE by default
+DebugMode is defined in appdata.WEB as FALSE by default 
 debug of this page only by uncommenting the next line
 */
 // $DebugMode = [FALSE, TRUE];
@@ -183,9 +183,13 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@titemsAbaNumStart@", $titemsAbaNumStart);
      $TemplateText = Replace($TemplateText, "@titemsAbaNumEnd@", $titemsAbaNumEnd);
      $TemplateText = Replace($TemplateText, "@titemsAbaBookGrade@", $titemsAbaBookGrade);
+     
      $TemplateText = Replace($TemplateText, "@titemsMenNxtBook1@", $titemsMenNxtBook1);
      $TemplateText = Replace($TemplateText, "@titemsMenNxtBook2@", $titemsMenNxtBook2);
      $TemplateText = Replace($TemplateText, "@titemsMenNxtBook3@", $titemsMenNxtBook3);
+
+
+
      $TemplateText = Replace($TemplateText, "@titemsMenPrvBook1@", $titemsMenPrvBook1);
      $TemplateText = Replace($TemplateText, "@titemsMenPrvBook2@", $titemsMenPrvBook2);
      $TemplateText = Replace($TemplateText, "@titemsMenPrvBook3@", $titemsMenPrvBook3);
@@ -240,6 +244,14 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
      $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
      $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+     $country_id   = $_SESSION['UserValue1'];
+     $branch_id   = $_SESSION['UserValue2'];
+     $TemplateText = Replace($TemplateText, "@CountryID@",$country_id);
+     $TemplateText = Replace($TemplateText, "@BranchID@",$branch_id);
+     include('template/item_variables_edit.php');
+
+
+
     print($TemplateText);
 } // END Function
 include_once('ConnInfo.php');
@@ -267,8 +279,11 @@ endif;
 $ID1 = trim(htmlDecode(getRequest("ID1")),"'");
 $ID2 = trim(htmlDecode(getRequest("ID2")),"'");
 $ID3 = trim(htmlDecode(getRequest("ID3")),"'");
+$ID3 = trim($_GET['ID3'],"'");
 function displayBadRecord() {
+    
     $ClarionData = "";
+    $ClarionData .= $ID3;
     $ClarionData .= "<div class='bg'>\n";
     $ClarionData .= "<table class='Data' border=0 cellspacing=0 cellpadding=0>\n";
     $ClarionData .= "<tr><td width='80%' class='Header'>Status</td>\n"; 

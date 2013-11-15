@@ -180,12 +180,6 @@ $arrayoRStcustomer["FOccupation"] = getFormSQLQuoted($objConn1, "tcustomer", "FO
 $arrayoRStcustomer["FMobile"] = getFormSQLQuoted($objConn1, "tcustomer", "FMobile", "txttcustomerFMobile");
 $arrayoRStcustomer["FEmail"] = getFormSQLQuoted($objConn1, "tcustomer", "FEmail", "txttcustomerFEmail");
 $arrayoRStcustomer["Status"] = getFormSQLQuoted($objConn1, "tcustomer", "Status", "txttcustomerStatus");
-        if (getRequest("txttcustomerReferralID") == ""):
-            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
-            $flgMissing = TRUE;
-                    $myStatus .= " <strong>Referral ID:</strong> : Must be in file ";      
-                    $myStatus .= "<hr>\n";
-        endif;
 $arrayoRStcustomer["ReferralID"] = getFormSQLQuoted($objConn1, "tcustomer", "ReferralID", "txttcustomerReferralID");
 $arrayoRStcustomer["StoppedDate"] = getFormSQLQuoted($objConn1, "tcustomer", "StoppedDate", "txttcustomerStoppedDate");
 $tsql = $objConn1->GetUpdateSQL($oRStcustomer, $arrayoRStcustomer, true, get_magic_quotes_gpc());

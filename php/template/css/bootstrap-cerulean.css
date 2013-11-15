@@ -73,6 +73,7 @@ textarea {
   margin: 0;
   font-size: 100%;
   vertical-align: middle;
+  max-width: 100%;
 }
 button,
 input {
@@ -172,6 +173,7 @@ a:hover {
 }
 .span12 {
   width: 940px;
+  background-color: #faffde;
 }
 .span11 {
   width: 860px;
@@ -269,8 +271,9 @@ a:hover {
 .row-fluid [class*="span"]:first-child {
   margin-left: 0;
 }
-.row-fluid .span12 {
+.row-fluid .span12 
   width: 99.99999998999999%;
+  background-color: #faffde;
   *width: 99.94680850063828%;
 }
 .row-fluid .span11 {
@@ -356,8 +359,17 @@ p small {
   font-weight: 200;
   line-height: 27px;
 }
+
+h2{
+  margin: 0;
+  font-family: 'Karla', sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  text-rendering: optimizelegibility;
+}
+
+
 h1,
-h2,
 h3,
 h4,
 h5,
@@ -365,7 +377,7 @@ h6 {
   margin: 0;
   font-family: 'Karla', sans-serif;
   font-weight: bold;
-  color: #317eac;
+  color: #369bd7;
   text-rendering: optimizelegibility;
 }
 h1 small,
@@ -1220,6 +1232,7 @@ select:focus:required:invalid:focus {
 }
 .control-group {
   margin-bottom: 9px;
+
 }
 legend + .control-group {
   margin-top: 18px;
@@ -1228,6 +1241,7 @@ legend + .control-group {
 .form-horizontal .control-group {
   margin-bottom: 18px;
   *zoom: 1;
+
 }
 .form-horizontal .control-group:before,
 .form-horizontal .control-group:after {
@@ -1282,6 +1296,7 @@ table {
 }
 .table thead th {
   vertical-align: bottom;
+  background-color: #fff0f5;
 }
 .table caption + thead tr:first-child th,
 .table caption + thead tr:first-child td,
@@ -2689,7 +2704,7 @@ input[type="submit"].btn.btn-mini {
 .nav .nav-header {
   display: block;
   padding: 3px 15px;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: bold;
   line-height: 18px;
   color: #999999;
@@ -2985,7 +3000,7 @@ input[type="submit"].btn.btn-mini {
   min-height: 40px;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: #50a8dc;
+  background-color: #50a8dc; 
   background-image: -moz-linear-gradient(top, #61b0df, #369bd7);
   background-image: -ms-linear-gradient(top, #61b0df, #369bd7);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#61b0df), to(#369bd7));
@@ -3327,7 +3342,8 @@ input[type="submit"].btn.btn-mini {
   padding: 7px 14px;
   margin: 0 0 18px;
   list-style: none;
-  background-color: #fbfbfb;
+  background-color: #ff887d;
+  /*
   background-image: -moz-linear-gradient(top, #ffffff, #f5f5f5);
   background-image: -ms-linear-gradient(top, #ffffff, #f5f5f5);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f5f5f5));
@@ -3336,6 +3352,7 @@ input[type="submit"].btn.btn-mini {
   background-image: linear-gradient(top, #ffffff, #f5f5f5);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0);
+  */
   border: 1px solid #ddd;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -3350,12 +3367,17 @@ input[type="submit"].btn.btn-mini {
   /* IE7 inline-block hack */
 
   *zoom: 1;
-  text-shadow: 0 1px 0 #ffffff;
+  /* text-shadow: 0 1px 0 #ffffff; */
 }
 .breadcrumb .divider {
   padding: 0 5px;
-  color: #999999;
+   color: #ffffff; 
 }
+
+.breadcrumb a{
+  color:#ffffff;
+}
+
 .breadcrumb .active a {
   color: #333333;
 }
@@ -4206,7 +4228,7 @@ a.badge:hover {
   font-family: 'Karla', sans-serif;
 }
 .navbar .navbar-inner {
-  background-color: #3f9fd9;
+  background-color: #78d4ff;
 }
 .navbar-inner{
   background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(0,0,0,0.15) 50%, rgba(30,30,30,0) 100%);
@@ -4452,6 +4474,10 @@ i[class^="icon-"] {
   visibility: hidden;
 }
 
+
+
+/********Added By Kenneth***********/
+
 .displaynone{
   display: none;
 }
@@ -4524,7 +4550,50 @@ i[class^="icon-"] {
   background-color: #999999 !important; /* background color */
   border-color: #999999 !important;     /* border color */
   color: white !important;   
-
   
+}
+
+
+#group-abacus, #group-supplementary, #group-mental{
+  border:1px solid gray;
+  border-radius:5px;
+  width:35%;
+  padding:20px;
+  margin-bottom:20px;
+
+}
+
+/* added by Marga */
+
+.wrapper{
+
+  width: 990px;
+  height: auto;
+  overflow: hidden;
+  margin:auto;
+}
+
+.navdivcolor{
+
+  background-color: #fffaef;
+}
+
+.thumbsize{
+  float:left;
+  max-width: 45%!important;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+
+.boxcontentcolor{
+
+
+  background-color: #faffde!important;
+}
+
+.breadcolor{
+
+  color:#ffffff;
 }
 

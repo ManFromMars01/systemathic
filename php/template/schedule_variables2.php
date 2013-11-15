@@ -267,6 +267,9 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
            
         }
 
+        $updatecustomer = "UPDATE  tcustomer SET RegType = 'For Payment' WHERE CustNo ='".$txteattheadCustNo."'";
+        $objConn1->Execute($updatecustomer);   
+
         $successful = $sample2."Successfully Saved.. <a href='student_schedule.php?custno=".$txteattheadCustNo."'>View Generated Schedule</a>";
 
         $my_result = array('mystatus' => $session_number2, 'statusme' => $successful );

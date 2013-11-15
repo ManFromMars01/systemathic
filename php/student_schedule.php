@@ -55,16 +55,9 @@ $selectsched = $objConn1->Execute($selectsched);
 				  </div>
 				  <div class="box-content">
 					<div id="external-events" class="well">
-						<h4>Draggable Events</h4>
-						<div class="external-event badge">Default</div>
-						<div class="external-event badge badge-success">Completed</div>
-						<div class="external-event badge badge-warning">Warning</div>
-						<div class="external-event badge badge-important">Important</div>
-						<div class="external-event badge badge-info">Info</div>
-						<div class="external-event badge badge-inverse">Other</div>
-						<p>
-						<label for="drop-remove"><input type="checkbox" id="drop-remove" /> remove after drop</label>
-						</p>
+						<h4>Note!!!!</h4>
+						<p>Student Move to Payment Transaction</p>
+						<a href="create_invoice.php?CustNo=<?php echo $_GET['custno']; ?>">Go to Invoice/Payment Transaction</a>
 					</div>
 
 						<div id="calendar"></div>

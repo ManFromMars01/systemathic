@@ -233,6 +233,13 @@ function MergeAddTemplate($Template) {
     $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
     $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
     $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+
+    $CountryID = $_SESSION["UserValue1"];
+    $BranchID =  $_SESSION["UserValue2"];
+    $TemplateText = Replace($TemplateText, "@CountryID@", $CountryID);
+    $TemplateText = Replace($TemplateText, "@BranchID@", $BranchID);
+    include('template/item_variables.php');
+
     print($TemplateText);
 } // END Function
 include_once('ConnInfo.php');

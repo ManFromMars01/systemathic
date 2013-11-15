@@ -44,21 +44,11 @@
                                 <td class="@titemsCountryIDSTYLE@" align="Left" width="">@titemsCountryID@&nbsp;</td>
                                 <td class="@titemsBranchIDSTYLE@" align="Left" width="">@titemsBranchID@&nbsp;</td>
                                 <td class="@titemsItemNoSTYLE@" align="Left" width="">@titemsItemNo@&nbsp;</td>
-                                <td class="@titemsDescriptionSTYLE@" align="Left" width="">@titemsDescription@&nbsp;</td>
+                                <td class="@titemsDescriptionSTYLE@" align="Left" width="">@titemsDescription@ &nbsp;</td>
                                 <td class="@titemsAutomaticDetailLinkSTYLE@" align="Center">
-                                <div style="float:left;">
-                                @titemsAutomaticDetailLink@
-                                </div> 
-                                <div style="float:left; padding-left:2px;">
-                                <form method="post" action="Updatetitemsdel.php" id="form20" name="form20">
-                                    <input type="hidden" id="ID1" name="ID1" value="@titemsCountryID@">
-                                    <input type="hidden" id="ID2" name="ID2" value="@titemsBranchID@">
-                                    <input type="hidden" id="ID3" name="ID3" value="@titemsItemNo@">
-                                    <button type="button" id="del1" class="btn btn-danger" value="Delete" title="Delete this record" name="submit1"><i class="icon-trash icon-white"></i>Delete</button>
-                                    
-                                </form>
                                 
-                                </div>
+                                @titemsAutomaticDetailLink@ @deleteitem@
+                                
 
                                 </td>
                             </tr>
