@@ -24,7 +24,7 @@
                             <div class="control-group">
                                 <label class="control-label" for="focusedInput">Level: </label>
                                 <div class="controls">
-                                  <input class="" name="txttcountryMaster" id="focusedInput" type="text" value="<?php echo $model->yourlevel($customer->fields['CustNo']); ?>">
+                                  <input class="" name="txttcountryMaster" type="text" value="<?php echo $model->yourlevel($customer->fields['LevelID']); ?>" readonly>
                                 </div>
                             </div>
                           </fieldset>

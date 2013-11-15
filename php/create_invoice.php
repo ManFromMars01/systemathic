@@ -101,10 +101,13 @@ include('template/create_invoice_var.php');
                               <div class="control-group" style=" float:left; margin-right:10px">
                                   <label class="control-label" for="focusedInput">Qty:</label>
                                   <div class="controls">
-                                    <input type="text" name="qty" id="item_add_qty" value="" style="width:75px;">
+                                    <input type="text" name="qty" id="item_add_qty" value="1" style="width:75px;">
                                     <button type="button"  class="btn btn-primary"  id="add_entry_inv">Add Item</button>
                                   </div>
                               </div>
+
+
+
                               
                               
 
@@ -128,6 +131,9 @@ include('template/create_invoice_var.php');
                                     
                               </tbody>
                           </table>
+                          
+
+
                           <div style="float:right;  width:20%;  padding: 20px;" >
                             <table class="table table-striped table-bordered bootstrap-datatable">
                             <tr><td>Sub-Total:</td><td><p id="totalprice"></p></td><tr>
@@ -147,8 +153,17 @@ include('template/create_invoice_var.php');
                           <p><a href="#" id="payment" style="text-decoration:underline;">Proceed To  Payment</a></p>
                           
                           <div class="payment_container" style="display:none;">
-                            Payment Type  <select id="ptype"><option value="Cash">Cash</option><option value="Check">Check</option></select>
-                            Remit Amount <input type="text" name="remit"> <br />
+                            <label>Payment Type </label>
+                            <select id="ptype" name="ptype"><option value="Cash">Cash</option><option value="Check">Check</option></select>
+                            
+                            <label>Pay Date : </label> 
+                            <input type="text" class="datepicker" id="mydate" name="paydate">
+                            
+                            <label>OR Number: </label>
+                            <input type="text" name="ORNumber"> <br />
+                            
+                            <label>Remit Amount </label>  
+                            <input type="text" name="remit"> <br />
                             <label class="ischeck" style="display:none;">BankName:</label> <input class="ischeck" style="display:none;" name="bankname" type="text" value="" >
                             <label class="ischeck" style="display:none;">Branch Name</label> <input class="ischeck" style="display:none;" name="branchname"  type="text" value="" ><br />
                             <label class="ischeck" style="display:none;">Check No:</label> <input class="ischeck" style="display:none;"  name="CheckNo" type="text" value="">

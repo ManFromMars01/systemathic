@@ -9,12 +9,31 @@ include_once('ConnInfo.php');
 $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+
+
 include_once('utils.php');
 include('login.php');
 if (isset($_GET['custno'])){
        
 $selectsched = "SELECT *  FROM eattdtl  WHERE  eattdtl.CustNo='".$_GET['custno']."'";
 $selectsched = $objConn1->Execute($selectsched);
+
+$id = $selectsched->fields['CustNo'];
+
+$student= "SELECT *  FROM tcustomer  WHERE  tcustomer.CustNo='".$_GET['custno']."'";
+$student = $objConn1->Execute($student);
+
+
+$CountryID = $student->fields['CountryID'];
+$BranchID = $student->fields['BranchID'];
+$lname = $student->fields['SurName'];
+$fname = $student->fields['FirstName'];
+$mname = $student->fields['MiddleName'];
+
+$cust = $student->fields['CustNo'];
+
+
 
 }
 
@@ -23,6 +42,10 @@ $selectsched = $objConn1->Execute($selectsched);
 
 
 ?>
+
+
+
+
 
 
 <?php include('template/header.php') ?>	
@@ -40,8 +63,17 @@ $selectsched = $objConn1->Execute($selectsched);
 					<li>
 						<a href="#">Calendar</a>
 					</li>
+
+
+					<li> &nbsp &nbsp -- <?php echo $lname .",". $fname ." " . $mname ; ?>
+					</li>
+
 				</ul>
+
+
 			</div>
+
+
 
 			<div class="row-fluid sortable">
 				<div class="box span12">
@@ -55,10 +87,24 @@ $selectsched = $objConn1->Execute($selectsched);
 				  </div>
 				  <div class="box-content">
 					<div id="external-events" class="well">
-						<h4>Note!!!!</h4>
-						<p>Student Move to Payment Transaction</p>
-						<a href="create_invoice.php?CustNo=<?php echo $_GET['custno']; ?>">Go to Invoice/Payment Transaction</a>
+						<h4>Draggable Events</h4>
+						<div class="external-event badge">Default</div>
+						<div class="external-event badge badge-success">Completed</div>
+						<div class="external-event badge badge-warning">Warning</div>
+						<div class="external-event badge badge-important">Important</div>
+						<div class="external-event badge badge-info">Info</div>
+						<div class="external-event badge badge-inverse">Other</div>
+						<p>
+						<label for="drop-remove"><input type="checkbox" id="drop-remove" /> remove after drop</label>
+						</p>
+						 
+						  <a class="btn btn-info" href="Updateeattheadadd.php?ID=<?php echo $id ?>"><i class="icon-edit icon-white"></i> Edit Schedule</a>
+						  <!--<a class="btn btn-info" href="BrowseCreateSchedulelist1.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit Schedule</a>
+					  	  -->
+												
 					</div>
+
+
 
 						<div id="calendar"></div>
 

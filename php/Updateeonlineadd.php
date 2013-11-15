@@ -1,105 +1,115 @@
-<?php include('template/header.php'); ?>
-<?php include('template/myclass.php'); ?>
+<?PHP
+/*
+===================================================================
+------------------ Notice to Web Page Designers! ------------------
+===================================================================
+ Data enabled web pages often require a particular sequence of
+ events to occur for successful execution.  Therefore we ask
+ that you not reorder the WEB program logic.  Also there should
+ be no changes in the naming of any HTML elements or WEB variables.
 
-<div id="content" class="span10">
-            <!-- content starts -->
-            <div>
-                <ul class="breadcrumb">
-                    <li>
-                        <a href="#">Home</a> <span class="divider">/</span>
-                    </li>
-                    <li>
-                        <a href="#">Forms</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="row-fluid sortable">
-                <div class="box span12">
-                    <div class="box-header well" data-original-title>
-                        <h2><i class="icon-edit"></i> Add  Student to Online Practices </h2>
-                        <div class="box-icon">
-                            <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-                            <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-                            <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-                        </div>
-                    </div>
-                    <div class="box-content">
-                        <form class="form-horizontal" action="@UpdatetStudentFormAction@"  id="form3" name="form3" method="post" >
-                          <fieldset>
-                           <input type="hidden" id="MODE" name="MODE" value="1">
+ Every effort was made to allow "look and feel" changes to
+ occur by modifying the Cascading Style Sheets supplied with this
+ application along with the HTML template
+===================================================================
+*/
+session_start();
+$PageLevel = 0;
+$PageLevel = 1;
+include_once('systemathicappdata.php');
+/*
+DebugMode is defined in appdata.WEB as FALSE by default
+debug of this page only by uncommenting the next line
+*/
+// $DebugMode = [FALSE, TRUE];
 
-                            
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">ID Number</label>
-                                <div class="controls">
-                                  <input type="text" id="idnum" value="">
-                                  <input class="" name="txteonlineCustNo"type="text" value="">
+/*
+ShowQuery is defined in appdata.WEB from the Application level
+query of this page can be overridden by uncommenting the next line
+*/
+// $ShowQuery = [FALSE, TRUE];
+/*
+ShowDBNav is defined in appdata.WEB from the Application level
+display of the nav bar can be overridden by uncommenting the next line
+*/
+// $ShowDBNav = [FALSE, TRUE];
+include_once('utils.php');
+include('login.php');
+$HTML_Template = getRequest("HTMLT");
+/*
+============================================================================='
+ MergeTemplate 
+============================================================================='
+*/
+function MergeAddTemplate($Template) {
+    global $UpdateeonlineFormAction;
 
-                                </div>
-                            </div>
+    global $Header;   
+    global $Footer;   
+    global $MainContent;   
+    global $Menu;   
 
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Fullname</label>
-                                <div class="controls">
-                                  <input class="input-xlarge"  id="fullname" type="text" value="" readonly>
-                                </div>
-                            </div>
+    if(!isset($Template) || ($Template =="")):
+        $Template =  "./html/Updateeonlineadd.htm";
+    endif;
 
+    $FileObject = fopen($Template, "r");
+    $TemplateText = "";
+    $TemplateText = fread($FileObject, filesize($Template));
+    fclose ($FileObject);
 
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Password</label>
-                                <div class="controls">
-                                  <input class="input-xlarge" name="txteonlinePassword" type="text" value="">
-                                </div>
-                            </div>
+    $TemplateText= Replace($TemplateText,"@UpdateeonlineFormAction@",$UpdateeonlineFormAction);    
+    $TemplateText = Replace($TemplateText,"<!--@HTML_AFTER_OPEN@-->",loadInclude(""));          
+    $TemplateText = Replace($TemplateText,"<!--@HTML_AFTER_OPEN@-->",loadInclude(""));      
+    $TemplateText = Replace($TemplateText,"<!--@HEAD_AFTER_OPEN@-->",loadInclude(""));      
+    $TemplateText = Replace($TemplateText,"<!--@HEAD_BEFORE_CLOSE@-->",loadInclude(""));      
+    $TemplateText = Replace($TemplateText,"<!--@BODY_AFTER_OPEN@-->",loadInclude(""));      
+    $TemplateText = Replace($TemplateText,"<!--@BG_BEFORE_OPEN@-->",loadInclude(""));        
+    $TemplateText = Replace($TemplateText,"<!--@BG_AFTER_OPEN@-->",loadInclude(""));      
+    $TemplateText = Replace($TemplateText,"<!--@BG_BEFORE_CLOSE@-->",loadInclude(""));      
+    $TemplateText = Replace($TemplateText,"<!--@BG_AFTER_CLOSE@-->",loadInclude(""));        
+    $TemplateText = Replace($TemplateText,"<!--@BODY_BEFORE_CLOSE@-->",loadInclude(""));      
+    $TemplateText = Replace($TemplateText,"<!--@HTML_BEFORE_CLOSE@-->",loadInclude(""));          
 
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Date</label>
-                                <div class="controls">
-                                  <input class="input-xlarge" name="txteonlineDate" type="text" value="">
-                                </div>
-                            </div>
+    global $eonlineCountryID;
+    $TemplateText = Replace($TemplateText,"@eonlineCountryID@",$eonlineCountryID);            
+    global $eonlineBranchID;
+    $TemplateText = Replace($TemplateText,"@eonlineBranchID@",$eonlineBranchID);            
+    global $eonlineCustNo;
+    $TemplateText = Replace($TemplateText,"@eonlineCustNo@",$eonlineCustNo);            
+    global $eonlineDate;
+    $TemplateText = Replace($TemplateText,"@eonlineDate@",$eonlineDate);            
+    global $eonlinePassword;
+    $TemplateText = Replace($TemplateText,"@eonlinePassword@",$eonlinePassword);            
+    $TemplateText = Replace($TemplateText, "@Header@", $Header);
+    $TemplateText = Replace($TemplateText, "@Footer@", $Footer);
+    $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
+    $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
+    print($TemplateText);
+} // END Function
+include_once('ConnInfo.php');
 
+$objConn1 = &ADONewConnection($Driver1);
+$objConn1->debug = $DebugMode;
+$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
-                            
+$UpdateeonlineFormAction = "Updateeonlineaddx.php";
+$eonlineCountryID  = getRequest("txteonlineCountryID");
+$eonlineBranchID  = getRequest("txteonlineBranchID");
+$eonlineCustNo  = getRequest("txteonlineCustNo");
+$eonlineDate  = getRequest("txteonlineDate");
+$eonlinePassword  = getRequest("txteonlinePassword");
 
-                            <input type="hidden" value="<?php echo $_SESSION['UserValue1'] ?>" name="txteonlineCountryID">
-                            <input type="hidden" value="<?php echo $_SESSION['UserValue2'] ?>" name="txteonlineBranchID">
+if ($_SESSION["Updateeonline_InsertFailed"] == 1) {
+   $eonlineCountryID = $_SESSION["SavedeonlineCountryID"];
+   $eonlineBranchID = $_SESSION["SavedeonlineBranchID"];
+   $eonlineCustNo = $_SESSION["SavedeonlineCustNo"];
+   $eonlineDate = $_SESSION["SavedeonlineDate"];
+   $eonlinePassword = $_SESSION["SavedeonlinePassword"];
+}
 
-
-                            
-                            <div class="form-actions">
-                              <!--<button type="submit" value="Submit" class="btn btn-primary">Save changes</button>-->
-                              <button type="button"  class="btn btn-primary"  id="">Save changes</button>
-                              <button type="reset" class="btn">Cancel</button>
-                            </div>
-                          </fieldset>
-                        </form> 
-                     
-
-                    </div>
-                </div><!--/span-->
-
-            </div><!--/row-->
-                    <!-- content ends -->
-            </div><!--/#content.span10-->
-
-<script>
-    $('#idnum').keyup(function(){
-       idnum  = $(this).val();
-       $.ajax({
-            url:'template/online_ajax.php',
-            type:'post',
-            data:{ custno: idnum },
-            dataType:'json',
-            success: function(x){
-                console.log(x);
-                $('#fullname').val(j.fname);
-            }
-
-        });
-    });
-
-</script>            
-<?php include('template/footer.php'); ?>            
+MergeAddTemplate($HTML_Template);
+unset($oRSeonline);
+$objConn1->Close();
+unset($objConn1);
+?>

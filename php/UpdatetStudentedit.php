@@ -95,7 +95,7 @@ function MergeTemplate($Template) {
     global $EditOptions;    
     global $dbNavBar;
 
-    
+  
 
 
     $FileObject = fopen($Template, "r");
@@ -150,6 +150,12 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@tcustomerEmail@", $tcustomerEmail);
      $TemplateText = Replace($TemplateText, "@tcustomerLevelID@", $tcustomerLevelID);
      $TemplateText = Replace($TemplateText, "@tcustomerTierID@", $tcustomerTierID);
+
+     
+     $today = date('Y-m-d');
+     $tcustomerAge = $today - $tcustomerBirthday;
+     $TemplateText = Replace($TemplateText, "@tcustomerAge@", $tcustomerAge);
+
     if($tcustomerCustType == "Assessment"):
         $SELECTEDF23_20_1 = "SELECTED";
     else:
@@ -168,7 +174,7 @@ function MergeTemplate($Template) {
         $SELECTEDF23_20_3 = "";
     endif;
     $TemplateText = Replace($TemplateText, "@SELECTEDF23_20_3@", $SELECTEDF23_20_3);
-    if($tcustomerCustType == "ReEnrollee"):
+    if($tcustomerCustType == "Re-Enrollee"):
         $SELECTEDF23_20_4 = "SELECTED";
     else:
         $SELECTEDF23_20_4 = "";

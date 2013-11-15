@@ -3,6 +3,7 @@
 <?php 
     $where = array('RegType' => $_GET['RegType']);
     $student = $model->select_where('tcustomer', $where );
+ 
 
 ?>
 <div id="content" class="span10">
@@ -61,12 +62,16 @@
                                 <td>
                                   <?php if($_GET['RegType'] =="For Schedule"): ?>  
                                   <a class="btn btn-info" href="BrowseCreateSchedulelist.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Manage Schedule</a>
+
+
                                   <?php elseif($_GET['RegType'] == "For Kit Issuance"): ?>
                                   <a class="btn btn-info" href="kitissuance.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Kit Issuance</a>
+                                  
                                   <?php elseif($_GET['RegType'] == "Admitted"): ?>
                                   <a class="btn btn-info" href="UpdatetStudentedit.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit</a>
-                                  <a class="btn btn-info" href="return_books.php?student_no=<?php echo $students['StudentID'] ?>"><i class="icon-edit icon-white"></i> Return Books</a>
-                                  <a class="btn btn-info" href="attendance_view.php?student_no=<?php echo $students['StudentID'] ?>">Attendance</a>
+                                  <a class="btn btn-info" href="return_books.php?student_no=<?php echo $students['StudentID'] ?>"><i class="icon-edit icon-white"></i> Manage Books</a>
+                                  <a class="btn btn-info" href="manage_invoice.php?CustNo=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Manage Invoices</a>
+                                  <a class="btn btn-info" href="attendance_view.php?student_no=<?php echo $students['StudentID'] ?>"><i class="icon-edit icon-white"></i> Attendance</a>
 
                                   <?php elseif($_GET['RegType'] == "For Payment"):?>
                                   <a class="btn btn-info" href="create_invoice.php?CustNo=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Create Invoice</a>

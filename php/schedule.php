@@ -11,7 +11,7 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
-include('template/myclass.php');
+
 ?>
 
 
@@ -20,7 +20,7 @@ include('template/myclass.php');
 			<!-- content starts -->
 			
 
-			<div>
+			<!-- <div>
 				<ul class="breadcrumb">
 					<li>
 						<a href="#">Home</a> <span class="divider">/</span>
@@ -28,8 +28,8 @@ include('template/myclass.php');
 					<li>
 						<a href="#">Scheduling</a>
 					</li>
-				</ul>
-			</div>
+				</ul> 
+			</div>-->
 			<?php include('template/stat.php') ?>
 			<div class="row-fluid">
 				<div class="box span12">
@@ -47,7 +47,7 @@ include('template/myclass.php');
 							<li ><a href="#classsched">Class Schedule</a></li>
 							
 							
-						</ul>
+						</ul>ø
 
 
 					<div class="box-content">
@@ -60,7 +60,7 @@ include('template/myclass.php');
 
 									<tr>
 										<td></td>
-									    <td><a href="browse_level_schedule.php"><img src="template/img/scheduling/classsched.png"></a></td>
+									    <td><a href="BrowseLevellist.php"><img src="template/img/scheduling/classsched.png"></a></td>
 									    <td></td>
 									    <td><img src="template/img/scheduling/adjustments.png"></td>
 									    <td></td>
@@ -73,9 +73,9 @@ include('template/myclass.php');
 									</tr>
 
 									<tr>
-										<td><a href="<?php echo base_url('page/controller/teacher_schedule.php') ?>"><img src="template/img/scheduling/teachersched.png"></a></td>
-									    <td><a href="#"><img src="template/img/scheduling/roomsched.png"></a></td>
-									    <td><img src="template/img/scheduling/studentsched.png"></td>
+										<td><a href="page/controller/teacher_schedule.php"><img src="template/img/scheduling/teachersched.png"></a></td>
+									    <td><a href="page/controller/room_schedule.php"><img src="template/img/scheduling/roomsched.png"></a></td>
+									    <td><a href="page/controller/student_schedule.php"><img src="template/img/scheduling/studentsched.png"></a></td>
 									    <td><img src="template/img/scheduling/level.png"></td>
 									    <td><img src="template/img/scheduling/schoolcalendar.png"></td>
 									</tr>

@@ -1,20 +1,20 @@
 @Header@
 <div id="content" class="span10">
             <!-- content starts -->
-            <div>
-                <ul class="breadcrumb">
+            <!-- <div>
+                <ul class="breadcrumb ">
                     <li>
-                        <a href="#">Home</a> <span class="divider">/</span>
+                        <a href="#" class="breadcolor">Home</a> <span class="divider">/</span>
                     </li>
                     <li>
-                        <a href="#">Forms</a>
+                        <a href="#" class="breadcolor">Forms</a>
                     </li>
                 </ul>
-            </div>
+            </div> -->  
             
             <div class="row-fluid sortable">
                 <div class="box span12">
-                    <div class="box-header well" data-original-title>
+                    <div class="box-header well boxheadercolor" data-original-title>
                         <h2><i class="icon-edit"></i> Add  Record </h2>
                         <div class="box-icon">
                             <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
@@ -29,7 +29,7 @@
                             
                             <div class="groupme" style="border: 1px solid #ededed; border-radius:5px; padding: 20px; width: 30%; margin:10px;">
                                 <div class="toggleme">
-                                <h4>Basic Details</h4> 
+                                <h4 class="h4color">Basic Details</h4> 
                                     <br />
                                 <div class="control-group">
                                     <label class="control-label" for="focusedInput">Country ID:</label>
@@ -127,7 +127,7 @@
 
                             
                             <div class="groupme" style="border: 1px solid #ededed; border-radius:5px; padding: 20px; width: 30%; margin:10px;">
-                                <h4>Address And Contact Details</h4>
+                                <h4 class="h4color">Address And Contact Details</h4>
                                 <br />
                                 <div class="control-group">
                                     <label class="control-label" for="focusedInput">City:</label>
@@ -299,10 +299,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="focusedInput">Status:</label>
                                     <div class="controls">
-                                      <select name="txttcustomerStatus">
-                                        <option value="New">New</option>
-                                        <option value="Old">Old</option>
-                                      </select>
+                                      <input class="input-xlarge focused" name="txttcustomerStatus" id="focusedInput" type="text" value="@tcustomerStatus@">
                                     </div>
                                 </div>
 

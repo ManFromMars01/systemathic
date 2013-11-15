@@ -70,13 +70,22 @@
                                 </div>
                             </div>
 
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Bag(<span class="itemnobag"> 0 items</span>):</label>
+                                <div class="controls addtobag" style="width:30% !important">
+                                  
+                                </div>
 
+                              
+
+
+                            </div>
                             <div class="control-group">
                                 <label class="control-label"  for="focusedInput">Kit Items Check List:</label>
                                 <div class="controls">
                                     
                                 <?php foreach($levelkit as $levelkits): ?>
-                                        <p><input type="hidden" class="itemnosss"><span style="opacity:0.33" id="itemno<?php echo str_replace(" ", "", $levelkits['ItemNo']);?>"><?php echo $levelkits['ItemNo'];?>  - <?php echo $levelkits['Description'];?></span>
+                                        <p><?php echo $levelkits['ItemNo'];?>  - <?php echo $levelkits['Description'];?>
                                             <input class="itemnom" name="itemno[]"  alt="<?php echo $levelkits['Description'];?>" type="hidden"  value="<?php echo $levelkits['ItemNo'];?>">
                                             <input name="description[]" type="hidden" value="<?php echo $levelkits['Description'];?>" >
                                         </p>
@@ -96,13 +105,13 @@
                             
 
 
-                            <div class="form-actions"  style="display:none;">
+                            <div class="form-actions">
                               <!--<button type="submit" value="Submit" class="btn btn-primary">Save changes</button>-->
                               <button type="button"  class="btn btn-primary"  id="issuance_book">Save changes</button>
+                              <button type="reset" class="btn">Cancel</button>
                             </div>
                           </fieldset>
                         </form> 
-                        <input type="hidden" class="itemnos">
                      
 
                     </div>
@@ -114,52 +123,56 @@
             
 
 <script>
-$('#kititemno').focus();
-x = 0;
-y = new Array();
-$('#kititemno').change(function(){
+
+
+
+$('#addtobag').click(function(){
     itemno = $('#kititemno').val();
-    $.ajax({
-        url:'page/ajax/kit_validation.php',
-        type:'post',
-        data:{itemno:itemno, levelid:<?php echo $customer->fields['LevelID'];?>},
-        dataType:'json',
-        success:function(j){
-            //alert(j.status);
-            if(j.status == 0){
-                nospace = itemno.replace(/\s/g, ''); 
-               //alert(itemno..replace(/\s/g, '') );
-                $('#itemno'+nospace).fadeTo("slow", 1);
-                $('.itemno'+nospace).val("1");
-                if($.inArray( nospace, y )){
-                    x = x + 1 ;         
-                    y[x - 1] = nospace;
-                    //alert(y.length);                   
-                }
+    result = 0;
+    added = 0;
+   
+   
 
-                $('#kititemno').val('');
-                
-            }
+    $('.itemnom').each(function(){
+         
+        itemnom = $(this).val();
+        itemalt = $(this).attr('alt');
 
-            if(j.countme == y.length){
-                alert('All Items Are Validated.. Click Submit to Complete Transaction');
-                $('.form-actions').fadeIn();
-                $('#issuance_book').focus();
-            } 
+        if(itemno == itemnom) {
+          
+          
+          
 
-            if(j.status == 1){
-                alert('Not Part of the Kit');
-                $('#kititemno').val('');
+          
+           $('.addtobag').append("<div class='alert alert-success'><input type='hidden' name='itemno' value='"+itemno+"'>" +itemno + " " + itemalt+"</div> " );  
+             result = 1;
+             added = 1;
+    
 
-            }
-            
-        }
+        } 
+
     });
 
 
+       
+
+   if(result == 0){
+        $('.modal-body').html('Not Part Of The  ItemList For <?php echo $level->fields["Description"]; ?>');
+        $("#myModal").modal('show'); 
+   }
+
+    
+    if (added == 1){
+              $('.modal-body').html('ssssss');
+              $("#myModal").modal('show'); 
+              //$('.addtobag').hide();
+                   
+           }
+
+
+    
+
 });
-
-
 
 
 </script>

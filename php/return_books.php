@@ -40,6 +40,9 @@ echo $bl;
 $booka = $model->select_where('ebooks', array('CustNo' => $custno, 'BookCategory' => 'a', 'Status' => 'Current'));
 $bookm = $model->select_where('ebooks', array('CustNo' => $custno, 'BookCategory' => 'm', 'Status' => 'Current'));
 $books = $model->select_where('ebooks', array('CustNo' => $custno, 'BookCategory' => 's', 'Status' => 'Current'));
+
+$att = $model->select_where('eattdtl', array('CustNo' => $custno));
+
 ?>
 <div id="content" class="span10">
             <!-- content starts -->

@@ -18,7 +18,7 @@ include('login.php');
 			<!-- content starts -->
 			
 
-			<div>
+			<!-- <div>
 				<ul class="breadcrumb">
 					<li>
 						<a href="#">Home</a> <span class="divider">/</span>
@@ -27,12 +27,102 @@ include('login.php');
 						<a href="#">Franchising</a>
 					</li>
 				</ul>
-			</div>
+			</div> -->
 			
 
 
 			<?php include('template/stat.php') ?>
 			
+			<div class="row-fluid">
+				<div class="box span12">
+					<div class="box-header well">
+						<h2><i class="icon-info-sign"></i> Franchising Process</h2>
+						<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+						
+
+
+					<div class="box-content">
+						 
+						<div id="myTabContent" class="tab-content">	
+							<div class="tab-pane" id="master">
+								<p>Lorem Ipsum </p>
+
+								<table width="auto" height="auto" align="center" style="margin-bottom:10px;" >
+								<tr>
+									
+									<td colspan="2" align="center"> <img src="template/img/franchise/master.png"> </td>
+									
+									<td  width="12%" rowspan="7" valign="top"> <img src="template/img/franchise/arrow1.png"> </td>
+									
+									<td colspan="2" align="center">  <img src="template/img/franchise/country.png"> </td>
+									
+									<td  width="12%" rowspan="7" valign="top"> <img src="template/img/franchise/arrow1.png"> </td>
+									
+									<td colspan="2" align="center">  <img src="template/img/franchise/franchisee.png"> </td>
+								</tr>
+
+								<tr>
+								<td colspan="2 " align="center" ><img src="template/img/franchise/arrow2.png" alt="" width="auto" height="auto"></td>
+								<td colspan="2 " align="center" ><img src="template/img/franchise/arrow2.png" alt="" width="auto" height="auto"></td>
+								<td colspan="2 " align="center"><img src="template/img/franchise/arrow2.png" alt="" width="auto" height="auto"></td>
+								</tr>
+
+								<tr>
+									<td>  <img src="template/img/franchise/book.png"></td>
+									<td>  <img src="template/img/franchise/student.png"></td>
+								
+									<td>  <img src="template/img/franchise/book.png"> </td>
+									<td>  <img src="template/img/franchise/student.png"></td>
+									
+									<td>  <img src="template/img/franchise/book.png"></td>
+									<td>  <img src="template/img/franchise/student.png"></td>
+								</tr>
+								
+								<tr>
+								<td colspan="2 " align="center" ><img src="template/img/franchise/arrow3.png" alt="" width="auto" height="auto"></td>
+								<td colspan="2 " align="center" ><img src="template/img/franchise/arrow3.png" alt="" width="auto" height="auto"></td>
+								<td colspan="2 " align="center"><img src="template/img/franchise/arrow3.png" alt="" width="auto" height="auto"></td>
+								</tr>
+
+								<tr>
+									<td colspan="2" align="center">   <img src="template/img/franchise/royalty.png"> </td>
+								
+									<td colspan="2" align="center">  <img src="template/img/franchise/royalty.png"></td>
+									
+									<td colspan="2" align="center">  <img src="template/img/franchise/royalty.png"> </td>
+								</tr>
+								
+								<tr>
+								<td colspan="2 " align="center" ><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+								<td colspan="2 " align="center" ><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+								<td colspan="2 " align="center"><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+								</tr>
+
+								<tr>
+									<td colspan="2" align="center">   <img src="template/img/franchise/billing.png"> </td>
+									
+									<td colspan="2" align="center">  <img src="template/img/franchise/billing.png"></td>
+								
+									<td colspan="2" align="center">  <img src="template/img/franchise/billing.png"> </td>
+								</tr>
+
+
+
+								</table>
+									
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+
+
+
+
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well">

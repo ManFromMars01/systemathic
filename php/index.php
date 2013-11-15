@@ -9,9 +9,11 @@ include_once('ConnInfo.php');
 $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+
 include_once('utils.php');
-include('login.php');
 include('template/myclass.php');
+include('login.php');
 
 ?>
 
@@ -49,16 +51,16 @@ include('template/myclass.php');
 					<div class="box-content">
 									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
 
-									<table width="auto" height="auto" id="table1">
+									<table width="auto" height="auto" id="table1"  style="background-image:url('template/img/admission-slice/backg.png'); background-size:100%; background-repeat:no-repeat;" >
 
 									<tr>
-										<td width="16%"><a href="BrowseStudentlist3.php?CustType=Assessment&RegType=Waiting"><img class="table101" src="template/img/admission-slice/assessment.png"></a></td>
-									    <td width="9%" rowspan="7"> <img  src="template/img/admission-slice/arrow1.png"  height="auto" width="auto"></td>
-									    <td width="16%"><a href="BrowseStudentlist3.php?CustType=For Admission&RegType=Waiting"><img  class="table101" src="template/img/admission-slice/admission.png"></a></td>
-									    <td width="3%" rowspan="7"> <img src="template/img/admission-slice/arrow2.png"></td>
-									    <td valign="bottom"><img src="template/img/admission-slice/arrow4.png" width="auto" height="auto"></td>
-									    <td width="20%">><a href="BrowseStudentlistreg.php?RegType=Admitted"><img  class="table101" src="template/img/admission-slice/studentfile.png"></a></td>
-									    <td width="18%"> </td>
+										<td><a href="BrowseStudentlist3.php?CustType=Assessment"><img class="table101" src="template/img/admission-slice/assessment.png"></a></td>
+									    <td rowspan="7" width="10%"> </td>
+									    <td ><a href="BrowseStudentlist3.php?CustType=For Admission&RegType=Waiting"><img  class="table101" src="template/img/admission-slice/admission.png"></a></td>
+									    <td rowspan="7" width="10%"> </td>
+									    <td ></td>
+									    <td ><a href="BrowseStudentlistreg.php?RegType=Admitted"><img  class="table101" src="template/img/admission-slice/studentfile.png"></a></td>
+									    <td > </td>
 									</tr>
 
 									<tr>
@@ -69,10 +71,10 @@ include('template/myclass.php');
 									</tr>
 
 									<tr>
-										<td height="85"><a href="BrowseStudentlist3.php?CustType=Trial Class&RegType=Waiting"><img  class="table101" src="template/img/admission-slice/trialclass.png"></a></td>
+										<td><a href="BrowseStudentlist3.php?CustType=Trial Class"><img  class="table101" src="template/img/admission-slice/trialclass.png"></a></td>
 									    <td><a href="BrowseStudentlistreg.php?RegType=For Schedule"><img  class="table101" src="template/img/admission-slice/createsched.png"></a></td>
-									    <td width="18%"><a id="returnbooklink" href="#"><img  class="table101" src="template/img/admission-slice/books.png"></a></td>
-									    <td><a href="page/controller/attendance_class.php"><img  class="table101" src="template/img/admission-slice/attendance.png"></td>
+									    <td><a id="returnbooklink" href="#"><img  class="table101" src="template/img/admission-slice/books.png"></a></td>
+									    <td> <a href="page/controller/attendance_class.php"><img  class="table101" src="template/img/admission-slice/attendance.png"></td>
 									    <td> <img  class="table101" src="template/img/admission-slice/progress.png"></td>
 									    
 									</tr>
@@ -81,7 +83,7 @@ include('template/myclass.php');
 									<tr>
 										<td>&nbsp;</td>
 									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
-									    <td width="18%"><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
+									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
 									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
 									    <td><img src="template/img/admission-slice/downarrow1.png" alt="" width="auto" height="auto"></td>
 									    
@@ -90,8 +92,8 @@ include('template/myclass.php');
 									<tr>
 										<td><a href="BrowseStudentlist3.php?CustType=Re-Enrollee"><img  class="table101" src="template/img/admission-slice/reenrollee.png"></a></td>
 									    <td><a href="BrowseStudentlistreg.php?RegType=For Payment"><img  class="table101" src="template/img/admission-slice/invoicing.png"></a></td>
-									    <td><a href="page/controller/events_manager.php"><img  class="table101" src="template/img/admission-slice/examination.png"></a></td>
-									    <td><a href="page/controller/online_practices.php"><img class="table101" src="template/img/admission-slice/onlinepractice.png"></a></td>
+									    <td><img  class="table101" src="template/img/admission-slice/examination.png"></td>
+									    <td> <a href="page/controller/online_practices.php"> <img class="table101" src="template/img/admission-slice/onlinepractice.png"></td>
 									    <td> <img class="table101" src="template/img/admission-slice/generatereports.png"></td>
 									    
 									</tr>
@@ -107,7 +109,7 @@ include('template/myclass.php');
 
 
 									<tr>
-										<td height="75"><a href="BrowseStudentlist3.php?CustType=Continuing"><img  class="table101" src="template/img/admission-slice/continuing.png"></a></td>
+										<td><a href="BrowseStudentlist3.php?CustType=Continuing"><img  class="table101" src="template/img/admission-slice/continuing.png"></a></td>
 									    <td><a href="BrowseStudentlistreg.php?RegType=For Kit Issuance"><img  class="table101" src="template/img/admission-slice/kitissuance.png"></a></td>
 									    <td>&nbsp;</td>
 									    <td>&nbsp;</td>
@@ -117,16 +119,7 @@ include('template/myclass.php');
 
 
 									</table>
-
-
-
-
-						<!--
-						<p class="center">
-							<a href="http://usman.it/free-responsive-admin-template" class="btn btn-large btn-primary"><i class="icon-chevron-left icon-white"></i> Back to article</a> 
-							<a href="http://usman.it/free-responsive-admin-template" class="btn btn-large"><i class="icon-download-alt"></i> Download Page</a>
-						</p>
-						-->
+						
 
 						<div class="clearfix"></div>
 					</div>
@@ -295,7 +288,7 @@ include('template/myclass.php');
 							<li><a href="#attendance">Attendance</a></li>
 							<li><a href="#progress">Progress</a></li>
 							<li><a href="#examinations">Examinations</a></li>
-							<li><a href="">Online Practice</a></li>
+							<li><a href="#onlinepractice">Online Practice</a></li>
 							<li><a href="#reports">Generate Reports</a></li>
 						</ul>
 						 

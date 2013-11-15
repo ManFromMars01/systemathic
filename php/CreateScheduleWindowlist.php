@@ -395,13 +395,13 @@ if ($oRStcustomer):
             endif;
             MergeCreateScheduleWindowListTemplate($HTML_Template);
         else:
-            MergeCreateScheduleWindowListTemplate($HTML_Template);
+            NoRecordsFound();
         endif;
     else:
-        MergeCreateScheduleWindowListTemplate($HTML_Template);
+        NoRecordsFound();
     endif;
 else:
-    MergeCreateScheduleWindowListTemplate($HTML_Template);
+    NoRecordsFound();
 endif;
 
 $oRStcustomer->Close();

@@ -159,17 +159,21 @@ if($flgMissing == false):
   if (!isset($oRStcustomer) || $oRStcustomer == false || $oRStcustomer == ""):
       $myStatus = "Your insert failed <br><br>";
   else:
-    $myStatus = "Your insert succeeded <br><br>";
+     $redirect1 = 'BrowseStudentlist3.php?CustType='.$_POST['txttcustomerCustType'];
+
+     $redirect2 = 'BrowseStudentlistreg.php?RegType='.$_POST['txttcustomerRegType'];
+
+  if ($_POST['txttcustomerCustType'] == "For Admission"):
+
+      $redirect1 = $redirect2;
+ else:
+      $redirect1;   
+ endif;
+  
+  
+  $myStatus = "Successfully Updated! <BR><BR> Add New Record? <BR><BR> <a href='UpdatetStudentadd.php'>YES</a> &nbsp <a href=' ". $redirect1." '> NO </a> ";
   endif;
-  if(getSession("BrowseStudent#WHR")<>""):
-      $myStatus .= "<a href='BrowseStudentlist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
-  else:
-      if($_SESSION["ChildReturnTo"] <> ""):
-        $myStatus .= "<a href='" . htmlEncode($_SESSION["ChildReturnTo"]) . "'>Return to list</a>.";
-      else:
-        $myStatus .= "<a href='BrowseStudentlist.php'>Return to list</a>.";
-      endif;
-  endif;
+  
 endif;
 
 

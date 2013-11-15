@@ -1,4 +1,5 @@
 @Header@
+
 <div id="content" class="span10">
             <!-- content starts -->
             <div>
@@ -30,77 +31,107 @@
                             <input type="hidden" id="ID3" name="ID3" value="@ID3@">
                             <input name="txttcustomerCustNo"  type="hidden" value="@tcustomerCustNo@" >
                             
-                            
-                            <div class="groupme" style=" padding: 20px;  margin:10px;">
-                                <h4>Basic Details <span class="toggleme"></span></h4> 
-                                    <br />
-                                
-                                <div class="control-group">
+                            <div class="groupme">
+                              <div class="control-group">
                                     <label class="control-label" for="focusedInput">Country ID:</label>
                                     <div class="controls">
                                       <input class="input-xlarge focused" name="txttcustomerCountryID" id="focusedInput" type="text" value="@tcustomerCountryID@" readonly>
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                            </div>
+                            <div class="groupme ">
+                               <div class="control-group">
                                     <label class="control-label" for="focusedInput">Branch ID:</label>
                                     <div class="controls">
                                       <input class="input-xlarge focused" name="txttcustomerBranchID" id="focusedInput" type="text" value="@tcustomerBranchID@" readonly>
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+
+                            </div>
+
+                      
+                            
+                       
+
+
+
+
+
+
+
+
+                            <div class="groupme">
+                                <h4>Basic Details <span class="toggleme"></span></h4> 
+                                    <br />
+                                
+                               
+                                <div class="control-group" >
                                     <label class="control-label"  for="focusedInput">Student ID:</label>
                                     <div class="controls">
                                       <input class="input-xlarge focused" name="txttcustomerStudentID" id="focusedInput" type="text" value="@tcustomerStudentID@" readonly>
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                                <div class="control-group " >
                                     <label class="control-label"  for="focusedInput">Last Name:</label>
                                     <div class="controls">
                                       <input class="input-xlarge focused" name="txttcustomerSurName"  type="text" id="lname" value="@tcustomerSurName@" required>
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                                <div class="control-group ">
                                     <label class="control-label" for="focusedInput">First Name: </label>
                                     <div class="controls">
                                       <input class="input-xlarge focused" name="txttcustomerFirstName"  type="text" id="fname" value="@tcustomerFirstName@" required>
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                                <div class="control-group ">
                                     <label class="control-label" for="focusedInput">Middle Name: </label>
                                     <div class="controls">
                                       <input class="input-xlarge focused" name="txttcustomerMiddleName" id="mname" type="text" value="@tcustomerMiddleName@" required>
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                           
+                                
+                                <div class="control-group ">
                                     <p style="cursor:pointer; text-decoration:underline;" id="enableme">Change Local Name</p>
+
+                                    
+                                </div>
+
+                                
+
+                                <div class="control-group">
+                                   
                                     <label class="control-label" for="focusedInput">Local Lastname:</label>
                                     <div class="controls">
                                       <input class="input-xlarge focused disableme" name="txttcustomerLSurname" type="text" id="llname" value="@tcustomerLSurname@"  readonly>
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                                <div class="control-group ">
                                     <label class="control-label" for="focusedInput">Local First Name</label>
                                     <div class="controls">
                                       <input class="input-xlarge focused disableme" name="txttcustomerLFirstName"  type="text" id="lfname" value="@tcustomerLFirstName@" readonly>
                                     </div>
                                 </div>
 
-                                <div class="control-group">
+                                <div class="control-group ">
                                     <label class="control-label" for="focusedInput">Local Middle Name: </label>
                                     <div class="controls">
                                       <input class="input-xlarge focused disableme" name="txttcustomerLMiddleName"  id="lmname" type="text" value="@tcustomerLMiddleName@"  readonly>
                                     </div>
                                 </div>
 
-                                <div class="control-group">
-                                    <label class="control-label" for="selectError3">Gender</label>
+
+                              
+
+                                <div class="control-group " >
+                                    <label class="control-label" for="selectError3">Gender:</label>
                                     <div class="controls">
                                       <select id="selectError3" Name="txttcustomerGender">
                                         <option value="Male"  @SELECTEDF23_11_1@>Male</option>          
@@ -111,18 +142,193 @@
 
                               
 
-                                <div class="control-group">
-                                  <label class="control-label" for="date01">Birthday</label>
+                                <div class="control-group ">
+                                  <label class="control-label" for="date01">Birthday:</label>
                                   <div class="controls">
                                     <input type="text" class="input-xlarge datepicker" name="txttcustomerBirthday" id="" value="@tcustomerBirthday@">
                                   </div>
                                 </div>
                             </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Age:</label>
+                                <div class="controls">
+                                 
+                                       
+                                  <input type="text" name="txttcustomerAge" value="@tcustomerAge@" readonly> 
+                                </div>
+                            </div>
+                            
                             
                             <!--End Basic Info-->
 
+                         
                             
-                            <div class="groupme" style=" padding: 20px;  margin:10px;">
+                            <div class="groupme">
+                                <h4>Mother's Information</h4><br>
+                                <div class="control-group ">
+                                    <label class="control-label" for="focusedInput">Fullname:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerMother" type="text" value="@tcustomerMother@" required>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Occupation:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerMOccupation"  type="text" value="@tcustomerMOccupation@" required>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Mobile:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerMMobile" type="text" value="@tcustomerMMobile@" required>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Email:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerMEmail"  type="email" value="@tcustomerMEmail@" >
+                                    </div>
+                                </div>
+                            </div>        
+                            <!--End Mothers Info-->
+
+
+                             <div class="groupme">
+                                <h4>Father's Information</h4><br>
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Full Name:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerFather"  type="text" value="@tcustomerFather@" required>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Occupation:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerFOccupation"  type="text" value="@tcustomerFOccupation@" required>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Mobile:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerFMobile"  type="text" value="@tcustomerFMobile@" required>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Email:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerFEmail" type="email" value="@tcustomerFEmail@">
+                                    </div>
+                                </div>
+                            </div>    
+                            <!--End of Fathers's infp -->
+                          
+                           
+
+
+
+
+
+                            
+                            <div class="groupme">
+                                <h4>Enrollment Status</h4><br>
+                                
+
+                                 <div class="control-group">
+                                    <label class="control-label" for="selectError3">Level Type</label>
+                                    <div class="controls">
+                                      <select id="txttcustomerLevelID" name="txttcustomerLevelID" title="">
+                                           @level@
+                                      </select>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Tier ID:</label>
+                                    <div class="controls">
+                                      <select name="txttcustomerTierID">
+                                           @tier@
+                                      </select>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="selectError3">Customer Type</label>
+                                    <div class="controls">
+                                      <select id="txttcustomerCustType" name="txttcustomerCustType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCustType)" title="">
+                                         <option value="Assessment"  @SELECTEDF23_20_1@>Assessment</option>          
+                                         <option value="Trial Class"  @SELECTEDF23_20_2@>Trial Class</option>          
+                                         <option value="For Admission"  @SELECTEDF23_20_3@>For Admission</option>          
+                                         <option value="Re-Enrollee"  @SELECTEDF23_20_4@>Re-Enrollee</option>          
+                                         <option value="Continuing"  @SELECTEDF23_20_5@>Continuing</option>          
+                                       </select>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="selectError3">Reg Type</label>
+                                    <div class="controls">
+                                      <select id="txttcustomerRegType" name="txttcustomerRegType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerRegType)" title="">
+                                       <option value="Waiting"  @SELECTEDF23_21_1@>Waiting</option>          
+                                       <option value="For Schedule"  @SELECTEDF23_21_2@>For Schedule</option>          
+                                       <option value="For Payment"  @SELECTEDF23_21_3@>For Payment</option>          
+                                       <option value="For Kit Issuance"  @SELECTEDF23_21_4@>For Kit Issuance</option>          
+                                       <option value="Admitted"  @SELECTEDF23_21_5@>Admitted</option>          
+                                       <option value="Stopped"  @SELECTEDF23_21_6@>Stopped</option>          
+                                       <option value="Graduate"  @SELECTEDF23_21_7@>Graduate</option>          
+                                     </select>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">School:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerSchool" id="focusedInput" type="text" value="@tcustomerSchool@">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Enrollment Status-->
+                               
+                           
+                                <div class="groupme" >
+                                <h4>Status</h4><br>
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Status:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge focused" name="txttcustomerStatus" id="focusedInput" type="text" value="@tcustomerStatus@">
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Refferal ID:</label>
+                                    <div class="controls">
+                                      <select name="txttcustomerReferralID">
+                                           @referral@
+                                      </select>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">Stopped Date:</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge datepicker" name="txttcustomerStoppedDate" id="datepicker2" type="text" value="@tcustomerStoppedDate@">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of Status -->
+                            
+
+
+
+                            <div class="groupme">
                                 <h4>Address And Contact Details</h4>
                                 <br />
                                 <div class="control-group">
@@ -163,165 +369,12 @@
                             </div>
 
                             <!-- End Of Address-->
-
-                            
-
-                            <div class="groupme" style=" padding: 20px;  margin:10px;">
-                                <h4>Enrollment Status</h4><br>
-                                
-
-                                 <div class="control-group">
-                                    <label class="control-label" for="selectError3">Level Type</label>
-                                    <div class="controls">
-                                      <select id="txttcustomerLevelID" name="txttcustomerLevelID" title="">
-                                           @level@
-                                      </select>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Tier ID:</label>
-                                    <div class="controls">
-                                      <select name="txttcustomerTierID">
-                                           @tier@
-                                      </select>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="selectError3">Customer Type</label>
-                                    <div class="controls">
-                                      <select id="txttcustomerCustType" name="txttcustomerCustType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerCustType)" title="">
-                                         <option value="Assessment"  @SELECTEDF23_20_1@>Assessment</option>          
-                                         <option value="Trial Class"  @SELECTEDF23_20_2@>Trial Class</option>          
-                                         <option value="For Admission"  @SELECTEDF23_20_3@>For Admission</option>          
-                                         <option value="ReEnrollee"  @SELECTEDF23_20_4@>ReEnrollee</option>          
-                                         <option value="Continuing"  @SELECTEDF23_20_5@>Continuing</option>          
-                                       </select>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="selectError3">Reg Type</label>
-                                    <div class="controls">
-                                      <select id="txttcustomerRegType" name="txttcustomerRegType"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txttcustomerRegType)" title="">
-                                       <option value="Waiting"  @SELECTEDF23_21_1@>Waiting</option>          
-                                       <option value="For Schedule"  @SELECTEDF23_21_2@>For Schedule</option>          
-                                       <option value="For Payment"  @SELECTEDF23_21_3@>For Payment</option>          
-                                       <option value="For Kit Issuance"  @SELECTEDF23_21_4@>For Kit Issuance</option>          
-                                       <option value="Admitted"  @SELECTEDF23_21_5@>Admitted</option>          
-                                       <option value="Stopped"  @SELECTEDF23_21_6@>Stopped</option>          
-                                       <option value="Graduate"  @SELECTEDF23_21_7@>Graduate</option>          
-                                     </select>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">School:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge focused" name="txttcustomerSchool" id="focusedInput" type="text" value="@tcustomerSchool@">
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Enrollment Status-->
-                                
-                            <div class="groupme" style="padding: 20px; margin:10px;">
-                                <h4>Mother's Information</h4><br>
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Fullname:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge focused" name="txttcustomerMother" type="text" value="@tcustomerMother@" required>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Occupation:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge focused" name="@txttcustomerMOccupation@"  type="text" value="@tcustomerMOccupation@" required>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Mobile:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge focused" name="txttcustomerMMobile" type="text" value="@tcustomerMMobile@" required>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Email:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge focused" name="txttcustomerMEmail"  type="email" value="@tcustomerMEmail@" >
-                                    </div>
-                                </div>
-                            </div>        
-                            <!--End Mothers Info-->
+  
 
 
-                             <div class="groupme" style=" padding: 20px; margin:10px;">
-                                <h4>Father's Information</h4><br>
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Full Name:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge focused" name="txttcustomerFather"  type="text" value="@tcustomerFather@" required>
-                                    </div>
-                                </div>
+                        
 
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Occupation:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge focused" name="txttcustomerFOccupation"  type="text" value="@tcustomerFOccupation@" required>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Mobile:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge focused" name="txttcustomerFMobile"  type="text" value="@tcustomerFMobile@" required>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Email:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge focused" name="txttcustomerFEmail" type="email" value="@tcustomerFEmail@">
-                                    </div>
-                                </div>
-                            </div>    
-
-                            
-                            <div class="groupme" style=" padding: 20px;  margin:10px;">
-                                <h4>Status</h4><br>
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Status:</label>
-                                    <div class="controls">
-                                      <select name="txttcustomerStatus">
-                                        @oldnot@
-                                      </select>
-                                    </div>
-                                </div>
-
-                                
-
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Refferal ID:</label>
-                                    <div class="controls">
-                                      <select name="txttcustomerReferralID">
-                                           @referral@
-                                      </select>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="focusedInput">Stopped Date:</label>
-                                    <div class="controls">
-                                      <input class="input-xlarge datepicker" name="txttcustomerStoppedDate" id="datepicker2" type="text" value="@tcustomerStoppedDate@">
-                                    </div>
-                                </div>
-                            </div>
-
-
-
+                          <div style="clear:both;"></div>
 
                                      
                            

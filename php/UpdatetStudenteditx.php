@@ -160,7 +160,7 @@ $arrayoRStcustomer["TierID"] = getFormSQLQuoted($objConn1, "tcustomer", "TierID"
             $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
             $flgMissing = TRUE;
                     $myStatus .= " <strong>Cust Type:</strong> : Must be in list ";
-                    $myStatus .= "Assessment;Trial Class;For Admission;ReEnrollee;Continuing; <hr>\n";
+                    $myStatus .= "Assessment;Trial Class;For Admission;Re-Enrollee;Continuing; <hr>\n";
         endif;
 $arrayoRStcustomer["CustType"] = getFormSQLQuoted($objConn1, "tcustomer", "CustType", "txttcustomerCustType");
         if (getRequest("txttcustomerRegType") == ""):
@@ -204,8 +204,27 @@ unset($oRStcustomer);
 if (!isset($oRSResult) || $oRSResult == false || $oRSResult == ""):
       $myStatus = "Your update failed <br><br>";
 else:
-  $myStatus = "Your update succeeded <BR><BR>";
+
+
+  
+  $redirect1 = 'BrowseStudentlist3.php?CustType='.$_POST['txttcustomerCustType'];
+
+  $redirect2 = 'BrowseStudentlistreg.php?RegType='.$_POST['txttcustomerRegType'];
+
+  
+ if ($_POST['txttcustomerCustType'] == "For Admission"):
+
+      $redirect1 = $redirect2;
+ else:
+      $redirect1;   
+ endif;
+  
+  
+  $myStatus = "Successfully Updated! <BR><BR> Add New Record? <BR><BR> <a href='UpdatetStudentadd.php'>YES</a> &nbsp <a href=' ". $redirect1." '> NO </a> ";
+
 endif;
+   
+/*
     if(getSession("BrowseStudent#WHR")<>""):
         $myStatus .= "<a href='BrowseStudentlist.php" . "?SUBSET=TRUE" . "'>Return to list</a>.";
     else:
@@ -214,7 +233,8 @@ endif;
         else:
           $myStatus .= "<a href='BrowseStudentlist.php'>Return to list</a>.";
         endif;
-    endif;
+    
+    endif; */
 endif;
 $ClarionData = "<div class='bg'>\n";
 $ClarionData .= "<table class='Data' border=0 cellspacing=0 cellpadding=0>\n";

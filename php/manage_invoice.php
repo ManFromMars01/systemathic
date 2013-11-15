@@ -1,6 +1,12 @@
 <?php 
 include('template/header.php');
 include('template/myclass.php'); 
+
+$CustNo =  $_GET['CustNo'];
+
+
+/*
+
 $student_no = $_GET['student_no'];
 
 $student = $model->select_where('tcustomer', array('StudentID' => $student_no));
@@ -42,13 +48,16 @@ $bookm = $model->select_where('ebooks', array('CustNo' => $custno, 'BookCategory
 $books = $model->select_where('ebooks', array('CustNo' => $custno, 'BookCategory' => 's', 'Status' => 'Current'));
 
 $atta = $model->select_where('eattdtl', array('CustNo' => $custno));
-
+*/
 
 function status_attendance($status){
     $stat_desc = $model->select_where('tastatus', array('ID' => $status));
     $desc = $stat_desc->fields['Description'];
     return $desc;    
 }
+
+$invoices = $model->select_where('eorderhdr', array('CustNo' => $CustNo));
+
 
 
 ?>
@@ -76,7 +85,7 @@ function status_attendance($status){
             <div class="row-fluid sortable">        
                 <div class="box span12">
                     <div class="box-header well" data-original-title>
-                        <h2><i class="icon-user"></i>Attendance</h2>
+                        <h2><i class="icon-user"></i>Manage Invoices</h2>
                         <div class="box-icon">
                             <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
                             <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -90,27 +99,23 @@ function status_attendance($status){
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                           <thead>
                               <tr>
-                                    <th>Date</th>
-                                    <th>Session No:</th>
-                                    <th>Time From:</th>
-                                    <th>Time To:</th>
-                                    <th>Status:</th>
+                                    <th>Date:</th>
+                                    <th>Invoice Number:</th>
+                                    <th>Name:</th>
+                                    <th>Actions:</th>
+                                  
                               </tr>
 
                           </thead>   
                           <tbody>
 
-                            <?php foreach($atta as $att): ?>
+                            <?php foreach($invoices as $invoice): ?>
                             <tr>
-                                <td><?php echo $att['Date'];  ?></td>
-                                <td><?php echo $att['SessionNo'];  ?></td>
-                                <td><?php echo $att['TimeFrom'];  ?></td>
-                                <td><?php echo $att['TimeTo'];  ?></td>
+                                <td><?php echo $invoice['Date'];  ?></td>
+                                <td><?php echo $invoice['OrderNo'];  ?></td>
+                                <td><?php echo $invoice['Name'];  ?></td>
                                 <td>
-                                <?php 
-                                 $attend = $model->select_where('tastatus',array('ID' => $att['StatusID'] ));
-                                 echo $attend->fields['Description'];
-                                ?>
+                                <a class="btn btn-info" href="manage_invoice_details.php?CustNo=<?php echo $CustNo?>&amp;InvoiceNo=<?php echo $invoice['OrderNo']?>">Invoice Details</a>
                                 </td>
                                 
                                 

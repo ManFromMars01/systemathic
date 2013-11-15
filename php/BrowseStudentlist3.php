@@ -1,10 +1,19 @@
 <?php include('template/header.php') ?>
 <?php include('template/myclass.php');?>
 <?php 
+    $success = "";
     if(isset($_GET['RegType'])){
       $where = array('CustType' => $_GET['CustType'] , 'RegType' => $_GET['RegType'] );
     } else{
       $where = array('CustType' => $_GET['CustType']);
+    }
+
+
+    if(isset($_GET['Success'])){
+      $success = '<div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <strong>Well Done!!</strong> You Successfully Move A Student to Addmission List.. <a href="BrowseStudentlist3.php?CustType=For Admission">Go To Admission List</a>
+            </div>';
     }
     
     $student = $model->select_where('tcustomer', $where );
@@ -24,7 +33,7 @@
                     </li>
                 </ul>
             </div>
-            
+            <?php echo $success; ?>
             <div class="row-fluid sortable">        
                 <div class="box span12">
                     <div class="box-header well" data-original-title>
@@ -36,8 +45,22 @@
                         </div>
                     </div>
                     <div class="box-content">
-                        <a class="btn btn-success" href="UpdatetStudentadd.php">Add</a>
-                        <br><br >
+
+                        <a class="btn btn-success" href="UpdatetStudentadd.php">Add Customer</a> <a id="showlegend" class="btn btn-info">Show Legend</a>
+                        
+
+                        <div id="mylegend" style="display:none; margin-top:5px; padding:10px; border:1px solid gray; border-radius:5px;" class="groupme">
+                          <h4>Legend</h4>
+                          <br />                          
+                          <ul>
+                              <li style="margin-bottom:10px; display:block; float:left; margin-right:15px;"><a href="" class="btn btn-danger">Assessed</a> -  Assessment FAILED</li>
+                              <li style="margin-bottom:10px; display:block; float:left;"><a href="" class="btn btn-success">Assessed</a> - Assessment PASSED</li>
+                          </ul>
+                          <div class="clearfix"></div>  
+                        </div>
+                        
+                        <div class="clearfix"></div>
+                        <br>
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                           <thead>
                               <tr>
@@ -64,24 +87,46 @@
                                 <td><?php echo $level->fields['Description'];?></td>
                                 
                                 <td><?php echo $tier->fields['Description'];?></td>
+                                
+                                <!------Start ASSesment Action------>
                                 <?php if($_GET['CustType'] == 'Assessment' ): ?>
                                 <td>
                                   <?php 
                                   $customer_check =$model->select_where('eassessment', array('CustNo'=> $students['CustNo']));
                                   if($customer_check->fields['CustNo'] !=  $students['CustNo']):
                                   ?>
+
                                   <a class="btn btn-info" href="page/controller/assessment_form.php?CustomerNo=<?php echo $students['CustNo'];?>"><i class="icon-edit icon-white"></i> Assess</a>
-                                <?php else: ?>
+                                  <?php else: ?>
+                                  <?php if($customer_check->fields['Status'] == "PASSED"): ?>  
                                   <a class="btn btn-success" href="UpdatetStudentedit.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"></i> Assessed</a>
-                                <?php endif; ?>
+                                  <a class="btn btn-success" href="<?php echo base_url('page/ajax/move_student.php?custno='.$students['CustNo'].'&moveto=admission');?>" onclick="return confirm('Are you sure you want to move this student in Admission List ?')">Move to Admission</a>
+                                  <?php elseif($customer_check->fields['Status'] == "FAILED"): ?>  
+                                  <a class="btn btn-danger">Assessed</a>
+                                  <?php endif; endif; ?>
                                   <a class="btn btn-info" href="UpdatetStudentedit.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit</a>
                                 </td>
-                                <?php else: ?>
+                                <!------Ending ASSesment Action------>
 
+                                <!-----For Admission Action------>
+                                <?php elseif($_GET['CustType'] == 'For Admission' ): ?>
+                                <td>
+                                   <a class="btn btn-info" href="UpdatetStudentedit.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit</a>
+                                   <a class="btn btn-success" href="<?php echo base_url('page/ajax/move_student.php?custno='.$students['CustNo'].'&moveto=schedule');?>" onclick="return confirm('Note:  This student will move To For Schedule List')">Create Schedule</a>
+                                </td> 
+
+                                <?php else: ?>
                                 <td>
                                   <a class="btn btn-info" href="UpdatetStudentedit.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit</a>
                                 </td>
                                <?php endif; ?> 
+
+
+
+
+
+
+
                             </tr>
                         <?php endforeach; ?>
                             
@@ -93,4 +138,14 @@
             </div><!--/row-->
                 <!-- content ends -->
             </div><!--/#content.span10-->
+
+            <script>
+                  
+
+                  $( "#showlegend" ).click(function() {
+                    $( "#mylegend" ).toggle( "slow", function() {
+                      // Animation complete.
+                    });
+                  });
+            </script>
 <?php include('template/footer.php'); ?>         

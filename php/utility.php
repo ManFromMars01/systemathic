@@ -3,7 +3,7 @@
 			<!-- content starts -->
 			
 
-			<div>
+			<!-- <div>
 				<ul class="breadcrumb">
 					<li>
 						<a href="#">Home</a> <span class="divider">/</span>
@@ -12,7 +12,7 @@
 						<a href="#">Utility</a>
 					</li>
 				</ul>
-			</div>
+			</div> -->
 			<?php include('template/stat.php'); ?>
 			
 			<div class="row-fluid">

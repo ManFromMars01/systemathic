@@ -1,7 +1,7 @@
 @Header@
 <div id="content" class="span10">
             <!-- content starts -->
-            <div>
+            <!-- <div>
                 <ul class="breadcrumb">
                     <li>
                         <a href="#">Home</a> <span class="divider">/</span>
@@ -10,7 +10,7 @@
                         <a href="#">Forms</a>
                     </li>
                 </ul>
-            </div>
+            </div> -->  
             
             <div class="row-fluid sortable">
                 <div class="box span12">
@@ -31,14 +31,21 @@
                             <div class="control-group">
                                 <label class="control-label" for="focusedInput">Country ID:</label>
                                 <div class="controls">
-                                  <input class="" name="txteattheadCountryID"  type="text" value="@country@" readonly>
+                                  <input class="input-xlarge focused" name="txteattheadCountryID"  type="text" value="@country@" readonly>
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <label class="control-label" for="focusedInput">Branch ID:</label>
                                 <div class="controls">
-                                  <input name="txteattheadBranchID" id="txteattheadBranchID"  type="text" value="@branch@" readonly>
+                                  <input class="input-xlarge focused" name="txteattheadBranchID" id="txteattheadBranchID"  type="text" value="@branch@" readonly>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Full name:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" name="fname"  type="text" value="@lname@, @fname@ @mname@" disabled>
                                 </div>
                             </div>
 
@@ -46,15 +53,6 @@
                                 <label class="control-label" for="focusedInput">Custo No. </label>
                                 <div class="controls">
                                   <input class="input-xlarge focused" name="txteattheadCustNo"  type="text" value="@getid@" readonly>
-                                </div>
-                            </div>
-
-                            <div class="clearfix"></div>
-
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Full name:</label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="fname"  type="text" value="@lname@, @fname@ @mname@" disabled>
                                 </div>
                             </div>
 
@@ -112,6 +110,12 @@
                                 <label class="control-label"  for="focusedInput">Start Date:</label>
                                 <div class="controls">
                                   <input class="input-xlarge" name="txteattheadStartDate" id="mydate" type="text"  value="@eattheadStartDate@" required>
+                                 
+
+
+                                   <a href="Updateeattheadadd.php" onclick="window.open('class_schedule.php','popup','width=1200,height=1200,scrollbars=no,resizable=no,toolbar=no,directories=no,location=no,menubar=no,status=no,left=200,top=300'); return false">Check Schedule</a>
+                                   <!-- <button type="button"  class="btn btn-primary"  id="createschedme">Save changes</button> -->
+                                  
                                 </div>
                             </div>
 
@@ -131,9 +135,9 @@
                                 <label class="control-label"  for="focusedInput">Status:</label>
                                 <div class="controls">
                                   <select id="txteattheadStatus" name="txteattheadStatus"  onfocus="JAVASCRIPT:setMessage(document.forms[0].txteattheadStatus)" title="">
-                                     <option value="Temporary"  @SELECTEDF5_20_1@>Temporary</option>          
-                                     <option value="Wait List"  @SELECTEDF5_20_2@>Wait List</option>          
-                                     <option value="Final"  @SELECTEDF5_20_3@>Final</option>          
+                                     <option value="Temporary" selected>Temporary</option>          
+                                     <option value="Wait List" >Wait List</option>          
+                                     <option value="Final">Final</option>          
                                   </select>
                                 </div>
                             </div>
