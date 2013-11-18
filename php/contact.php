@@ -11,6 +11,7 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
+include('template/myclass.php');
 
 ?>
 <?php include('template/header.php'); ?>
@@ -49,7 +50,7 @@ include('login.php');
 						<div id="myTabContent" class="tab-content">	
 							<div class="tab-pane" id="register">
 
-							<p>Lorem ipsum</p>
+
 								<table width="auto" height="auto" align="center" style="margin-bottom:10px;">
 
 									<tr>
@@ -67,9 +68,9 @@ include('login.php');
 									</tr>
 
 									<tr>
-										<td><img src="template/img/contact/appointment.png"></td>
-									    <td><img src="template/img/contact/parent.png"></td>
-									    <td><img src="template/img/contact/reminders.png"></td>
+										<td><a href="<?php echo base_url('page/controller/appointment.php');?>"><img src="template/img/contact/appointment.png"></a></td>
+									    <td><a href="<?php echo base_url('page/controller/communication_log.php');?>"><img src="template/img/contact/parent.png"></td>
+									    <td><a href="<?php echo base_url('page/controller/reminder.php')?>"><img src="template/img/contact/reminders.png"></td>
 									    <td><img src="template/img/contact/order.png"></td>
 									    <td><img src="template/img/contact/receivable.png"></td>
 									</tr>

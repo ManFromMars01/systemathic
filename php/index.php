@@ -90,7 +90,7 @@ include('login.php');
 									</tr>
 
 									<tr>
-										<td><a href="BrowseStudentlist3.php?CustType=Re-Enrollee"><img  class="table101" src="template/img/admission-slice/reenrollee.png"></a></td>
+										<td><a href="BrowseStudentlist3.php?CustType=ReEnrollee"><img  class="table101" src="template/img/admission-slice/reenrollee.png"></a></td>
 									    <td><a href="BrowseStudentlistreg.php?RegType=For Payment"><img  class="table101" src="template/img/admission-slice/invoicing.png"></a></td>
 									    <td><img  class="table101" src="template/img/admission-slice/examination.png"></td>
 									    <td> <a href="page/controller/online_practices.php"> <img class="table101" src="template/img/admission-slice/onlinepractice.png"></td>
@@ -145,7 +145,8 @@ include('login.php');
 								<p> <img src="template/img/thumbs/assessment.jpg"  class="thumbsize">
 									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</p> 
 
-								<a href="BrowseStudentlist.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Assess </a>
+								<a href="BrowseStudentlist3.php?CustType=Assessment" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Assess </a>
+
 							</div>
 							
 						</div>
@@ -169,7 +170,7 @@ include('login.php');
 									
 									<p><img src="template/img/thumbs/trialclass.jpg" class="thumbsize">
 										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</p> 
-										<a href="BrowseStudentlist2.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Try Now</a>
+										<a href="BrowseStudentlist3.php?CustType=Trial Class" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Try Now</a>
 								</div>
 
 							</div>
@@ -191,7 +192,7 @@ include('login.php');
 								
 								<p><img src="template/img/thumbs/reenrollee.jpg" class="thumbsize">
 									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,</p> 
-									<a href="BrowseStudentlist4.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Enroll</a>
+									<a href="BrowseStudentlist3.php?CustType=ReEnrollee" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Enroll</a>
 							</div>
 							
 						</div>
@@ -216,7 +217,7 @@ include('login.php');
 									
 									<p><img src="template/img/thumbs/continuing.jpg" class="thumbsize">
 										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
-										<a href="BrowseStudentlist5.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Search Now</a>
+										<a href="BrowseStudentlist3.php?CustType=Continuing" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Search Now</a>
 								</div>
 
 							</div>
@@ -245,13 +246,13 @@ include('login.php');
 								
 								<p><img src="template/img/thumbs/admission.jpg" class="thumbsize">
 									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
-								<a href="BrowseStudentlist3.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Insert </a>
+								<a href="BrowseStudentlist3.php?CustType=For%20Admission&RegType=Waiting" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Insert </a>
 							</div>
 							<div class="tab-pane" id="create">
 								
 								<p><img src="template/img/thumbs/schedule.jpg" class="thumbsize">
 									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
-								<a href="CreateScheduleWindowlist.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Create </a>
+								<a href="BrowseStudentlistreg.php?RegType=For%20Schedule" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Create </a>
 								
 							</div>
 							<div class="tab-pane" id="invoicing">
@@ -263,10 +264,9 @@ include('login.php');
 							</div>
 
 							<div class="tab-pane" id="kit">
-								
 								<p><img src="template/img/thumbs/kitissuance.jpg" class="thumbsize">
 									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
-								<a href="BrowseStudentlist7.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Check </a>
+								<a href="BrowseStudentlistreg.php?RegType=For%20Kit%20Issuance" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>Check </a>
 								
 							</div>
 						</div>
@@ -303,7 +303,7 @@ include('login.php');
 								
 								<p><img src="template/img/thumbs/attendance.jpg" class="thumbsize">
 									Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p> 
-								<button class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>View </button>
+								<a href="page/controller/attendance_class.php" class="btn btn-large btn-primary" style="float:right;"><i class="icon-chevron-left icon-white"></i>View </a>
 							</div>
 							<div class="tab-pane" id="progress">
 								

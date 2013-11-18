@@ -18,6 +18,7 @@
                                     <th>Fullname</th>
                                     <th>Date Today</th>
                                     <th>Status</th>
+                                    <th>Actions</th>
                                 </tr>
                           </thead> 
                            
@@ -58,9 +59,14 @@
                                 <?php else:?>
                                     <td class="test">
                                         <p id="statuses"><?php  $model->att_stat($tattendance->fields['StatusID']);?></p>
+
                                     </td>
 
                                 <?php endif; ?>
+                                     <td>
+                                        <a href="<?php echo base_url('return_books.php?student_no='.$tcustomer->fields['StudentID']);?>" class="btn btn-info">Return Books</a>
+                                        <a href="#" class="btn btn-info">Progress Form</a>
+                                     </td>   
                                 </tr>
                             <?php endforeach; ?>
                           </tbody>
