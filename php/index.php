@@ -73,7 +73,8 @@ include('login.php');
 									<tr>
 										<td><a href="BrowseStudentlist3.php?CustType=Trial Class"><img  class="table101" src="template/img/admission-slice/trialclass.png"></a></td>
 									    <td><a href="BrowseStudentlistreg.php?RegType=For Schedule"><img  class="table101" src="template/img/admission-slice/createsched.png"></a></td>
-									    <td><a id="returnbooklink" href="#"><img  class="table101" src="template/img/admission-slice/books.png"></a></td>
+									    <td class="hidden-phone hidden-tablet"><a id="returnbooklink" href="#"><img  class="table101" src="template/img/admission-slice/books.png"></a></td>
+									    <td class="hidden-desktop"><a  href="http://zxing.appspot.com/scan?ret=http%3A%2F%2Ffoo.com%2Fproducts%2F%7BCODE%7D%2Fdescription"><img  class="table101" src="template/img/admission-slice/books.png"></a></td>
 									    <td> <a href="page/controller/attendance_class.php"><img  class="table101" src="template/img/admission-slice/attendance.png"></td>
 									    <td> <img  class="table101" src="template/img/admission-slice/progress.png"></td>
 									    

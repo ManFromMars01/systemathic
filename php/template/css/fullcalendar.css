@@ -558,7 +558,7 @@ table.fc-border-separate {
 	*border-top-style: solid; /* doesn't work with background in IE6/7 */
 	}
 
-.fc-agenda-slots tr{ height:50px !important;}	
+.fc-agenda-slots tr{ height:70px !important;}	
 	
 
 

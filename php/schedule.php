@@ -12,7 +12,6 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
 include('template/myclass.php');
-
 ?>
 
 
@@ -46,18 +45,22 @@ include('template/myclass.php');
 
 						<ul class="nav nav-tabs" id="myTab">
 							<li ><a href="#classsched">Class Schedule</a></li>
-						</ul>
+							
+							
+						</ul>ø
 
 
-					<div class="box-content">	 
+					<div class="box-content">
+						 
 						<div id="myTabContent" class="tab-content">	
 							<div class="tab-pane" id="classsched">
+								<p> Lorem ipsum </p>
 							</div>
 								<table width="auto" height="auto" align="center">
 
 									<tr>
 										<td></td>
-									    <td><a href="class_schedule.php"><img src="template/img/scheduling/classsched.png"></a></td>
+									    <td><a href="BrowseLevellist.php"><img src="template/img/scheduling/classsched.png"></a></td>
 									    <td></td>
 									    <td><img src="template/img/scheduling/adjustments.png"></td>
 									    <td></td>
@@ -73,8 +76,8 @@ include('template/myclass.php');
 										<td><a href="page/controller/teacher_schedule.php"><img src="template/img/scheduling/teachersched.png"></a></td>
 									    <td><a href="page/controller/room_schedule.php"><img src="template/img/scheduling/roomsched.png"></a></td>
 									    <td><a href="page/controller/student_schedule.php"><img src="template/img/scheduling/studentsched.png"></a></td>
-									    <td><img src="template/img/scheduling/level.png"></td>
-									    <td><img src="template/img/scheduling/schoolcalendar.png"></td>
+									    <td><a href="page/controller/level_schedule.php"><img src="template/img/scheduling/level.png"></a></td>
+									    <td><a href="page/controller/school_calendar.php"><img src="template/img/scheduling/schoolcalendar.png"></a></td>
 									</tr>
 
 									<tr>
