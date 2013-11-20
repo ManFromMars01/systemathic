@@ -3,7 +3,7 @@ $items = $model->select_table('titems');
 $ttaxtab = $model->select_table('ttaxtab');
 $custno = $_GET['CustNo']; 
 $tdiscount = $model->select_table('tdiscount');
-$customer = $model->select_where('tcustomer',array('CustNo' => '16'));
+$customer = $model->select_where('tcustomer',array('CustNo' => $_GET['CustNo']));
 
 
 foreach($tdiscount as $discounts):

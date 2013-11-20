@@ -11,7 +11,7 @@ $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
 include('login.php');
-
+include('template/myclass.php');
 ?>
 <?php include('template/header.php') ?>
 <div id="content" class="span10">
@@ -55,11 +55,11 @@ include('login.php');
 								<table width="auto" height="auto" align="center" style="margin-bottom:10px;" >
 								<tr>
 									
-									<td colspan="2" align="center"> <img src="template/img/franchise/master.png"> </td>
+									<td colspan="2" align="center">  <a href="<?php echo base_url('page/controller/country_franchisor.php');?>"><img src="template/img/franchise/master.png"></a></td>
 									
 									<td  width="12%" rowspan="7" valign="top"> <img src="template/img/franchise/arrow1.png"> </td>
 									
-									<td colspan="2" align="center">  <img src="template/img/franchise/country.png"> </td>
+									<td colspan="2" align="center">  <a href="<?php echo base_url('page/controller/country_franchisor.php');?>"><img src="template/img/franchise/country.png"></a> </td>
 									
 									<td  width="12%" rowspan="7" valign="top"> <img src="template/img/franchise/arrow1.png"> </td>
 									
@@ -73,11 +73,11 @@ include('login.php');
 								</tr>
 
 								<tr>
-									<td>  <img src="template/img/franchise/book.png"></td>
-									<td>  <img src="template/img/franchise/student.png"></td>
+									<td><a href="<?php echo base_url('page/controller/franchising_book_record.php');?>"><img src="template/img/franchise/book.png"></a></td>
+									<td><a href="<?php echo base_url('page/controller/franchising_student_record.php')?>"><img src="template/img/franchise/student.png"></td>
 								
-									<td>  <img src="template/img/franchise/book.png"> </td>
-									<td>  <img src="template/img/franchise/student.png"></td>
+									<td><a href="<?php echo base_url('page/controller/franchising_book_record.php');?>"><img src="template/img/franchise/book.png"></a></td>
+									<td><img src="template/img/franchise/student.png"></td>
 									
 									<td>  <img src="template/img/franchise/book.png"></td>
 									<td>  <img src="template/img/franchise/student.png"></td>

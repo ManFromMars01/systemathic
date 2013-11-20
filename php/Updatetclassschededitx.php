@@ -149,36 +149,16 @@ $arrayoRStclasssched["TimeTo"] = getFormSQLQuoted($objConn1, "tclasssched", "Tim
         endif;
 $arrayoRStclasssched["LevelID"] = getFormSQLQuoted($objConn1, "tclasssched", "LevelID", "txttclassschedLevelID");
 $arrayoRStclasssched["TeacherCnt"] = getFormSQLQuoted($objConn1, "tclasssched", "TeacherCnt", "txttclassschedTeacherCnt");
-        if (getRequest("txttclassschedTeacherID1") == ""):
-            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
-            $flgMissing = TRUE;
-                    $myStatus .= " <strong>Teacher ID 1:</strong> : Must be in file ";      
-                    $myStatus .= "<hr>\n";
-        endif;
+        
 $arrayoRStclasssched["TeacherID1"] = getFormSQLQuoted($objConn1, "tclasssched", "TeacherID1", "txttclassschedTeacherID1");
-        if (getRequest("txttclassschedTeacherID2") == ""):
-            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
-            $flgMissing = TRUE;
-                    $myStatus .= " <strong>Teacher ID 2:</strong> : Must be in file ";      
-                    $myStatus .= "<hr>\n";
-        endif;
+        
 $arrayoRStclasssched["TeacherID2"] = getFormSQLQuoted($objConn1, "tclasssched", "TeacherID2", "txttclassschedTeacherID2");
-        if (getRequest("txttclassschedTeacherID3") == ""):
-            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
-            $flgMissing = TRUE;
-                    $myStatus .= " <strong>Teacher ID 3:</strong> : Must be in file ";      
-                    $myStatus .= "<hr>\n";
-        endif;
+        
 $arrayoRStclasssched["TeacherID3"] = getFormSQLQuoted($objConn1, "tclasssched", "TeacherID3", "txttclassschedTeacherID3");
 $arrayoRStclasssched["TeacherName1"] = getFormSQLQuoted($objConn1, "tclasssched", "TeacherName1", "txttclassschedTeacherName1");
 $arrayoRStclasssched["TeacherName2"] = getFormSQLQuoted($objConn1, "tclasssched", "TeacherName2", "txttclassschedTeacherName2");
 $arrayoRStclasssched["TeacherName3"] = getFormSQLQuoted($objConn1, "tclasssched", "TeacherName3", "txttclassschedTeacherName3");
-        if (getRequest("txttclassschedRoomID") == ""):
-            $myStatus .= "<STRONG>Some data was missing</STRONG><BR><HR>";
-            $flgMissing = TRUE;
-                    $myStatus .= " <strong>Room ID:</strong> : Must be in file ";      
-                    $myStatus .= "<hr>\n";
-        endif;
+        
 $arrayoRStclasssched["RoomID"] = getFormSQLQuoted($objConn1, "tclasssched", "RoomID", "txttclassschedRoomID");
 $arrayoRStclasssched["Enrollee"] = getFormSQLQuoted($objConn1, "tclasssched", "Enrollee", "txttclassschedEnrollee");
 $arrayoRStclasssched["Available"] = getFormSQLQuoted($objConn1, "tclasssched", "Available", "txttclassschedAvailable");
@@ -248,6 +228,8 @@ else {
   $_SESSION["Updatetclasssched_EditFailed"] = 0;
 }
 
-MergeEditTemplate($HTML_Template);
+$success = array('success' => $myStatus );
+echo json_encode($success);
+//MergeEditTemplate($HTML_Template);
 $objConn1->Close();
 ?>

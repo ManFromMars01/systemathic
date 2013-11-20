@@ -4,27 +4,12 @@ session_start();
 $myName = $_SESSION["myname"];
 include('../class/model.php'); // dont use $model variable 
 include('../class/systemathic.php'); // dont use $default variable
-
 $teacher_no = $_GET['ID3'];
-
-
 //variable and functions here
 $teachers =   $model->select_where('tteacher',array('CountryID' => 'PH'));
-
-
 $teacherfile = $model->select_where('tclasssched',array('TeacherID1' => $teacher_no));
 
-//foreach ($teacherfile as $teachers) {
-
-//echo $teachers['TeacherID1'];
-
-//}
-
-
-
-
 include($default->template('header_view'));
-//include($default->main_view('teacher_schedule_view'));
 
 ?>
 
@@ -56,15 +41,14 @@ include($default->template('header_view'));
           </div>
           <div class="box-content">
            <br />
-           <div class="external-event badge badge-success" style="float:left; padding:5px;">Foundation - Kindy (FY)</div>
+            
+            <div class="external-event badge badge-success" style="float:left; padding:5px;">Foundation - Kindy (FY)</div>
             <div class="external-event badge badge-warning" style="float:left; padding:5px;">Foundation - Kinder (FK)</div>
             <div class="external-event badge badge-important" style="float:left; padding:5px;">Foundation - Primary (FP)</div>
             <div class="external-event badge badge-info" style="float:left; padding:5px;">Grading - Advance (GA)</div>
             <div class="external-event badge badge-inverse" style="float:left; padding:5px;">Grading - Intermediate (GI)</div>
             <div class="external-event badge" style="float:left; padding:5px; margin-bottom:10px;">Dan(DA)</div> 
-          
-
-
+            <div class="clearfix"></div>
             <div id="calendar"></div>
 
             <div class="clearfix"></div>
@@ -92,23 +76,21 @@ include($default->template('header_view'));
 
 
 <script>
- function openModal(title,datetime,code) {
+function openModal(title,datetime,code) {
   $.ajax({
         url: '<?php echo base_url() ?>page/ajax/schedule_ajax.php',
         type:'post',
         data: {title: title, datetime:datetime,code:code},
         dataType:'json',
         success:function(j){
+          console.log(j);
           var descriptionss = "<table><tr><td>Teacher:</td><td><strong>"+j.teacher+"</strong> &nbsp;</td> <td>Class:</td><td><strong>"+j.level+"</strong> &nbsp;</td></tr><tr><td>Room:</td><td><strong>"+j.room+"</strong>&nbsp;</td> <td>Date:</td><td><strong>"+j.datetime+"</strong> &nbsp;</td></tr></table>  <br /><strong>Student</strong>  <ul>"+j.student+"</ul>";
           $('.modal-body').html(descriptionss);
           $('#yourheader').html('Detail (' + j.timess +')');
 
           $("#modal-details").modal('show'); 
         }
-  });
-
-
-  
+  }); 
 }
 
 var currentView;
@@ -120,24 +102,22 @@ var currentView;
 
 
 
-  $('#external-events div.external-event').each(function() {
-
-    // it doesn't need to have a start or end
-    var eventObject = {
-      title: $.trim($(this).text()) // use the element's text as the event title
-    };
-    
-    // store the Event Object in the DOM element so we can get to it later
-    $(this).data('eventObject', eventObject);
-    
-    // make the event draggable using jQuery UI
-    $(this).draggable({
-      zIndex: 999,
-      revert: true,      // will cause the event to go back to its
-      revertDuration: 0  //  original position after the drag
-    });
-    
+$('#external-events div.external-event').each(function() {
+  var eventObject = {
+    title: $.trim($(this).text()) // use the element's text as the event title
+  };
+  
+  // store the Event Object in the DOM element so we can get to it later
+  $(this).data('eventObject', eventObject);
+  
+  // make the event draggable using jQuery UI
+  $(this).draggable({
+    zIndex: 999,
+    revert: true,      // will cause the event to go back to its
+    revertDuration: 0  //  original position after the drag
   });
+  
+});
 
 
 
@@ -162,24 +142,39 @@ var currentView;
           $level_desc = $selectlevel->fields['Description'];           
         
 
-
-
           for($x=0; $x <= 4; $x++){
             $y = $x * 7 ;
             $date_day2  =  date('Y-m-d', strtotime( $date_day.' +'.$y.' day')); 
-            $sched_details = $model->select_where('eattdtl',array('SchedCode' => $tsched['SchedCode'], 'Date' => $date_day2));
-        
+            $sched_count= $model->count_where('eattdtl',array('SchedCode' => $tsched['SchedCode'], 'Date' => $date_day2));
+            $class_sched = $model->select_where('tclasssched', array('SchedCode' => $tsched['SchedCode']));
+            $room   = $model->select_where('troom', array('ID' => $class_sched->fields['RoomID']));
+            
+            if($sched_count != 0 ){
+              $sched_details = $model->select_where('eattdtl',array('SchedCode' => $tsched['SchedCode'], 'Date' => $date_day2));
+              foreach($sched_details as $students):
+                 $customer = $model->select_where('tcustomer', array('CustNo' => $students['CustNo']));
+                 $fname    .= $customer->fields['FirstName'].", ";
+                 $fullname .= $customer->fields['FirstName']." ".$customer->fields['MiddleName']." ".$customer->fields['SurName'].", "; 
+              endforeach; 
+                 $fname = rtrim($fname,", ");  
+                 $fullname = rtrim($fullname,", ");  
+
+            }else{
+              $fname = ""; 
+              $fullname = "";
+            }
           ?>
            {
-                  title: '<?php echo $level_code; ?>(<?php echo $tsched['TimeFrom']; ?> -  <?php echo $tsched['TimeTo']; ?>)',
+                  title: '<?php echo $level_code; ?>(<?php echo $tsched['TimeFrom']; ?> -  <?php echo $tsched['TimeTo']; ?>) Student(<?php echo $sched_count; ?>) ',
                   allDay:false,
                   start: '<?php echo $date_day2; ?> <?php echo $tsched['TimeFrom']; ?>',
                   end: '<?php echo $date_day2; ?> <?php echo $tsched['TimeTo']; ?>' ,
-                  description: '<?php echo "<strong>Room1</strong>"; ?><br /> <?php echo "<strong>Teacher Lee</strong>"; ?> Michael,John,Michael  Michael, John ,Michael  Michael , John , Michael  Michael, John, Michael',
-                  description2:'<?php echo "<strong>Room1</strong>" ?> <br /><?php echo "<strong>Teacher Lee</strong>"; ?>  <br /><?php echo "Available:12"; ?><br /> Michael Zhu, John Axel Fulay , Michael Dela Cruz',
+                  description: '<strong><?php echo $teachers->fields['Name'] ?></strong><br /> <?php echo $room->fields['Description']; ?> <br /> Enrolled: <?php echo $sched_count; ?><br /> <?php echo $fname; ?>',
+                  description2:'<strong><?php echo $teachers->fields['Name'] ?></strong><br /> <?php echo $room->fields['Description']; ?> <br /> Enrolled: <?php echo $sched_count; ?><br /> <?php echo $fullname; ?>',
                   className:'<?php echo str_replace(" ","",$level_desc); ?>',
                   datetime:'<?php echo $date_day2; ?>',
                   schedcode:'<?php echo $tsched['SchedCode']?>' 
+                  <?php $fname =""; $fullname=""; ?>
               },  
 
           <?php } endforeach; ?>
@@ -190,25 +185,24 @@ var currentView;
           eventRender: function (event, element,view) {
             element.attr('href', 'javascript:void(0);');
             element.attr('onclick', 'openModal("' + event.title + '","' + event.datetime + '","' + event.schedcode +'");');
-            if (view.name != currentView) {
-                          if ( view.name == 'agendaWeek' )   
-                            { 
-                                
-                                $('.fc-event-title').html('');
-                                $('.fc-event-title').html(event.description);
-                              
-                                console.log("week");
-                            }
-                           if (view.name == 'agendaDay' ) 
-                            { 
-                                $('#myDateSelector').show();
-                                $('.fc-event-title').html(event.description2);
-                                //$('.fc-event-title').hide();  
-                                console.log("day");
-                            }
-                            //You can use it some where else to know what view is active quickly
-                            currentView = view.name;
-            }
+            
+            if ( view.name == 'agendaWeek' )   
+              { 
+                  element.find( ".fc-event-title" ).html('');
+                  element.find( ".fc-event-title" ).html(event.description);
+                 
+                
+                  console.log();
+              }
+             if (view.name == 'agendaDay' ) 
+              { 
+                  element.find( ".fc-event-title" ).html('');
+                  element.find( ".fc-event-title" ).html(event.description2);
+                  console.log("day");
+              }
+              //You can use it some where else to know what view is active quickly
+              currentView = view.name;
+    
 
 
         },     

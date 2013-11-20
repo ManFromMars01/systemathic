@@ -22,6 +22,7 @@ if(isset($_POST['code'])):
 
 	$success = array('timess' => $class->fields['TimeFrom'].' - '.$class->fields['TimeTo'], 'teacher'=> $teacher->fields['Name'], 'datetime' => $_POST['datetime'], 'room' => $room->fields['Description'],'level' => $level->fields['Description'],'student'=>$student);
 	echo json_encode($success);
+	
 endif;
 
 

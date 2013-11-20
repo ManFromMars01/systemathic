@@ -3,16 +3,16 @@
 <?php 
     $success = "";
     if(isset($_GET['RegType'])){
-      $where = array('CustType' => $_GET['CustType'] , 'RegType' => $_GET['RegType'] );
+      $where = array('CustType' => $_GET['CustType'] , 'RegType' => $_GET['RegType'], 'CountryID'=> $_SESSION['UserValue1'], 'BranchID'=> $_SESSION['UserValue2'] );
     } else{
-      $where = array('CustType' => $_GET['CustType']);
+      $where = array('CustType' => $_GET['CustType'], 'CountryID'=> $_SESSION['UserValue1'], 'BranchID'=> $_SESSION['UserValue2'] );
     }
 
 
     if(isset($_GET['Success'])){
       $success = '<div class="alert alert-success">
               <button type="button" class="close" data-dismiss="alert">×</button>
-              <strong>Well Done!!</strong> You Successfully Move A Student to Addmission List.. <a href="BrowseStudentlist3.php?CustType=For Admission">Go To Admission List</a>
+              <strong>Well Done!!</strong> You Successfully Move A Student to Addmission List.. <a href="BrowseStudentlist3.php?CustType=For Admission&RegType=Waiting">Go To Admission List</a>
             </div>';
     }
     
@@ -22,7 +22,6 @@
 <div id="content" class="span10">
             <!-- content starts -->
             
-
             <div>
                 <ul class="breadcrumb">
                     <li>
@@ -120,13 +119,6 @@
                                   <a class="btn btn-info" href="UpdatetStudentedit.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit</a>
                                 </td>
                                <?php endif; ?> 
-
-
-
-
-
-
-
                             </tr>
                         <?php endforeach; ?>
                             

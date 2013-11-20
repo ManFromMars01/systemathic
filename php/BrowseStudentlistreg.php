@@ -1,15 +1,11 @@
 <?php include('template/header.php') ?>
 <?php include('template/myclass.php');?>
 <?php 
-    $where = array('RegType' => $_GET['RegType']);
+    $where = array('RegType' => $_GET['RegType'], 'CountryID' => $_SESSION['UserValue1'], 'BranchID' => $_SESSION['UserValue2']);
     $student = $model->select_where('tcustomer', $where );
- 
-
 ?>
 <div id="content" class="span10">
             <!-- content starts -->
-            
-
             <div>
                 <ul class="breadcrumb">
                     <li>
@@ -54,7 +50,6 @@
                                 <?php 
                                     $level = $model->select_where('tlevel', array('ID' => $students['LevelID'] ));
                                     $tier =  $model->select_where('ttier', array('ID' => $students['TierID'] ));
-
                                 ?>
                                 <td><?php echo $level->fields['Description'];?></td>
                                 

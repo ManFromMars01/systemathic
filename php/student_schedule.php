@@ -86,23 +86,14 @@ $cust = $student->fields['CustNo'];
 						</div>
 				  </div>
 				  <div class="box-content">
-					<div id="external-events" class="well">
-						<h4>Draggable Events</h4>
-						<div class="external-event badge">Default</div>
-						<div class="external-event badge badge-success">Completed</div>
-						<div class="external-event badge badge-warning">Warning</div>
-						<div class="external-event badge badge-important">Important</div>
-						<div class="external-event badge badge-info">Info</div>
-						<div class="external-event badge badge-inverse">Other</div>
-						<p>
-						<label for="drop-remove"><input type="checkbox" id="drop-remove" /> remove after drop</label>
-						</p>
-						 
-						  <a class="btn btn-info" href="Updateeattheadadd.php?ID=<?php echo $id ?>"><i class="icon-edit icon-white"></i> Edit Schedule</a>
-						  <!--<a class="btn btn-info" href="BrowseCreateSchedulelist1.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit Schedule</a>
-					  	  -->
-												
-					</div>
+					<div class="external-event badge badge-success" style="float:left; padding:5px;">Foundation - Kindy (FY)</div>
+		            <div class="external-event badge badge-warning" style="float:left; padding:5px;">Foundation - Kinder (FK)</div>
+		            <div class="external-event badge badge-important" style="float:left; padding:5px;">Foundation - Primary (FP)</div>
+		            <div class="external-event badge badge-info" style="float:left; padding:5px;">Grading - Advance (GA)</div>
+		            <div class="external-event badge badge-inverse" style="float:left; padding:5px;">Grading - Intermediate (GI)</div>
+		            <div class="external-event badge" style="float:left; padding:5px; margin-bottom:10px;">Dan(DA)</div>
+		            <div class="external-event badge" style="float:right; padding:5px; margin-bottom:10px;"><a class="btn btn-info" href="Updateeattheadadd.php?ID=<?php echo $id ?>"><i class="icon-edit icon-white"></i> Edit Schedule</a></div>
+
 
 
 

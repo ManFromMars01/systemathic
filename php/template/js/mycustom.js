@@ -45,7 +45,8 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 
 		//Update ScheduleClass
 
-		$('#saveme').click(function(){
+		$('#save_edit_class_schedule').click(function(){
+			alert('test');
 			$.ajax({
 	            url: 'Updatetclassschededitx.php',
 	            type: 'post',
@@ -54,7 +55,7 @@ $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
 	            success: function (j) {
 	               console.log(j);
 	               //$('#success').html('Successfully Updated');
-	               $('.modal-body').html(j.statusme);
+	               $('.modal-body').html(j.success);
 	               $("#myModal").modal('show');
 	               
 	            }     

@@ -66,13 +66,7 @@ function status_attendance($status){
                     </li>
                 </ul>
             </div>
-            
-
-            
-
-
-
-
+          
             <div class="row-fluid sortable">        
                 <div class="box span12">
                     <div class="box-header well" data-original-title>

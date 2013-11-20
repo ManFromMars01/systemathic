@@ -30,99 +30,116 @@
                           <input type="hidden" id="ID4" name="ID4" value="@ID4@">
                           <fieldset>
                             <div class="control-group">
-                                <label class="control-label" for="focusedInput">Country ID: </label>
+                                <label class="control-label" for="focusedInput">Country ID:</label>
                                 <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedCountryID" id="focusedInput" type="text" value="@tclassschedCountryID@">
+                                  <input class="input-xlarge focused" id="txttclassschedCountryID" name="txttclassschedCountryID" type="text" value="@country@" readonly>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Branch ID:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" id="txttclassschedBranchID" name="txttclassschedBranchID" type="text" value="@branch@" readonly>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Level Id:</label>
+                                <div class="controls">
+                                  <select id="txttclassschedLevelID" name="txttclassschedLevelID">
+                                       @level@
+                                   </select>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">Teacher Count:</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" id="txttclassschedTeacherCnt" name="txttclassschedTeacherCnt" type="text" value="1">
+                                </div>
+                            </div>
+
+                            <div class="groupme2 teachergroup">
+                                <div class="control-group">
+                                    <label class="control-label"  for="focusedInput">Teacher 1:</label>
+                                    <div class="controls">
+                                      <select id="txttclassschedTeacherID3" name="txttclassschedTeacherID1">
+                                            @teacher@             
+                                       </select>
+                                    </div>
+                                </div>
+
+                                <div class="control-group teacher2 teacherhand displaynone">
+                                    <label class="control-label"  for="focusedInput">Teacher 2:</label>
+                                    <div class="controls">
+                                      <select id="txttclassschedTeacherID3" name="txttclassschedTeacherID2">
+                                            @teacher@     
+                                       </select>
+                                    </div>
+                                </div>
+
+                                <div class="control-group teacher3 teacherhand displaynone">
+                                    <label class="control-label"  for="focusedInput">Teacher 3:</label>
+                                    <div class="controls">
+                                      <select id="txttclassschedTeacherID3" name="txttclassschedTeacherID3">    
+                                          @teacher@  
+                                       </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"  for="focusedInput">Day:</label>
+                                <div class="controls">
+                                  <select id="txttclassschedDay" name="txttclassschedDay">
+                                     <option value="Monday">Monday</option>          
+                                     <option value="Tuesday">Tuesday</option>          
+                                     <option value="Wednesday">Wednesday</option>          
+                                     <option value="Thursday">Thursday</option>          
+                                     <option value="Friday" >Friday</option>          
+                                     <option value="Saturday">Saturday</option>          
+                                     <option value="Sunday">Sunday</option>          
+                                   </select>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="focusedInput">Branch ID: </label>
+                                    <label class="control-label" >Available Sched</label>
+                                    <div class="controls">
+                                        <select id="avetime" >
+                                             @time@         
+                                        </select>
+                                    </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput"><a id="showme" style="text-decoration:underline" alt="enable">Other Sched</a> </label>
                                 <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedBranchID" id="focusedInput" type="text" value="@tclassschedBranchID@">
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Day:</label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedDay" id="focusedInput" type="text" value="@tclassschedDay@">
+
+                            <div class="group2 displaynone">
+                                <div class="control-group">
+                                    <label class="control-label" >From</label>
+                                    <div class="controls">
+                                          <input type name="txttclassschedTimeFrom"  id="txttclassschedTimeFrom">
+                                           
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label" for="focusedInput">To</label>
+                                    <div class="controls">
+                                      <input class="input-xlarge timeme2" id="txttclassschedTimeTo"  name="txttclassschedTimeTo" type="text" value="">
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="control-group">
-                                <label class="control-label" for="focusedInput">Time From: </label>
+                                <label class="control-label" for="focusedInput">Room:</label>
                                 <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedTimeFrom" id="focusedInput" type="text" value="@tclassschedTimeFrom@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Time To: </label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedTimeTo" id="focusedInput" type="text" value="@tclassschedTimeTo@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Level ID:</label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedLevelID" id="focusedInput" type="text" value="@tclassschedLevelID@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Teacher Cnt:</label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedTeacherCnt" id="focusedInput" type="text" value="@tclassschedTeacherCnt@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Teacher ID 1: </label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedTeacherID1" id="focusedInput" type="text" value="@tclassschedTeacherID1@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Teacher ID 2: </label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedTeacherID2" id="focusedInput" type="text" value="@tclassschedTeacherID2@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Teacher ID 3: </label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedTeacherID3" id="focusedInput" type="text" value="@tclassschedTeacherID3@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Teacher Name 1: </label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedTeacherName1" id="focusedInput" type="text" value="@tclassschedTeacherName1@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Teacher Name 2:</label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedTeacherName2" id="focusedInput" type="text" value="@tclassschedTeacherName2@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Teacher Name 3:</label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedTeacherName3" id="focusedInput" type="text" value="@tclassschedTeacherName3@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Room ID: </label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedRoomID" id="focusedInput" type="text" value="@tclassschedRoomID@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Enrollee: </label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedEnrollee" id="focusedInput" type="text" value="@tclassschedEnrollee@">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label" for="focusedInput">Available: </label>
-                                <div class="controls">
-                                  <input class="input-xlarge focused" name="txttclassschedAvailable" id="focusedInput" type="text" value="@tclassschedAvailable@">
+                                  <select id="txttclassschedRoomID" name="txttclassschedRoomID">
+                                      @rooms@ 
+                                   </select>
                                 </div>
                             </div>
 
@@ -131,7 +148,7 @@
                            
                             <div class="form-actions">
                               <!--<button type="submit" value="Submit" class="btn btn-primary">Save changes</button>-->
-                              <button type="button"  class="btn btn-primary"  id="saveme">Save changes</button>
+                              <button type="button"  class="btn btn-primary"  id="save_edit_class_schedule">Save changes</button>
                               <button type="reset" class="btn">Cancel</button>
                             </div>
                           </fieldset>

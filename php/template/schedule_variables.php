@@ -12,12 +12,14 @@ include_once('../utils.php');
     
     if (isset($_POST['day_name'])){
        
-        $selectclass = "SELECT *  FROM tclasssched  WHERE  tclasssched.BranchID='".$_SESSION['UserValue2']."' AND tclasssched.LevelID ='".$_POST['level_id']."' AND tclasssched.Day ='".$_POST['day_name']."' ";
+        $selectclass = "SELECT *  FROM tclasssched  WHERE  tclasssched.BranchID='".$_SESSION['UserValue2']."' AND tclasssched.LevelID ='".$_POST['level_id']."' AND tclasssched.Day ='".$_POST['day_name']."' ORDER BY tclasssched.TimeFrom ";
         
         $option .=  "<option value=''>Please Select Available Time</option>";
         $selectclass = $objConn1->Execute($selectclass);
         foreach ($selectclass as $selectclasses):
-             $option .= "<option value='".$selectclasses['SchedCode']."'>".$selectclasses['TimeFrom']." - ".$selectclasses['TimeTo']." </option>";
+             $timefrom = date("h:i a", strtotime($selectclasses['TimeFrom']));   
+             $timeto = date("h:i a", strtotime($selectclasses['TimeTo']));
+             $option .= "<option value='".$selectclasses['SchedCode']."'>".$timefrom." - ".$timeto." </option>";
         endforeach;
         
         /**End LEvel**/
@@ -58,10 +60,12 @@ include_once('../utils.php');
 
 
     if(isset($_POST['day_name2'])){
-        $selectclass = "SELECT *  FROM tclasssched  WHERE  tclasssched.BranchID='".$_SESSION['UserValue2']."' AND tclasssched.LevelID ='".$_POST['level_id']."' AND tclasssched.Day ='".$_POST['day_name2']."' ";
+        $selectclass = "SELECT *  FROM tclasssched  WHERE  tclasssched.BranchID='".$_SESSION['UserValue2']."' AND tclasssched.LevelID ='".$_POST['level_id']."' AND tclasssched.Day ='".$_POST['day_name2']."' ORDER BY tclasssched.TimeFrom";
         $selectclass = $objConn1->Execute($selectclass);
         foreach ($selectclass as $selectclasses):
-             $option .= "<option value='".$selectclasses['SchedCode']."'>".$selectclasses['TimeFrom']." - ".$selectclasses['TimeTo']." </option>";
+             $timefrom = date("h:i a", strtotime($selectclasses['TimeFrom']));   
+             $timeto = date("h:i a", strtotime($selectclasses['TimeTo']));   
+             $option .= "<option value='".$selectclasses['SchedCode']."'>".$timefrom." - ".$timeto." </option>";
         endforeach;
         
         /**End LEvel**/
