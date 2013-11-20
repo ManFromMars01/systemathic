@@ -687,8 +687,6 @@ if ($_SESSION["Updateeatthead_InsertFailed"] == 1) {
    $eattheadSessionPrDay7 = $_SESSION["SavedeattheadSessionPrDay7"];
 }
 
-
-
 MergeAddTemplate($HTML_Template);
 unset($oRSeatthead);
 $objConn1->Close();

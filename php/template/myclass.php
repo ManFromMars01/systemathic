@@ -66,9 +66,27 @@ class Myclass
 		$selectable  .= " WHERE " .trim($where2, "AND ");
 		$selectable = $objConn1->Execute($selectable);
  		return $selectable->fields['MyCount'];
-
 	}
 
+	public function max_where($table,$column,$where){
+
+		include('ConnInfo.php');
+		include('systemathicappdata.php');
+ 		$objConn1 = &ADONewConnection($Driver1);
+		$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$selectable  .= "SELECT MAX(".$column.") AS MyCount FROM ".$table;
+		
+		foreach($where as $key => $value) {
+  			$where2 .= $key." = '".$value."' AND "; 
+		}
+
+		$selectable  .= " WHERE " .trim($where2, "AND ");
+		$selectable = $objConn1->Execute($selectable);
+ 		return $selectable->fields['MyCount'];
+
+	}
 
 	public function select_table2($table){
  		include('../ConnInfo.php');
