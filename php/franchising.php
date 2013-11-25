@@ -6,7 +6,7 @@ $PageLevel = 1;
 include_once('systemathicappdata.php');
 include_once('ConnInfo.php');
 
-$objConn1 = &ADONewConnection($Driver1);
+$objConn1 = ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
@@ -15,21 +15,8 @@ include('template/myclass.php');
 ?>
 <?php include('template/header.php') ?>
 <div id="content" class="span10">
-			<!-- content starts -->
 			
-
-			<!-- <div>
-				<ul class="breadcrumb">
-					<li>
-						<a href="#">Home</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a href="#">Franchising</a>
-					</li>
-				</ul>
-			</div> -->
 			
-
 
 			<?php include('template/stat.php') ?>
 			
@@ -90,7 +77,7 @@ include('template/myclass.php');
 								</tr>
 
 								<tr>
-									<td colspan="2" align="center">   <img src="template/img/franchise/royalty.png"> </td>
+									<td colspan="2" align="center"><a href="<?php echo base_url('page/controller/compute_royalty.php') ?>"><img src="template/img/franchise/royalty.png"> </td>
 								
 									<td colspan="2" align="center">  <img src="template/img/franchise/royalty.png"></td>
 									

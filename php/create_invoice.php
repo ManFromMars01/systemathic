@@ -14,7 +14,7 @@ include('template/create_invoice_var.php');
                         <a href="index.php">Home</a> <span class="divider">/</span>
                     </li>
                     <li>
-                        <a href="#">Create Invoice</a>
+                        <a href="#" id="add_entry_inv_default">Create Invoice</a>
                     </li>
                 </ul>
             </div>
@@ -186,6 +186,39 @@ include('template/create_invoice_var.php');
 
 
 <script>
+$( document ).ready(function() {
+      <?php 
+         $itemcode = array('MODFEE','BOOKFEE','REGFEE');
+         $itempricess  = 0;
+         foreach($itemcode as $itemcodes):
+         $items= $model->select_where('titems',array('ItemNo' => $itemcodes )); 
+      ?>
+
+      itemno = "<?php echo $items->fields['ItemNo'];?>";  
+      itemdesc = "<?php echo $items->fields['Description'];?>";
+      itemprices = "<?php echo $items->fields['StdCost'];?>"; 
+      
+      $('.insertrow').append(
+                    "<tr class='itemno"+itemno+"'><td>"+itemno+"</td><td>"+itemdesc+"</td><td>1</td><td>"+itemprices+"</td><td></td><td></td><td><a class='remove_class' alt='"+itemno+"' href='#''>Remove</a></td></tr>" 
+                    );
+      $('.allitems').append(                      
+          '<div class="itemno'+itemno+'"><input type="hidden" name="itemno_inv[]" class="itemno_inv" value="'+ itemno +'"><input type="hidden" name="itemno_qty[]" class="itemno_qty" value="1" ><input type="hidden" name="item_price[]" class="item_price" value="'+itemprices+'"> <input type="hidden" name="item_taxable[]" class="item_price" value=""><input type="hidden" name="item_discount[]" class="item_discount" value=""><input type="hidden" name="discount_id[]" class="discount_id" value=""></div>'
+      );
+
+     <?php 
+      $itempricess =  $itempricess +  $items->fields['StdCost'];
+     endforeach; 
+     ?>
+
+     $('#totalprice').html('<?php echo $itempricess;?>');
+     $('#totalsprice').html('<?php echo $itempricess;?>');
+     $('#totaltaxable').val('');
+     $('#taxamt').html('');
+     $('#discountme').html("");   
+
+    });
+
+
     $('#add_entry_inv').click(function(){
       item_add_code = $('#item_add_code').val();
       item_add_taxable = $('#item_add_taxable').val();
@@ -211,10 +244,20 @@ include('template/create_invoice_var.php');
                 //$('#totaltaxable').val(j.totaltaxble);
                 $('#taxamt').html(j.taxamt);
                 $('#discountme').html(j.totaldiscount);
-
            }
         });
     });
+
+  
+
+    
+
+
+
+             
+
+
+
 
 
     $(".remove_class").live( "click", function() {
@@ -270,7 +313,7 @@ include('template/create_invoice_var.php');
            }
 
         });
-    })
+    });
 
 
 

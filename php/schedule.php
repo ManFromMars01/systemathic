@@ -6,7 +6,7 @@ $PageLevel = 1;
 include_once('systemathicappdata.php');
 include_once('ConnInfo.php');
 
-$objConn1 = &ADONewConnection($Driver1);
+$objConn1 = ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');

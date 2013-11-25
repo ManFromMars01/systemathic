@@ -1,5 +1,25 @@
 <?php 
 
+
+function currencyExchange($amount,$baseCurrency,$quoteCurrency) {
+    $open = fopen("http://quote.yahoo.com/d/quotes.csv?s=$baseCurrency[0]$quoteCurrency[0]=X&f=sl1d1t1c1ohgv&e=.csv", "r");
+    $exchangeRate = fread($open, 2000);
+    fclose($open);
+    $exchangeRate = str_replace("\"", "", $exchangeRate);
+    $exchangeRate = explode(",", $exchangeRate);
+    $results = ($exchangeRate[1]*$amount);
+    $results = number_format ($results, 2);
+    $amount = number_format ($amount);
+    $timeStamp = strtotime($exchangeRate[2]);
+    $timeStamp = date('F d, Y', $timeStamp);
+    $timeStamp = "$timeStamp $exchangeRate[3]";
+
+
+    return $results; 
+}
+
+
+
 function base_url($addurl = ""){
 	$base_url = 'http://localhost/Final/php/'.$addurl;
 	return $base_url;

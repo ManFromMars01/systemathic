@@ -1,7 +1,7 @@
  <?php
   include('ConnInfo.php');
 
-    $objConn1 = &ADONewConnection($Driver1);
+    $objConn1 = ADONewConnection($Driver1);
     $objConn1->debug = $DebugMode;
     $objConn1->PConnect($Server1,$User1,$Password1,$db1);
     
@@ -49,7 +49,7 @@
 
 
     /**Begin Referral**/
-    $selectcustomer = "SELECT *  FROM tcustomer  WHERE tcustomer.CountryID ='".$_SESSION['UserValue1']."' AND tcustomer.BranchID='".$_SESSION['UserValue2']."' AND tcustomer.CustNo = '".$_GET['ID3']."' ORDER BY treferral.CountryID ASC";
+    $selectcustomer = "SELECT *  FROM tcustomer  WHERE tcustomer.CountryID ='".$_SESSION['UserValue1']."' AND tcustomer.BranchID='".$_SESSION['UserValue2']."' AND tcustomer.CustNo = '".$_GET['ID3']."'";
     $selectcustomers = $objConn1->Execute($selectcustomer);
     if($selectcustomers == 'Old'){
        $option_100  .= "<option value='Old' selected>Old</option>";

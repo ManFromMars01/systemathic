@@ -76,7 +76,7 @@ if (getSession("AuthStatus") != "Authorized"):
 
             include_once('ConnInfo.php');
 
-            $objConnLogin = &ADONewConnection($Driver1);
+            $objConnLogin = ADONewConnection($Driver1);
             $objConnLogin->debug = $DebugMode;
             $objConnLogin->PConnect($Server1,$User1,$Password1,$db1);
 

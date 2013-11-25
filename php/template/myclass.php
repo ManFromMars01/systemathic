@@ -19,7 +19,7 @@ class Myclass
  	public function select_table($table){
  		include('ConnInfo.php');
 		include('systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
+ 		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -33,7 +33,7 @@ class Myclass
 	public function select_where($table, $where){
 		include('ConnInfo.php');
 		include('systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
+ 		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -53,7 +53,7 @@ class Myclass
 	public function count_where($table, $where){
 		include('ConnInfo.php');
 		include('systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
+ 		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -72,7 +72,7 @@ class Myclass
 
 		include('ConnInfo.php');
 		include('systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
+ 		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -91,7 +91,7 @@ class Myclass
 	public function select_table2($table){
  		include('../ConnInfo.php');
 		include('../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
+ 		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -106,7 +106,7 @@ class Myclass
  	public function select_where2($table, $where){
 		include('../ConnInfo.php');
 		include('../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
+ 		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -137,7 +137,7 @@ class Myclass
 
 
 
- 		$objConn1 = &ADONewConnection($Driver1);
+ 		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 		
@@ -166,7 +166,7 @@ class Myclass
 
 
 
- 		$objConn1 = &ADONewConnection($Driver1);
+ 		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 		
@@ -187,7 +187,7 @@ class Myclass
 		include('ConnInfo.php');
 		include('systemathicappdata.php');
 		
-		$objConn1 = &ADONewConnection($Driver1);
+		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -205,7 +205,7 @@ class Myclass
 		include('../ConnInfo.php');
 		include('../systemathicappdata.php');
 		
-		$objConn1 = &ADONewConnection($Driver1);
+		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -229,7 +229,7 @@ class Myclass
 		  include('../systemathicappdata.php');
  		}
 
- 		$objConn1 = &ADONewConnection($Driver1);
+ 		$objConn1 = ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 

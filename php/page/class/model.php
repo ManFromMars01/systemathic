@@ -8,8 +8,8 @@ Class Model{
 	public function select_table($table){
 	   	include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
-       	$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+       	$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 		$selectable = "SELECT * FROM ".$table;
  		$selectable = $objConn1->Execute($selectable);
@@ -20,8 +20,8 @@ Class Model{
 	public function select_where($table, $where){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$selectable  .= "SELECT * FROM ".$table;
@@ -40,8 +40,8 @@ Class Model{
 	public function delete_where($table, $where){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$selectable  .= "DELETE FROM ".$table;
@@ -58,8 +58,8 @@ Class Model{
 	public function count_where($table, $where){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1); 
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1); 
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$selectable  .= "SELECT COUNT(*) AS MyCount FROM ".$table;
@@ -79,8 +79,8 @@ Class Model{
 	public function insert_tbl($table,$toinsert){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);		
 		foreach($toinsert as $key => $value) {
   			$insertcolumn .= $key."," ;
@@ -97,8 +97,8 @@ Class Model{
 	public function update_tbl($table,$toupdate,$where){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 		foreach($toupdate as $key => $value) {
   			$myupdate .= $key."= '".$value."',";
@@ -116,8 +116,8 @@ Class Model{
 	public function customer_det($customer_number){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$sql = "SELECT * FROM tcustomer WHERE CustNo ='".$customer_number."'";
@@ -128,8 +128,8 @@ Class Model{
 	public function customer_id($customer_number){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$sql = "SELECT * FROM tcustomer WHERE StudentID ='".$customer_number."'";
@@ -140,8 +140,8 @@ Class Model{
 	public function yourlevel($levelid){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$sql = "SELECT * FROM tlevel WHERE ID ='".$levelid."'";
@@ -153,8 +153,8 @@ Class Model{
 	public function yourroom($roomid){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$sql = "SELECT * FROM troom WHERE ID ='".$roomid."'";
@@ -166,8 +166,8 @@ Class Model{
 	public function att_stat($id){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$sql = "SELECT * FROM tastatus WHERE ID ='".$id."'";
@@ -179,8 +179,8 @@ Class Model{
 	public function teacher(){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$sql = "SELECT * FROM tteacher WHERE CountryID = '".$_SESSION['UserValue1']."'";
@@ -194,8 +194,8 @@ Class Model{
 	public function rooms(){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$sql = "SELECT * FROM troom WHERE CountryID = '".$_SESSION['UserValue1']."'";
@@ -210,8 +210,8 @@ Class Model{
 	public function parent(){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
- 		$objConn1 = &ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$sql = "SELECT * FROM tcustomer WHERE CountryID = '".$_SESSION['UserValue1']."'";
@@ -223,6 +223,48 @@ Class Model{
 		endforeach;	
 
 		echo $option;
+	}
+
+
+	public function branch($branchid){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$sql = "SELECT * FROM tbranch WHERE BranchID ='".$branchid."'";
+		$roomdesc = $objConn1->Execute($sql);
+		$desc  = $roomdesc->fields['Description'];
+		echo $desc;	
+
+	}
+
+	public function country($countryid){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+ 		$objConn1 = ADONewConnection($Driver1);
+		////$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$sql = "SELECT * FROM tcountry WHERE ID ='".$countryid."'";
+		$roomdesc = $objConn1->Execute($sql);
+		$desc  = $roomdesc->fields['Description'];
+		echo  $desc;	
+
+	}
+
+	public function currencys($countryid){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+ 		$objConn1 = ADONewConnection($Driver1);
+		////$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$sql = "SELECT * FROM tcurrency WHERE CountryID ='".$countryid."'";
+		$roomdescs = $objConn1->Execute($sql);
+		$desc  = $roomdescs->fields['Symbol'];
+		return  $desc;	
 	}
 
 

@@ -85,13 +85,21 @@
 	   	"SalesTax"   => $taxable[$x],
 	   	"DiscountAmt" => $discountprices[$x],
 	   	"DiscountRate" => $item_discount[$x] * 100,
-	   	"DiscountID"  => $discount_id[$x]
+	   	"DiscountID"  => $discount_id[$x],
+	   	"TierCode"    => $yourcustomer->fields['TierID'] 
+
 	   	);
 		$model->insert_tbl('eorderdtl',$insertinto,1); 			
 	   $totalprices[$x]  = $itemno_qty[$x] * $item_price[$x]; 
 	}
 
-	$model->update_tbl('tsetup',array('InvoiceNo' => $orderno), array('BranchID' =>'PH001'), 1);
+	$model->update_tbl('tsetup',array('InvoiceNo' => $orderno), array('BranchID' =>$yourcustomer->fields['BranchID']), 1);
+
+	$modfee  = $model->select_where2('eorderdtl', array('OrderNo' => $orderno, 'ItemNo' =>"MODFEE"));
+	$bookfee  = $model->select_where2('eorderdtl', array('OrderNo' => $orderno, 'ItemNo' =>"BOOKFEE"));
+	$regfee  = $model->select_where2('eorderdtl', array('OrderNo' => $orderno, 'ItemNo' =>"REGFEE"));
+	$totalfees = $regfee->fields['Amount'] + $bookfee->fields['Amount']  + $modfee->fields['Amount'];
+	$model->update_tbl('eatthead',array('InvoiceNo' => $orderno, 'Tuition' => $modfee->fields['Amount'] , 'BookFee' => $bookfee->fields['Amount'], 'OtherFee' => $regfee->fields['Amount'], 'Total' => $totalfees, 'Status' => "1"), array('CustNo' => $custno, 'TierID' => $yourcustomer->fields['TierID'] ), 1);
 
 	if($yourcustomer->fields['Status'] !=  'Old'){
 		$model->update_tbl('tcustomer',array('CustType' => 'For Admission',   'RegType' => 'For Kit Issuance'), array('CustNo' =>$custno), 1);

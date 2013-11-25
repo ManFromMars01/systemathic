@@ -38,7 +38,6 @@ include('login.php');
 include_once('ConnInfo.php');
 
 
-
 $HTML_Template = getRequest("HTMLT");
 $DeleteButton = "";
 $UpdatetStudentFormAction = "";
@@ -248,15 +247,15 @@ function MergeTemplate($Template) {
      $TemplateText = Replace($TemplateText, "@MainContent@", $MainContent);
      $TemplateText = Replace($TemplateText, "@Menu@", $Menu);
      $TemplateText = Replace($TemplateText, "@userdata1@", $userdata1);
-     //$TemplateText = Replace($TemplateText, "@level@", $level); 
-     //$TemplateText = Replace($TemplateText, "@tier@", $tier); 
-     //$TemplateText = Replace($TemplateText, "@referral@", $referral); 
+     $TemplateText = Replace($TemplateText, "@level@", $level); 
+     $TemplateText = Replace($TemplateText, "@tier@", $tier); 
+     $TemplateText = Replace($TemplateText, "@referral@", $referral); 
 
     print($TemplateText);
 } // END Function
 
 
-$objConn1 = &ADONewConnection($Driver1);
+$objConn1 = ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 $oRStcustomer = "";
