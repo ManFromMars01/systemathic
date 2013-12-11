@@ -33,13 +33,13 @@
                                $yourcustomer = $model->select_where('tcustomer',  array('CustNo'=>$onlinelists['CustNo']));
                             ?>
                             <tr id="<?php echo  $onlinelists['CustNo']; ?>">
-                                <td><?php echo $yourcustomer->fields['StudentID']; ?></td>
+                                <td><?php echo  $yourcustomer->fields['StudentID']; ?></td>
                                 <td><?php echo  $yourcustomer->fields['SurName']; ?>, <?php echo  $yourcustomer->fields['FirstName']; ?> <?php echo $yourcustomer->fields['MiddleName']; ?></td>
                                 <td><?php echo  $model->yourlevel($yourcustomer->fields['LevelID'],0); ?></td>
                                 <td><?php echo  $onlinelists['Date']; ?></td>
                                 <td><a class="btn btn-danger remove" alt='<?php echo $onlinelists['CustNo'];?>'>Remove</a></td>
                             </tr>
-                            <?php endforeach ?>
+                            <?php endforeach; ?>
               
                             
                           </tbody>

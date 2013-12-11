@@ -1,4 +1,11 @@
-<?php include('template/header.php'); ?>
+
+<?php include('template/header.php'); 
+include('template/myclass.php');
+not_login();
+?>
+
+
+
 <div id="content" class="span10">
 			<!-- content starts -->
 			

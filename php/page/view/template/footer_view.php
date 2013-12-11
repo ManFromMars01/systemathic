@@ -1,4 +1,4 @@
-</div><!--/fluid-row-->
+
 				
 			<hr>
 
@@ -51,6 +51,7 @@
 </div><!--/.fluid-container-->
 <script>
 $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+
 </script>
 
 </body>

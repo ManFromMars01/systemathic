@@ -1,12 +1,17 @@
-<?php include('template/myclass.php');?>
+<?php 
+session_start();
+include('page/class/systemathic.php');
+include('template/myclass.php');
+not_login();
+include('page/view/template/header_view.php');
+?>
 
-<?php include('template/header.php'); ?>
 
 <?php 
     //$where = array('')
     $customer = $model->select_where('tcustomer',array('CustNo' => $_GET['ID3']));
     $level    = $model->select_where('tlevel',array('ID' => $customer->fields['LevelID']));
-    $levelkit = $model->select_where('tkitpack',array('LevelID' => $customer->fields['LevelID']));
+    $levelkit = $model->select_where('tkitpack',array('LevelID' => $customer->fields['LevelID'], 'BranchID' =>$_SESSION['UserValue2']));
 ?>
 <div id="content" class="span10">
             <!-- content starts -->
@@ -125,7 +130,7 @@ $('#kititemno').change(function(){
         data:{itemno:itemno, levelid:<?php echo $customer->fields['LevelID'];?>},
         dataType:'json',
         success:function(j){
-            //alert(j.status);
+            console.log(j);
             if(j.status == 0){
                 nospace = itemno.replace(/\s/g, ''); 
                //alert(itemno..replace(/\s/g, '') );

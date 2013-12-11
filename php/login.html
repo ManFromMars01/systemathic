@@ -27,22 +27,22 @@
     padding: 9px 0;
     }
   </style>
-  <link href='css/bootstrap-responsive.css' rel='stylesheet'>
-  <link href='css/charisma-app.css' rel='stylesheet'>
-  <link href='css/jquery-ui-1.8.21.custom.css' rel='stylesheet'>
-  <link href='css/fullcalendar.css' rel='stylesheet'>
-  <link href='css/fullcalendar.print.css' rel='stylesheet'  media='print'>
-  <link href='css/chosen.css' rel='stylesheet'>
-  <link href='css/uniform.default.css' rel='stylesheet'>
-  <link href='css/colorbox.css' rel='stylesheet'>
-  <link href='css/jquery.cleditor.css' rel='stylesheet'>
-  <link href='css/jquery.noty.css' rel='stylesheet'>
-  <link href='css/noty_theme_default.css' rel='stylesheet'>
-  <link href='css/elfinder.min.css' rel='stylesheet'>
-  <link href='css/elfinder.theme.css' rel='stylesheet'>
-  <link href='css/jquery.iphone.toggle.css' rel='stylesheet'>
-  <link href='css/opa-icons.css' rel='stylesheet'>
-  <link href='css/uploadify.css' rel='stylesheet'>
+  <link href='template/css/bootstrap-responsive.css' rel='stylesheet'>
+  <link href='template/css/charisma-app.css' rel='stylesheet'>
+  <link href='template/css/jquery-ui-1.8.21.custom.css' rel='stylesheet'>
+  <link href='template/css/fullcalendar.css' rel='stylesheet'>
+  <link href='template/css/fullcalendar.print.css' rel='stylesheet'  media='print'>
+  <link href='template/css/chosen.css' rel='stylesheet'>
+  <link href='template/css/uniform.default.css' rel='stylesheet'>
+  <link href='template/css/colorbox.css' rel='stylesheet'>
+  <link href='template/css/jquery.cleditor.css' rel='stylesheet'>
+  <link href='template/css/jquery.noty.css' rel='stylesheet'>
+  <link href='template/css/noty_theme_default.css' rel='stylesheet'>
+  <link href='template/css/elfinder.min.css' rel='stylesheet'>
+  <link href='template/css/elfinder.theme.css' rel='stylesheet'>
+  <link href='template/css/jquery.iphone.toggle.css' rel='stylesheet'>
+  <link href='template/css/opa-icons.css' rel='stylesheet'>
+  <link href='template/css/uploadify.css' rel='stylesheet'>
 
   <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -72,19 +72,20 @@
 
         <div class='well span5 center login-box'>
           <div class='alert alert-info'>
-            Please login with your Username and Password.
+            Please login with your Username and Password. <br />
+            Note: This login will expire from inactivity 
           </div>
-          <form action='/Final/php/index.php?' method='POST' id='form1' name='form1'>
+          <form action='http://localhost/Final/php/page/controller/login.php' method='POST' id='form1' name='form1'>
             <fieldset>
               <input type='hidden' name='frmLogin' value='true'>
 
               <div class='input-prepend' title='Username' data-rel='tooltip'>
-                <span class='add-on'><i class='icon-user'></i></span><input autofocus class='input-large span10' name='frmUserID' id='username' type='text' value='admin' />
+                <span class='add-on'><i class='icon-user'></i></span><input autofocus class='input-large span10' name='username' id='username' type='text' value='admin' />
               </div>
               <div class='clearfix'></div>
 
               <div class='input-prepend' title='Password' data-rel='tooltip'>
-                <span class='add-on'><i class='icon-lock'></i></span><input class='input-large span10' name='frmUserPass' id='password' type='password' value='admin123456' />
+                <span class='add-on'><i class='icon-lock'></i></span><input class='input-large span10' name='password' id='password' type='password' value='admin123456' />
               </div>
               <div class='clearfix'></div>
 
@@ -105,7 +106,7 @@
 
 
 
-<?php include('template/footer.php') ?>
+
 
  
   

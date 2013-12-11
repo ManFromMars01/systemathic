@@ -1,5 +1,4 @@
 <?PHP
-session_set_cookie_params(500);
 session_start();
 /*
 ===================================================================
@@ -40,7 +39,6 @@ $objConn1 = &ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
-include('login.php');
 if($_SERVER["QUERY_STRING"] <> ""):
   $_SESSION["ChildReturnTo"] = $_SERVER["PHP_SELF"] . "?" . $_SERVER["QUERY_STRING"];
 else:

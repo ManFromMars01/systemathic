@@ -1,7 +1,12 @@
-<?php include('template/header.php') ?>
-<?php include('template/myclass.php');?>
 <?php 
- $schedule = $model->select_where('tclasssched', array('LevelID' =>$_GET['ID3']));
+session_start();
+include('page/class/systemathic.php');
+include('template/myclass.php');
+not_login();
+include('page/view/template/header_view.php');
+?>
+<?php 
+ $schedule = $model->select_where('tclasssched', array('LevelID' =>$_GET['ID3'], 'BranchID' => $_SESSION['UserValue2'] ));
  $leveldesc = $model->select_where('tlevel',array('ID' => $_GET['ID3']));   
 ?>
 <div id="content" class="span10">

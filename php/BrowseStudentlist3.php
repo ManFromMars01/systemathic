@@ -1,5 +1,11 @@
-<?php include('template/header.php') ?>
-<?php include('template/myclass.php');?>
+<?php 
+session_start();
+include('page/class/systemathic.php');
+include('template/myclass.php');
+not_login();
+include('page/view/template/header_view.php');
+?>
+
 <?php 
     $success = "";
     if(isset($_GET['RegType'])){
@@ -44,8 +50,7 @@
                         </div>
                     </div>
                     <div class="box-content">
-
-                        <a class="btn btn-success" href="UpdatetStudentadd.php">Add Customer</a> <a id="showlegend" class="btn btn-info">Show Legend</a>
+                        <a class="btn btn-success" href="<?php echo base_url('page/controller/add_student.php');?>">Add Customer</a> <a id="showlegend" class="btn btn-info">Show Legend</a>
                         
 
                         <div id="mylegend" style="display:none; margin-top:5px; padding:10px; border:1px solid gray; border-radius:5px;" class="groupme">
@@ -103,20 +108,20 @@
                                   <?php elseif($customer_check->fields['Status'] == "FAILED"): ?>  
                                   <a class="btn btn-danger">Assessed</a>
                                   <?php endif; endif; ?>
-                                  <a class="btn btn-info" href="UpdatetStudentedit.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit</a>
+                                 <a class="btn btn-info" href="<?php echo base_url('page/controller/edit_student.php?ID3='.$students['CustNo']);?>"><i class="icon-edit icon-white"></i> Edit</a>
                                 </td>
                                 <!------Ending ASSesment Action------>
 
                                 <!-----For Admission Action------>
                                 <?php elseif($_GET['CustType'] == 'For Admission' ): ?>
                                 <td>
-                                   <a class="btn btn-info" href="UpdatetStudentedit.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit</a>
+                                   <a class="btn btn-info" href="<?php echo base_url('page/controller/edit_student.php?ID3='.$students['CustNo']);?>"><i class="icon-edit icon-white"></i> Edit</a>
                                    <a class="btn btn-success" href="<?php echo base_url('page/ajax/move_student.php?custno='.$students['CustNo'].'&moveto=schedule');?>" onclick="return confirm('Note:  This student will move To For Schedule List')">Create Schedule</a>
                                 </td> 
 
                                 <?php else: ?>
                                 <td>
-                                  <a class="btn btn-info" href="UpdatetStudentedit.php?ID1='<?php echo $students['CountryID'] ?>'&amp;ID2='<?php echo $students['BranchID'] ?>'&amp;ID3=<?php echo $students['CustNo'] ?>"><i class="icon-edit icon-white"></i> Edit</a>
+                                  <a class="btn btn-info" href="<?php echo base_url('page/controller/edit_student.php?ID3='.$students['CustNo']);?>"><i class="icon-edit icon-white"></i> Edit</a>
                                 </td>
                                <?php endif; ?> 
                             </tr>

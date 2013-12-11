@@ -24,8 +24,8 @@ Class Model{
 		//$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
-		$selectable  .= "SELECT * FROM ".$table;
-		
+		$selectable  = "SELECT * FROM ".$table;
+		$where2 = "";
 		foreach($where as $key => $value) {
   			$where2 .= $key." = '".$value."' AND "; 
 		}
@@ -38,6 +38,8 @@ Class Model{
 	}
 
 	public function delete_where($table, $where){
+		$selectable ="";
+		$where2 = "";
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
  		$objConn1 = ADONewConnection($Driver1);
@@ -56,6 +58,8 @@ Class Model{
 	}
 
 	public function count_where($table, $where){
+		$selectable ="";
+		$where2 = "";
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
  		$objConn1 = ADONewConnection($Driver1); 
@@ -74,14 +78,35 @@ Class Model{
 
 	}
 
+	public function sum_where($table, $column, $where){
+		$selectable ="";
+		$where2 = "";
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+ 		$objConn1 = ADONewConnection($Driver1); 
+		//$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
+		$selectable  .= "SELECT SUM(". $column.") AS MyCount FROM ".$table;
+		
+		foreach($where as $key => $value) {
+  			$where2 .= $key." = '".$value."' AND "; 
+		}
+
+		$selectable  .= " WHERE " .trim($where2, "AND ");
+		$selectable = $objConn1->Execute($selectable);
+ 		return $selectable->fields['MyCount'];
+
+	}
 
 	public function insert_tbl($table,$toinsert){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
  		$objConn1 = ADONewConnection($Driver1);
 		//$objConn1->debug = $DebugMode;
-		$objConn1->PConnect($Server1,$User1,$Password1,$db1);		
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);	
+		$insertcolumn = "";
+		$insertvalue= ""; 	
 		foreach($toinsert as $key => $value) {
   			$insertcolumn .= $key."," ;
   			$insertvalue  .= "'".$value."',";
@@ -95,6 +120,8 @@ Class Model{
 
 
 	public function update_tbl($table,$toupdate,$where){
+		$myupdate ="";
+		$where2 = "";
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
  		$objConn1 = ADONewConnection($Driver1);
@@ -177,6 +204,7 @@ Class Model{
 	}
 
 	public function teacher(){
+		$option ="";
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
  		$objConn1 = ADONewConnection($Driver1);
@@ -192,6 +220,7 @@ Class Model{
 	}
 
 	public function rooms(){
+		$option ="";
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
  		$objConn1 = ADONewConnection($Driver1);
@@ -208,6 +237,7 @@ Class Model{
 
 
 	public function parent(){
+		$option ="";
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
  		$objConn1 = ADONewConnection($Driver1);
@@ -234,6 +264,20 @@ Class Model{
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 		$sql = "SELECT * FROM tbranch WHERE BranchID ='".$branchid."'";
+		$roomdesc = $objConn1->Execute($sql);
+		$desc  = $roomdesc->fields['Description'];
+		echo $desc;	
+
+	}
+
+	public function royaltydesc($id){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$sql = "SELECT * FROM troyalty WHERE ID ='".$id."'";
 		$roomdesc = $objConn1->Execute($sql);
 		$desc  = $roomdesc->fields['Description'];
 		echo $desc;	
@@ -267,6 +311,30 @@ Class Model{
 		return  $desc;	
 	}
 
+	public function paytype($pay){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+ 		$objConn1 = ADONewConnection($Driver1);
+		////$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$sql = "SELECT * FROM tpaytype WHERE PayType ='".$pay."'";
+		$roomdescs = $objConn1->Execute($sql);
+		$desc  = $roomdescs->fields['Description'];
+		return  $desc;	
+	}
+
+	public function items($itemno){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+ 		$objConn1 = ADONewConnection($Driver1);
+		////$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$sql = "SELECT * FROM titems WHERE ItemNo ='".$itemno."'";
+		$roomdescs = $objConn1->Execute($sql);
+		return  $roomdescs;	
+	}
 
 
 

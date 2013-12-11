@@ -1,6 +1,4 @@
 <?php 
-session_set_cookie_params(500);
-session_start();
 $PageLevel = 0;
 $PageLevel = 1;
 include_once('systemathicappdata.php');
@@ -10,7 +8,6 @@ $objConn1 = ADONewConnection($Driver1);
 $objConn1->debug = $DebugMode;
 $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 include_once('utils.php');
-include('login.php');
 include('template/myclass.php');
 ?>
 <?php include('template/header.php') ?>
@@ -93,9 +90,9 @@ include('template/myclass.php');
 								<tr>
 									<td colspan="2" align="center">   <img src="template/img/franchise/billing.png"> </td>
 									
-									<td colspan="2" align="center">  <img src="template/img/franchise/billing.png"></td>
+									<td colspan="2" align="center">  <a href="<?php echo base_url('page/controller/royalty_billing_country.php?branchid='.$_SESSION['UserValue2']) ?>"><img src="template/img/franchise/billing.png"></td>
 								
-									<td colspan="2" align="center">  <img src="template/img/franchise/billing.png"> </td>
+									<td colspan="2" align="center">  <a href="<?php echo base_url('page/controller/royalty_billing.php?branchid='.$_SESSION['UserValue2']) ?>"><img src="template/img/franchise/billing.png"></a></td>
 								</tr>
 
 

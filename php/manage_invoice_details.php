@@ -1,55 +1,16 @@
 <?php 
-include('template/header.php');
-include('template/myclass.php'); 
+session_start();
+include('page/class/systemathic.php');
+include('template/myclass.php');
+not_login();
+include('page/view/template/header_view.php');
+ 
 
 $CustNo =  $_GET['CustNo'];
 $InvoiceNo = $_GET['InvoiceNo'];
 
 
-/*
 
-$student_no = $_GET['student_no'];
-
-$student = $model->select_where('tcustomer', array('StudentID' => $student_no));
-$custno  = $student->fields['CustNo'];
-$birthday =  $student->fields['Birthday'];
-
-$date1 = $student->fields['Birthday'];
-$date2 = date('Y-m-d');
-
-$ts1 = strtotime($date1);
-$ts2 = strtotime($date2);
-
-$year1 = date('Y', $ts1);
-$year2 = date('Y', $ts2);
-
-$month1 = date('m', $ts1);
-$month2 = date('m', $ts2);
-
-$diff = (($year2 - $year1) * 12) + ($month2 - $month1);
-$bday = $diff / 12  ;
-$bday = round($bday, 1);
-
-
-$booklist = $model->select_table('thbookexempt');  
-$bl = "Normal";
-foreach ($booklist as $booklists) {
-   $startage = $booklists['StartAge']; 
-   $endage   = $booklists['EndAge'];
-   if($bday >= $startage  && $endage <= $endage ){
-        $bl =  $booklists['BookListID'];
-   }
-}
-
-echo $bday;
-echo $bl;
-
-$booka = $model->select_where('ebooks', array('CustNo' => $custno, 'BookCategory' => 'a', 'Status' => 'Current'));
-$bookm = $model->select_where('ebooks', array('CustNo' => $custno, 'BookCategory' => 'm', 'Status' => 'Current'));
-$books = $model->select_where('ebooks', array('CustNo' => $custno, 'BookCategory' => 's', 'Status' => 'Current'));
-
-$atta = $model->select_where('eattdtl', array('CustNo' => $custno));
-*/
 
 function status_attendance($status){
     $stat_desc = $model->select_where('tastatus', array('ID' => $status));

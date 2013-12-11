@@ -34,7 +34,6 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
-include('login.php');
 include_once('ConnInfo.php');
 
 $objConn1 = &ADONewConnection($Driver1);
@@ -51,23 +50,8 @@ $HTML_Template = getRequest("HTMLT");
 
 $dbColumns = "";
 $dbValues = "";
-            if (getForm("txttlevelCountryID") == ""):
-                if($myStatus == ""):
-                    $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
-                endif;
-                $flgMissing = 1;
-                    $myStatus .= " <STRONG>Country ID:</STRONG> : Must be in file";
-                    $myStatus .= "<HR>\n";
-            endif;
+           
     $rst["CountryID"] = getFormSQLQuoted($objConn1,"tlevel","CountryID","txttlevelCountryID");
-            if (getForm("txttlevelBranchID") == ""):
-                if($myStatus == ""):
-                    $myStatus = "<STRONG>Your insert failed </STRONG><BR><HR>";
-                endif;
-                $flgMissing = 1;
-                    $myStatus .= " <STRONG>Branch ID:</STRONG> : Must be in file";
-                    $myStatus .= "<HR>\n";
-            endif;
     $rst["BranchID"] = getFormSQLQuoted($objConn1,"tlevel","BranchID","txttlevelBranchID");
     $rst["ID"] = getFormSQLQuoted($objConn1,"tlevel","ID","txttlevelID");
             if (getForm("txttlevelDescription") == ""):

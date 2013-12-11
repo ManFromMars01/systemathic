@@ -34,7 +34,6 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
-include('login.php');
 $HTML_Template = getRequest("HTMLT");
 /*
 ============================================================================='

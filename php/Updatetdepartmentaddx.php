@@ -1,22 +1,10 @@
 <?PHP
-/*
-===================================================================
------------------- Notice to Web Page Designers! ------------------
-===================================================================
- Data enabled web pages often require a particular sequence of
- events to occur for successful execution.  Therefore we ask
- that you not reorder the WEB program logic.  Also there should
- be no changes in the naming of any HTML elements or WEB variables.
-
- Every effort was made to allow "look and feel" changes to
- occur by modifying the Cascading Style Sheets supplied with this
- application along with the HTML template
-===================================================================
-*/
 session_start();
 $PageLevel = 0;
 $PageLevel = 1;
 include_once('systemathicappdata.php');
+include('template/myclass.php');
+not_logins();
 /*
 DebugMode is defined in appdata.WEB as FALSE by default
 debug of this page only by uncommenting the next line
@@ -34,7 +22,6 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
-include('login.php');
 include_once('ConnInfo.php');
 
 $objConn1 = &ADONewConnection($Driver1);

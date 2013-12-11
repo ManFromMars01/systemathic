@@ -57,38 +57,21 @@
                                 <td><?php echo $month;?></td>
                                 <td><?php $model->branch($branch['BranchID']);?></td>
                                 <td><?php echo  $model->currencys($country)." ".number_format($totalroyalhq, 2);?></td>
-                                <?php  $foreach = $model->select_where('tbranch', array('CountryID' => $branch['CountryID'], 'HQOperation' => 'No')); ?>
-                                <?php  
-                                  $totalroyalty = 0;  
-                                  foreach($foreach as $foreachs):
-                                     $royaltys = $model->select_where('eroyalty', array('BranchID' => $branch['BranchID'] ));
-                                     foreach($royaltys as $royal):
-                                            $totalroyalty  = $totalroyalty + $foreachs['CtrRoyaltyToMstr'];
-                                    endforeach;   
-
-                                                  $supertotal = $supertotal    + $totalroyalty ;
-                                  endforeach; 
+                                <?php 
+                                    foreach($branches as $branchs):
+                                        $royalts = $model->select_where('eroyalty', array('BranchID' => $branchs['BranchID'], 'Year' => $year, 'Month' => $month));                                    
+                                         $supertotal  =  $supertotal + $royalts->fields['CtrRoyaltyToMstr'];                                                           
+                                    endforeach;    
                                 ?>
+
+
+
                                 <td> <?php echo  $model->currencys($country)." ".number_format($supertotal, 2);  ?></td>
                                 <td> <?php  $tomastertotal=  $supertotal + $totalroyalhq; $curtotal = number_format($tomastertotal, 2); echo $model->currencys($country)." ".$curtotal;?></td>
                                 
                                 <td>
-                                    <button class="btn btn-info">Royalty Details</button>
+                                     <a class="btn btn-info" href="<?php echo base_url('page/controller/franchisee_royalty_det.php?branchid='.$branch['BranchID']) ?>">Details</a>
                                 </td>  
-                            </tr>
-
-
-                         <?php else: ?>   
-                            <tr>
-                                <td><?php echo $year;?></td>
-                                <td><?php echo $month;?></td>
-                                <td><?php $model->branch($branch['BranchID']);?></td>
-                                <td><?php echo 'Not Set';?></td>
-                                <td><?php echo 'Not Set';?></td>  
-                                <td><?php echo 'Not Set';?></td>  
-                                <td>
-                                    <button class="btn btn-info">Royalty Details</button>
-                                </td>
                             </tr>
 
                         <?php endif; ?>
@@ -119,8 +102,6 @@
                                     <th>Year</th>
                                     <th>Month</th>
                                     <th>Branch</th>
-                                    <th>Royalty for HQ</th>
-                                    <th>Royalty for Taiwan</th>    
                                     <th>Total Royalty</th>
                                     <th>Action</th>     
                               </tr>
@@ -152,11 +133,9 @@
                                 <td><?php echo $year;?></td>
                                 <td><?php echo $month;?></td>
                                 <td><?php $model->branch($branch['BranchID']);?></td>
-                                <td><?php $model->currencys($branch['CountryID']);?> <?php echo $tohq ;?></td>
-                                <td><?php $model->currencys($branch['CountryID']);?> <?php echo $tomaster;?></td>  
-                                <td><?php $model->currencys($branch['CountryID']);?> <?php echo $totalmaster;?></td>
+                                <td><?php $model->currencys($branch['CountryID']);?> <?php echo $model->currencys($country)." ".number_format($tohq,2);?></td>
                                 <td>
-                                    <button class="btn btn-info">Royalty Details</button>
+                                    <a class="btn btn-info" href="<?php echo base_url('page/controller/franchisee_royalty_det.php?branchid='.$branch['BranchID']) ?>">Details</a>
                                 </td>  
                             </tr>
 
@@ -167,8 +146,6 @@
                                 <td><?php echo $month;?></td>
                                 <td><?php $model->branch($branch['BranchID']);?></td>
                                 <td><?php echo 'Not Set';?></td>
-                                <td><?php echo 'Not Set';?></td>  
-                                <td><?php echo 'Not Set';?></td>  
                                 <td>
                                     <button class="btn btn-info">Royalty Details</button>
                                 </td>

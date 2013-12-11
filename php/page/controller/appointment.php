@@ -8,7 +8,8 @@ include('../class/systemathic.php'); // dont use $default variable
 
 $success = "";
 if(isset($_GET['app_id'])){
-	$model->delete_where('etimesched',array('AppointmentID' => $_GET['app_id']));
+	$apid = $_GET['app_id'];
+	$model->delete_where('etimesched',array('BranchID' => $_SESSION['UserValue2'], 'AppointmentID' => $apid ));
 	$success = success('<strong>Remove Successfully!!</strong>');	
 }
 

@@ -1,3 +1,8 @@
+<?php not_login();?>
+<?php 
+	$role_id = array(6);
+	$role_id2 = array(6,3,1);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,9 +61,14 @@
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 
-	<script src="<?php echo base_url();?>template/js/jquery-1.7.2.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+	<!--<script src="<?php echo base_url();?>template/js/jquery-1.7.2.min.js"></script>-->
+
 	<!-- jQuery UI -->
 	<script src="<?php echo base_url();?>template/js/jquery-ui-1.8.21.custom.min.js"></script>
+
 	<!-- transition / effect library -->
 	<script src="<?php echo base_url();?>template/js/bootstrap-transition.js"></script>
 	<!-- alert enhancer library -->
@@ -126,7 +136,37 @@
 	<!-- application script for Charisma demo -->
 	<script src="<?php echo base_url();?>template/js/charisma.js"></script>	
 	<script src="<?php echo base_url();?>template/js/jquery.validate.min.js"></script>
+	<script>
+	$( document ).ready(function() {	
+		$('.teacher_id').each(function(){
+		       teacherid = $(this).val();
+		       $.ajax({
+			        url: '<?php echo base_url();?>template/variables4.php',
+			        type: 'post',
+			        data: {teacher_id : teacherid},
+			        dataType: 'json',
+			        success: function (j) {
+			           console.log(j);
+			           $('.teachernames').html(j.teacher); 
+			        }     
+				});	
+		});
+
+
+		$('.bookcat').each(function(){
+		       bookcategory = $(this).is(':checked');
+		       if(bookcategory == true){
+		       		myval = $(this).val();
+		       		$('#group-' + myval).show();
+		       }
+		      
+		});
+
 	
+
+	});
+	
+	</script>
 	
 	
 </head>
@@ -148,16 +188,23 @@
 				<!-- user dropdown starts -->
 				<div class="btn-group pull-right" >
 					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-user"></i><span class="hidden-phone"> <?php echo $myName ?></span>
+						<?php $tteacherphoto = $model->select_where('tteacher', array('ID' => $_SESSION['UserID'] )); ?>
+						<?php if($tteacherphoto->fields['photo'] == ""): ?>
+							<img class="img_preview" style="width:15px" src="<?php echo base_url('page/ajax/upload_photo/cma-logo.jpg'); ?>">
+						<?php else: ?>
+							<img class="img_preview" style="width:15px" src="<?php echo base_url('page/ajax/'.$tteacherphoto->fields['photo']); ?>">
+						<?php endif; ?>
+
+
+						<span class="hidden-phone"> <?php echo $_SESSION['myname']?></span>
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Dashboard</a></li>
+						<li><a href="<?php echo base_url('page/controller/dashboard.php') ?>">Dashboard</a></li>
 						<li class="divider"></li>
-						<li><a href="#">Update Profile</a></li>
+						<li><a href="<?php echo base_url('page/controller/my_profile.php') ?>">Update Profile</a></li>
 						<li class="divider"></li>
 						<li><a href="<?php echo base_url();?>logout.php">Logout</a></li>
-						
 					</ul>
 				</div>
 				<!-- user dropdown ends -->
@@ -180,36 +227,33 @@
 		<div class="row-fluid">
 				
 			<!-- left menu starts -->
-			<div class="span2 main-menu-span">
+
+			<div class="span2 main-menu-span">	
 				<div class="well nav-collapse sidebar-nav navdivcolor">
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li class="nav-header hidden-tablet ">Main</li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/id_card.png"></img><span class="hidden-tablet">Admission</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>schedule.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/calendar.png"></img><span class="hidden-tablet"> Scheduling</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>contact.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/phone.png"></img><span class="hidden-tablet"> Contact</span></a></li>
+						<li><a class="ajax-link" href="<?php echo base_url('page/controller/admission.php');?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/id_card.png"></img><span class="hidden-tablet">Admission</span></a></li>
+						<li><a class="ajax-link" href="<?php echo base_url('page/controller/');?>scheduling.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/calendar.png"></img><span class="hidden-tablet"> Scheduling</span></a></li>
+						<li><a class="ajax-link" href="<?php echo base_url('page/controller/');?>contact.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/phone.png"></img><span class="hidden-tablet"> Contact</span></a></li>
 
-						<li><a class="ajax-link" href="<?php echo base_url();?>franchising.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/world.png"></img><span class="hidden-tablet"> Franchising</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>reports.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/page_full.png"></img><span class="hidden-tablet"> Reports</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>utility.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/tools.png"></img></i><span class="hidden-tablet"> Utility</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>accounting.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/calculator.png"></img><span class="hidden-tablet"> CMA Accounting</span></a></li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/');?>franchising.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/world.png"></img><span class="hidden-tablet"> Franchising</span></a></li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url();?>reports.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/page_full.png"></img><span class="hidden-tablet"> Reports</span></a></li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url();?>utility.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/tools.png"></img></i><span class="hidden-tablet"> Utility</span></a></li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url();?>accounting.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/calculator.png"></img><span class="hidden-tablet"> CMA Accounting</span></a></li>
 						
 						
-						<li class="nav-header hidden-tablet">Admin Section</li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>Browsetcountrylist.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Country List</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>BrowseDeptlist.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/department.jpg"></img><span class="hidden-tablet"> Department List</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>BrowseLevellist.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/department.jpg"></img><span class="hidden-tablet"> Level List</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>BrowseCategorylist.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/category.jpg"></img><span class="hidden-tablet"> Category List</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>BrowseUnitMeaslist.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/unit.jpg"></img><span class="hidden-tablet"> Unit List</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>BrowseManufacturerlist.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/manufacturer.jpg"></img><span class="hidden-tablet"> Manufacturer</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>BrowseLocationlist.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/location.jpg"></img><span class="hidden-tablet"> Location</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>BrowseItemslist.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/booklist.jpg"></img><span class="hidden-tablet"> Book Item List</span></a></li>
-						<li><a class="ajax-link" href="<?php echo base_url();?>BrowseAssessmentlist.php"><img class="icon" src="<?php echo base_url()?>template/img/redicons/assessment.jpg"></img><span class="hidden-tablet"> Assessment List</span></a></li>
-						
+						<li <?php $default->hide_if(array(6,5));?>class="nav-header hidden-tablet">General</li>
+						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_country.php');?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Country List</span></a></li>
+						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_level.php');?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/department.jpg"></img><span class="hidden-tablet"> Level List</span></a></li>
+						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_item_all.php') ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/booklist.jpg"></img><span class="hidden-tablet"> Item List</span></a></li>
+					
 
-						<li class="nav-header hidden-tablet">Design Section</li>
-						<li><a class="ajax-link" href="form.html"><img class="icon" src="<?php echo base_url()?>template/img/redicons/database.png"></img><span class="hidden-tablet"> Forms</span></a></li>
-						<li><a class="ajax-link" href="table.html"><img class="icon" src="<?php echo base_url()?>template/img/redicons/package.png"></img></i><span class="hidden-tablet"> Tables</span></a></li>
-						<li><a href="login.html"><img class="icon" src="<?php echo base_url()?>template/img/redicons/lock.png"></img></i><span class="hidden-tablet"> Login Page</span></a></li>
+						<li <?php $default->hide_if($role_id);?>class="nav-header hidden-tablet" > Franchisee</li>
+
+						<li <?php $default->hide_if($role_id2);?>><a href="<?php echo base_url('page/controller/browse_branches.php?countryid='.$_SESSION['UserValue1']); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img> <?php echo $_SESSION['UserValue1'];?> - Branches</a></li>
+						<li <?php $default->hide_if($role_id);?>><a href="<?php echo base_url('page/controller/browse_branches.php?countryid=wearegreat0101'); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img>Branches</a></li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_item.php'); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Inventory</span></a></li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="#"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Order</span></a></li>
 					</ul>
 					
 				</div><!--/.well -->

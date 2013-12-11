@@ -1,12 +1,12 @@
  <?php
   include('ConnInfo.php');
 
-    $objConn1 = ADONewConnection($Driver1);
+    $objConn1 = &ADONewConnection($Driver1);
     $objConn1->debug = $DebugMode;
     $objConn1->PConnect($Server1,$User1,$Password1,$db1);
     
     /**Begin LEvel**/
-    $selectlevel = "SELECT *  FROM tlevel  WHERE tlevel.CountryID ='".$_SESSION['UserValue1']."' AND tlevel.BranchID='".$_SESSION['UserValue2']."' ORDER BY tlevel.CountryID ASC";
+    $selectlevel = "SELECT *  FROM tlevel  WHERE tlevel.CountryID ='".$_SESSION['UserValue1']."' ORDER BY tlevel.CountryID ASC";
     $selectlevel = $objConn1->Execute($selectlevel);
     foreach ($selectlevel as $levellist):
          if ($tcustomerLevelID == $levellist['ID'] ):
@@ -20,7 +20,7 @@
 
 
     /**Begin Tier**/
-    $selecttier = "SELECT *  FROM ttier  WHERE ttier.CountryID ='".$_SESSION['UserValue1']."' AND ttier.BranchID='".$_SESSION['UserValue2']."' ORDER BY ttier.CountryID ASC";
+    $selecttier = "SELECT *  FROM ttier  WHERE ttier.CountryID ='".$_SESSION['UserValue1']."' ORDER BY ttier.CountryID ASC";
     $selecttier = $objConn1->Execute($selecttier);
     foreach ($selecttier as $tierlist):
         if ($tcustomerTierID == $tierlist['ID'] ):
@@ -34,7 +34,7 @@
     /**End Tier**/
 
     /**Begin Referral**/
-    $selectref = "SELECT *  FROM treferral  WHERE treferral.CountryID ='".$_SESSION['UserValue1']."' AND treferral.BranchID='".$_SESSION['UserValue2']."' ORDER BY treferral.CountryID ASC";
+    $selectref = "SELECT *  FROM treferral  WHERE treferral.CountryID ='".$_SESSION['UserValue1']."' ORDER BY treferral.CountryID ASC";
     $selectref = $objConn1->Execute($selectref);
     foreach ($selectref  as $reflist):
         if ($tcustomerReferralID == $reflist['ID'] ):
@@ -49,7 +49,7 @@
 
 
     /**Begin Referral**/
-    $selectcustomer = "SELECT *  FROM tcustomer  WHERE tcustomer.CountryID ='".$_SESSION['UserValue1']."' AND tcustomer.BranchID='".$_SESSION['UserValue2']."' AND tcustomer.CustNo = '".$_GET['ID3']."'";
+    $selectcustomer = "SELECT *  FROM tcustomer  WHERE tcustomer.CountryID ='".$_SESSION['UserValue1']."' AND tcustomer.BranchID='".$_SESSION['UserValue2']."' AND tcustomer.CustNo = '".$_GET['ID3']."'  ORDER BY treferral.CountryID ASC";
     $selectcustomers = $objConn1->Execute($selectcustomer);
     if($selectcustomers == 'Old'){
        $option_100  .= "<option value='Old' selected>Old</option>";

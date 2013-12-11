@@ -1,11 +1,9 @@
 <?php
-
-function base_url($addurl = ""){
-	$base_url = 'http://localhost/Final/php/'.$addurl;
-	return $base_url;
+function not_logins(){
+  if($_SESSION['AuthStatus'] != "Authorized"){
+    header("Location: http://localhost/Final/php/login.html");
+  }
 }
-
-
 
 class Myclass
 {
@@ -19,7 +17,7 @@ class Myclass
  	public function select_table($table){
  		include('ConnInfo.php');
 		include('systemathicappdata.php');
- 		$objConn1 = ADONewConnection($Driver1);
+ 		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -33,7 +31,9 @@ class Myclass
 	public function select_where($table, $where){
 		include('ConnInfo.php');
 		include('systemathicappdata.php');
- 		$objConn1 = ADONewConnection($Driver1);
+		$selectable = "";
+		$where2     = "";
+ 		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -53,7 +53,9 @@ class Myclass
 	public function count_where($table, $where){
 		include('ConnInfo.php');
 		include('systemathicappdata.php');
- 		$objConn1 = ADONewConnection($Driver1);
+		$selectable = "";
+		$where2     = "";
+ 		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -66,32 +68,14 @@ class Myclass
 		$selectable  .= " WHERE " .trim($where2, "AND ");
 		$selectable = $objConn1->Execute($selectable);
  		return $selectable->fields['MyCount'];
-	}
-
-	public function max_where($table,$column,$where){
-
-		include('ConnInfo.php');
-		include('systemathicappdata.php');
- 		$objConn1 = ADONewConnection($Driver1);
-		$objConn1->debug = $DebugMode;
-		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
-
-		$selectable  .= "SELECT MAX(".$column.") AS MyCount FROM ".$table;
-		
-		foreach($where as $key => $value) {
-  			$where2 .= $key." = '".$value."' AND "; 
-		}
-
-		$selectable  .= " WHERE " .trim($where2, "AND ");
-		$selectable = $objConn1->Execute($selectable);
- 		return $selectable->fields['MyCount'];
 
 	}
+
 
 	public function select_table2($table){
  		include('../ConnInfo.php');
 		include('../systemathicappdata.php');
- 		$objConn1 = ADONewConnection($Driver1);
+ 		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -106,9 +90,11 @@ class Myclass
  	public function select_where2($table, $where){
 		include('../ConnInfo.php');
 		include('../systemathicappdata.php');
- 		$objConn1 = ADONewConnection($Driver1);
+ 		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+		$selectable = "";
+		$where2     = "";
 
 		$selectable  .= "SELECT * FROM ".$table;
 		
@@ -137,10 +123,11 @@ class Myclass
 
 
 
- 		$objConn1 = ADONewConnection($Driver1);
+ 		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
-		
+		$insertcolumn = "";
+		$insertvalue = "";
 		foreach($toinsert as $key => $value) {
   			$insertcolumn .= $key."," ;
   			$insertvalue  .= "'".$value."',";
@@ -166,10 +153,11 @@ class Myclass
 
 
 
- 		$objConn1 = ADONewConnection($Driver1);
+ 		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
-		
+		$myupdate ="";
+		$where2   = "";
 		foreach($toupdate as $key => $value) {
   			$myupdate .= $key."= '".$value."',";
 		}
@@ -187,9 +175,12 @@ class Myclass
 		include('ConnInfo.php');
 		include('systemathicappdata.php');
 		
-		$objConn1 = ADONewConnection($Driver1);
+		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$where3 = "";
+
 
 		foreach($where as $key => $value) {
   			$where3 .= $key." = '".$value."' AND "; 
@@ -205,10 +196,10 @@ class Myclass
 		include('../ConnInfo.php');
 		include('../systemathicappdata.php');
 		
-		$objConn1 = ADONewConnection($Driver1);
+		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
-
+		$where3 = "";
 		foreach($where as $key => $value) {
   			$where3 .= $key." = '".$value."' AND "; 
 		}
@@ -229,7 +220,7 @@ class Myclass
 		  include('../systemathicappdata.php');
  		}
 
- 		$objConn1 = ADONewConnection($Driver1);
+ 		$objConn1 = &ADONewConnection($Driver1);
 		$objConn1->debug = $DebugMode;
 		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
@@ -238,9 +229,6 @@ class Myclass
 		$desc  = $leveldesc->fields['Description'];
 
 		return $desc;
-
-
-
 	}
 	
 	public function test($test){

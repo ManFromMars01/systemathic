@@ -1,8 +1,8 @@
-
 <?php
 session_start();
-//$myRole = getSession("UserCompany");
+include('page/class/systemathic.php');
 $myName = $_SESSION["myname"];
+
 
 ?>
 <!DOCTYPE html>
@@ -464,7 +464,7 @@ $myName = $_SESSION["myname"];
 	<!-- topbar ends -->
 		<div class="container-fluid">
 		<div class="row-fluid">
-				
+			<?php $roleids = array(6); ?>	
 			<!-- left menu starts -->
 			<div class="span2 main-menu-span">
 				<div class="well nav-collapse sidebar-nav navdivcolor">
@@ -474,22 +474,16 @@ $myName = $_SESSION["myname"];
 						<li><a class="ajax-link" href="schedule.php"><img class="icon" src="template/img/redicons/calendar.png"></img><span class="hidden-tablet"> Scheduling</span></a></li>
 						<li><a class="ajax-link" href="contact.php"><img class="icon" src="template/img/redicons/phone.png"></img><span class="hidden-tablet"> Contact</span></a></li>
 
-						<li><a class="ajax-link" href="franchising.php"><img class="icon" src="template/img/redicons/world.png"></img><span class="hidden-tablet"> Franchising</span></a></li>
-						<li><a class="ajax-link" href="reports.php"><img class="icon" src="template/img/redicons/page_full.png"></img><span class="hidden-tablet"> Reports</span></a></li>
-						<li><a class="ajax-link" href="utility.php"><img class="icon" src="template/img/redicons/tools.png"></img></i><span class="hidden-tablet"> Utility</span></a></li>
-						<li><a class="ajax-link" href="accounting.php"><img class="icon" src="template/img/redicons/calculator.png"></img><span class="hidden-tablet"> CMA Accounting</span></a></li>
+						<li <?php $default->hide_if($roleids); ?>><a class="ajax-link" href="franchising.php"><img class="icon" src="template/img/redicons/world.png"></img><span class="hidden-tablet"> Franchising</span></a></li>
+						<li <?php $default->hide_if($roleids); ?>><a class="ajax-link" href="reports.php"><img class="icon" src="template/img/redicons/page_full.png"></img><span class="hidden-tablet"> Reports</span></a></li>
+						<li <?php $default->hide_if($roleids); ?>><a class="ajax-link" href="utility.php"><img class="icon" src="template/img/redicons/tools.png"></img></i><span class="hidden-tablet"> Utility</span></a></li>
+						<li <?php $default->hide_if($roleids); ?>><a class="ajax-link" href="accounting.php"><img class="icon" src="template/img/redicons/calculator.png"></img><span class="hidden-tablet"> CMA Accounting</span></a></li>
 						
-						
-						<li class="nav-header hidden-tablet">Admin Section</li>
-						<li><a class="ajax-link" href="Browsetcountrylist.php"><img class="icon" src="template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Country List</span></a></li>
-						<li><a class="ajax-link" href="BrowseDeptlist.php"><img class="icon" src="template/img/redicons/department.jpg"></img><span class="hidden-tablet"> Department List</span></a></li>
-						<li><a class="ajax-link" href="BrowseLevellist.php"><img class="icon" src="template/img/redicons/department.jpg"></img><span class="hidden-tablet"> Level List</span></a></li>
-						<li><a class="ajax-link" href="BrowseCategorylist.php"><img class="icon" src="template/img/redicons/category.jpg"></img><span class="hidden-tablet"> Category List</span></a></li>
-						<li><a class="ajax-link" href="BrowseUnitMeaslist.php"><img class="icon" src="template/img/redicons/unit.jpg"></img><span class="hidden-tablet"> Unit List</span></a></li>
-						<li><a class="ajax-link" href="BrowseManufacturerlist.php"><img class="icon" src="template/img/redicons/manufacturer.jpg"></img><span class="hidden-tablet"> Manufacturer</span></a></li>
-						<li><a class="ajax-link" href="BrowseLocationlist.php"><img class="icon" src="template/img/redicons/location.jpg"></img><span class="hidden-tablet"> Location</span></a></li>
-						<li><a class="ajax-link" href="BrowseItemslist.php"><img class="icon" src="template/img/redicons/booklist.jpg"></img><span class="hidden-tablet"> Book Item List</span></a></li>
-						<li><a class="ajax-link" href="BrowseAssessmentlist.php"><img class="icon" src="template/img/redicons/assessment.jpg"></img><span class="hidden-tablet"> Assessment List</span></a></li>
+						<li <?php $default->hide_if($roleids); ?> class="nav-header hidden-tablet">Admin Section</li>
+						<li <?php $default->hide_if($roleids); ?>><a class="ajax-link" href="page/controller/browse_country.php"><img class="icon" src="template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Country List</span></a></li>
+						<li <?php $default->hide_if($roleids); ?>><a class="ajax-link" href="BrowseLevellist.php"><img class="icon" src="template/img/redicons/department.jpg"></img><span class="hidden-tablet"> Level List</span></a></li>
+						<li <?php $default->hide_if($roleids); ?>><a class="ajax-link" href="BrowseManufacturerlist.php"><img class="icon" src="template/img/redicons/manufacturer.jpg"></img><span class="hidden-tablet"> Manufacturer</span></a></li>
+						<li <?php $default->hide_if($roleids); ?>><a class="ajax-link" href="BrowseItemslist.php"><img class="icon" src="template/img/redicons/booklist.jpg"></img><span class="hidden-tablet">Item List</span></a></li>
 						
 
 						<li class="nav-header hidden-tablet">Design Section</li>

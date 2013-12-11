@@ -334,9 +334,12 @@
 
   );
 
+
+
  
   $model->insert_tbl('titems',$toinsert,1);
-  $success = "Success";
+
+  $success = "Save Successfully";
   
   $myStatus  = array('mystatus' => $toinsert);
   echo json_encode($myStatus);   

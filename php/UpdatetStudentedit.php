@@ -1,6 +1,7 @@
 <?PHP
-session_set_cookie_params(500);
 session_start();
+include('template/myclass.php');
+not_login();
 /*
 ===================================================================
 ------------------ Notice to Web Page Designers! ------------------
@@ -34,7 +35,6 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
-include('login.php');
 include_once('ConnInfo.php');
 
 

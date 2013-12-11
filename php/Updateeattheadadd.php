@@ -13,8 +13,10 @@
  application along with the HTML template
 ===================================================================
 */
-session_set_cookie_params(500);
 session_start();
+include('template/myclass.php');
+//not_login();
+
 $PageLevel = 0;
 $PageLevel = 1;
 include_once('systemathicappdata.php');
@@ -35,7 +37,6 @@ display of the nav bar can be overridden by uncommenting the next line
 */
 // $ShowDBNav = [FALSE, TRUE];
 include_once('utils.php');
-include('login.php');
 $HTML_Template = getRequest("HTMLT");
 /*
 ============================================================================='

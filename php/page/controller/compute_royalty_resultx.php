@@ -16,11 +16,13 @@ $year    = $_POST['year'];
 
 
 $branchif  = $model->select_where('tbranch', array('CountryID' => $country, 'BranchID' => $branch));
-$allroyalty  =$model->select_table('troyalty');
-
+$allroyalty  =$model->select_where('troyalty', array('Recipient' => 'Master', 'CountryID' => $_SESSION['UserValue1'] ));
+$hqroyaltylistcount = $model->count_where('troyalty', array('Recipient' => 'HQ', 'CountryID' => $_SESSION['UserValue1'] ));
+$hqroyaltylist = $model->select_where('troyalty', array('Recipient' => 'HQ', 'CountryID' => $_SESSION['UserValue1'] ));
 //FORUNIT CENTER
 if($branchif->fields['HQOperation'] == 'No' && $branchif->fields['HQCenterOperation'] == 'No'){
-
+	$totaltohq = 0;
+	$totaltohq2 = 0;
 	foreach($allroyalty as $all): //start royalty
 		$transaction  = $model->select_where('eorderdtl', array('CountryID' => $country, 'BranchID' =>$branch, 'ItemNo' => $all['Source'] ));
 		//$transaction = $model->select_where('eatthead', array('CountryID' => $country));
@@ -32,12 +34,11 @@ if($branchif->fields['HQOperation'] == 'No' && $branchif->fields['HQCenterOperat
 			
 			if($monthinv == $month && $year == $yearinv){
 			 	$totalroyal  = $totalroyal +  $transact['Amount'];  // for royalty
-			}
+			 	echo $transact['Amount'];
+			}	
+		endforeach;  
 
-		
-
-
-			$royalty = $model->select_where('troyalty',array('ID' => $all['ID'])); 
+		$royalty = $model->select_where('troyalty',array('ID' => $all['ID'])); 
  
 			$royaltyid  = $royalty->fields['ID'];
 			$royaltyhq  = $totalroyal * ($royalty->fields['Percent'] / 100);
@@ -63,7 +64,7 @@ if($branchif->fields['HQOperation'] == 'No' && $branchif->fields['HQCenterOperat
 		 	'CurrencyID' => $currency,  	
 		 	'CurrencyRate' => $result,
 		 	'ForRoyaltyAmt' =>$totalroyal,
-		 	'PercentToHQ'   =>  '',
+		 	'PercentToHQ'   =>  $royalty->fields['Percent'],
 		 	'PercentToMstr' => $royalty->fields['PctToMaster'],
 		 	'CtrRoyaltyToHQ' =>  $royaltyhq,
 		 	'CtrRoyaltyToMstr' =>  $royaltymaster,
@@ -74,23 +75,65 @@ if($branchif->fields['HQOperation'] == 'No' && $branchif->fields['HQCenterOperat
 
 		 
 		 $model->insert_tbl('eroyalty',$toinsert);
-
+		 $totaltohq = $totaltohq  + $royaltyhq;
 
 		 $royaltymaster = 0;
 		 $hqtomaster   = 0;
 		 $totalroyal2 = 0;
-		 $totalroyal  = 0;
-		endforeach;  				
+		 $totalroyal  = 0;				
 
 	endforeach; //end royalty 
+
+	if($hqroyaltylistcount >=  1 ):
+	foreach($hqroyaltylist as $allhq):
+		$transaction2  = $model->select_where('eorderdtl', array('CountryID' => $country, 'BranchID' =>$branch, 'ItemNo' => $allhq['Source'] ));
+		foreach($transaction2 as $transact2):
+			$mydate = $transact['Date'];
+			$monthinv  = date('m',strtotime($mydate));
+			$yearinv   = date('Y',strtotime($mydate));
+			
+			if($monthinv == $month && $year == $yearinv){
+			 	$totalroyal2  = $totalroyal2 +  $transact2['Amount'];  // for royalty
+			 	//echo $transact['Amount'];
+			}	
+		endforeach; 
+			$royalti = $model->select_where('troyalty',array('ID' => $allhq['ID'])); 
+			$royaltyid  = $royalti->fields['ID'];
+			$royaltyhq  = $totalroyal2 * ($royalti->fields['Percent'] / 100);
+
+		 	$froms = $model->select_where('tcurrency', array('Symbol' => $currency));
+		 	$fromcurr =  array($froms->fields['Symbol'], $froms->fields['Description']);
+		 	$tos = $model->select_where('tcurrency', array('CountryID' => $country));
+		 	$tocurr =  array($tos->fields['Symbol'], $tos->fields['Description']);
+		 	$result = currencyExchange('1',$fromcurr,$tocurr);
+
+		 	$toinsert = array(
+		 	'Date'      => date('Y-m-d'),	
+		 	'CountryID' => $country,
+		 	'BranchID'  => $branch,
+		 	'RoyaltyID' => $royaltyid, 	
+		 	'Month'     => $month,
+		 	'Year'      => $year,
+		 	'ForRoyaltyAmt' =>$totalroyal2,
+		 	'PercentToHQ'   =>  $royalti->fields['Percent'],
+		 	'CtrRoyaltyToHQ' =>  $royaltyhq,
+
+		 );
+
+		 
+		 $model->insert_tbl('eroyalty',$toinsert);
+		 $totaltohq2 = $totaltohq2  + $royaltyhq;
+
+	endforeach;	
+   endif;	
 
 	$toinsert2 = array(
 	 	'BillingDate' => date('Y-m-d'),
 	 	'DueDate'     => "",
 	 	'CountryID'   => $country,
 	 	'BranchID'    => $branch,
-	 	'TotalAmount' => $totalroyalty,
-	 	'PayTo'       => "Master",
+	 	'TotalAmount' => $totaltohq + $totaltohq2,
+	 	'PayTo'       => "HQ",
 	 	'Status'      => "5",
 	 	'AppMonth'    => $month,
 	 	'Year'        => $year
@@ -190,6 +233,7 @@ elseif($branchif->fields['HQOperation'] == 'Yes'){
 				 	$totalroyal  = $totalroyal +  $transact['Amount']; 
 				}
 
+
 			} elseif($transact['BranchID'] == $branch){
 				$mydate2 = $transact['Date'];
 				$monthinv2  = date('m',strtotime($mydate2));
@@ -199,13 +243,14 @@ elseif($branchif->fields['HQOperation'] == 'Yes'){
 				}
 
 			}
+		endforeach;	
 
 
 			$royalty = $model->select_where('troyalty',array('ID' => $all['ID'])); 
  
 			$royaltyid  = $royalty->fields['ID'];
 			$royaltyhq  = $totalroyal * ($royalty->fields['Percent'] / 100);
-			$royaltymaster = $royalthq * ( $royalty->fields['PctToMaster']  / 100); // all unit *.18   * .18
+			$royaltymaster = $royaltyhq * ( $royalty->fields['PctToMaster']  / 100); // all unit *.18   * .18
 		 	$hqtomaster  =  $totalroyal2 *  ( $royalty->fields['Percent']  / 100);   // hq * .18
 
 
@@ -248,7 +293,7 @@ elseif($branchif->fields['HQOperation'] == 'Yes'){
 		 $hqtomaster   = 0;
 		 $totalroyal2 = 0;
 		 $totalroyal  = 0;
-		endforeach;  				
+		  				
 
 	endforeach; //end royalty 
 
@@ -264,6 +309,7 @@ elseif($branchif->fields['HQOperation'] == 'Yes'){
 	 	'AppMonth'    => $month,
 	 	'Year'        => $year
 	 	);
+
 
 	$model->insert_tbl('ehroyalty', $toinsert2);
 

@@ -17,7 +17,7 @@
 
 
     /**Begin LEvel**/
-    $selectlevel = "SELECT *  FROM tlevel  WHERE tlevel.CountryID ='".$_SESSION['UserValue1']."' AND tlevel.BranchID='".$_SESSION['UserValue2']."'";
+    $selectlevel = "SELECT *  FROM tlevel";
     $selectlevel = $objConn1->Execute($selectlevel);
     foreach ($selectlevel as $levellist):     
         $level  .= '<option value="'.$levellist['ID'].'"'.$selected.'>'.$levellist['Description'].'</option>';
@@ -33,7 +33,7 @@
     /**End rooms**/
 
     /**Begin time**/
-    $selecttime = "SELECT *  FROM ttime  WHERE ttime.CountryID ='".$_SESSION['UserValue1']."' AND ttime.BranchID='".$_SESSION['UserValue2']."'";
+    $selecttime = "SELECT *  FROM ttime  WHERE ttime.CountryID ='".$_SESSION['UserValue1']."'";
     $selecttime = $objConn1->Execute($selecttime);
     $time .= "<option value=''>Please Select Available Time</option>";    
     foreach ($selecttime as $selecttimes):     

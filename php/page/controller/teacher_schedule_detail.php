@@ -6,7 +6,7 @@ include('../class/model.php'); // dont use $model variable
 include('../class/systemathic.php'); // dont use $default variable
 $teacher_no = $_GET['ID3'];
 //variable and functions here
-$teachers =   $model->select_where('tteacher',array('CountryID' => 'PH'));
+$teachers =   $model->select_where('tteacher',array('CountryID' => $_SESSION['UserValue1']));
 $teacherfile = $model->select_where('tclasssched',array('TeacherID1' => $teacher_no));
 
 include($default->template('header_view'));
@@ -28,11 +28,11 @@ include($default->template('header_view'));
           </li>
         </ul>
       </div>
-
+      <?php $teachername = $model->select_where('tteacher',array('ID' => $teacher_no )) ?>
       <div class="row-fluid sortable">
         <div class="box span12">
           <div class="box-header well" data-original-title>
-            <h2><i class="icon-calendar"></i>Class Schedule</h2>
+            <h2><i class="icon-calendar"></i>Teacher Schedule - <?php echo $teachername->fields['LocalName']; ?> </h2>
             <div class="box-icon">
               <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
               <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>

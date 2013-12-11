@@ -14,7 +14,6 @@
                                   <th>Student Name</th>
                                   <th>Level</th>
                                   <th>Actions</th>
-
                               </tr>
                           </thead>
                            

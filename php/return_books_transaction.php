@@ -1,6 +1,9 @@
 <?php 
-include('template/header.php');
-include('template/myclass.php'); 
+session_start();
+include('page/class/systemathic.php');
+include('template/myclass.php');
+not_login();
+include('page/view/template/header_view.php');
 
 
 $custno  = $_GET['CustomerNo'];

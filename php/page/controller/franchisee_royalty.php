@@ -13,6 +13,7 @@ $month = '11';
 
 $branchhq = $model->select_where('tbranch', array('HQOperation' => 'Yes', 'CountryID' => $country ));
 $branches = $model->select_where('tbranch', array('HQOperation' => 'No', 'HQCenterOperation' => 'No', 'CountryID' => $country ));
+$troyalty = $model->select_table('troyalty');
 
 
 

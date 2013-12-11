@@ -7,7 +7,7 @@ if (strtoupper(getRequest("debug")) == "TRUE" && strstr(getServer("PHP_SELF"), $
     error_reporting(E_ALL);
 else:
     $DebugMode = FALSE;
-    error_reporting(0);
+    //error_reporting(0);
 endif;
 include_once("adodb-errorhandler.inc.php");
 include_once("adodb.inc.php");
@@ -65,8 +65,8 @@ $IconLastDisabled = $IconPath . "lastd.gif";
 //declare the user data variables SESSION (GLOBAL) SCOPE
 $Header = file_get_contents('template/header.php', true);
 $Footer = file_get_contents('template/footer.php', true);
-$MainContent = $_SESSION['UserValue1'];
+//$MainContent = $_SESSION['UserValue1'];
 $Menu = file_get_contents('template/stat.php', true);
-$Myname = $_SESSION['myname']; 
+//$Myname = $_SESSION['myname']; 
 
 ?>

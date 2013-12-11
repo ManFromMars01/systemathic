@@ -1,6 +1,7 @@
 <?php 
-session_set_cookie_params(500);
 session_start();
+include('template/myclass.php');
+not_login();
 $PageLevel = 0;
 $PageLevel = 1;
 include_once('systemathicappdata.php');
@@ -13,7 +14,6 @@ $objConn1->PConnect($Server1,$User1,$Password1,$db1);
 
 
 include_once('utils.php');
-include('login.php');
 if (isset($_GET['custno'])){
        
 $selectsched = "SELECT *  FROM eattdtl  WHERE  eattdtl.CustNo='".$_GET['custno']."'";
@@ -32,14 +32,7 @@ $fname = $student->fields['FirstName'];
 $mname = $student->fields['MiddleName'];
 
 $cust = $student->fields['CustNo'];
-
-
-
 }
-
-
-
-
 
 ?>
 

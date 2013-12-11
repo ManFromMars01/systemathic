@@ -48,7 +48,7 @@ class ADODB_mysql extends ADOConnection {
 
 
   // SetCharSet - switch the client encoding
-  function SetCharSet($charset_name)
+  function SetCharSet($charset_name = "UTF-8")
   {
     if (!function_exists('mysql_set_charset'))
     	return false;
