@@ -246,14 +246,24 @@
 						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_country.php');?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Country List</span></a></li>
 						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_level.php');?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/department.jpg"></img><span class="hidden-tablet"> Level List</span></a></li>
 						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_item_all.php') ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/booklist.jpg"></img><span class="hidden-tablet"> Item List</span></a></li>
+						
+						<li <?php $default->hide_if(array(6,5));?>class="nav-header hidden-tablet">SetUp</li>
+						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_size.php');?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet">Size</span></a></li>
+						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_color.php');?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/department.jpg"></img><span class="hidden-tablet">Color</span></a></li>
+						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_design.php') ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/booklist.jpg"></img><span class="hidden-tablet">Design</span></a></li>
+						<li <?php $default->hide_if(array(6,5));?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_collection.php') ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/booklist.jpg"></img><span class="hidden-tablet">Collection</span></a></li>
+
+
 					
+
 
 						<li <?php $default->hide_if($role_id);?>class="nav-header hidden-tablet" > Franchisee</li>
 
 						<li <?php $default->hide_if($role_id2);?>><a href="<?php echo base_url('page/controller/browse_branches.php?countryid='.$_SESSION['UserValue1']); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img> <?php echo $_SESSION['UserValue1'];?> - Branches</a></li>
 						<li <?php $default->hide_if($role_id);?>><a href="<?php echo base_url('page/controller/browse_branches.php?countryid=wearegreat0101'); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img>Branches</a></li>
 						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_item.php'); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Inventory</span></a></li>
-						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="#"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Order</span></a></li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/order.php')?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Order</span></a></li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/my_orders.php')?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> My Orders</span></a></li>
 					</ul>
 					
 				</div><!--/.well -->

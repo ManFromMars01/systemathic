@@ -146,7 +146,7 @@
                             <div class="control-group">
                                 <label class="control-label">Center Code:</label>
                                 <div class="controls">
-                                  <input name="branch_code" id="branch_code" type="text" value="<?php echo $countryid.$id;?>" required />
+                                  <input name="branch_code" id="branch_code" type="text" value="" required />
                                 </div>
                             </div>
 
@@ -193,12 +193,6 @@
                                   </select>
                                 </div>
                             </div>
-
-
-
-
-
-
                             <div class="form-actions">
                               <!--<button type="submit" value="Submit" class="btn btn-primary">Save changes</button>-->
                               <button type="submit" name="save"  class="btn btn-primary"  id="saveme">Add Country</button>

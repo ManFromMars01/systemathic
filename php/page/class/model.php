@@ -37,6 +37,26 @@ Class Model{
 
 	}
 
+	public function select_where_orderby($table,$where,$column){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$selectable  = "SELECT * FROM ".$table;
+		$where2 = "";
+		foreach($where as $key => $value) {
+  			$where2 .= $key." = '".$value."' AND "; 
+		}
+
+		$selectable  .= " WHERE " .trim($where2, "AND ");
+		$selectable  .=" ORDER BY ".$column." DESC";     
+		$selectable = $objConn1->Execute($selectable);
+		$objConn1->Close();
+ 		return $selectable;
+	}
+
 	public function delete_where($table, $where){
 		$selectable ="";
 		$where2 = "";
@@ -336,9 +356,28 @@ Class Model{
 		return  $roomdescs;	
 	}
 
+	public function update_inventory($itemno,$branch,$vendorbranch,$qty){
+		$count = $this->count_where('thitems', array('ItemNo' => $itemno, 'BranchID' => $branch));
+		$vendor_price = $this->select_where('thitems',array('ItemNo' => $itemno, 'BranchID' => $vendorbranch));
+		if($count == 0){
+			$insert = array(
+				'CountryID' => substr($branch, 0, 2),  
+				'BranchID' => $branch,
+				'ItemNo'   => $itemno,
+				'QtyOnOrder' => $qty,
+				'StdCost'    => $vendor_price->fields['StdCost']      
+			);
+			$this->insert_tbl('thitems',$insert);
+		} else{
+			$current = $this->select_where('thitems', array('ItemNo' => $itemno, 'BranchID' => $branch));
+			$update = array(
+				'QtyOnOrder' => $qty + $current->fields['QtyOnOrder']
+				//'StdCost'    => $vendor_price->fields['StdCost'],      
+			);
+			$this->update_tbl('thitems',$update,array('BranchID' => $branch, 'ItemNo' => $itemno ));
+		}
 
-
-	
+	}
 
 }
 

@@ -3,7 +3,7 @@
             <!-- content starts -->
             
 
-            <?php breadcrumb('Online Practice') ?>
+            <?php breadcrumb('Order') ?>
             
             <div class="row-fluid sortable" style="width:70%; float:left;">        
                 <div class="box span12">
@@ -37,6 +37,7 @@
                                     <th>Quantity</th>
                                     <th>Price</th>
                                     <th>Item Group</th>
+                                    <th>Remove</th>
                               </tr>
                           </thead>
                            
@@ -46,12 +47,13 @@
                               foreach($_SESSION['cart'] as $key => $item):  
                               $desc  =$model->items($item['id']);  
                               ?>
-                              <tr>
+                              <tr class="itemcart<?php echo $item['id'];?>">
                                     <td><input type="text" name="item_code[]" style="width:30px;"  value="<?php echo $item['id'];?>" readonly /></td>
                                     <td><?php echo $desc->fields['Description']; ?></td>
                                     <td><input style="width:30px;" type="text" alt="<?php echo $item['id'];?>" class="qty" name="qty[]" value="<?php echo $item['quantity']?>"></td>
-                                    <td><input style="width:80px;" type="text" class="price" name="price[]" value="<?php echo $item['price']; ?>" /></td>
+                                    <td><?php echo $currency; ?> <input style="width:80px;" type="text" class="price" name="price[]" value="<?php echo $item['price']; ?>" /></td>
                                     <td><input style="width:40px;" type="text" name="discount[]" value="<?php echo $item['discountg']; ?>"></td>
+                                    <td><a href="#" class="remove" alt="<?php echo $item['id'];?>">Remove</a></td>   
                               </tr>                               
                            <?php 
                             endforeach;
@@ -99,59 +101,62 @@
                                  if($item['discountg'] == "A" ){ $discounta =  $discounta  + ($item["price"] * $item["quantity"]);}
                                  if($item['discountg'] == "B" ){ $discountb =  $discountb  + ($item["price"] * $item["quantity"]);}   
                                  if($item['discountg'] == "C" ){ $discountc =  $discountc  + ($item["price"] * $item["quantity"]);}  
-
-
                                 endforeach;
-
-                                
 
                                 $totalga = $discounta - ($discounta * ($groupa / 100));
                                 $totalgb = $discountb  -  ($discountb * ($groupb / 100));
                                 $totalgc = $discountc -  ($discountc * ($groupc / 100));
-                                if($groupa == 0){ $totalga = $discounta ;}
-                                if($groupb == 0){ $totalgb = $discountb ;}
-                                if($groupc == 0){ $totalgc = $discountc ;}
+                                $discamta = $discounta * ($groupa / 100);
+                                $discamtb = $discountb * ($groupb / 100);
+                                $discamtc = $discountc * ($groupc / 100);   
+
+                                if($groupa == 0){ $totalga = $discounta ; $discamta = 0;}
+                                if($groupb == 0){ $totalgb = $discountb ; $discamtb = 0;}
+                                if($groupc == 0){ $totalgc = $discountc ; $discamtc = 0;}
                                 
                                 $supertotal =  $totalga + $totalgb + $totalgc;
                             }      
                         ?>
-
-
                             <tr>
                                 <td>Items In Cart</td><td colspan="3" class="nocart"><?php echo $quantitys; ?></td>
                             </tr>
                             <tr>
-                                <td>Sub Total</td><td colspan="3" class="subtotal"><?php echo number_format($total,2); ?></td>
+                                <td>Sub Total</td><td colspan="3" class="subtotal"><?php echo $currency." ".number_format($total,2); ?></td>
                             </tr> 
                             <tr>
-                                <th>Group Item %</th><th>Total Group Price</th><th>Discounted Price</th>  
+                                <th>Group Item %</th><th>Total Group Price</th><th>Discount Amount</th>  
                             </tr>
                             <tr>
-                                <td>Group A <?php echo $groupa; ?>%</td><td class="forda"><?php echo number_format( $discounta,2); ?></td><td class="disca"><?php echo number_format($totalga,2); ?></td>  
+                                <td>Group A <?php echo $groupa; ?>%</td><td class="forda"><?php echo $currency." ".number_format( $discounta,2); ?></td><td class="disca"> - <?php echo $currency." ".number_format($discamta,2); ?></td>  
                             </tr>
                             <tr>
-                                <td>Group B <?php echo $groupb; ?>%</td><td class="fordb"><?php echo number_format( $discountb,2); ?></td><td class="discb"><?php echo number_format($totalgb,2); ?></td> 
+                                <td>Group B <?php echo $groupb; ?>%</td><td class="fordb"><?php echo $currency." ".number_format( $discountb,2); ?></td><td class="discb"> - <?php echo $currency." ". number_format($discamtb,2); ?></td> 
                             </tr>
                             <tr>
-                                <td>Group C <?php echo $groupc; ?>%</td><td class="fordc"><?php echo number_format( $discountc,2); ?></td><td class="discc"><?php echo number_format($totalgc,2); ?></td> 
+                                <td>Group C <?php echo $groupc; ?>%</td><td class="fordc"><?php echo $currency." ".number_format( $discountc,2); ?></td><td class="discc"> - <?php echo $currency." ".number_format($discamtc,2); ?></td> 
                             </tr>
                             <tr>
-                                <td  style=" background:#7dc5ff; color:white;"><strong>Total</strong></td><td colspan="3" style=" background:#7dc5ff; color:white;"><strong id="total"><?php echo number_format($supertotal,2); ?></strong></td>
+                                <td  style=" background:#7dc5ff; color:white;"><strong>Total</strong></td><td colspan="3" style=" background:#7dc5ff; color:white;"><strong id="total"><?php echo $currency." ".number_format($supertotal,2); ?></strong></td>
                             </tr>
-                        </table>
+                           
+                            <?php if($_SESSION['OrderHQ'] =="TW001"){ ?>
+                            <tr>
+                                <td  style=" background:#7dc5ff; color:white;"><strong>Currency Rate</strong></td><td colspan="3" style=" background:#7dc5ff; color:white;"><strong><?php echo $currency;?> 1</strong> = <strong class="crate"><?php echo $currency_to." ".number_format($currencyrate,2); ?></strong></td>
+                            </tr>
+                            <tr>
+                                <td  style=" background:#7dc5ff; color:white;"><strong>Total in <?php echo $currency_to ?></strong></td><td colspan="3" style=" background:#7dc5ff; color:white;"><strong><?php echo $currency_to; ?></strong> <strong id="totalct"><?php echo currencyExchange($supertotal,array('TWD','TWD'),array($currency_to ,$currency_to)); ?></strong></td>
+                            </tr>
+                            <?php } ?>
+                      </table>
 
                     </div>    
                 </div>
                 <div style="width:100%; text-align:center;">
                     <form method="post"  action="<?php echo base_url('page/controller/process_order.php');?>">
+                        <input class="crate" name="currencyRate" type="text" value="<?php echo $currencyrate ?>">
                         <button type ="submit"class="btn btn-info" style="width:80%;" >Order</button>
                     </form>
-                </div>    
-
-
-                
-
-            
+                </div>                
             </div><!--/row-->
             <div class="clearfix"></div>
                 <!-- content ends -->

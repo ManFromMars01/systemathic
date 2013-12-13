@@ -39,9 +39,6 @@ if(isset($_POST['item_id'])):
 	foreach($_SESSION['cart'] as $key => $item):
 		if($item['id'] == $_POST['item_id']){
 			unset($_SESSION['cart'][$key]);
-			$items = $model->select_where('thitems', array('ItemNo' => $_POST['item_id'], 'BranchID' => $_SESSION['OrderHQ'] ));
-			$desc  = $model->select_where('titems',array('ItemNo' => $_POST['item_id']));
-			$_SESSION['cart'][] = array("id" => $_POST['item_id'],"quantity" => $_POST['qty'],"price"=>$items->fields['IssuUntCost'],"discountg"=>$desc->fields['GroupDisc']);
 		}
 
 	endforeach;	

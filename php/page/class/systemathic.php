@@ -46,6 +46,15 @@ function notyme_danger($message = "Save Successfully"){
   echo 'noty({"text":"'.$message.'","layout":"top","type":"danger"});';
 }
 
+function success($msg = '<strong>Well Done!!</strong> Save Successfully'){
+
+  return '<div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              '.$msg.'
+        </div>';
+}
+
+
 function selected($fields,$val){
   if($fields == $val){
     echo "SELECTED";
@@ -91,6 +100,30 @@ function resize($width, $height){
   /* cleanup memory */
   imagedestroy($image);
   imagedestroy($tmp);
+}
+
+
+function update_link($label,$link){
+    echo '<a href="'.$link.'" class="btn btn-info">'.$label.'</a>';
+}
+
+function add_link($label,$link){
+    echo '<a href="'.$link.'" class="btn btn-success">'.$label.'</a>';
+}
+
+function delete_link($label,$link){
+    $return = <<<EOS
+      <a onclick="return confirm('Are You Sure to Remove this?')" href="$link" class="btn btn-danger">$label</a>
+EOS;
+echo $return;
+}
+
+function successif($message="<strong>Well Done!!</strong> Save Successfully"){
+  if(isset($_GET['status'])){
+    if($_GET['status'] == "success"){
+      echo success($message);
+    }
+  }
 }
 
 
@@ -153,13 +186,6 @@ function edit_link($yourlink = "",$label){
 }
 
 
-function success($msg = '<strong>Well Done!!</strong> Save Successfully'){
-
-  return '<div class="alert alert-success">
-              <button type="button" class="close" data-dismiss="alert">×</button>
-              '.$msg.'
-        </div>';
-}
 
 
 

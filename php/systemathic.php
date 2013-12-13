@@ -104,8 +104,6 @@ function currencyExchange($amount,$baseCurrency,$quoteCurrency) {
     $timeStamp = strtotime($exchangeRate[2]);
     $timeStamp = date('F d, Y', $timeStamp);
     $timeStamp = "$timeStamp $exchangeRate[3]";
-
-
     return $results; 
 }
 
@@ -155,6 +153,18 @@ function success($msg = '<strong>Well Done!!</strong> Save Successfully'){
               <button type="button" class="close" data-dismiss="alert">×</button>
               '.$msg.'
         </div>';
+}
+
+function update_link($label,$link){
+    echo '<a href="'.$link.'" class="btn btn-info">'.$link.'</a>';
+}
+
+function add_link($label,$link){
+    echo '<a href="'.$link.'" class="btn btn-success">'.$link.'</a>';
+}
+
+function delete_link($label,$link){
+    echo '<a href="'.$link.'" class="btn btn-danger">'.$link.'</a>';
 }
 
 
