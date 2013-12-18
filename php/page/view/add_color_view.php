@@ -40,17 +40,17 @@
                                 </div>
                             </div>
 
-                           <!-- <div class="control-group">
+                           <div class="control-group">
                                 <label class="control-label"  for="focusedInput">Category:</label>
                                 <div class="controls">
                                     <select name="category" id="category">
-                                        <option value=""></option>
+                                        <option value="">Please Select Category</option>
                                         <?php foreach ($category as $categorys): ?>
-                                            <option <?php selected($categorys['ID'],$size->fields['CatID']) ?> value="<?php echo $categorys['ID'];?>"><?php echo $categorys['Description'];?></option>    
+                                            <option value="<?php echo $categorys['Code'];?>"><?php echo $categorys['Description'];?></option>    
                                         <?php endforeach ?>
                                     </select>    
                                 </div>
-                            </div>-->
+                            </div>
 
                             
                             <div class="form-actions">

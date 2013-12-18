@@ -10,7 +10,7 @@ if(isset($_POST['save'])){
 }
 
 // /$category = $model->select_table('tcategory');
-//$collections = $model->select_where('tcollection', array('ID' => $_GET['ID'] ));
+$collections = $model->select_table('tcollection');
 include($default->template('header_view'));
 include($default->main_view('add_collection_view'));?>
 <?php include($default->template('footer_view'));?>

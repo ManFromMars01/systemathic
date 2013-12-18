@@ -34,23 +34,13 @@
 
 
                             <div class="control-group">
-                                <label class="control-label"  for="focusedInput">Design Code:</label>
+                                <label class="control-label"  for="focusedInput">Collection Code:</label>
                                 <div class="controls">
                                   <input name="code" type="text" id="code" value="" required>
                                 </div>
                             </div>
 
-                           <!-- <div class="control-group">
-                                <label class="control-label"  for="focusedInput">Category:</label>
-                                <div class="controls">
-                                    <select name="category" id="category">
-                                        <option value=""></option>
-                                        <?php foreach ($category as $categorys): ?>
-                                            <option <?php selected($categorys['ID'],$size->fields['CatID']) ?> value="<?php echo $categorys['ID'];?>"><?php echo $categorys['Description'];?></option>    
-                                        <?php endforeach ?>
-                                    </select>    
-                                </div>
-                            </div>-->
+                        
 
                             
                             <div class="form-actions">

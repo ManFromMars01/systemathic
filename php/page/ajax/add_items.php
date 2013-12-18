@@ -212,21 +212,26 @@ include('../class/systemathic.php'); // dont use $model variable
 
 
 
-
-
-
-
-
-
+  if($_POST['suffix'] == '00'){
+    $suffix = "";   
+  } else {
+    $suffix = $_POST['suffix'];
+    $test3 =$model->select_where('tsize', array('Code' => $suffix ));
+    $suffix  = $test3->fields['Description'];
+  }
 
 
   $toinsert = array(
-  "CountryID" => $_POST["txttitemsCountryID"],
-  "BranchID" => $_POST["txttitemsBranchID"],
-  "ItemNo" => $_POST["txttitemsItemNo"],
+  "CountryID" =>'TW',
+  "BranchID" => 'TW001',
+  "ItemNo" => $_POST["txttitemsItemNo"].$suffix,
+  "LastPurVdrID" => '19',
+  "CatID" => '02',
+  "Color"  => $_POST['txttitemscolors'],
+  "Sizes"  => $_POST['suffix'],
+  "Design" => $_POST['design'],          
   "Description" => $_POST["txttitemsDescription"],
-  "IsBook" => $_POST["txttitemsIsBook"],
-   //"IsMultiCat" => $_POST["txttitemsIsMultiCat"],
+  "IsBook" => "Yes",
   "IsAbacus" => $_POST["txttitemsIsAbacus"],
   "IsMental" => $_POST["txttitemsIsMental"],
   "IsSupp" => $_POST["txttitemsIsSupp"],
@@ -267,9 +272,6 @@ include('../class/systemathic.php'); // dont use $model variable
   "MenNumStart" => $_POST["txttitemsMenNumStart"],
   "MenNumEnd" => $_POST["txttitemsMenNumEnd"],
   "MenBookGrade" => $_POST["txttitemsMenBookGrade"],
-  
-
-
   "SuppNxtBook1" => $SuppNxtBook1,
   "SuppNxtBook2" => $SuppNxtBook2,
   "SuppNxtBook3" => $SuppNxtBook3,
@@ -287,20 +289,7 @@ include('../class/systemathic.php'); // dont use $model variable
   "SuppNumStart" => $_POST["txttitemsSuppNumStart"],
   "SuppNumEnd" => $_POST["txttitemsSuppNumEnd"],
   "SuppBookGrade" => $_POST["txttitemsSuppBookGrade"],
-  "CatID" => $_POST["txttitemsCatID"],
-  //"SubCatID" => $_POST["txttitemsSubCatID"],
-  "DeptID" => $_POST["txttitemsDeptID"],
-  "ManufacturerID" => $_POST["txttitemsManufacturerID"],
-  "LocationID" => $_POST["txttitemsLocationID"],
   "IssuUntCost" => $_POST["txttitemsIssuUntCost"],
-  //"IssuUntMea" => $_POST["txttitemsIssuUntMea"],
-  //"PurUntCost" => $_POST["txttitemsPurUntCost"],
-  //"ReOrderPT" => $_POST["txttitemsReOrderPT"],
-  //"ReOrderQty" => $_POST["txttitemsReOrderQty"],
-  "LastPurVdrID" => $_POST["txttitemsLastPurVdrID"],
-  //"ReOrderReq" => $_POST["txttitemsReOrderReq"],
-  //"LstOrderCost" => $_POST["txttitemsLstOrderCost"],
-  //"QtyOnOrder" => $_POST["txttitemsQtyOnOrder"],
   "AbaNext1Cat" => $AbaNxt1Cat,
   "AbaNext2Cat" => $AbaNxt2Cat,
   "AbaNext3Cat" => $AbaNxt3Cat,
@@ -319,39 +308,35 @@ include('../class/systemathic.php'); // dont use $model variable
   "SuppPrev1Cat" => $SuppPrev1Cat,
   "SuppPrev2Cat" => $SuppPrev2Cat,
   "SuppPrev3Cat" => $SuppPrev3Cat,
-
   "PreSuppNext1Cat" => $SuppPreCat1,
   "PreSuppNext2Cat" => $SuppPreCat2,
   "PreSuppNext3Cat" => $SuppPreCat3,
-
   "PreAbaNext1Cat" => $AbaPreCat1,
   "PreAbaNext2Cat" => $AbaPreCat2,
   "PreAbaNext3Cat" => $AbaPreCat3,
-
   "PreMenNext1Cat" => $MenPreCat1,
   "PreMenNext2Cat" => $MenPreCat2,
   "PreMenNext3Cat" => $MenPreCat3,
-  "Color"          => $_POST['txttitemscolors'],
-  "Sizes"           => $_POST['txttitemssize'],
-  "Sku"            => $_POST['txttitemsLastPurVdrID'].$_POST['txttitemscolors'].$_POST['txttitemssize'].$_POST["txttitemsItemNo"]
+  "Sku"    => "TW"."19"."02".$_POST["txttitemscolors"].$_POST["suffix"].$_POST["design"]
   );
-
- $toinsert2 = array(
-    "CountryID" => $_POST["txttitemsCountryID"],
-    "ItemNo" => $_POST["txttitemsItemNo"],
-    "BranchID" => $_POST["txttitemsBranchID"],
-    "Sku"     => $_POST['txttitemsLastPurVdrID'].$_POST['txttitemscolors'].$_POST['txttitemssize'].$_POST["txttitemsItemNo"],
-    "StdCost" => $_POST["txttitemsStdCost"],
-    "QtyOnHand" => $_POST["txttitemsQtyOnHand"],
-
-  );
-
- 
-  $model->insert_tbl('titems',$toinsert);
-  $model->insert_tbl('thitems',$toinsert2);
-
-  //$success = "Save Successfully";
   
+  $insert2 = array(
+    'CountryID' => "TW",
+    'BranchID'  => "TW001",
+    'Sku'    =>  "TW"."19"."02".$_POST["txttitemscolors"].$_POST["suffix"].$_POST["design"],
+    'ItemNo' =>  $_POST["txttitemsItemNo"].$suffix,
+    'IssuUntCost' =>  $_POST['txttitemsIssuUntCost'],// magkakano  nagastos 
+    'PurUntCost'  =>  $_POST['txttitemsPurUntCost'],  // price for branch
+    'StdCost'     =>  $_POST['txttitemsStdCost'],   // price for customer
+    'QtyOnHand'   =>  $_POST['txttitemsQtyOnHand']
+  );
+
+
+  $model->insert_tbl('titems',$toinsert);
+  $model->insert_tbl('thitems',$insert2);
+
+
+
   $myStatus  = array("mystatus" => "Transaction Complete");
   echo json_encode($myStatus);   
 

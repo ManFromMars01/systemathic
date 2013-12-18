@@ -15,23 +15,24 @@
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                           <thead>
                               <tr>
-                                    <th>Design</th>
-                                    <th>Code</th>
-                                    <th>Action</th>
+                                <th>Category</th>
+                                <th>Design</th>
+                                <th>Code</th>
+                                <th>Action</th>
                               </tr>
                           </thead>
                               <?php foreach($designs as $design): ?>  
                               <tr>
-                                    <td><?php echo $design['Description'] ?></td>
-                                    <td><?php echo $design['Code'] ?></td>
-                                    <td>
-                                      <?php update_link('Update',base_url('page/controller/update_design.php?ID='.$design['ID'])) ?>
-                                      <?php delete_link('Delete',base_url('page/controller/delete.php?table=tdesign&return=design&id='.$design['ID'])) ?>
-                                    </td>
+                                <td><?php select_collection($design['ColCode']);?></td>
+                                <td><?php echo $design['Description'];?></td>
+                                <td><?php echo $design['Code'];?></td>
+                                <td>
+                                  <?php update_link('Update',base_url('page/controller/update_design.php?ID='.$design['ID'])) ?>
+                                  <?php delete_link('Delete',base_url('page/controller/delete.php?table=tdesign&return=design&id='.$design['ID'])) ?>
+                                </td>
                               </tr>
                               <?php endforeach; ?>  
-                          
-                      </table>            
+                        </table>            
                     </div>
                 </div><!--/span-->
             

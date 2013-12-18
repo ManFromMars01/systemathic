@@ -51,8 +51,6 @@
                                     </select>    
                                 </div>
                             </div>
-
-                            
                             <div class="form-actions">
                               <button type="submit"  class="btn btn-primary" name="save" id="save_upd_level">Save changes</button>
                               <button type="reset" class="btn">Cancel</button>

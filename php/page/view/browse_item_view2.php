@@ -9,27 +9,29 @@
                     </div>
                     
                     <div class="box-content">
-                        <a class="btn btn-info" href="<?php echo base_url('Updatetitemsadd.php');?>"> Add Items</a>
+                        <a class="btn btn-info" href="<?php echo controller('add_items2');?>"> Add Items</a>
+
+                        <a class="btn btn-info" href="<?php echo controller('add_items');?>"> Add Book</a>
                         <br><br >
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                           <thead>
                               <tr>
-                                <th>Item Code</th>
+                                <th>Sku</th>
+                                <th>Vendor</th>
                                 <th>Description</th>
-                                <th>Stock</th>
                                 <th>Action</th>
                               </tr>
                           </thead>
                            
                           <tbody>
                             <?php foreach($titems as $titem): ?>
-                            <?php $desc = $model->select_where('titems',array('ItemNo' => $titem['ItemNo'])); ?>
                             <tr>
-                                <td><?php echo $titem['ItemNo']; ?></td>
-                                <td><?php echo $desc->fields['Description'];?></td>
-                                <td><?php echo $titem['QtyOnHand'];?></td>
+                                <td><?php echo $titem['Sku']; ?></td>
+                                <td><?php echo $titem['Name']?></td>
+                                <td><?php echo $titem['Description'];?></td>
                                 <td>
-                                 <button class="btn btn-info">View</button>
+                                  <?php update_link('View/Edit',base_url('page/controller/update_items.php?sku='.$titem['Sku']));?>
+                                  <?php delete_link('Remove','#');?>
                                 </td>                              
                             </tr>
                             <?php endforeach; ?>

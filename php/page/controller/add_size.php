@@ -9,7 +9,6 @@ if(isset($_POST['save'])){
 	$success = success('Insert Complete!! <a href="'.base_url('page/controller/browse_size.php').'">Back To Size List</a>');
 }
 
-
 $category = $model->select_table('tcategory');
 include($default->template('header_view'));
 include($default->main_view('add_size_view'));?>

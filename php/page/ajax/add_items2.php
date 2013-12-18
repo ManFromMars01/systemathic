@@ -337,9 +337,14 @@ include('../class/systemathic.php'); // dont use $model variable
   );
 
 
+  $toinsert2 = array(
 
+  );
  
   $model->insert_tbl('titems',$toinsert);
+  $model->insert_tbl('thitems',$toinsert2);
+
+
 
   //$success = "Save Successfully";
   

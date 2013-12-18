@@ -261,9 +261,15 @@
 
 						<li <?php $default->hide_if($role_id2);?>><a href="<?php echo base_url('page/controller/browse_branches.php?countryid='.$_SESSION['UserValue1']); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img> <?php echo $_SESSION['UserValue1'];?> - Branches</a></li>
 						<li <?php $default->hide_if($role_id);?>><a href="<?php echo base_url('page/controller/browse_branches.php?countryid=wearegreat0101'); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img>Branches</a></li>
-						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_item.php'); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Inventory</span></a></li>
 						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/order.php')?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Order</span></a></li>
 						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/my_orders.php')?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> My Orders</span></a></li>
+					
+						<li <?php $default->hide_if($role_id);?>class="nav-header hidden-tablet" > Inventory</li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_item.php'); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Items</span></a></li>
+						<li <?php $default->hide_if($role_id);?>><a class="ajax-link" href="<?php echo base_url('page/controller/browse_item.php'); ?>"><img class="icon" src="<?php echo base_url()?>template/img/redicons/countrylist.jpg"></img><span class="hidden-tablet"> Books</span></a></li>
+
+
+
 					</ul>
 					
 				</div><!--/.well -->

@@ -2,130 +2,32 @@
 session_start();
 include('../class/model.php'); // dont use $model variable 
 include('../class/systemathic.php'); // dont use $default variable
+include('../controller/item_variables_edit.php');
+$cur_items = $model->select_where('titems',array('Sku' => $_GET['sku']));
+$inventory = $model->select_where('thitems',array('Sku' => $_GET['sku'], 'BranchID' => 'TW001'));
 
+$inventory_login =  $model->select_where('thitems',array('Sku' => $_GET['sku'], 'BranchID' => $_SESSION['UserValue2']));
+
+
+
+$color  = $model->select_table('tcolor');
 $design = $model->select_table('tdesign');
+$collection = $model->select_table('tcollection');
+?>
+<?php include($default->template('header_view'));?>
+<?php
 
-
-/**Begin Department**/
-$seldepartment =  $model->select_where('tdepartment',array('BranchID' => $_SESSION['UserValue2']));
-$option1 =  "<option value=''>Please Select A Department</option>";
-foreach ($seldepartment as $seldepartments):
-        $option1 .= "<option value='".$seldepartments['ID']."'>".$seldepartments['Description']." </option>";
-endforeach;
-/**End Department**/
-
-/**Begin Manufacturer**/
-$selmanufacturer =  $model->select_table('tmanufacturer');
-$option2 =  "<option value=''>Please Select A Manufacturer</option>";
-foreach ($selmanufacturer as $selmanufacturers):
-        $option2 .= "<option value='".$selmanufacturers['ID']."'>".$selmanufacturers['Description']." </option>";
-endforeach;
-/**End Manufacturer**/
-
-/**Begin Location**/
-$sellocation =  $model->select_table('tlocation',array('BranchID' => $_SESSION['UserValue2']));
-$option3 =  "<option value=''>Please Select A Location</option>";
-foreach ($sellocation as $sellocations):
-        $option3 .= "<option value='".$sellocations['ID']."'>".$sellocations['Description']." </option>";
-endforeach;
-/**End Location**/
-
-/**Abacus Books**/
-$selbooks = $model->select_where('titems', array('IsBook' => 'Yes', 'IsAbacus' =>'Yes')); 
-$option4 ="";
-foreach ($selbooks as $selbook):
-        $option4 .= "<option value='".$selbook['ItemNo']."a'>".$selbook['ItemNo']." (".$selbook['AbaDesc'].") </option>";
-endforeach;
-/**End abacus**/
-
-/**Mental Books**/
-$selbooks2 = $model->select_where('titems', array('IsBook' => 'Yes', 'IsMental' =>'Yes')); 
-$option5 ="";
-foreach ($selbooks2 as $selbook2):
-        $option5 .= "<option value='".$selbook2['ItemNo']."m'>".$selbook2['ItemNo']." (".$selbook2['MenDesc'].") </option>";
-endforeach;
-/**End Mental**/
-
-
-/**Supplementary Books**/
-$selbooks3 = $model->select_where('titems', array('IsBook' => 'Yes', 'IsSupp' =>'Yes'));
-$option6 =""; 
-foreach ($selbooks3 as $selbook3):
-        $option6 .= "<option value='".$selbook3['ItemNo']."s'>".$selbook3['ItemNo']." (".$selbook3['SuppDesc'].") </option>";
-endforeach;
-/**End**/
-
-$color = $model->select_table('tcolor',array('CatID' => '02'));
-$size = $model->select_where('tsize',array('CatID' => '02'));
-
-
-
- 
-
-
-/**Begin Category**/
-$selcategory = $model->select_table('tcollection');
-$option7 =  "<option value=''>Please Select A Category</option>";
-foreach ($selcategory as $selcategorys):
-        $option7 .= "<option value='".$selcategorys['Code']."'>".$selcategorys['Description']." </option>";
-endforeach;
-/**End Category**/
-
-/**Begin Vendor**/
-$selvendor = $model->select_table('tvendor');
-$option8 =  "<option value=''>Please Select A Vendor</option>";
-foreach ($selvendor as $selvendor):
-        $option8 .= "<option value='".$selvendor['Code']."'>".$selvendor['Name']." </option>";
-endforeach;
-/**End Vendor**/
-
-/**Unit of Measure **/
-$selumea = $model->select_where('tunitmeas',array('BranchID' => $_SESSION['UserValue2']));
-$option9 =  "<option value=''>Please Select Unit of Measure</option>";
-foreach ($selumea as $selumeas):
-        $option9 .= "<option value='".$selumeas['ID']."'>".$selumeas['Description']." </option>";
-endforeach;
-/**Unit of Mesure**/
-$optionall ="";
-
-$optionall = $option4.$option5.$option6;  
-
-
-
-
-
-
-include($default->template('header_view'));
-include($default->main_view('add_items_view'));
+if($cur_items->fields['IsBook'] == "Yes" && $_SESSION['UserValue2'] =="TW001"):  
+    $size   = $model->select_table('tsize');    
+    include($default->main_view('update_items_view'));
+else:
+    $design = $model->select_not_equal('tdesign',array('ColCode' => '02'));
+    $size = $model->select_not_equal('tsize',array('CatID' => '02'));
+    $color  = $model->select_not_equal('tcolor',array('ColCode' => '02'));
+    include($default->main_view('update_items_view2'));
+endif; 
 ?>
 <script>
-/***New***/
-
-$('#txttitemsCatID').change(function(){
-     collectionid = $(this).val();
-     $.ajax({
-        url:"<?php echo base_url('page/ajax/get_design.php')?>",
-        type:"post",
-        data:{collectionid : collectionid},
-        dataType:'json',
-        success: function(j){
-            alert('test');
-            console.log(j);
-            $('#design').html(j.displayit);
-        },
-        error: function(xhr,err){
-           alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-            alert("responseText: "+xhr.responseText);
-            alert('Tranasaction Failed: Dupplicate Entry of ItemCode' );
-
-        }
-
-     })
-
-
-});
-
-
     /***For Books***/
 $('.itemtype').change(function(){
     itemtype = $(this).val();
@@ -184,22 +86,30 @@ $("#form31").validate({
 });
 
 
-$('#add_item_books').click(function(){
-   if($("#form31").valid()){
+
+$('#upd_item_books').click(function(){
+   if($("#form32").valid()){
         $.ajax({
-        url: '<?php echo base_url('page/ajax/add_items.php');?>',
+        
+        <?php if($cur_items->fields['IsBook'] == "Yes" && $_SESSION['UserValue2'] =="TW001" ):  ?>
+        url: '<?php echo base_url('page/ajax/edit_items.php');?>',
+        <?php else:?>
+        url: '<?php echo base_url('page/ajax/edit_items2.php');?>',
+        <?php endif;?>
         type: 'post',
-        data: $('#form31').serialize(),
+        data: $('#form32').serialize(),
         dataType: 'json',
         success: function (z) {
             console.log(z);
-            $('.modal-body').html(z.successful);
+            $('.modal-body').html(z.mystatus2);
             $("#myModal").modal('show');
+           
         },   
          error: function(xhr,err){
            alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-           alert("responseText: "+xhr.responseText);
-           alert('Tranasaction Failed: Dupplicate Entry of ItemCode' );
+            alert("responseText: "+xhr.responseText);
+            alert('Tranasaction Failed: Dupplicate Entry of ItemCode' );
+
         }
     });
 
@@ -495,6 +405,6 @@ $('#previousa').change(function(){
             }); 
 
         });
+</script>        
 
-</script>
 <?php include($default->template('footer_view')); ?>

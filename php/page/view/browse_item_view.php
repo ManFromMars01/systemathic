@@ -8,13 +8,14 @@
                         <h2><i class="icon-user"></i> Inventory -  Item List </h2>
                     </div>
                     <div class="box-content">
-                         <a class="btn btn-success" href="<?php echo controller('add_item_inventory'); ?>">Add CMA Item in Inventory</a>
-                        <a class="btn btn-success" href="<?php echo controller('add_items'); ?>">Add Your Own Item In Inventory</a>
+                        <a class="btn btn-info" href="<?php echo controller('set_default_items'); ?>">Set Default Items</a>
+                        <a class="btn btn-success" href="<?php echo controller('add_items2'); ?>">Add Your Own Item In Inventory</a>
+
                         <br><br >
                         <table class="table table-striped table-bordered bootstrap-datatable datatable">
                           <thead>
                               <tr>
-                                <th>Item Code</th>
+                                <th>Sku</th>
                                 <th>Description</th>
                                 <th>Stock</th>
                                 <th>Action</th>
@@ -23,19 +24,16 @@
                            
                           <tbody>
                             <?php foreach($titems as $titem): ?>
-                            <?php $desc = $model->select_where('titems',array('ItemNo' => $titem['ItemNo'])); ?>
+                            <?php $desc = $model->select_where('titems',array('Sku' => $titem['Sku'])); ?>
                             <tr>
-                                <td><?php echo $titem['ItemNo']; ?></td>
+                                <td><?php echo $titem['Sku']; ?></td>
                                 <td><?php echo $desc->fields['Description'];?></td>
                                 <td><?php echo $titem['QtyOnHand'];?></td>
                                 <td>
-                                    <button class="btn btn-info">Order</button> 
-                                    <button class="btn btn-info">View</button>
+                                    <a href="<?php echo base_url('page/controller/update_items.php?sku='.$titem['Sku']);?>" class="btn btn-info">Update Price/Stock</button> 
                                 </td>                              
                             </tr>
                             <?php endforeach; ?>
-                    
-                            
                           </tbody>
                       </table>            
                     </div>

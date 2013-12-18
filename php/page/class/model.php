@@ -17,6 +17,48 @@ Class Model{
 	}
 
 
+	public function select_join_where($table,$jointable,$join_column,$where){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+       	$objConn1 = ADONewConnection($Driver1);
+       	$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+       	$where1 = "";
+		foreach($join_column as $key => $value) {
+  			$where1 .= $key." = '".$value."'"; 
+		}	
+
+       	$selectable  = "SELECT * FROM ".$table." INNER JOIN ".$jointable.' ON '.$where1;
+		$where2 = "";
+		foreach($where as $key => $value) {
+  			$where2 .= $key." = '".$value."' AND "; 
+		}
+
+		$selectable  .= " WHERE " .trim($where2, "AND ");
+		$selectable = $objConn1->Execute($selectable);
+		$objConn1->Close();
+ 		return $selectable;	
+	}
+
+	public function select_join_only($table,$jointable,$join_column){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+       	$objConn1 = ADONewConnection($Driver1);
+       	$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+       	$where1 = "";
+		foreach($join_column as $key => $value) {
+  			$where1 .= $key." = ".$value; 
+		}	
+
+       	$selectable  = "SELECT * FROM ".$table." INNER JOIN ".$jointable.' ON '.$where1;
+		//$selectable  = "SELECT * FROM titems INNER JOIN tvendor ON titems.LastPurVdrID = tvendor.Code";
+
+		$selectable = $objConn1->Execute($selectable);
+		$objConn1->Close();
+ 		return $selectable;	
+	}
+
+
+
 	public function select_where($table, $where){
 		include('../../ConnInfo.php');
 		include('../../systemathicappdata.php');
@@ -28,6 +70,26 @@ Class Model{
 		$where2 = "";
 		foreach($where as $key => $value) {
   			$where2 .= $key." = '".$value."' AND "; 
+		}
+
+		$selectable  .= " WHERE " .trim($where2, "AND ");
+		$selectable = $objConn1->Execute($selectable);
+		$objConn1->Close();
+ 		return $selectable;
+
+	}
+
+	public function select_not_equal($table, $where){
+		include('../../ConnInfo.php');
+		include('../../systemathicappdata.php');
+ 		$objConn1 = ADONewConnection($Driver1);
+		//$objConn1->debug = $DebugMode;
+		$objConn1->PConnect($Server1,$User1,$Password1,$db1);
+
+		$selectable  = "SELECT * FROM ".$table;
+		$where2 = "";
+		foreach($where as $key => $value) {
+  			$where2 .= $key." != '".$value."' AND "; 
 		}
 
 		$selectable  .= " WHERE " .trim($where2, "AND ");
@@ -355,7 +417,6 @@ Class Model{
 		$roomdescs = $objConn1->Execute($sql);
 		return  $roomdescs;	
 	}
-
 	public function update_inventory($itemno,$branch,$vendorbranch,$qty){
 		$count = $this->count_where('thitems', array('ItemNo' => $itemno, 'BranchID' => $branch));
 		$vendor_price = $this->select_where('thitems',array('ItemNo' => $itemno, 'BranchID' => $vendorbranch));

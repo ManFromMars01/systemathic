@@ -1,5 +1,7 @@
   <?php 
-  include('myclass.php');
+  session_start();
+  include('../class/model.php'); // dont use $model variable 
+  include('../class/systemathic.php'); // dont use $default variable
   
   $AbaNxtBook1 = "";
   $AbaNxtBook2 = "";
@@ -71,161 +73,148 @@
   $SuppPrev3Cat  = "";
 
 
-  if($_POST["txttitemsAbaNxtBook1"] != ""){
+  if(isset($_POST["txttitemsAbaNxtBook1"])){
     $AbaNxtBook1 = substr_replace($_POST["txttitemsAbaNxtBook1"],"",-1);
     $AbaNxt1Cat =  substr($_POST['txttitemsAbaNxtBook1'],-1,1);
   }
 
-  if($_POST["txttitemsAbaNxtBook2"] != ""){
+  if(isset($_POST["txttitemsAbaNxtBook2"])){
     $AbaNxtBook2 = substr_replace($_POST["txttitemsAbaNxtBook2"],"",-1);
     $AbaNxt2Cat =  substr($_POST['txttitemsAbaNxtBook2'],-1,1);
   }
 
-  if($_POST["txttitemsAbaNxtBook3"] != ""){
+  if(isset($_POST["txttitemsAbaNxtBook3"])){
     $AbaNxtBook3 = substr_replace($_POST["txttitemsAbaNxtBook3"],"",-1);
     $AbaNxt3Cat =  substr($_POST['txttitemsAbaNxtBook3'],-1,1);
   }
 
-  if($_POST["txttitemsAbaPrvBook1"] != ""){
+  if(isset($_POST["txttitemsAbaPrvBook1"])){
     $AbaPrvBook1 = substr_replace($_POST["txttitemsAbaPrvBook1"],"",-1);
     $AbaPrev1Cat =  substr($_POST['txttitemsAbaPrvBook1'],-1,1);
   }
 
-  if($_POST["txttitemsAbaPrvBook2"] != ""){
+  if(isset($_POST["txttitemsAbaPrvBook2"])){
     $AbaPrvBook2 = substr_replace($_POST["txttitemsAbaPrvBook2"],"",-1);
     $AbaPrev2Cat =  substr($_POST['txttitemsAbaPrvBook2'],-1,1);
   }
 
-  if($_POST["txttitemsAbaPrvBook3"] != ""){
+  if(isset($_POST["txttitemsAbaPrvBook3"])){
     $AbaPrvBook3 = substr_replace($_POST["txttitemsAbaPrvBook3"],"",-1);
     $AbaPrev3Cat =  substr($_POST['txttitemsAbaPrvBook3'],-1,1);
   }
 
-  if($_POST["txttitemsMenNxtBook1"] != ""){
+  if(isset($_POST["txttitemsMenNxtBook1"])){
     $MenNxtBook1 = substr_replace($_POST["txttitemsMenNxtBook1"],"",-1);
     $MenNxt1Cat =  substr($_POST['txttitemsMenNxtBook1'],-1,1);
   }
 
-  if($_POST["txttitemsMenNxtBook2"] != ""){
+  if(isset($_POST["txttitemsMenNxtBook2"])){
     $MenNxtBook2 = substr_replace($_POST["txttitemsMenNxtBook2"],"",-1);
     $MenNxt2Cat =  substr($_POST['txttitemsMenNxtBook2'],-1,1);
   }
 
-  if($_POST["txttitemsMenNxtBook3"] != ""){
+  if(isset($_POST["txttitemsMenNxtBook3"])){
     $MenNxtBook3 = substr_replace($_POST["txttitemsMenNxtBook3"],"",-1);
     $MenNxt3Cat =  substr($_POST['txttitemsMenNxtBook3'],-1,1);
   }
 
-  if($_POST["txttitemsMenPrvBook1"] != ""){
+  if(isset($_POST["txttitemsMenPrvBook1"])){
     $MenPrvBook1 = substr_replace($_POST["txttitemsMenPrvBook1"],"",-1);
     $MenPrev1Cat =  substr($_POST['txttitemsMenPrvBook1'],-1,1);
   }
 
-  if($_POST["txttitemsMenPrvBook2"] != ""){
+  if(isset($_POST["txttitemsMenPrvBook2"])){
     $MenPrvBook2 = substr_replace($_POST["txttitemsMenPrvBook2"],"",-1);
     $MenPrev2Cat =  substr($_POST['txttitemsMenPrvBook2'],-1,1);
   }
 
-  if($_POST["txttitemsMenPrvBook3"] != ""){
+  if(isset($_POST["txttitemsMenPrvBook3"])){
     $MenPrvBook3 = substr_replace($_POST["txttitemsMenPrvBook3"],"",-1);
     $MenPrev3Cat =  substr($_POST['txttitemsMenPrvBook3'],-1,1);
   }
 
 
-  if($_POST["txttitemsSuppNxtBook1"] != ""){
+  if(isset($_POST["txttitemsSuppNxtBook1"])){
     $SuppNxtBook1 = substr_replace($_POST["txttitemsSuppNxtBook1"],"",-1);
     $SuppNxt1Cat =  substr($_POST['txttitemsSuppNxtBook1'],-1,1);
   }
 
-  if($_POST["txttitemsSuppNxtBook2"] != ""){
+  if(isset($_POST["txttitemsSuppNxtBook2"])){
     $SuppNxtBook2 = substr_replace($_POST["txttitemsSuppNxtBook2"],"",-1);
     $SuppNxt2Cat =  substr($_POST['txttitemsSuppNxtBook2'],-1,1);
   }
 
-  if($_POST["txttitemsSuppNxtBook3"] != ""){
+  if(isset($_POST["txttitemsSuppNxtBook3"])){
     $SuppNxtBook3 = substr_replace($_POST["txttitemsSuppNxtBook3"],"",-1);
     $SuppNxt3Cat =  substr($_POST['txttitemsSuppNxtBook3'],-1,1);
   }
 
-  if($_POST["txttitemsSuppPrvBook1"] != ""){
+  if(isset($_POST["txttitemsSuppPrvBook1"])){
     $SuppPrvBook1 = substr_replace($_POST["txttitemsSuppPrvBook1"],"",-1);
     $SuppPrev1Cat =  substr($_POST['txttitemsSuppPrvBook1'],-1,1);
   }
 
-  if($_POST["txttitemsSuppPrvBook2"] != ""){
+  if(isset($_POST["txttitemsSuppPrvBook2"])){
     $SuppPrvBook2 = substr_replace($_POST["txttitemsSuppPrvBook2"],"",-1);
     $SuppPrev2Cat =  substr($_POST['txttitemsSuppPrvBook2'],-1,1);
   }
 
-  if($_POST["txttitemsSuppPrvBook3"] != ""){
+  if(isset($_POST["txttitemsSuppPrvBook3"])){
     $SuppPrvBook3 = substr_replace($_POST["txttitemsSuppPrvBook3"],"",-1);
     $SuppPrev3Cat =  substr($_POST['txttitemsSuppPrvBook3'],-1,1);
   }
 
 
 
-  if($_POST["txttitemsAbaPreBook1"] != ""){
+  if(isset($_POST["txttitemsAbaPreBook1"])){
     $AbaPreBook1 = substr_replace($_POST["txttitemsAbaPreBook1"],"",-1);
     $AbaPreCat1 =  substr($_POST['txttitemsAbaPreBook1'],-1,1);
   }
 
-  if($_POST["txttitemsAbaPreBook2"] != ""){
+  if(isset($_POST["txttitemsAbaPreBook2"])){
     $AbaPreBook2 = substr_replace($_POST["txttitemsAbaPreBook2"],"",-1);
     $AbaPreCat2 =  substr($_POST['txttitemsAbaPreBook2'],-1,1);
   }
 
-  if($_POST["txttitemsAbaPreBook3"] != ""){
+  if(isset($_POST["txttitemsAbaPreBook3"])){
     $AbaPreBook3 = substr_replace($_POST["txttitemsAbaPreBook3"],"",-1);
     $AbaPreCat3 =  substr($_POST['txttitemsAbaPreBook3'],-1,1);
   }
 
-  if($_POST["txttitemsMenPreBook1"] != ""){
+  if(isset($_POST["txttitemsMenPreBook1"])){
     $MenPreBook1 = substr_replace($_POST["txttitemsMenPreBook1"],"",-1);
     $MenPreCat1 =  substr($_POST['txttitemsMenPreBook1'],-1,1);
   }
 
-  if($_POST["txttitemsMenPreBook2"] != ""){
+  if(isset($_POST["txttitemsMenPreBook2"])){
     $MenPreBook2 = substr_replace($_POST["txttitemsMenPreBook2"],"",-1);
     $MenPreCat2 =  substr($_POST['txttitemsMenPreBook2'],-1,1);
   }
 
-  if($_POST["txttitemsMenPreBook3"] != ""){
+  if(isset($_POST["txttitemsMenPreBook3"])){
     $MenPreBook3 = substr_replace($_POST["txttitemsMenPreBook3"],"",-1);
     $MenPreCat3 =  substr($_POST['txttitemsMenPreBook3'],-1,1);
   }
 
-  if($_POST["txttitemsSuppPreBook1"] != ""){
+  if(isset($_POST["txttitemsSuppPreBook1"])){
     $SuppPreBook1 = substr_replace($_POST["txttitemsSuppPreBook1"],"",-1);
     $SuppPreCat1 =  substr($_POST['txttitemsSuppPreBook1'],-1,1);
   }
 
-  if($_POST["txttitemsSuppPreBook2"] != ""){
+  if(isset($_POST["txttitemsSuppPreBook2"])){
     $SuppPreBook2 = substr_replace($_POST["txttitemsSuppPreBook2"],"",-1);
     $SuppPreCat2 =  substr($_POST['txttitemsSuppPreBook2'],-1,1);
   }
 
-  if($_POST["txttitemsSuppPreBook3"] != ""){
+  if(isset($_POST["txttitemsSuppPreBook3"])){
     $SuppPreBook3 = substr_replace($_POST["txttitemsSuppPreBook3"],"",-1);
     $SuppPreCat3 =  substr($_POST['txttitemsSuppPreBook3'],-1,1);
   }
 
 
 
-
-
-
-
-
-
-
-
-  $toinsert = array("CountryID" => $_POST["txttitemsCountryID"],
-  "BranchID" => $_POST["txttitemsBranchID"],
-  "ItemNo" => $_POST["txttitemsItemNo"].$_POST['suffix'],
-  "Sku"    => "TW"."19"."02".$_POST["txttitemscolors"].$_POST["suffix"].$_POST["design"];
+  $toupdate = array(
   "Description" => $_POST["txttitemsDescription"],
-  "IsBook" => $_POST["txttitemsIsBook"],
-   //"IsMultiCat" => $_POST["txttitemsIsMultiCat"],
   "IsAbacus" => $_POST["txttitemsIsAbacus"],
   "IsMental" => $_POST["txttitemsIsMental"],
   "IsSupp" => $_POST["txttitemsIsSupp"],
@@ -266,9 +255,6 @@
   "MenNumStart" => $_POST["txttitemsMenNumStart"],
   "MenNumEnd" => $_POST["txttitemsMenNumEnd"],
   "MenBookGrade" => $_POST["txttitemsMenBookGrade"],
-  
-
-
   "SuppNxtBook1" => $SuppNxtBook1,
   "SuppNxtBook2" => $SuppNxtBook2,
   "SuppNxtBook3" => $SuppNxtBook3,
@@ -286,22 +272,7 @@
   "SuppNumStart" => $_POST["txttitemsSuppNumStart"],
   "SuppNumEnd" => $_POST["txttitemsSuppNumEnd"],
   "SuppBookGrade" => $_POST["txttitemsSuppBookGrade"],
-  "CatID" => $_POST["txttitemsCatID"],
   //"SubCatID" => $_POST["txttitemsSubCatID"],
-  "DeptID" => $_POST["txttitemsDeptID"],
-  "ManufacturerID" => $_POST["txttitemsManufacturerID"],
-  "LocationID" => $_POST["txttitemsLocationID"],
-  "IssuUntCost" => $_POST["txttitemsIssuUntCost"],
-  "IssuUntMea" => $_POST["txttitemsIssuUntMea"],
-  "PurUntCost" => $_POST["txttitemsPurUntCost"],
-  "ReOrderPT" => $_POST["txttitemsReOrderPT"],
-  "ReOrderQty" => $_POST["txttitemsReOrderQty"],
-  "LastPurVdrID" => $_POST["txttitemsLastPurVdrID"],
-  "ReOrderReq" => $_POST["txttitemsReOrderReq"],
-  "LstOrderCost" => $_POST["txttitemsLstOrderCost"],
-  "StdCost" => $_POST["txttitemsStdCost"],
-  "QtyOnHand" => $_POST["txttitemsQtyOnHand"],
-  "QtyOnOrder" => $_POST["txttitemsQtyOnOrder"],
   "AbaNext1Cat" => $AbaNxt1Cat,
   "AbaNext2Cat" => $AbaNxt2Cat,
   "AbaNext3Cat" => $AbaNxt3Cat,
@@ -320,29 +291,32 @@
   "SuppPrev1Cat" => $SuppPrev1Cat,
   "SuppPrev2Cat" => $SuppPrev2Cat,
   "SuppPrev3Cat" => $SuppPrev3Cat,
-
   "PreSuppNext1Cat" => $SuppPreCat1,
   "PreSuppNext2Cat" => $SuppPreCat2,
   "PreSuppNext3Cat" => $SuppPreCat3,
-
   "PreAbaNext1Cat" => $AbaPreCat1,
   "PreAbaNext2Cat" => $AbaPreCat2,
   "PreAbaNext3Cat" => $AbaPreCat3,
-
   "PreMenNext1Cat" => $MenPreCat1,
   "PreMenNext2Cat" => $MenPreCat2,
   "PreMenNext3Cat" => $MenPreCat3,
+  );
 
+  $toupdate2 = array(
+    'CountryID' => "TW",
+    'BranchID'  => "TW001",
+    'IssuUntCost' =>  $_POST['txttitemsIssuUntCost'],// magkakano  nagastos 
+    'PurUntCost'  =>  $_POST['txttitemsPurUntCost'],  // price for branch
+    'StdCost'     =>  $_POST['txttitemsStdCost'],   // price for customer
+    'QtyOnHand'   =>  $_POST['txttitemsQtyOnHand'] 
   );
 
 
-
- 
-  $model->insert_tbl('titems',$toinsert,1);
-
-  $success = "Save Successfully";
+  $model->update_tbl('titems',$toupdate,array('Sku' => $_POST["sku"]));
+  $model->update_tbl('thitems',$toupdate2,array('Sku' => $_POST["sku"], 'BranchID' => 'TW001'));
+  $success = "Update Successfullys";
   
-  $myStatus  = array('mystatus' => $toinsert);
+  $myStatus  = array('mystatus2' => $success);
   echo json_encode($myStatus);   
 
   ?>
